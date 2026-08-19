@@ -320,7 +320,7 @@ window.__ModuleLoader__.load({
 
     function FishingWidget() {
       const [snap, setSnap] = useState(null);
-      const [expanded, setExpanded] = useState(true);
+      const [expanded, setExpanded] = useState(false);
       const [busy, setBusy] = useState(false);
       const [loadError, setLoadError] = useState(null);
       const [actionError, setActionError] = useState(null);
