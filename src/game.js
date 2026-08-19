@@ -7,54 +7,100 @@
 import { randomUUID } from 'node:crypto'
 
 export const GAME_VERSION = 1
+export const BAIT_TOKENS_PER_BAIT = 1_000_000
 
 export const SPECIES = [
-  { id: 'carp', name: '鲫鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 800, minLengthCm: 15, maxLengthCm: 30, baseValue: 12, requiredRodId: 'bamboo', aquariumCompatible: true, scoreWeight: 1 },
-  { id: 'crucian', name: '鲤鱼', emoji: '🐠', rarity: 'common', minWeightGrams: 500, maxWeightGrams: 1500, minLengthCm: 20, maxLengthCm: 40, baseValue: 20, requiredRodId: 'bamboo', aquariumCompatible: true, scoreWeight: 1 },
-  { id: 'bass', name: '鲈鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 800, maxWeightGrams: 2500, minLengthCm: 30, maxLengthCm: 55, baseValue: 45, requiredRodId: 'carbon', aquariumCompatible: true, scoreWeight: 1 },
-  { id: 'trout', name: '鳟鱼', emoji: '🐠', rarity: 'uncommon', minWeightGrams: 600, maxWeightGrams: 1800, minLengthCm: 25, maxLengthCm: 45, baseValue: 50, requiredRodId: 'carbon', aquariumCompatible: true, scoreWeight: 1 },
-  { id: 'catfish', name: '鲶鱼', emoji: '🐡', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 6000, minLengthCm: 40, maxLengthCm: 80, baseValue: 120, requiredRodId: 'long_cast', aquariumCompatible: true, scoreWeight: 1 },
-  { id: 'mandarin', name: '鳜鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1000, maxWeightGrams: 3500, minLengthCm: 30, maxLengthCm: 60, baseValue: 150, requiredRodId: 'long_cast', aquariumCompatible: true, scoreWeight: 1 },
-  { id: 'koi', name: '锦鲤', emoji: '🐠', rarity: 'epic', minWeightGrams: 1500, maxWeightGrams: 5000, minLengthCm: 35, maxLengthCm: 70, baseValue: 400, requiredRodId: 'golden', aquariumCompatible: true, scoreWeight: 1 },
-  { id: 'arowana', name: '龙鱼', emoji: '🐉', rarity: 'legendary', minWeightGrams: 3000, maxWeightGrams: 9000, minLengthCm: 50, maxLengthCm: 90, baseValue: 1200, requiredRodId: 'golden', aquariumCompatible: true, scoreWeight: 1 }
+  { id: 'carp', name: '鲫鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 800, minLengthCm: 15, maxLengthCm: 30, baseValue: 12, requiredRodId: 'hand', scoreWeight: 1 },
+  { id: 'crucian', name: '鲤鱼', emoji: '🐠', rarity: 'common', minWeightGrams: 500, maxWeightGrams: 1500, minLengthCm: 20, maxLengthCm: 40, baseValue: 20, requiredRodId: 'hand', scoreWeight: 1 },
+  { id: 'koi', name: '锦鲤', emoji: '🐠', rarity: 'epic', minWeightGrams: 1500, maxWeightGrams: 5000, minLengthCm: 35, maxLengthCm: 70, baseValue: 400, requiredRodId: 'hand', scoreWeight: 1 },
+  { id: 'bass', name: '鲈鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 800, maxWeightGrams: 2500, minLengthCm: 30, maxLengthCm: 55, baseValue: 45, requiredRodId: 'sea', scoreWeight: 1 },
+  { id: 'catfish', name: '鲶鱼', emoji: '🐡', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 6000, minLengthCm: 40, maxLengthCm: 80, baseValue: 120, requiredRodId: 'sea', scoreWeight: 1 },
+  { id: 'arowana', name: '龙鱼', emoji: '🐉', rarity: 'legendary', minWeightGrams: 3000, maxWeightGrams: 9000, minLengthCm: 50, maxLengthCm: 90, baseValue: 1200, requiredRodId: 'sea', scoreWeight: 1 },
+  { id: 'trout', name: '鳟鱼', emoji: '🐠', rarity: 'uncommon', minWeightGrams: 600, maxWeightGrams: 1800, minLengthCm: 25, maxLengthCm: 45, baseValue: 50, requiredRodId: 'lure', scoreWeight: 1 },
+  { id: 'mandarin', name: '鳜鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1000, maxWeightGrams: 3500, minLengthCm: 30, maxLengthCm: 60, baseValue: 150, requiredRodId: 'lure', scoreWeight: 1 },
+  { id: 'bream', name: '鳊鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 300, maxWeightGrams: 1200, minLengthCm: 18, maxLengthCm: 35, baseValue: 15, requiredRodId: 'feeder', scoreWeight: 1 },
+  { id: 'grass_carp', name: '草鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 1000, maxWeightGrams: 4000, minLengthCm: 30, maxLengthCm: 60, baseValue: 55, requiredRodId: 'feeder', scoreWeight: 1 },
+  { id: 'black_carp', name: '青鱼', emoji: '🐠', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 8000, minLengthCm: 40, maxLengthCm: 80, baseValue: 180, requiredRodId: 'feeder', scoreWeight: 1 }
 ]
 
 export const RODS = [
-  { id: 'bamboo', name: '竹竿', emoji: '🎋', basePrice: 0, upgradeBasePrice: 80, maxLevel: 5, rarityMultiplier: 1.0, weightMultiplier: 1.0, baitTokensPerCast: 2000 },
-  { id: 'carbon', name: '碳素竿', emoji: '🎣', basePrice: 300, upgradeBasePrice: 200, maxLevel: 5, rarityMultiplier: 1.5, weightMultiplier: 1.1, baitTokensPerCast: 1500 },
-  { id: 'long_cast', name: '远投竿', emoji: '🎣', basePrice: 900, upgradeBasePrice: 500, maxLevel: 5, rarityMultiplier: 2.5, weightMultiplier: 1.2, baitTokensPerCast: 1200 },
-  { id: 'golden', name: '黄金竿', emoji: '✨', basePrice: 3000, upgradeBasePrice: 1000, maxLevel: 5, rarityMultiplier: 5.0, weightMultiplier: 1.4, baitTokensPerCast: 1000 }
+  { id: 'hand', name: '手竿', emoji: '🎋', basePrice: 0, upgradeBasePrice: 80, maxLevel: 5, rarityMultiplier: 1.0, weightMultiplier: 1.0, baseSuccessRate: 0.55, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['carp', 'crucian', 'koi'] },
+  { id: 'sea', name: '海竿', emoji: '🎣', basePrice: 300, upgradeBasePrice: 200, maxLevel: 5, rarityMultiplier: 1.5, weightMultiplier: 1.1, baseSuccessRate: 0.60, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['bass', 'catfish', 'arowana'] },
+  { id: 'lure', name: '路亚竿', emoji: '🎣', basePrice: 900, upgradeBasePrice: 500, maxLevel: 5, rarityMultiplier: 2.5, weightMultiplier: 1.2, baseSuccessRate: 0.65, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['trout', 'mandarin'] },
+  { id: 'feeder', name: '飞德杆', emoji: '🎣', basePrice: 600, upgradeBasePrice: 350, maxLevel: 5, rarityMultiplier: 2.0, weightMultiplier: 1.15, baseSuccessRate: 0.62, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['bream', 'grass_carp', 'black_carp'] }
 ]
 
-export const AQUARIUMS = [
-  { id: 'small', name: '小型鱼缸', emoji: '🐠', basePrice: 200, baseCapacity: 3, maxCapacity: 6, upgradeBasePrice: 100, allowedSpecies: ['carp', 'crucian'] },
-  { id: 'medium', name: '中型鱼缸', emoji: '🐟', basePrice: 600, baseCapacity: 5, maxCapacity: 10, upgradeBasePrice: 300, allowedSpecies: ['carp', 'crucian', 'bass', 'trout'] },
-  { id: 'large', name: '大型鱼缸', emoji: '🐡', basePrice: 1500, baseCapacity: 8, maxCapacity: 16, upgradeBasePrice: 700, allowedSpecies: ['carp', 'crucian', 'bass', 'trout', 'catfish', 'mandarin', 'koi', 'arowana'] }
+export const BASKETS = [
+  { id: 'small', name: '小鱼篓', emoji: '🧺', capacity: 5, basePrice: 0 },
+  { id: 'medium', name: '中鱼篓', emoji: '🧺', capacity: 10, basePrice: 200 },
+  { id: 'large', name: '大鱼篓', emoji: '🧺', capacity: 15, basePrice: 500 }
+]
+
+export const ACCESSORY_SLOTS = [
+  { id: 'reel', name: '渔轮' },
+  { id: 'line', name: '钓线' },
+  { id: 'lure', name: '假饵' }
+]
+
+export const ACCESSORIES = [
+  { id: 'basic_reel', name: '基础渔轮', emoji: '🎡', slot: 'reel', basePrice: 80, rodTypes: ['sea', 'feeder'], successRateBonus: 0.03 },
+  { id: 'strong_reel', name: '强力渔轮', emoji: '⚙️', slot: 'reel', basePrice: 220, rodTypes: ['sea', 'feeder'], successRateBonus: 0.06 },
+  { id: 'carbon_line', name: '碳素钓线', emoji: '🧵', slot: 'line', basePrice: 100, rodTypes: ['hand', 'sea', 'lure', 'feeder'], maxWeightBonus: 0.1 },
+  { id: 'fake_lure', name: '仿生假饵', emoji: '🪱', slot: 'lure', basePrice: 120, rodTypes: ['lure', 'feeder'], rareWeightBonus: 2 },
+  { id: 'floating_lure', name: '浮水假饵', emoji: '🦐', slot: 'lure', basePrice: 180, rodTypes: ['lure'], successRateBonus: 0.04 }
 ]
 
 export const RARITY_SCORE = { common: 0, uncommon: 1, rare: 2, epic: 3, legendary: 4 }
 export const RARITY_VALUE_FACTOR = { common: 1.0, uncommon: 1.5, rare: 2.5, epic: 5.0, legendary: 10.0 }
 export const RARITY_CATCH_WEIGHT = { common: 100, uncommon: 40, rare: 15, epic: 5, legendary: 1 }
+export const JUNK_ITEMS = ['塑料瓶', '易拉罐', '破拖鞋', '烂树枝', '水草']
+
+export const FISHING_EVENTS = [
+  { id: 'wait_stargazing', stage: 'waiting', text: '你正在数星星，差点忘了自己在钓鱼……' },
+  { id: 'wait_daydreaming', stage: 'waiting', text: '你正在发呆，浮标轻轻晃了一下。' },
+  { id: 'wait_rod_shake', stage: 'waiting', text: '你正在晃动鱼竿，水波一圈圈荡开。' },
+  { id: 'wait_dragonfly', stage: 'waiting', text: '一只蜻蜓落在鱼竿上，你屏住了呼吸。' },
+  { id: 'wait_bubbles', stage: 'waiting', text: '水面冒出一串泡泡，好像有鱼在附近。' },
+  { id: 'wait_bobber_twitch', stage: 'waiting', text: '浮标轻轻动了一下，是你的错觉吗？' },
+  { id: 'reel_reeling', stage: 'reeling', text: '你正在收杆，鱼线在水面划出一道弧线。' },
+  { id: 'reel_fighting', stage: 'reeling', text: '鱼在疯狂挣扎，你赶紧握紧鱼竿！' },
+  { id: 'reel_deep_run', stage: 'reeling', text: '鱼突然向深水冲去，鱼线绷得紧紧的！' },
+  { id: 'reel_jump', stage: 'reeling', text: '鱼跃出水面，溅起一片水花！' },
+  { id: 'reel_tension', stage: 'reeling', text: '鱼线发出嗡嗡声，感觉随时会断！' },
+  { id: 'reel_side_swim', stage: 'reeling', text: '鱼开始向左边猛冲，你不得不跟着移动。' },
+  { id: 'result_nothing', stage: 'result', kind: 'nothing', text: '什么也没钓到……' },
+  { id: 'result_escape', stage: 'result', kind: 'escape', text: '有鱼咬钩了，但挣脱了！' },
+  { id: 'result_junk_bottle', stage: 'result', kind: 'junk', text: '钓到了垃圾（塑料瓶），扔掉了。' },
+  { id: 'result_junk_can', stage: 'result', kind: 'junk', text: '钓到了垃圾（易拉罐），扔掉了。' },
+  { id: 'result_junk_shoe', stage: 'result', kind: 'junk', text: '钓到了垃圾（破拖鞋），扔掉了。' },
+  { id: 'result_junk_branch', stage: 'result', kind: 'junk', text: '钓到了垃圾（烂树枝），扔掉了。' },
+  { id: 'result_seaweed', stage: 'result', kind: 'junk', text: '钓到了水草，缠得乱七八糟。' }
+]
+
+export const FISHING_WAIT_MIN_MS = 0
+export const FISHING_WAIT_MAX_MS = 60_000
+export const FISHING_REEL_MIN_MS = 0
+export const FISHING_REEL_MAX_MS = 60_000
+export const FISHING_EVENT_TICK_CHANCE = 0.15
 
 const SPECIES_BY_ID = new Map(SPECIES.map((species) => [species.id, species]))
 const RODS_BY_ID = new Map(RODS.map((rod) => [rod.id, rod]))
-const AQUARIUMS_BY_ID = new Map(AQUARIUMS.map((aquarium) => [aquarium.id, aquarium]))
+const BASKETS_BY_ID = new Map(BASKETS.map((basket) => [basket.id, basket]))
+const ACCESSORIES_BY_ID = new Map(ACCESSORIES.map((accessory) => [accessory.id, accessory]))
+const ACCESSORY_SLOTS_BY_ID = new Map(ACCESSORY_SLOTS.map((slot) => [slot.id, slot]))
+const OLD_ROD_MIGRATION = { bamboo: 'hand', carbon: 'sea', long_cast: 'lure', golden: 'lure' }
 
 export function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value))
-}
-
-export function rodTier(rodId) {
-  return RODS.findIndex((rod) => rod.id === rodId)
 }
 
 export function tokenAmountFromUsage(usage) {
   if (usage === null || typeof usage !== 'object') return 0
   const input = usage.inputTokens ?? usage.input ?? 0
   const output = usage.outputTokens ?? usage.output ?? 0
-  // Cache hit/miss tokens are not consumed tokens: only count newly
-  // generated input and output tokens.
-  return Math.max(0, Math.round(input + output))
+  const cacheRead = usage.cacheReadTokens ?? usage.cacheRead ?? 0
+  const cacheWrite = usage.cacheWriteTokens ?? usage.cacheWrite ?? 0
+  return Math.max(0, Math.round(input + output + cacheRead + cacheWrite))
 }
 
 export function createInitialState() {
@@ -63,9 +109,13 @@ export function createInitialState() {
     coins: 50,
     totalTokensConsumed: 0,
     pendingBaitTokens: 0,
-    equippedRodId: 'bamboo',
-    ownedRods: { bamboo: { rodId: 'bamboo', level: 1 } },
-    aquariums: [],
+    bait: 0,
+    equippedRodId: 'hand',
+    ownedRods: { hand: { rodId: 'hand', level: 1 } },
+    equippedBasketId: 'small',
+    ownedBaskets: { small: { basketId: 'small' } },
+    items: [],
+    equippedAccessories: { reel: null, line: null, lure: null },
     inventory: [],
     collection: [],
     stats: {
@@ -76,25 +126,40 @@ export function createInitialState() {
       totalBaitTokensUsed: 0,
       rareCatches: 0
     },
-    inventoryCapacity: 10,
-    lastEventText: '欢迎来到钓鱼小游戏！token 会自动变成鱼饵。'
+    inventoryCapacity: 5,
+    lastEventText: '欢迎来到钓鱼小游戏！每 1M token 会增加 1 个鱼饵，消耗鱼饵自动抛竿。',
+    fishing: {
+      status: 'idle',
+      stage: null,
+      startedAt: 0,
+      endsAt: 0,
+      durationMs: 0,
+      lastEventAt: 0,
+      eventText: ''
+    }
   }
 }
 
-export function computeRodEffects(rod, level) {
+export function computeRodEffects(rod, level, accessories = []) {
+  let successRate = rod.baseSuccessRate + (level - 1) * rod.successRatePerLevel
+  let maxWeightMultiplier = 1 + (level - 1) * rod.maxWeightPerLevel
+  let rareWeightBonus = 0
+  for (const accessory of accessories) {
+    successRate += accessory.successRateBonus ?? 0
+    maxWeightMultiplier += accessory.maxWeightBonus ?? 0
+    rareWeightBonus += accessory.rareWeightBonus ?? 0
+  }
   return {
     rarityMultiplier: rod.rarityMultiplier + (level - 1) * 0.15,
     weightMultiplier: rod.weightMultiplier + (level - 1) * 0.05,
-    baitTokensPerCast: Math.max(200, Math.round(rod.baitTokensPerCast * Math.pow(0.95, level - 1)))
+    successRate: clamp(successRate, 0, 0.95),
+    maxWeightMultiplier,
+    rareWeightBonus
   }
 }
 
 export function upgradeRodCost(rod, level) {
   return Math.round(rod.upgradeBasePrice * Math.pow(1.8, level - 1))
-}
-
-export function upgradeAquariumCost(aquarium, capacity) {
-  return Math.round(aquarium.upgradeBasePrice * Math.pow(1.7, capacity - aquarium.baseCapacity))
 }
 
 export function salePrice(species, fish) {
@@ -134,9 +199,93 @@ function collectionEntry(state, speciesId) {
   return entry
 }
 
+function normalizeState(state) {
+  const base = createInitialState()
+  for (const key of Object.keys(base)) {
+    if (state[key] === undefined) state[key] = base[key]
+  }
+
+  // Normalize the active fishing session. It may be absent in old saves.
+  if (state.fishing === null || typeof state.fishing !== 'object') {
+    state.fishing = { ...base.fishing }
+  } else {
+    for (const key of Object.keys(base.fishing)) {
+      if (state.fishing[key] === undefined) state.fishing[key] = base.fishing[key]
+    }
+  }
+
+  // Migrate old rod ids to the new hand/sea/lure rod set.
+  if (state.ownedRods !== null && typeof state.ownedRods === 'object') {
+    for (const [oldId, oldRod] of Object.entries(state.ownedRods)) {
+      const newId = OLD_ROD_MIGRATION[oldId]
+      if (newId === undefined || !RODS_BY_ID.has(newId)) continue
+      const level = oldRod?.level ?? 1
+      const existing = state.ownedRods[newId]
+      if (existing === undefined || level > existing.level) {
+        state.ownedRods[newId] = { rodId: newId, level }
+      }
+    }
+    for (const id of Object.keys(state.ownedRods)) {
+      if (!RODS_BY_ID.has(id)) delete state.ownedRods[id]
+    }
+  }
+  if (typeof state.equippedRodId === 'string' && OLD_ROD_MIGRATION[state.equippedRodId] !== undefined) {
+    state.equippedRodId = OLD_ROD_MIGRATION[state.equippedRodId]
+  }
+  if (!RODS_BY_ID.has(state.equippedRodId)) state.equippedRodId = RODS[0].id
+  if (state.ownedRods[state.equippedRodId] === undefined) {
+    state.ownedRods[state.equippedRodId] = { rodId: state.equippedRodId, level: 1 }
+  }
+
+  // Normalize baskets and derive inventory capacity from the equipped basket.
+  if (state.ownedBaskets === null || typeof state.ownedBaskets !== 'object') state.ownedBaskets = {}
+  if (state.ownedBaskets.small === undefined) {
+    state.ownedBaskets.small = { basketId: 'small' }
+  }
+  if (!BASKETS_BY_ID.has(state.equippedBasketId)) state.equippedBasketId = 'small'
+  if (state.ownedBaskets[state.equippedBasketId] === undefined) {
+    state.ownedBaskets[state.equippedBasketId] = { basketId: state.equippedBasketId }
+  }
+  state.inventoryCapacity = BASKETS_BY_ID.get(state.equippedBasketId).capacity
+
+  if (!Array.isArray(state.items)) state.items = []
+  if (state.equippedAccessories === null || typeof state.equippedAccessories !== 'object') {
+    state.equippedAccessories = { reel: null, line: null, lure: null }
+  }
+  for (const slot of ACCESSORY_SLOTS) {
+    if (state.equippedAccessories[slot.id] === undefined) state.equippedAccessories[slot.id] = null
+  }
+
+  // Remove the aquarium feature; move any old aquarium fish back to the basket.
+  if (Array.isArray(state.aquariums)) {
+    for (const aquarium of state.aquariums) {
+      if (aquarium === null || typeof aquarium !== 'object' || !Array.isArray(aquarium.fish)) continue
+      for (const fish of aquarium.fish) {
+        if (fish === null || typeof fish !== 'object') continue
+        fish.location = 'inventory'
+        state.inventory.push(fish)
+      }
+    }
+  }
+  delete state.aquariums
+
+  if (state.stats === null || typeof state.stats !== 'object') state.stats = { ...base.stats }
+  for (const key of Object.keys(base.stats)) {
+    if (state.stats[key] === undefined) state.stats[key] = base.stats[key]
+  }
+  if (!Number.isFinite(state.totalTokensConsumed)) state.totalTokensConsumed = 0
+  if (!Number.isFinite(state.pendingBaitTokens)) state.pendingBaitTokens = 0
+  if (!Number.isFinite(state.bait)) state.bait = 0
+  if (state.pendingBaitTokens >= BAIT_TOKENS_PER_BAIT) {
+    state.bait += Math.floor(state.pendingBaitTokens / BAIT_TOKENS_PER_BAIT)
+    state.pendingBaitTokens %= BAIT_TOKENS_PER_BAIT
+  }
+  return state
+}
+
 export class FishingGame {
   constructor(state = createInitialState(), rng = Math.random) {
-    this.state = state
+    this.state = normalizeState(state)
     this.rng = rng
   }
 
@@ -151,56 +300,196 @@ export class FishingGame {
   equippedRod() {
     const rod = RODS_BY_ID.get(this.state.equippedRodId) ?? RODS[0]
     const level = this.state.ownedRods[rod.id]?.level ?? 1
-    return { rod, level, effects: computeRodEffects(rod, level) }
+    const accessories = Object.values(this.state.equippedAccessories ?? {})
+      .map((itemId) => ACCESSORIES_BY_ID.get(itemId))
+      .filter((accessory) => accessory !== undefined && accessory.rodTypes.includes(rod.id))
+    return { rod, level, effects: computeRodEffects(rod, level, accessories), accessories }
+  }
+
+  equippedBasket() {
+    const basket = BASKETS_BY_ID.get(this.state.equippedBasketId) ?? BASKETS[0]
+    return basket
   }
 
   handleTokensConsumed(amount, source = 'msg', ts = Date.now()) {
     const rounded = Math.max(0, Math.round(amount))
     this.state.totalTokensConsumed += rounded
-    this.state.pendingBaitTokens += rounded
+    const pending = this.state.pendingBaitTokens + rounded
+    this.state.bait += Math.floor(pending / BAIT_TOKENS_PER_BAIT)
+    this.state.pendingBaitTokens = pending % BAIT_TOKENS_PER_BAIT
     return []
   }
 
   tick(now = Date.now()) {
     const effects = []
+
+    // During an active cast, each tick may emit a random stage event. When the
+    // current stage has elapsed, also progress through zero-duration transitions
+    // immediately (e.g. 0s wait/reel).
+    if (this.state.fishing.status === 'fishing' && now < this.state.fishing.endsAt) {
+      this.advanceFishing(now, effects)
+    }
+    let advanceGuard = 0
+    while (this.state.fishing.status === 'fishing' && now >= this.state.fishing.endsAt && advanceGuard < 3) {
+      this.advanceFishing(now, effects)
+      advanceGuard += 1
+    }
+
     let guard = 0
-    const { effects: rodEffects } = this.equippedRod()
-    while (this.state.pendingBaitTokens >= rodEffects.baitTokensPerCast && guard < 100) {
-      this.state.pendingBaitTokens -= rodEffects.baitTokensPerCast
+    while (this.state.bait >= 1 && this.state.fishing.status === 'idle' && guard < 100) {
+      if (this.state.inventory.length >= this.state.inventoryCapacity) {
+        this.state.lastEventText = '鱼篓已满，停止钓鱼。'
+        effects.push({ type: 'EventLine', text: this.state.lastEventText })
+        break
+      }
+      this.state.bait -= 1
       effects.push(...this.cast(now))
       guard += 1
+
+      // If both stages rolled 0s, finish immediately so remaining bait can proceed.
+      let resolveGuard = 0
+      while (this.state.fishing.status === 'fishing' && now >= this.state.fishing.endsAt && resolveGuard < 3) {
+        this.advanceFishing(now, effects)
+        resolveGuard += 1
+      }
     }
     return effects
   }
 
+  randomDuration(minMs, maxMs) {
+    if (maxMs <= minMs) return minMs
+    return Math.min(maxMs, minMs + Math.floor(this.rng() * (maxMs - minMs + 1)))
+  }
+
+  randomEvent(stage) {
+    const pool = FISHING_EVENTS.filter((event) => event.stage === stage)
+    if (pool.length === 0) return null
+    return pool[Math.floor(this.rng() * pool.length)]
+  }
+
   cast(now = Date.now()) {
-    const { rod, level, effects } = this.equippedRod()
-    const tier = rodTier(rod.id)
-    const candidates = SPECIES.filter((species) => rodTier(species.requiredRodId) <= tier)
+    if (this.state.inventory.length >= this.state.inventoryCapacity) {
+      this.state.lastEventText = '鱼篓已满，停止钓鱼。'
+      return [{ type: 'EventLine', text: this.state.lastEventText }]
+    }
+    const { rod } = this.equippedRod()
+    this.state.stats.totalBaitTokensUsed += BAIT_TOKENS_PER_BAIT
+
+    const candidates = SPECIES.filter((species) => species.requiredRodId === rod.id)
     if (candidates.length === 0) {
-      return [{ type: 'EventLine', text: '当前鱼竿还钓不到任何鱼。' }]
+      this.state.lastEventText = '当前鱼竿还钓不到任何鱼。'
+      return [{ type: 'EventLine', text: this.state.lastEventText }]
     }
 
-    const totalWeight = candidates.reduce(
-      (sum, species) => sum + (RARITY_CATCH_WEIGHT[species.rarity] ?? 1) * effects.rarityMultiplier,
-      0
-    )
-    let roll = this.rng() * totalWeight
+    const waitMs = this.randomDuration(FISHING_WAIT_MIN_MS, FISHING_WAIT_MAX_MS)
+    const waitEvent = this.randomEvent('waiting')
+    const fishing = this.state.fishing
+    fishing.status = 'fishing'
+    fishing.stage = 'waiting'
+    fishing.startedAt = now
+    fishing.endsAt = now + waitMs
+    fishing.durationMs = waitMs
+    fishing.lastEventAt = now
+    fishing.eventText = waitEvent ? waitEvent.text : '正在等待鱼汛……'
+    this.state.lastEventText = fishing.eventText
+    return [{ type: 'EventLine', text: fishing.eventText }]
+  }
+
+  advanceFishing(now, effects) {
+    const fishing = this.state.fishing
+    if (fishing.status !== 'fishing') return
+
+    if (now < fishing.endsAt) {
+      if (this.rng() < FISHING_EVENT_TICK_CHANCE) {
+        const event = this.randomEvent(fishing.stage)
+        if (event !== null) {
+          fishing.eventText = event.text
+          fishing.lastEventAt = now
+          this.state.lastEventText = event.text
+          effects.push({ type: 'EventLine', text: event.text })
+        }
+      }
+      return
+    }
+
+    if (fishing.stage === 'waiting') {
+      const reelMs = this.randomDuration(FISHING_REEL_MIN_MS, FISHING_REEL_MAX_MS)
+      const reelEvent = this.randomEvent('reeling')
+      fishing.stage = 'reeling'
+      fishing.startedAt = now
+      fishing.endsAt = now + reelMs
+      fishing.durationMs = reelMs
+      fishing.lastEventAt = now
+      fishing.eventText = reelEvent ? reelEvent.text : '有鱼咬钩了，开始收杆！'
+      this.state.lastEventText = fishing.eventText
+      effects.push({ type: 'EventLine', text: fishing.eventText })
+      return
+    }
+
+    if (fishing.stage === 'reeling') {
+      effects.push(...this.resolveCast(now))
+    }
+  }
+
+  resolveCast(now = Date.now()) {
+    const { rod, effects } = this.equippedRod()
+    this.state.fishing.status = 'idle'
+    this.state.fishing.stage = null
+    this.state.fishing.startedAt = 0
+    this.state.fishing.endsAt = 0
+    this.state.fishing.durationMs = 0
+    this.state.fishing.lastEventAt = 0
+    this.state.fishing.eventText = ''
+
+    const candidates = SPECIES.filter((species) => species.requiredRodId === rod.id)
+    if (candidates.length === 0) {
+      this.state.lastEventText = '当前鱼竿还钓不到任何鱼。'
+      return [{ type: 'EventLine', text: this.state.lastEventText }]
+    }
+
+    const successRate = effects.successRate
+    const failureRate = 1 - successRate
+    const outcomeRoll = this.rng()
+    const nothingRate = failureRate * 0.45
+    const escapeRate = failureRate * 0.30
+    const junkRate = failureRate * 0.25
+
+    let resultKind = null
+    if (outcomeRoll < nothingRate) resultKind = 'nothing'
+    else if (outcomeRoll < nothingRate + escapeRate) resultKind = 'escape'
+    else if (outcomeRoll < nothingRate + escapeRate + junkRate) resultKind = 'junk'
+
+    if (resultKind !== null) {
+      const pool = FISHING_EVENTS.filter((event) => event.stage === 'result' && event.kind === resultKind)
+      const event = pool.length > 0 ? pool[Math.floor(this.rng() * pool.length)] : null
+      const fallback = resultKind === 'nothing' ? '什么也没钓到……' : resultKind === 'escape' ? '有鱼咬钩了，但挣脱了！' : '钓到了垃圾，扔掉了。'
+      const text = event ? event.text : fallback
+      this.state.lastEventText = text
+      return [{ type: 'EventLine', text }]
+    }
+
+    const speciesWeight = (species) => {
+      const rarityWeight = RARITY_CATCH_WEIGHT[species.rarity] ?? 1
+      const rareBonus = species.rarity !== 'common' ? (1 + (effects.rareWeightBonus ?? 0)) : 1
+      return rarityWeight * effects.rarityMultiplier * rareBonus
+    }
+    const totalWeight = candidates.reduce((sum, species) => sum + speciesWeight(species), 0)
+    let speciesRoll = this.rng() * totalWeight
     let species = candidates[candidates.length - 1]
     for (const candidate of candidates) {
-      roll -= (RARITY_CATCH_WEIGHT[candidate.rarity] ?? 1) * effects.rarityMultiplier
-      if (roll <= 0) {
+      speciesRoll -= speciesWeight(candidate)
+      if (speciesRoll <= 0) {
         species = candidate
         break
       }
     }
 
-    const weightSpan = species.maxWeightGrams - species.minWeightGrams
     const lengthSpan = species.maxLengthCm - species.minLengthCm
+    const maxWeightGrams = Math.round(species.maxWeightGrams * effects.maxWeightMultiplier)
     const weightGrams = clamp(
-      Math.round(species.minWeightGrams + weightSpan * this.rng() * effects.weightMultiplier),
+      Math.round(species.minWeightGrams + (maxWeightGrams - species.minWeightGrams) * this.rng() * effects.weightMultiplier),
       species.minWeightGrams,
-      species.maxWeightGrams
+      maxWeightGrams
     )
     const lengthCm = clamp(
       Math.round(species.minLengthCm + lengthSpan * this.rng() * (0.75 + effects.weightMultiplier * 0.25)),
@@ -219,7 +508,6 @@ export class FishingGame {
       location: 'inventory'
     }
 
-    this.state.stats.totalBaitTokensUsed += effects.baitTokensPerCast
     this.state.stats.totalCatches += 1
     if (species.rarity === 'rare' || species.rarity === 'epic' || species.rarity === 'legendary') {
       this.state.stats.rareCatches += 1
@@ -314,65 +602,82 @@ export class FishingGame {
         if (rod === undefined) throw new Error('未知鱼竿')
         if (this.state.ownedRods[rod.id] === undefined) throw new Error('尚未拥有这支鱼竿')
         this.state.equippedRodId = rod.id
+        for (const slot of ACCESSORY_SLOTS) {
+          const itemId = this.state.equippedAccessories[slot.id]
+          if (itemId === null || itemId === undefined) continue
+          const accessory = ACCESSORIES_BY_ID.get(itemId)
+          if (accessory !== undefined && !accessory.rodTypes.includes(rod.id)) {
+            this.state.equippedAccessories[slot.id] = null
+            for (const entry of this.state.items) {
+              if (entry.itemId === itemId) entry.equipped = false
+            }
+          }
+        }
         this.state.lastEventText = `装备了 ${rod.name}。`
         return [{ type: 'EventLine', text: this.state.lastEventText }]
       }
 
-      case 'BuyAquarium': {
-        const aquarium = AQUARIUMS_BY_ID.get(command.aquariumId)
-        if (aquarium === undefined) throw new Error('未知鱼缸')
-        if (this.state.aquariums.some((item) => item.aquariumId === aquarium.id)) throw new Error('已经拥有这个鱼缸')
-        if (this.state.coins < aquarium.basePrice) throw new Error('金币不足')
-        this.state.coins -= aquarium.basePrice
-        this.state.stats.totalCoinsSpent += aquarium.basePrice
-        this.state.aquariums.push({ aquariumId: aquarium.id, capacity: aquarium.baseCapacity, fish: [] })
-        this.state.lastEventText = `购买了 ${aquarium.name}。`
-        return [{ type: 'Purchase', kind: 'aquarium', id: aquarium.id, cost: aquarium.basePrice }, { type: 'EventLine', text: this.state.lastEventText }]
+      case 'BuyBasket': {
+        const basket = BASKETS_BY_ID.get(command.basketId)
+        if (basket === undefined) throw new Error('未知鱼篓')
+        if (this.state.ownedBaskets[basket.id] !== undefined) throw new Error('已经拥有这个鱼篓')
+        if (this.state.coins < basket.basePrice) throw new Error('金币不足')
+        this.state.coins -= basket.basePrice
+        this.state.stats.totalCoinsSpent += basket.basePrice
+        this.state.ownedBaskets[basket.id] = { basketId: basket.id }
+        this.state.lastEventText = `购买了 ${basket.name}。`
+        return [{ type: 'Purchase', kind: 'basket', id: basket.id, cost: basket.basePrice }, { type: 'EventLine', text: this.state.lastEventText }]
       }
 
-      case 'UpgradeAquarium': {
-        const aquarium = AQUARIUMS_BY_ID.get(command.aquariumId)
-        if (aquarium === undefined) throw new Error('未知鱼缸')
-        const owned = this.state.aquariums.find((item) => item.aquariumId === aquarium.id)
-        if (owned === undefined) throw new Error('尚未拥有这个鱼缸')
-        if (owned.capacity >= aquarium.maxCapacity) throw new Error('鱼缸已经最大容量')
-        const cost = upgradeAquariumCost(aquarium, owned.capacity)
-        if (this.state.coins < cost) throw new Error('金币不足')
-        this.state.coins -= cost
-        this.state.stats.totalCoinsSpent += cost
-        owned.capacity += 1
-        this.state.lastEventText = `${aquarium.name} 扩容到了 ${owned.capacity} 格。`
-        return [{ type: 'Purchase', kind: 'aquarium', id: aquarium.id, cost }, { type: 'EventLine', text: this.state.lastEventText }]
-      }
-
-      case 'AssignFishToAquarium': {
-        const fish = this.findInventoryFish(command.fishId)
-        if (fish === undefined) throw new Error('鱼不在鱼篓中')
-        const species = SPECIES_BY_ID.get(fish.speciesId)
-        if (species === undefined || species.aquariumCompatible !== true) throw new Error('这种鱼不能入缸')
-        const aquarium = AQUARIUMS_BY_ID.get(command.aquariumId)
-        if (aquarium === undefined) throw new Error('未知鱼缸')
-        const owned = this.state.aquariums.find((item) => item.aquariumId === aquarium.id)
-        if (owned === undefined) throw new Error('尚未拥有这个鱼缸')
-        if (!aquarium.allowedSpecies.includes(species.id)) throw new Error('这个鱼缸不能养这种鱼')
-        if (owned.fish.length >= owned.capacity) throw new Error('鱼缸已经满了')
-        this.removeInventoryFish(fish.id)
-        fish.location = 'aquarium'
-        owned.fish.push(fish)
-        this.state.lastEventText = `把 ${species.name} 放进了 ${aquarium.name}。`
+      case 'EquipBasket': {
+        const basket = BASKETS_BY_ID.get(command.basketId)
+        if (basket === undefined) throw new Error('未知鱼篓')
+        if (this.state.ownedBaskets[basket.id] === undefined) throw new Error('尚未拥有这个鱼篓')
+        if (this.state.inventory.length > basket.capacity) throw new Error(`鱼篓里的鱼太多，无法换上 ${basket.name}。`)
+        this.state.equippedBasketId = basket.id
+        this.state.inventoryCapacity = basket.capacity
+        this.state.lastEventText = `装备了 ${basket.name}。`
         return [{ type: 'EventLine', text: this.state.lastEventText }]
       }
 
-      case 'RemoveFishFromAquarium': {
-        const aquarium = this.state.aquariums.find((item) => item.fish.some((fish) => fish.id === command.fishId))
-        if (aquarium === undefined) throw new Error('鱼不在任何鱼缸中')
-        const fish = aquarium.fish.find((item) => item.id === command.fishId)
-        if (fish === undefined) throw new Error('鱼不在任何鱼缸中')
-        if (this.state.inventory.length >= this.state.inventoryCapacity) throw new Error('鱼篓已经满了')
-        aquarium.fish = aquarium.fish.filter((item) => item.id !== fish.id)
-        fish.location = 'inventory'
-        this.state.inventory.push(fish)
-        this.state.lastEventText = `把 ${SPECIES_BY_ID.get(fish.speciesId)?.name ?? '鱼'} 取回了鱼篓。`
+      case 'BuyAccessory': {
+        const accessory = ACCESSORIES_BY_ID.get(command.accessoryId)
+        if (accessory === undefined) throw new Error('未知配件')
+        if (this.state.items.some((item) => item.itemId === accessory.id)) throw new Error('已经拥有这个配件')
+        if (this.state.coins < accessory.basePrice) throw new Error('金币不足')
+        this.state.coins -= accessory.basePrice
+        this.state.stats.totalCoinsSpent += accessory.basePrice
+        this.state.items.push({ id: randomUUID().slice(0, 8), itemId: accessory.id, equipped: false })
+        this.state.lastEventText = `购买了 ${accessory.name}。`
+        return [{ type: 'Purchase', kind: 'accessory', id: accessory.id, cost: accessory.basePrice }, { type: 'EventLine', text: this.state.lastEventText }]
+      }
+
+      case 'EquipAccessory': {
+        const accessory = ACCESSORIES_BY_ID.get(command.accessoryId)
+        if (accessory === undefined) throw new Error('未知配件')
+        const item = this.state.items.find((entry) => entry.itemId === accessory.id)
+        if (item === undefined) throw new Error('尚未拥有这个配件')
+        if (!accessory.rodTypes.includes(this.state.equippedRodId)) throw new Error('当前鱼竿无法装备这个配件')
+        const slot = accessory.slot
+        const previousId = this.state.equippedAccessories[slot]
+        this.state.equippedAccessories[slot] = accessory.id
+        for (const entry of this.state.items) {
+          if (entry.itemId === accessory.id) entry.equipped = true
+          else if (previousId !== null && entry.itemId === previousId) entry.equipped = false
+        }
+        this.state.lastEventText = `装备了 ${accessory.name}。`
+        return [{ type: 'EventLine', text: this.state.lastEventText }]
+      }
+
+      case 'UnequipAccessory': {
+        if (!ACCESSORY_SLOTS_BY_ID.has(command.slot)) throw new Error('未知配件槽位')
+        const itemId = this.state.equippedAccessories[command.slot]
+        if (itemId === null || itemId === undefined) throw new Error('该槽位没有装备配件')
+        this.state.equippedAccessories[command.slot] = null
+        for (const entry of this.state.items) {
+          if (entry.itemId === itemId) entry.equipped = false
+        }
+        this.state.lastEventText = `卸下了 ${ACCESSORIES_BY_ID.get(itemId)?.name ?? '配件'}。`
         return [{ type: 'EventLine', text: this.state.lastEventText }]
       }
 
@@ -392,19 +697,12 @@ export class FishingGame {
   snapshot(now = Date.now()) {
     const state = this.state
     const equipped = this.equippedRod()
+    const equippedBasket = this.equippedBasket()
 
     const inventory = state.inventory.map((fish) => this.fishView(fish))
-    const aquariums = state.aquariums.map((aquarium) => ({
-      ...aquarium,
-      name: AQUARIUMS_BY_ID.get(aquarium.aquariumId)?.name ?? aquarium.aquariumId,
-      emoji: AQUARIUMS_BY_ID.get(aquarium.aquariumId)?.emoji ?? '🐠',
-      fish: aquarium.fish.map((fish) => this.fishView(fish))
-    }))
 
     const rods = RODS.map((rod) => {
       const owned = state.ownedRods[rod.id]
-      const level = owned?.level ?? 0
-      const effects = owned !== undefined ? computeRodEffects(rod, owned.level) : null
       return {
         id: rod.id,
         name: rod.name,
@@ -413,34 +711,89 @@ export class FishingGame {
         maxLevel: rod.maxLevel,
         owned: owned !== undefined,
         equipped: state.equippedRodId === rod.id,
-        level,
-        baitTokensPerCast: effects?.baitTokensPerCast ?? rod.baitTokensPerCast,
+        level: owned?.level ?? 0,
         upgradeCost: owned !== undefined && owned.level < rod.maxLevel ? upgradeRodCost(rod, owned.level) : null
       }
     })
 
-    const aquariumsCatalog = AQUARIUMS.map((aquarium) => {
-      const owned = state.aquariums.find((item) => item.aquariumId === aquarium.id)
+    const baskets = BASKETS.map((basket) => {
+      const owned = state.ownedBaskets[basket.id] !== undefined
       return {
-        id: aquarium.id,
-        name: aquarium.name,
-        emoji: aquarium.emoji,
-        basePrice: aquarium.basePrice,
-        owned: owned !== undefined,
-        capacity: owned?.capacity ?? aquarium.baseCapacity,
-        maxCapacity: aquarium.maxCapacity,
-        upgradeCost: owned !== undefined && owned.capacity < aquarium.maxCapacity
-          ? upgradeAquariumCost(aquarium, owned.capacity)
-          : null
+        id: basket.id,
+        name: basket.name,
+        emoji: basket.emoji,
+        capacity: basket.capacity,
+        basePrice: basket.basePrice,
+        owned,
+        equipped: state.equippedBasketId === basket.id
       }
     })
+
+    const items = state.items.map((item) => {
+      const accessory = ACCESSORIES_BY_ID.get(item.itemId)
+      if (accessory === undefined) return null
+      return {
+        id: item.id,
+        itemId: accessory.id,
+        name: accessory.name,
+        emoji: accessory.emoji,
+        slot: accessory.slot,
+        basePrice: accessory.basePrice,
+        rodTypes: accessory.rodTypes,
+        equipped: item.equipped,
+        canEquip: accessory.rodTypes.includes(state.equippedRodId)
+      }
+    }).filter((item) => item !== null)
+
+    const equippedAccessories = ACCESSORY_SLOTS.map((slot) => {
+      const itemId = state.equippedAccessories[slot.id]
+      const accessory = itemId === null || itemId === undefined ? null : ACCESSORIES_BY_ID.get(itemId)
+      return {
+        slot: slot.id,
+        name: slot.name,
+        accessory: accessory === null || accessory === undefined ? null : { id: accessory.id, name: accessory.name, emoji: accessory.emoji }
+      }
+    })
+
+    const shopItems = [
+      ...RODS.map((rod) => ({
+        kind: 'rod',
+        category: '鱼竿',
+        id: rod.id,
+        name: rod.name,
+        emoji: rod.emoji,
+        price: rod.basePrice,
+        owned: state.ownedRods[rod.id] !== undefined
+      })),
+      ...BASKETS.map((basket) => ({
+        kind: 'basket',
+        category: '鱼篓',
+        id: basket.id,
+        name: basket.name,
+        emoji: basket.emoji,
+        price: basket.basePrice,
+        owned: state.ownedBaskets[basket.id] !== undefined
+      })),
+      ...ACCESSORIES.map((accessory) => ({
+        kind: 'accessory',
+        category: '配件',
+        id: accessory.id,
+        name: accessory.name,
+        emoji: accessory.emoji,
+        price: accessory.basePrice,
+        slot: accessory.slot,
+        owned: state.items.some((item) => item.itemId === accessory.id),
+        canEquip: accessory.rodTypes.includes(state.equippedRodId)
+      }))
+    ]
 
     return {
       version: state.version,
       coins: state.coins,
-      totalTokensConsumed: state.totalTokensConsumed,
-      pendingBaitTokens: state.pendingBaitTokens,
-      baitTokensPerCast: equipped.effects.baitTokensPerCast,
+      totalTokensConsumed: state.totalTokensConsumed ?? 0,
+      pendingBaitTokens: state.pendingBaitTokens ?? 0,
+      bait: state.bait ?? 0,
+      tokensPerBait: BAIT_TOKENS_PER_BAIT,
       equippedRod: {
         id: equipped.rod.id,
         name: equipped.rod.name,
@@ -449,14 +802,29 @@ export class FishingGame {
         rarityMultiplier: equipped.effects.rarityMultiplier,
         weightMultiplier: equipped.effects.weightMultiplier
       },
+      equippedBasket: {
+        id: equippedBasket.id,
+        name: equippedBasket.name,
+        emoji: equippedBasket.emoji,
+        capacity: equippedBasket.capacity
+      },
       inventoryCapacity: state.inventoryCapacity,
       inventory,
-      aquariums,
       rods,
-      aquariumsCatalog,
+      baskets,
+      items,
+      equippedAccessories,
+      shopItems,
       stats: state.stats,
       collection: state.collection,
       lastEventText: state.lastEventText,
+      fishing: {
+        status: state.fishing.status ?? 'idle',
+        stage: state.fishing.stage ?? null,
+        remainingMs: state.fishing.status === 'fishing' ? Math.max(0, state.fishing.endsAt - now) : 0,
+        durationMs: state.fishing.durationMs ?? 0,
+        eventText: state.fishing.eventText ?? ''
+      },
       now
     }
   }

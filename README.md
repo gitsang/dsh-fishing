@@ -2,9 +2,12 @@
 
 A floating fishing game for the deepseek-harness **web** surface.
 
-While you use the agent, token usage is collected as bait. When enough bait has
-accumulated, the game automatically casts the equipped rod and catches a fish.
-Fish can be sold for coins; coins buy and upgrade rods and aquariums.
+While you use the agent, token usage is collected as bait: every 1M consumed
+tokens add 1 bait. Each cast consumes 1 bait, so the game casts the equipped
+rod once per 1M tokens and catches a fish. Fish can be sold for coins; coins
+buy and upgrade rods. Rods are divided into hand rods, sea rods, and lure rods,
+and each type can catch different fish. Upgrading a rod increases the chance of
+landing a fish and raises the maximum weight of caught fish.
 
 The widget lives in the bottom-left corner of the web UI (`shell.overlay`), so
 it floats above the conversation and can be collapsed to a small bobber.
@@ -16,9 +19,11 @@ it floats above the conversation and can be collapsed to a small bobber.
   the game core. It exposes two HTTP endpoints:
   - `GET /fishing/snapshot` — current game snapshot JSON.
   - `POST /fishing/command` — send a command such as `{"type":"SellFish","fishId":"..."}`.
-- **Game core** (`src/game.js`): species, rods, aquariums, catch/sell/upgrade
-  rules. It follows the same core model as the pi-fishing design doc, but does
-  not import or depend on pi-fishing.
+- **Game core** (`src/game.js`): species, rods, timed catch flow,
+  catch/sell/upgrade rules. Each cast first enters a random 0-60s waiting
+  stage, then a random 0-60s reeling stage; stage flavor/result events are read
+  from the `FISHING_EVENTS` config table. It follows the same core model as the
+  pi-fishing design doc, but does not import or depend on pi-fishing.
 - **Browser half** (`src/client.js`): a `dsh.client` web plugin that registers
   a React widget into the layout's `shell.overlay` slot and polls the snapshot
   endpoint.
@@ -72,14 +77,14 @@ accepts these command types:
 
 - `SellFish` / `SellAllFish`
 - `BuyRod` / `UpgradeRod` / `EquipRod`
-- `BuyAquarium` / `UpgradeAquarium`
-- `AssignFishToAquarium` / `RemoveFishFromAquarium`
+- `BuyBasket` / `EquipBasket`
+- `BuyAccessory` / `EquipAccessory` / `UnequipAccessory`
 
 ## Development notes
 
 - The game tick interval is 500ms; the browser polls the snapshot every 500ms.
-- Token count formula: `inputTokens + outputTokens` (falling back to
-  `input/output` field names when present). Cache hit/miss tokens are ignored
-  so cached prompts don't generate bait.
+- Token count formula: `inputTokens + outputTokens + cacheReadTokens +
+  cacheWriteTokens` (falling back to `input/output/cacheRead/cacheWrite` field
+  names when present).
 - The widget is intentionally self-contained: the client only talks to
   `/fishing/*`; it does not import any pi-fishing code.
