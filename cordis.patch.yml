@@ -1,0 +1,10 @@
+# dsh-fishing bundle patch.
+#
+# Inserts the fishing host plugin into the web profile. The host half collects
+# token usage from session events and exposes /fishing/snapshot plus
+# /fishing/command; the browser half (dsh.client) registers the floating
+# bottom-left widget into the layout's `shell.overlay` slot.
+- insert:
+    - id: fishing
+      name: '@gitsang/dsh-fishing'
+      inject: [webServer]
