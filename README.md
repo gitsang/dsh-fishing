@@ -78,8 +78,8 @@ accepts these command types:
 ## Development notes
 
 - The game tick interval is 500ms; the browser polls the snapshot every 500ms.
-- Token count formula: `inputTokens + outputTokens + cacheReadTokens +
-  cacheWriteTokens` (falling back to `input/output/cacheRead/cacheWrite` field
-  names when present).
+- Token count formula: `inputTokens + outputTokens` (falling back to
+  `input/output` field names when present). Cache hit/miss tokens are ignored
+  so cached prompts don't generate bait.
 - The widget is intentionally self-contained: the client only talks to
   `/fishing/*`; it does not import any pi-fishing code.

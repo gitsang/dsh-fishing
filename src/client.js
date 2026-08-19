@@ -6,11 +6,11 @@ window.__ModuleLoader__.load({
     Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 
     const React = require("react");
-    const { useCallback, useEffect, useState } = React;
+    const { useCallback, useEffect, useRef, useState } = React;
 
     // ── CSS ─────────────────────────────────────────────────────────────────
     const css = `
-.dshFishing_root{position:absolute;left:16px;bottom:16px;z-index:30;pointer-events:auto;font-family:var(--dsw-font-family-ui,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);color:var(--dsw-alias-label-primary,#1f2329)}
+.dshFishing_root{position:absolute;right:16px;bottom:16px;z-index:30;pointer-events:auto;font-family:var(--dsw-font-family-ui,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);color:var(--dsw-alias-label-primary,#1f2329)}
 .dshFishing_bobber{width:46px;height:46px;border-radius:50%;background:var(--dsw-alias-bg-elevated,#ffffff);border:1px solid var(--dsw-alias-border-l2,#e5e6eb);box-shadow:0 8px 24px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:transform .12s ease}
 .dshFishing_bobber:hover{transform:translateY(-2px)}
 .dshFishing_bobberBadge{position:absolute;right:-2px;bottom:-2px;min-width:18px;height:18px;padding:0 4px;border-radius:999px;background:var(--dsw-alias-state-business-primary,#3b82f6);color:#fff;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
@@ -24,7 +24,8 @@ window.__ModuleLoader__.load({
 .dshFishing_row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;line-height:1.4}
 .dshFishing_muted{color:var(--dsw-alias-label-tertiary,#8a919f)}
 .dshFishing_event{min-height:18px;font-size:12px;color:var(--dsw-alias-label-secondary,#4e5969);background:var(--dsw-specific-tip,var(--dsw-alias-interactive-bg,#f7f8fa));border-radius:8px;padding:6px 8px;white-space:pre-wrap;word-break:break-all}
-.dshFishing_anim{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.35;white-space:pre;background:var(--dsw-specific-tip,var(--dsw-alias-interactive-bg,#f7f8fa));border-radius:10px;padding:8px;text-align:center;overflow:hidden}
+.dshFishing_anim{position:relative;height:118px;border-radius:10px;overflow:hidden;background:#0b1b2b;box-shadow:inset 0 -8px 16px rgba(2,132,199,.15)}
+.dshFishing_pixelCanvas{width:100%;height:100%;display:block;image-rendering:pixelated;image-rendering:crisp-edges}
 .dshFishing_section{display:flex;flex-direction:column;gap:6px}
 .dshFishing_sectionTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969)}
 .dshFishing_fishRow{display:flex;align-items:center;gap:6px;font-size:12px;padding:4px 6px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:8px;background:var(--dsw-alias-bg-base,#ffffff)}
@@ -49,17 +50,245 @@ window.__ModuleLoader__.load({
       document.head.appendChild(tag);
     }
 
-    // ── 8-frame ASCII/emoji fishing animation ──────────────────────────────
-    const FRAMES = [
-      ["    🎣", "     |", "  ~~~~~", "  ~~~~~", "  ~~~~~"],
-      ["    🎣", "     |", "  ~~~~~", "  ~ o ~", "  ~~~~~"],
-      ["    🎣", "     |", "  ~~~~~", "  ~><> ~", "  ~~~~~"],
-      ["    🎣", "     \\", "  ~~~~~", "   ><>", "  ~~~~~"],
-      ["    🎣", "     \\", "  ~~~~~", "   ><>", "   💦"],
-      ["    🎣", "     |", "  ~~~~~", "   🐟", "   💦"],
-      ["    🎣", "     |", "  ~~~~~", "   🧺", "  ~~~~~"],
-      ["    🎣", "     |", "  ~~~~~", "  ~~~~~", "  ~~~~~"]
-    ];
+    // ── SVG/CSS fishing animation ──────────────────────────────────────────
+    const FISH_RARITY_COLORS = {
+      common: "#94a3b8",
+      uncommon: "#22c55e",
+      rare: "#3b82f6",
+      epic: "#a855f7",
+      legendary: "#f59e0b"
+    };
+
+    function FishingAnimation({ lastFish }) {
+      const canvasRef = useRef(null);
+      const fishColorRef = useRef("#f97316");
+
+      const fishColor =
+        lastFish !== null && lastFish !== undefined && FISH_RARITY_COLORS[lastFish.rarity] !== undefined
+          ? FISH_RARITY_COLORS[lastFish.rarity]
+          : "#f97316";
+
+      useEffect(() => {
+        fishColorRef.current = fishColor;
+      }, [fishColor]);
+
+      useEffect(() => {
+        const canvas = canvasRef.current;
+        if (canvas === null) return undefined;
+        const ctx = canvas.getContext("2d");
+        if (ctx === null) return undefined;
+        ctx.imageSmoothingEnabled = false;
+
+        const W = 160;
+        const H = 64;
+        const waterY = 40;
+        const bobberX = 124;
+        const bobberBaseY = waterY + 3;
+        const rodTipX = 110;
+        const rodTipY = waterY - 15;
+        let timerId = null;
+
+        const draw = (now) => {
+          const t = now / 1000;
+
+          // Sky bands
+          ctx.fillStyle = "#0b1b2b";
+          ctx.fillRect(0, 0, W, H);
+          ctx.fillStyle = "#0e2638";
+          ctx.fillRect(0, 0, W, waterY - 6);
+          ctx.fillStyle = "#123a4d";
+          ctx.fillRect(0, waterY - 6, W, 6);
+
+          // Stars
+          ctx.fillStyle = "rgba(255,255,255,.65)";
+          for (let i = 0; i < 14; i += 1) {
+            const sx = (i * 37 + 11) % W;
+            const sy = (i * 13 + 5) % (waterY - 12);
+            ctx.fillRect(sx, sy, 1, 1);
+          }
+
+          // Water body
+          ctx.fillStyle = "#0e4d66";
+          ctx.fillRect(0, waterY, W, H - waterY);
+
+          // Back wave
+          ctx.fillStyle = "#116b8b";
+          ctx.beginPath();
+          ctx.moveTo(0, waterY + 2);
+          for (let x = 0; x <= W; x += 1) {
+            const y = waterY + 2 + Math.sin(x * 0.13 + t * 1.7) * 1.5;
+            ctx.lineTo(x, y);
+          }
+          ctx.lineTo(W, H);
+          ctx.lineTo(0, H);
+          ctx.closePath();
+          ctx.fill();
+
+          // Front wave
+          ctx.fillStyle = "#1b8aae";
+          ctx.beginPath();
+          ctx.moveTo(0, waterY + 7);
+          for (let x = 0; x <= W; x += 1) {
+            const y = waterY + 7 + Math.sin(x * 0.17 + t * 2.3 + 1.2) * 1.6;
+            ctx.lineTo(x, y);
+          }
+          ctx.lineTo(W, H);
+          ctx.lineTo(0, H);
+          ctx.closePath();
+          ctx.fill();
+
+          // Ripples around the bobber
+          const ripple = (phase) => {
+            if (phase <= 0 || phase >= 1) return;
+            const rx = 5 + phase * 14;
+            const alpha = 1 - phase;
+            ctx.strokeStyle = `rgba(255,255,255,${(alpha * 0.7).toFixed(2)})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.ellipse(bobberX, waterY + 4, rx, rx * 0.28, 0, 0, Math.PI * 2);
+            ctx.stroke();
+          };
+          const ripplePhase = (t % 2.2) / 2.2;
+          ripple(ripplePhase);
+          ripple((ripplePhase + 0.5) % 1);
+
+          // Boat hull (drawn over the water, then seated with a waterline stripe)
+          ctx.fillStyle = "#7c4a1e";
+          ctx.beginPath();
+          ctx.moveTo(44, 34);
+          ctx.lineTo(86, 34);
+          ctx.lineTo(80, 46);
+          ctx.lineTo(50, 46);
+          ctx.closePath();
+          ctx.fill();
+
+          ctx.fillStyle = "#3f2a12";
+          ctx.fillRect(48, 31, 34, 4);
+
+          ctx.fillStyle = "rgba(27,138,174,.85)";
+          ctx.fillRect(48, 43, 32, 2);
+
+          // Fisherman in the boat
+          ctx.fillStyle = "#3b82f6";
+          ctx.fillRect(56, 24, 6, 7);
+          ctx.fillStyle = "#f6c78c";
+          ctx.fillRect(57, 20, 4, 4);
+          ctx.fillStyle = "#d97706";
+          ctx.fillRect(55, 18, 8, 2);
+          ctx.fillRect(57, 16, 4, 2);
+
+          // Fishing rod held by the fisherman
+          ctx.strokeStyle = "#7c4a1e";
+          ctx.lineWidth = 1.5;
+          ctx.lineCap = "round";
+          ctx.beginPath();
+          ctx.moveTo(62, 26);
+          ctx.quadraticCurveTo(92, 18, rodTipX, rodTipY);
+          ctx.stroke();
+
+          const bobPhase = (t % 1.6) / 1.6;
+          const bobOffset = Math.sin(bobPhase * Math.PI * 2) * 2;
+          const bobberCy = bobberBaseY + bobOffset;
+
+          ctx.strokeStyle = "rgba(220,240,255,.8)";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(rodTipX, rodTipY);
+          ctx.lineTo(bobberX, bobberCy);
+          ctx.stroke();
+
+          // Bobber (red top, cream bottom)
+          ctx.fillStyle = "#e23b3b";
+          ctx.beginPath();
+          ctx.arc(bobberX, bobberCy - 2, 3, Math.PI, 0);
+          ctx.fill();
+          ctx.fillStyle = "#f6f1e7";
+          ctx.fillRect(bobberX - 3, bobberCy - 1, 6, 4);
+          ctx.fillStyle = "#e23b3b";
+          ctx.fillRect(bobberX - 1, bobberCy - 6, 2, 4);
+
+          // Fish leap on a quadratic arc
+          const cycle = 4.4;
+          const p = (t % cycle) / cycle;
+          const sx = bobberX - 26;
+          const sy = waterY + 3;
+          const cx = bobberX - 2;
+          const cy = waterY - 26;
+          const ex = bobberX + 26;
+          const ey = waterY + 3;
+          const u = p;
+          const fx = (1 - u) * (1 - u) * sx + 2 * (1 - u) * u * cx + u * u * ex;
+          const fy = (1 - u) * (1 - u) * sy + 2 * (1 - u) * u * cy + u * u * ey;
+          const ddx = 2 * (1 - u) * (cx - sx) + 2 * u * (ex - cx);
+          const ddy = 2 * (1 - u) * (cy - sy) + 2 * u * (ey - cy);
+          const angle = Math.atan2(ddy, ddx);
+          const fishAlpha =
+            p < 0.06 || p > 0.94
+              ? Math.max(0, Math.min(1, p / 0.06, (1 - p) / 0.06))
+              : 1;
+
+          if (fishAlpha > 0) {
+            ctx.save();
+            ctx.globalAlpha = fishAlpha;
+            ctx.translate(fx, fy);
+            ctx.rotate(angle);
+
+            ctx.fillStyle = fishColorRef.current;
+            ctx.beginPath();
+            ctx.moveTo(-7, 0);
+            ctx.lineTo(-12, -5);
+            ctx.lineTo(-10, 0);
+            ctx.lineTo(-12, 5);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.ellipse(0, 0, 7, 3.5, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = "rgba(255,255,255,.45)";
+            ctx.beginPath();
+            ctx.ellipse(1, 1.5, 4, 1.6, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = "#0f172a";
+            ctx.fillRect(4, -1, 1, 1);
+            ctx.restore();
+          }
+
+          // Splash pixels where the fish enters/exits the water
+          const splash = (phase, startX, startY) => {
+            if (phase <= 0 || phase >= 1) return;
+            ctx.fillStyle = `rgba(255,255,255,${(1 - phase).toFixed(2)})`;
+            for (let i = 0; i < 5; i += 1) {
+              const a = (i / 5) * Math.PI * 2;
+              const r = 2 + phase * 9;
+              ctx.fillRect(
+                Math.round(startX + Math.cos(a) * r),
+                Math.round(startY + Math.sin(a) * r * 0.5),
+                1,
+                1
+              );
+            }
+          };
+          splash(p < 0.12 ? p / 0.12 : 0, sx, sy);
+          splash(p > 0.88 ? (1 - p) / 0.12 : 0, ex, ey);
+
+        };
+
+        const step = () => draw(Date.now());
+        step();
+        timerId = setInterval(step, 500);
+        return () => clearInterval(timerId);
+      }, []);
+
+      return React.createElement("canvas", {
+        ref: canvasRef,
+        className: "dshFishing_pixelCanvas",
+        width: 160,
+        height: 64
+      });
+    }
 
     function formatTokens(value) {
       if (value >= 1000000) return `${(value / 1000000).toFixed(1)}m`;
@@ -92,7 +321,6 @@ window.__ModuleLoader__.load({
     function FishingWidget() {
       const [snap, setSnap] = useState(null);
       const [expanded, setExpanded] = useState(true);
-      const [frame, setFrame] = useState(0);
       const [busy, setBusy] = useState(false);
       const [loadError, setLoadError] = useState(null);
       const [actionError, setActionError] = useState(null);
@@ -119,12 +347,6 @@ window.__ModuleLoader__.load({
           clearInterval(timer);
         };
       }, []);
-
-      useEffect(() => {
-        if (!expanded) return undefined;
-        const timer = setInterval(() => setFrame((value) => (value + 1) % FRAMES.length), 200);
-        return () => clearInterval(timer);
-      }, [expanded]);
 
       const send = useCallback(async (command) => {
         setBusy(true);
@@ -194,7 +416,7 @@ window.__ModuleLoader__.load({
       }
 
       const baitPercent = Math.max(0, Math.min(100, Math.round((snap.pendingBaitTokens / snap.baitTokensPerCast) * 100)));
-      const frameLines = FRAMES[frame % FRAMES.length].join("\n");
+      const lastFish = snap.inventory.length > 0 ? snap.inventory[snap.inventory.length - 1] : null;
 
       return React.createElement(
         "div",
@@ -245,7 +467,7 @@ window.__ModuleLoader__.load({
               `鱼篓 ${snap.inventory.length}/${snap.inventoryCapacity} · 鱼缸 ${snap.aquariums.length}`
             )
           ),
-          React.createElement("pre", { className: "dshFishing_anim" }, frameLines),
+          React.createElement(FishingAnimation, { lastFish }),
           React.createElement("div", { className: "dshFishing_event" }, snap.lastEventText || "等待鱼汛…"),
           actionError !== null
             ? React.createElement("div", { className: "dshFishing_error" }, actionError)

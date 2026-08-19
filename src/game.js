@@ -52,9 +52,9 @@ export function tokenAmountFromUsage(usage) {
   if (usage === null || typeof usage !== 'object') return 0
   const input = usage.inputTokens ?? usage.input ?? 0
   const output = usage.outputTokens ?? usage.output ?? 0
-  const cacheRead = usage.cacheReadTokens ?? usage.cacheRead ?? 0
-  const cacheWrite = usage.cacheWriteTokens ?? usage.cacheWrite ?? 0
-  return Math.max(0, Math.round(input + output + cacheRead + cacheWrite))
+  // Cache hit/miss tokens are not consumed tokens: only count newly
+  // generated input and output tokens.
+  return Math.max(0, Math.round(input + output))
 }
 
 export function createInitialState() {
