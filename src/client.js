@@ -231,8 +231,7 @@ window.__ModuleLoader__.load({
             ? React.createElement(
                 "div",
                 { className: "dshFishing_row" },
-                React.createElement("span", null, fishing.stage === "waiting" ? "⏳ 等待鱼汛" : "🎣 收杆搏鱼"),
-                React.createElement("span", { className: "dshFishing_muted" }, `${Math.max(0, Math.ceil((fishing.remainingMs ?? 0) / 1000))}s`)
+                React.createElement("span", null, fishing.stage === "waiting" ? "⏳ 等待鱼汛" : "🎣 收杆搏鱼")
               )
             : null,
           React.createElement("div", { className: "dshFishing_event" }, snap.lastEventText || "等待鱼汛…"),
