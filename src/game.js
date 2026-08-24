@@ -10,44 +10,86 @@ export const GAME_VERSION = 1
 export const BAIT_TOKENS_PER_BAIT = 1_000_000
 
 export const SPECIES = [
-  { id: 'carp', name: '鲫鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 800, minLengthCm: 15, maxLengthCm: 30, baseValue: 12, requiredRodId: 'hand', scoreWeight: 1 },
-  { id: 'crucian', name: '鲤鱼', emoji: '🐠', rarity: 'common', minWeightGrams: 500, maxWeightGrams: 1500, minLengthCm: 20, maxLengthCm: 40, baseValue: 20, requiredRodId: 'hand', scoreWeight: 1 },
-  { id: 'koi', name: '锦鲤', emoji: '🐠', rarity: 'epic', minWeightGrams: 1500, maxWeightGrams: 5000, minLengthCm: 35, maxLengthCm: 70, baseValue: 400, requiredRodId: 'hand', scoreWeight: 1 },
-  { id: 'bass', name: '鲈鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 800, maxWeightGrams: 2500, minLengthCm: 30, maxLengthCm: 55, baseValue: 45, requiredRodId: 'sea', scoreWeight: 1 },
-  { id: 'catfish', name: '鲶鱼', emoji: '🐡', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 6000, minLengthCm: 40, maxLengthCm: 80, baseValue: 120, requiredRodId: 'sea', scoreWeight: 1 },
-  { id: 'arowana', name: '龙鱼', emoji: '🐉', rarity: 'legendary', minWeightGrams: 3000, maxWeightGrams: 9000, minLengthCm: 50, maxLengthCm: 90, baseValue: 1200, requiredRodId: 'sea', scoreWeight: 1 },
-  { id: 'trout', name: '鳟鱼', emoji: '🐠', rarity: 'uncommon', minWeightGrams: 600, maxWeightGrams: 1800, minLengthCm: 25, maxLengthCm: 45, baseValue: 50, requiredRodId: 'lure', scoreWeight: 1 },
-  { id: 'mandarin', name: '鳜鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1000, maxWeightGrams: 3500, minLengthCm: 30, maxLengthCm: 60, baseValue: 150, requiredRodId: 'lure', scoreWeight: 1 },
-  { id: 'bream', name: '鳊鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 300, maxWeightGrams: 1200, minLengthCm: 18, maxLengthCm: 35, baseValue: 15, requiredRodId: 'feeder', scoreWeight: 1 },
-  { id: 'grass_carp', name: '草鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 1000, maxWeightGrams: 4000, minLengthCm: 30, maxLengthCm: 60, baseValue: 55, requiredRodId: 'feeder', scoreWeight: 1 },
-  { id: 'black_carp', name: '青鱼', emoji: '🐠', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 8000, minLengthCm: 40, maxLengthCm: 80, baseValue: 180, requiredRodId: 'feeder', scoreWeight: 1 }
+  { id: 'carp', name: '鲫鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 800, minLengthCm: 15, maxLengthCm: 30, baseValue: 12, requiredRodId: 'hand', scoreWeight: 1, maps: ['beginner'] },
+  { id: 'crucian', name: '鲤鱼', emoji: '🐠', rarity: 'common', minWeightGrams: 500, maxWeightGrams: 1500, minLengthCm: 20, maxLengthCm: 40, baseValue: 20, requiredRodId: 'hand', scoreWeight: 1, maps: ['beginner'] },
+  { id: 'koi', name: '锦鲤', emoji: '🐠', rarity: 'epic', minWeightGrams: 1500, maxWeightGrams: 5000, minLengthCm: 35, maxLengthCm: 70, baseValue: 400, requiredRodId: 'hand', scoreWeight: 1, maps: ['forest_lake', 'legendary_waters'] },
+  { id: 'bass', name: '鲈鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 800, maxWeightGrams: 2500, minLengthCm: 30, maxLengthCm: 55, baseValue: 45, requiredRodId: 'sea', scoreWeight: 1, maps: ['deep_sea'] },
+  { id: 'catfish', name: '鲶鱼', emoji: '🐡', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 6000, minLengthCm: 40, maxLengthCm: 80, baseValue: 120, requiredRodId: 'sea', scoreWeight: 1, maps: ['forest_lake'] },
+  { id: 'arowana', name: '龙鱼', emoji: '🐉', rarity: 'legendary', minWeightGrams: 3000, maxWeightGrams: 9000, minLengthCm: 50, maxLengthCm: 90, baseValue: 1200, requiredRodId: 'sea', scoreWeight: 1, maps: ['legendary_waters'] },
+  { id: 'trout', name: '鳟鱼', emoji: '🐠', rarity: 'uncommon', minWeightGrams: 600, maxWeightGrams: 1800, minLengthCm: 25, maxLengthCm: 45, baseValue: 50, requiredRodId: 'fly', scoreWeight: 1, maps: ['mountain_river'] },
+  { id: 'mandarin', name: '鳜鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1000, maxWeightGrams: 3500, minLengthCm: 30, maxLengthCm: 60, baseValue: 150, requiredRodId: 'lure', scoreWeight: 1, maps: ['forest_lake'] },
+  { id: 'bream', name: '鳊鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 300, maxWeightGrams: 1200, minLengthCm: 18, maxLengthCm: 35, baseValue: 15, requiredRodId: 'feeder', scoreWeight: 1, maps: ['beginner'] },
+  { id: 'grass_carp', name: '草鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 1000, maxWeightGrams: 4000, minLengthCm: 30, maxLengthCm: 60, baseValue: 55, requiredRodId: 'feeder', scoreWeight: 1, maps: ['beginner'] },
+  { id: 'black_carp', name: '青鱼', emoji: '🐠', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 8000, minLengthCm: 40, maxLengthCm: 80, baseValue: 180, requiredRodId: 'feeder', scoreWeight: 1, maps: ['forest_lake'] },
+  { id: 'tilapia', name: '罗非鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 250, maxWeightGrams: 1000, minLengthCm: 16, maxLengthCm: 35, baseValue: 16, requiredRodId: 'hand', scoreWeight: 1, maps: ['beginner'] },
+  { id: 'perch', name: '河鲈', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 500, maxWeightGrams: 2000, minLengthCm: 22, maxLengthCm: 48, baseValue: 60, requiredRodId: 'lure', scoreWeight: 1, maps: ['forest_lake'] },
+  { id: 'eel', name: '鳗鱼', emoji: '🐍', rarity: 'rare', minWeightGrams: 800, maxWeightGrams: 3500, minLengthCm: 30, maxLengthCm: 70, baseValue: 160, requiredRodId: 'feeder', scoreWeight: 1, maps: ['forest_lake'] },
+  { id: 'char', name: '红点鲑', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 400, maxWeightGrams: 1600, minLengthCm: 20, maxLengthCm: 45, baseValue: 70, requiredRodId: 'fly', scoreWeight: 1, maps: ['mountain_river'] },
+  { id: 'salmon', name: '鲑鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1500, maxWeightGrams: 6000, minLengthCm: 35, maxLengthCm: 80, baseValue: 220, requiredRodId: 'fly', scoreWeight: 1, maps: ['mountain_river'] },
+  { id: 'yellow_croaker', name: '黄花鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 900, minLengthCm: 15, maxLengthCm: 32, baseValue: 22, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea'] },
+  { id: 'mackerel', name: '鲭鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 400, maxWeightGrams: 1600, minLengthCm: 20, maxLengthCm: 45, baseValue: 45, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea'] },
+  { id: 'grouper', name: '石斑鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1500, maxWeightGrams: 8000, minLengthCm: 30, maxLengthCm: 90, baseValue: 250, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea'] },
+  { id: 'tuna', name: '金枪鱼', emoji: '🐟', rarity: 'epic', minWeightGrams: 3000, maxWeightGrams: 15000, minLengthCm: 50, maxLengthCm: 120, baseValue: 800, requiredRodId: 'sea', scoreWeight: 1, maps: ['deep_sea'] },
+  { id: 'marlin', name: '旗鱼', emoji: '🐟', rarity: 'legendary', minWeightGrams: 8000, maxWeightGrams: 30000, minLengthCm: 80, maxLengthCm: 180, baseValue: 2500, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea', 'legendary_waters'] },
+  { id: 'sturgeon', name: '中华鲟', emoji: '🐉', rarity: 'legendary', minWeightGrams: 5000, maxWeightGrams: 20000, minLengthCm: 60, maxLengthCm: 150, baseValue: 3000, requiredRodId: 'feeder', scoreWeight: 1, maps: ['legendary_waters'] },
+  { id: 'king_salmon', name: '帝王鲑', emoji: '🐠', rarity: 'epic', minWeightGrams: 4000, maxWeightGrams: 12000, minLengthCm: 55, maxLengthCm: 110, baseValue: 900, requiredRodId: 'fly', scoreWeight: 1, maps: ['legendary_waters'] },
+  { id: 'golden_carp', name: '金鲤', emoji: '🐠', rarity: 'epic', minWeightGrams: 2000, maxWeightGrams: 7000, minLengthCm: 40, maxLengthCm: 85, baseValue: 600, requiredRodId: 'hand', scoreWeight: 1, maps: ['legendary_waters'] }
+]
+
+export const MAPS = [
+  { id: 'beginner', name: '初级鱼塘', emoji: '🏞️', requiredLevel: 1, entryFee: 0, description: '新手钓场，免费进入，适合练手。' },
+  { id: 'forest_lake', name: '森林湖泊', emoji: '🌲', requiredLevel: 3, entryFee: 100, description: '幽静湖泊，有锦鲤、鲶鱼、鳜鱼等。' },
+  { id: 'mountain_river', name: '山涧溪流', emoji: '⛰️', requiredLevel: 5, entryFee: 250, description: '清澈溪流，鳟鱼、鲑鱼在这里出没。' },
+  { id: 'deep_sea', name: '深海渔场', emoji: '🌊', requiredLevel: 8, entryFee: 500, description: '深海巨物，金枪鱼、旗鱼等你挑战。' },
+  { id: 'legendary_waters', name: '秘境水域', emoji: '✨', requiredLevel: 12, entryFee: 1000, description: '传说级鱼群聚集的神秘水域。' }
 ]
 
 export const RODS = [
-  { id: 'hand', name: '手竿', emoji: '🎋', basePrice: 0, upgradeBasePrice: 80, maxLevel: 5, rarityMultiplier: 1.0, weightMultiplier: 1.0, baseSuccessRate: 0.55, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['carp', 'crucian', 'koi'] },
-  { id: 'sea', name: '海竿', emoji: '🎣', basePrice: 300, upgradeBasePrice: 200, maxLevel: 5, rarityMultiplier: 1.5, weightMultiplier: 1.1, baseSuccessRate: 0.60, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['bass', 'catfish', 'arowana'] },
-  { id: 'lure', name: '路亚竿', emoji: '🎣', basePrice: 900, upgradeBasePrice: 500, maxLevel: 5, rarityMultiplier: 2.5, weightMultiplier: 1.2, baseSuccessRate: 0.65, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['trout', 'mandarin'] },
-  { id: 'feeder', name: '飞德杆', emoji: '🎣', basePrice: 600, upgradeBasePrice: 350, maxLevel: 5, rarityMultiplier: 2.0, weightMultiplier: 1.15, baseSuccessRate: 0.62, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['bream', 'grass_carp', 'black_carp'] }
+  { id: 'hand', name: '手竿', emoji: '🎋', basePrice: 0, upgradeBasePrice: 80, maxLevel: 5, rarityMultiplier: 1.0, weightMultiplier: 1.0, baseSuccessRate: 0.55, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['carp', 'crucian', 'koi', 'tilapia', 'golden_carp'] },
+  { id: 'sea', name: '海竿', emoji: '🎣', basePrice: 300, upgradeBasePrice: 200, maxLevel: 5, rarityMultiplier: 1.5, weightMultiplier: 1.1, baseSuccessRate: 0.60, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['bass', 'catfish', 'arowana', 'tuna'] },
+  { id: 'lure', name: '路亚竿', emoji: '🎣', basePrice: 900, upgradeBasePrice: 500, maxLevel: 5, rarityMultiplier: 2.5, weightMultiplier: 1.2, baseSuccessRate: 0.65, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['perch', 'mandarin'] },
+  { id: 'feeder', name: '飞德杆', emoji: '🎣', basePrice: 600, upgradeBasePrice: 350, maxLevel: 5, rarityMultiplier: 2.0, weightMultiplier: 1.15, baseSuccessRate: 0.62, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['bream', 'grass_carp', 'black_carp', 'eel', 'sturgeon'] },
+  { id: 'fly', name: '飞蝇竿', emoji: '🪰', basePrice: 1200, upgradeBasePrice: 650, maxLevel: 5, rarityMultiplier: 3.0, weightMultiplier: 1.25, baseSuccessRate: 0.68, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['trout', 'char', 'salmon', 'king_salmon'] },
+  { id: 'surf', name: '滩钓竿', emoji: '🏖️', basePrice: 1500, upgradeBasePrice: 800, maxLevel: 5, rarityMultiplier: 3.5, weightMultiplier: 1.3, baseSuccessRate: 0.70, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['yellow_croaker', 'mackerel', 'grouper', 'marlin'] }
 ]
 
 export const BASKETS = [
   { id: 'small', name: '小鱼篓', emoji: '🧺', capacity: 5, basePrice: 0 },
   { id: 'medium', name: '中鱼篓', emoji: '🧺', capacity: 10, basePrice: 200 },
-  { id: 'large', name: '大鱼篓', emoji: '🧺', capacity: 15, basePrice: 500 }
+  { id: 'large', name: '大鱼篓', emoji: '🧺', capacity: 15, basePrice: 500 },
+  { id: 'extra_large', name: '特大鱼篓', emoji: '🧺', capacity: 20, basePrice: 900 },
+  { id: 'deluxe', name: '豪华鱼篓', emoji: '🧺', capacity: 30, basePrice: 1600 }
 ]
 
 export const ACCESSORY_SLOTS = [
   { id: 'reel', name: '渔轮' },
   { id: 'line', name: '钓线' },
-  { id: 'lure', name: '假饵' }
+  { id: 'lure', name: '假饵' },
+  { id: 'hook', name: '鱼钩' },
+  { id: 'bobber', name: '浮漂' },
+  { id: 'sinker', name: '铅坠' }
 ]
 
 export const ACCESSORIES = [
   { id: 'basic_reel', name: '基础渔轮', emoji: '🎡', slot: 'reel', basePrice: 80, rodTypes: ['sea', 'feeder'], successRateBonus: 0.03 },
   { id: 'strong_reel', name: '强力渔轮', emoji: '⚙️', slot: 'reel', basePrice: 220, rodTypes: ['sea', 'feeder'], successRateBonus: 0.06 },
+  { id: 'master_reel', name: '大师渔轮', emoji: '🎯', slot: 'reel', basePrice: 600, rodTypes: ['sea', 'feeder', 'fly', 'surf'], successRateBonus: 0.09 },
   { id: 'carbon_line', name: '碳素钓线', emoji: '🧵', slot: 'line', basePrice: 100, rodTypes: ['hand', 'sea', 'lure', 'feeder'], maxWeightBonus: 0.1 },
+  { id: 'braided_line', name: '编织钓线', emoji: '🪢', slot: 'line', basePrice: 260, rodTypes: ['sea', 'surf', 'feeder', 'fly'], maxWeightBonus: 0.18 },
+  { id: 'fluorocarbon_line', name: '氟碳钓线', emoji: '💎', slot: 'line', basePrice: 500, rodTypes: ['hand', 'lure', 'fly'], maxWeightBonus: 0.25 },
   { id: 'fake_lure', name: '仿生假饵', emoji: '🪱', slot: 'lure', basePrice: 120, rodTypes: ['lure', 'feeder'], rareWeightBonus: 2 },
-  { id: 'floating_lure', name: '浮水假饵', emoji: '🦐', slot: 'lure', basePrice: 180, rodTypes: ['lure'], successRateBonus: 0.04 }
+  { id: 'floating_lure', name: '浮水假饵', emoji: '🦐', slot: 'lure', basePrice: 180, rodTypes: ['lure'], successRateBonus: 0.04 },
+  { id: 'deep_diver', name: '深潜假饵', emoji: '🐙', slot: 'lure', basePrice: 320, rodTypes: ['lure', 'fly', 'surf'], rareWeightBonus: 3 },
+  { id: 'soft_bait', name: '软饵', emoji: '🦑', slot: 'lure', basePrice: 450, rodTypes: ['feeder', 'surf', 'fly'], successRateBonus: 0.06, rareWeightBonus: 1 },
+  { id: 'sharp_hook', name: '锋利鱼钩', emoji: '🪝', slot: 'hook', basePrice: 90, rodTypes: ['hand', 'sea', 'feeder', 'surf'], successRateBonus: 0.03 },
+  { id: 'barbless_hook', name: '无倒刺鱼钩', emoji: '🪝', slot: 'hook', basePrice: 240, rodTypes: ['lure', 'fly', 'feeder'], rareWeightBonus: 1, successRateBonus: 0.02 },
+  { id: 'circle_hook', name: '圆口鱼钩', emoji: '🌀', slot: 'hook', basePrice: 380, rodTypes: ['sea', 'surf', 'feeder'], maxWeightBonus: 0.12 },
+  { id: 'small_bobber', name: '小号浮漂', emoji: '⚪', slot: 'bobber', basePrice: 60, rodTypes: ['hand', 'sea', 'feeder'], successRateBonus: 0.02 },
+  { id: 'sensitive_bobber', name: '灵敏浮漂', emoji: '🔴', slot: 'bobber', basePrice: 180, rodTypes: ['hand', 'lure', 'feeder', 'fly'], successRateBonus: 0.05 },
+  { id: 'glow_bobber', name: '夜光浮漂', emoji: '💡', slot: 'bobber', basePrice: 320, rodTypes: ['hand', 'sea', 'feeder', 'surf'], rareWeightBonus: 1 },
+  { id: 'split_shot', name: '咬铅', emoji: '⚫', slot: 'sinker', basePrice: 70, rodTypes: ['hand', 'sea', 'feeder', 'surf'], maxWeightBonus: 0.05 },
+  { id: 'sliding_sinker', name: '滑铅', emoji: '🔩', slot: 'sinker', basePrice: 200, rodTypes: ['sea', 'surf', 'feeder', 'lure'], successRateBonus: 0.04 },
+  { id: 'heavy_sinker', name: '重铅坠', emoji: '⛓️', slot: 'sinker', basePrice: 420, rodTypes: ['sea', 'surf', 'feeder'], maxWeightBonus: 0.14 }
 ]
 
 export const RARITY_SCORE = { common: 0, uncommon: 1, rare: 2, epic: 3, legendary: 4 }
@@ -89,6 +131,30 @@ const BASKETS_BY_ID = new Map(BASKETS.map((basket) => [basket.id, basket]))
 const ACCESSORIES_BY_ID = new Map(ACCESSORIES.map((accessory) => [accessory.id, accessory]))
 const ACCESSORY_SLOTS_BY_ID = new Map(ACCESSORY_SLOTS.map((slot) => [slot.id, slot]))
 const OLD_ROD_MIGRATION = { bamboo: 'hand', carbon: 'sea', long_cast: 'lure', golden: 'lure' }
+const MAPS_BY_ID = new Map(MAPS.map((map) => [map.id, map]))
+const LEVEL_EXP = [0, 100, 250, 450, 700, 1000, 1400, 1900, 2500, 3200, 4000, 5000, 6200, 7600, 9200, 11000, 13000, 15200, 17600, 20000]
+const CATCH_EXP = { common: 10, uncommon: 15, rare: 25, epic: 40, legendary: 60 }
+
+export const TICKET_DAY_MS = 24 * 60 * 60 * 1000
+export const MAX_LEVEL = LEVEL_EXP.length
+
+export function levelFromExperience(experience) {
+  const exp = Math.max(0, Math.floor(experience || 0))
+  let level = 1
+  while (level < LEVEL_EXP.length && exp >= LEVEL_EXP[level]) {
+    level += 1
+  }
+  return level
+}
+
+export function expForLevel(level) {
+  const safe = Math.min(Math.max(1, Math.floor(level || 1)), LEVEL_EXP.length)
+  return LEVEL_EXP[safe - 1]
+}
+
+export function experienceForSpecies(species) {
+  return CATCH_EXP[species?.rarity] ?? 10
+}
 
 export function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value))
@@ -107,6 +173,9 @@ export function createInitialState() {
   return {
     version: GAME_VERSION,
     coins: 50,
+    experience: 0,
+    currentMapId: 'beginner',
+    mapTickets: {},
     totalTokensConsumed: 0,
     pendingBaitTokens: 0,
     bait: 0,
@@ -115,7 +184,7 @@ export function createInitialState() {
     equippedBasketId: 'small',
     ownedBaskets: { small: { basketId: 'small' } },
     items: [],
-    equippedAccessories: { reel: null, line: null, lure: null },
+    equippedAccessories: Object.fromEntries(ACCESSORY_SLOTS.map((slot) => [slot.id, null])),
     inventory: [],
     collection: [],
     stats: {
@@ -205,6 +274,17 @@ function normalizeState(state) {
     if (state[key] === undefined) state[key] = base[key]
   }
 
+  // Normalize level and map state.
+  if (!Number.isFinite(state.experience)) state.experience = 0
+  if (state.mapTickets === null || typeof state.mapTickets !== 'object') state.mapTickets = {}
+  for (const map of MAPS) {
+    if (!Number.isFinite(state.mapTickets[map.id])) state.mapTickets[map.id] = 0
+  }
+  if (!MAPS_BY_ID.has(state.currentMapId)) state.currentMapId = 'beginner'
+  if (state.currentMapId !== 'beginner' && !(state.mapTickets[state.currentMapId] > 0)) {
+    state.currentMapId = 'beginner'
+  }
+
   // Normalize the active fishing session. It may be absent in old saves.
   if (state.fishing === null || typeof state.fishing !== 'object') {
     state.fishing = { ...base.fishing }
@@ -250,7 +330,7 @@ function normalizeState(state) {
 
   if (!Array.isArray(state.items)) state.items = []
   if (state.equippedAccessories === null || typeof state.equippedAccessories !== 'object') {
-    state.equippedAccessories = { reel: null, line: null, lure: null }
+    state.equippedAccessories = Object.fromEntries(ACCESSORY_SLOTS.map((slot) => [slot.id, null]))
   }
   for (const slot of ACCESSORY_SLOTS) {
     if (state.equippedAccessories[slot.id] === undefined) state.equippedAccessories[slot.id] = null
@@ -311,6 +391,11 @@ export class FishingGame {
     return basket
   }
 
+  currentMapCandidates() {
+    const rodId = this.state.equippedRodId
+    return SPECIES.filter((species) => species.requiredRodId === rodId && (species.maps ?? []).includes(this.state.currentMapId))
+  }
+
   handleTokensConsumed(amount, source = 'msg', ts = Date.now()) {
     const rounded = Math.max(0, Math.round(amount))
     this.state.totalTokensConsumed += rounded
@@ -320,8 +405,45 @@ export class FishingGame {
     return []
   }
 
+  ensureCurrentMap(now = Date.now(), effects = []) {
+    const currentMapId = this.state.currentMapId
+    if (currentMapId === 'beginner') return effects
+    const expiresAt = this.state.mapTickets?.[currentMapId] ?? 0
+    if (expiresAt > now) return effects
+    const wasFishing = this.state.fishing?.status === 'fishing'
+    this.state.mapTickets[currentMapId] = 0
+    this.state.currentMapId = 'beginner'
+    if (wasFishing) {
+      this.state.fishing.status = 'idle'
+      this.state.fishing.stage = null
+      this.state.fishing.startedAt = 0
+      this.state.fishing.endsAt = 0
+      this.state.fishing.durationMs = 0
+      this.state.fishing.lastEventAt = 0
+      this.state.fishing.eventText = ''
+    }
+    this.state.lastEventText = '门票已到期，已回到初级鱼塘。'
+    effects.push({ type: 'EventLine', text: this.state.lastEventText })
+    return effects
+  }
+
+  cancelFishing({ refundBait = false } = {}) {
+    if (this.state.fishing?.status !== 'fishing') return false
+    const refund = refundBait === true
+    this.state.fishing.status = 'idle'
+    this.state.fishing.stage = null
+    this.state.fishing.startedAt = 0
+    this.state.fishing.endsAt = 0
+    this.state.fishing.durationMs = 0
+    this.state.fishing.lastEventAt = 0
+    this.state.fishing.eventText = ''
+    if (refund) this.state.bait += 1
+    return true
+  }
+
   tick(now = Date.now()) {
     const effects = []
+    this.ensureCurrentMap(now, effects)
 
     // During an active cast, each tick may emit a random stage event. When the
     // current stage has elapsed, also progress through zero-duration transitions
@@ -339,6 +461,11 @@ export class FishingGame {
     while (this.state.bait >= 1 && this.state.fishing.status === 'idle' && guard < 100) {
       if (this.state.inventory.length >= this.state.inventoryCapacity) {
         this.state.lastEventText = '鱼篓已满，停止钓鱼。'
+        effects.push({ type: 'EventLine', text: this.state.lastEventText })
+        break
+      }
+      if (this.currentMapCandidates().length === 0) {
+        this.state.lastEventText = '当前鱼竿在这张地图钓不到鱼，请更换鱼竿或地图。'
         effects.push({ type: 'EventLine', text: this.state.lastEventText })
         break
       }
@@ -375,9 +502,10 @@ export class FishingGame {
     const { rod } = this.equippedRod()
     this.state.stats.totalBaitTokensUsed += BAIT_TOKENS_PER_BAIT
 
-    const candidates = SPECIES.filter((species) => species.requiredRodId === rod.id)
+    const candidates = SPECIES.filter((species) => species.requiredRodId === rod.id && (species.maps ?? []).includes(this.state.currentMapId))
     if (candidates.length === 0) {
-      this.state.lastEventText = '当前鱼竿还钓不到任何鱼。'
+      this.state.bait += 1
+      this.state.lastEventText = '当前鱼竿在这张地图钓不到鱼，请更换鱼竿或地图。'
       return [{ type: 'EventLine', text: this.state.lastEventText }]
     }
 
@@ -441,7 +569,7 @@ export class FishingGame {
     this.state.fishing.lastEventAt = 0
     this.state.fishing.eventText = ''
 
-    const candidates = SPECIES.filter((species) => species.requiredRodId === rod.id)
+    const candidates = SPECIES.filter((species) => species.requiredRodId === rod.id && (species.maps ?? []).includes(this.state.currentMapId))
     if (candidates.length === 0) {
       this.state.lastEventText = '当前鱼竿还钓不到任何鱼。'
       return [{ type: 'EventLine', text: this.state.lastEventText }]
@@ -513,6 +641,11 @@ export class FishingGame {
       this.state.stats.rareCatches += 1
     }
 
+    const expGain = experienceForSpecies(species)
+    const oldLevel = levelFromExperience(this.state.experience)
+    this.state.experience += expGain
+    const newLevel = levelFromExperience(this.state.experience)
+
     const entry = collectionEntry(this.state, species.id)
     entry.catches += 1
     entry.maxWeightGrams = Math.max(entry.maxWeightGrams, fish.weightGrams)
@@ -522,15 +655,23 @@ export class FishingGame {
     const text = `钓到了 [${species.name}] ${kg}kg / ${fish.lengthCm}cm / 评分 ${fish.rating}`
     this.state.lastEventText = text
 
+    const resultEffects = [{ type: 'FishCaught', fish }]
+    if (newLevel > oldLevel) {
+      const unlocked = MAPS.filter((map) => map.requiredLevel > oldLevel && map.requiredLevel <= newLevel)
+      const unlockedText = unlocked.length > 0 ? `，解锁了${unlocked.map((map) => map.name).join('、')}` : ''
+      const levelText = `🎉 升级到 Lv.${newLevel}！${unlockedText}`
+      this.state.lastEventText = levelText
+      resultEffects.push({ type: 'EventLine', text: levelText })
+    }
+
     if (this.state.inventory.length >= this.state.inventoryCapacity) {
-      return [
-        { type: 'FishCaught', fish },
-        { type: 'EventLine', text: `${text}，但鱼篓已满，鱼逃走了。` }
-      ]
+      resultEffects.push({ type: 'EventLine', text: `${text}，但鱼篓已满，鱼逃走了。` })
+      return resultEffects
     }
 
     this.state.inventory.push(fish)
-    return [{ type: 'FishCaught', fish }, { type: 'EventLine', text }]
+    resultEffects.push({ type: 'EventLine', text })
+    return resultEffects
   }
 
   dispatch(command, now = Date.now()) {
@@ -681,6 +822,51 @@ export class FishingGame {
         return [{ type: 'EventLine', text: this.state.lastEventText }]
       }
 
+      case 'BuyTicket': {
+        const map = MAPS_BY_ID.get(command.mapId)
+        if (map === undefined) throw new Error('未知地图')
+        if (map.id === 'beginner') throw new Error('初级鱼塘无需购买门票')
+        const days = Math.floor(Number(command.days))
+        if (!Number.isFinite(days) || days <= 0) throw new Error('天数必须大于 0')
+        if (levelFromExperience(this.state.experience) < map.requiredLevel) {
+          throw new Error(`需要 Lv.${map.requiredLevel} 才能进入${map.name}`)
+        }
+        const cost = map.entryFee * days
+        if (this.state.coins < cost) throw new Error('金币不足')
+        const canceled = this.cancelFishing({ refundBait: true })
+        const oldExpiry = this.state.mapTickets[map.id] ?? 0
+        const base = Math.max(now, oldExpiry)
+        const expiresAt = base + days * TICKET_DAY_MS
+        this.state.coins -= cost
+        this.state.stats.totalCoinsSpent += cost
+        this.state.mapTickets[map.id] = expiresAt
+        this.state.currentMapId = map.id
+        const cancelText = canceled ? '已取消当前钓鱼并退还 1 个鱼饵。' : ''
+        this.state.lastEventText = `${cancelText}购买了 ${map.name} ${days} 天门票，已进入${map.name}。`
+        const effects = [
+          { type: 'Purchase', kind: 'ticket', id: map.id, cost, days },
+          { type: 'EventLine', text: this.state.lastEventText }
+        ]
+        return effects
+      }
+
+      case 'ChangeMap': {
+        const map = MAPS_BY_ID.get(command.mapId)
+        if (map === undefined) throw new Error('未知地图')
+        if (levelFromExperience(this.state.experience) < map.requiredLevel) {
+          throw new Error(`需要 Lv.${map.requiredLevel} 才能进入${map.name}`)
+        }
+        if (map.id !== 'beginner') {
+          const expiresAt = this.state.mapTickets[map.id] ?? 0
+          if (expiresAt <= now) throw new Error(`${map.name} 没有有效门票，请先购买`)
+        }
+        const canceled = this.cancelFishing({ refundBait: true })
+        this.state.currentMapId = map.id
+        const cancelText = canceled ? '已取消当前钓鱼并退还 1 个鱼饵。' : ''
+        this.state.lastEventText = `${cancelText}已前往 ${map.name}。`
+        return [{ type: 'EventLine', text: this.state.lastEventText }]
+      }
+
       default:
         throw new Error(`未知命令：${command.type}`)
     }
@@ -738,6 +924,7 @@ export class FishingGame {
         name: accessory.name,
         emoji: accessory.emoji,
         slot: accessory.slot,
+        slotName: ACCESSORY_SLOTS_BY_ID.get(accessory.slot)?.name ?? accessory.slot,
         basePrice: accessory.basePrice,
         rodTypes: accessory.rodTypes,
         equipped: item.equipped,
@@ -774,22 +961,70 @@ export class FishingGame {
         price: basket.basePrice,
         owned: state.ownedBaskets[basket.id] !== undefined
       })),
-      ...ACCESSORIES.map((accessory) => ({
-        kind: 'accessory',
-        category: '配件',
-        id: accessory.id,
-        name: accessory.name,
-        emoji: accessory.emoji,
-        price: accessory.basePrice,
-        slot: accessory.slot,
-        owned: state.items.some((item) => item.itemId === accessory.id),
-        canEquip: accessory.rodTypes.includes(state.equippedRodId)
-      }))
+      ...ACCESSORIES.map((accessory) => {
+        const slot = ACCESSORY_SLOTS_BY_ID.get(accessory.slot)
+        return {
+          kind: 'accessory',
+          category: slot?.name ?? '配件',
+          id: accessory.id,
+          name: accessory.name,
+          emoji: accessory.emoji,
+          price: accessory.basePrice,
+          slot: accessory.slot,
+          owned: state.items.some((item) => item.itemId === accessory.id),
+          canEquip: accessory.rodTypes.includes(state.equippedRodId)
+        }
+      })
     ]
+
+    const level = levelFromExperience(state.experience)
+    const currentMap = MAPS_BY_ID.get(state.currentMapId) ?? MAPS[0]
+    const maps = MAPS.map((map) => {
+      const ticketExpiresAt = state.mapTickets[map.id] ?? 0
+      const remainingMs = Math.max(0, ticketExpiresAt - now)
+      const locked = level < map.requiredLevel
+      return {
+        id: map.id,
+        name: map.name,
+        emoji: map.emoji,
+        requiredLevel: map.requiredLevel,
+        entryFee: map.entryFee,
+        description: map.description,
+        locked,
+        current: state.currentMapId === map.id,
+        hasTicket: remainingMs > 0,
+        ticketExpiresAt,
+        ticketRemainingMs: remainingMs,
+        fish: SPECIES
+          .filter((species) => (species.maps ?? []).includes(map.id))
+          .map((species) => ({
+            id: species.id,
+            name: species.name,
+            emoji: species.emoji,
+            rarity: species.rarity,
+            requiredRodId: species.requiredRodId
+          }))
+      }
+    })
+
+    const shopCategories = ['鱼竿', '鱼篓', ...ACCESSORY_SLOTS.map((slot) => slot.name)]
 
     return {
       version: state.version,
       coins: state.coins,
+      level,
+      experience: state.experience,
+      nextLevelExp: level < MAX_LEVEL ? expForLevel(level + 1) : null,
+      currentMapId: state.currentMapId,
+      currentMap: {
+        id: currentMap.id,
+        name: currentMap.name,
+        emoji: currentMap.emoji,
+        requiredLevel: currentMap.requiredLevel,
+        entryFee: currentMap.entryFee,
+        description: currentMap.description
+      },
+      maps,
       totalTokensConsumed: state.totalTokensConsumed ?? 0,
       pendingBaitTokens: state.pendingBaitTokens ?? 0,
       bait: state.bait ?? 0,
@@ -800,7 +1035,10 @@ export class FishingGame {
         emoji: equipped.rod.emoji,
         level: equipped.level,
         rarityMultiplier: equipped.effects.rarityMultiplier,
-        weightMultiplier: equipped.effects.weightMultiplier
+        weightMultiplier: equipped.effects.weightMultiplier,
+        accessorySlots: ACCESSORY_SLOTS
+          .filter((slot) => ACCESSORIES.some((accessory) => accessory.slot === slot.id && accessory.rodTypes.includes(equipped.rod.id)))
+          .map((slot) => ({ id: slot.id, name: slot.name }))
       },
       equippedBasket: {
         id: equippedBasket.id,
@@ -814,6 +1052,7 @@ export class FishingGame {
       baskets,
       items,
       equippedAccessories,
+      shopCategories,
       shopItems,
       stats: state.stats,
       collection: state.collection,

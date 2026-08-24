@@ -5,12 +5,15 @@ A floating fishing game for the deepseek-harness **web** surface.
 While you use the agent, token usage is collected as bait: every 1M consumed
 tokens add 1 bait. Each cast consumes 1 bait, so the game casts the equipped
 rod once per 1M tokens and catches a fish. Fish can be sold for coins; coins
-buy and upgrade rods. Rods are divided into hand rods, sea rods, and lure rods,
-and each type can catch different fish. Upgrading a rod increases the chance of
-landing a fish and raises the maximum weight of caught fish.
+buy and upgrade rods. Catching fish grants experience and raises your level;
+higher levels unlock new maps. Except for the beginner map, entering another
+map requires a ticket. Each ticket lasts one real day, and you can buy a
+multi-day ticket at once. Different maps contain different fish, and there are
+more rod/basket/accessory options to collect.
 
-The widget lives in the bottom-left corner of the web UI (`shell.overlay`), so
-it floats above the conversation and can be collapsed to a small bobber.
+The game is opened from the left sidebar: a `Fishing` button is placed above
+the settings button and styled like the other sidebar buttons. Clicking it
+opens the fishing panel directly in the sidebar.
 
 ## How it works
 
@@ -25,8 +28,8 @@ it floats above the conversation and can be collapsed to a small bobber.
   from the `FISHING_EVENTS` config table. It follows the same core model as the
   pi-fishing design doc, but does not import or depend on pi-fishing.
 - **Browser half** (`src/client.js`): a `dsh.client` web plugin that registers
-  a React widget into the layout's `shell.overlay` slot and polls the snapshot
-  endpoint.
+  a `Fishing` sidebar button into the layout's `shell.sidebar` slot and polls
+  the snapshot endpoint.
 
 ## Install into a web profile
 
@@ -72,13 +75,17 @@ State is stored under `$DSH_HOME/storages/dsh-fishing/` (default
 
 ## Commands
 
-The web widget exposes the common actions in its panel. The raw HTTP API
-accepts these command types:
+The sidebar panel exposes the common actions. The raw HTTP API accepts these
+command types:
 
 - `SellFish` / `SellAllFish`
 - `BuyRod` / `UpgradeRod` / `EquipRod`
 - `BuyBasket` / `EquipBasket`
 - `BuyAccessory` / `EquipAccessory` / `UnequipAccessory`
+- `BuyTicket` / `ChangeMap` — buy multi-day map tickets and move between maps
+  (e.g. `{"type":"BuyTicket","mapId":"forest_lake","days":3}`,
+  `{"type":"ChangeMap","mapId":"forest_lake"}`). If a cast is in progress, it
+  is cancelled and the consumed bait is refunded.
 
 ## Development notes
 

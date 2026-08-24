@@ -6,15 +6,17 @@ window.__ModuleLoader__.load({
     Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 
     const React = require("react");
-    const { useCallback, useEffect, useState } = React;
+    const { useCallback, useEffect, useRef, useState } = React;
 
     // ── CSS ─────────────────────────────────────────────────────────────────
     const css = `
-.dshFishing_root{position:absolute;right:16px;bottom:16px;z-index:30;pointer-events:auto;font-family:var(--dsw-font-family-ui,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);color:var(--dsw-alias-label-primary,#1f2329)}
-.dshFishing_bobber{width:46px;height:46px;border-radius:50%;background:var(--dsw-alias-bg-elevated,#ffffff);border:1px solid var(--dsw-alias-border-l2,#e5e6eb);box-shadow:0 8px 24px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:transform .12s ease}
-.dshFishing_bobber:hover{transform:translateY(-2px)}
-.dshFishing_bobberBadge{position:absolute;right:-2px;bottom:-2px;min-width:18px;height:18px;padding:0 4px;border-radius:999px;background:var(--dsw-alias-state-business-primary,#3b82f6);color:#fff;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
-.dshFishing_panel{width:320px;max-height:min(560px,calc(100vh - 32px));overflow:auto;background:var(--dsw-alias-bg-elevated,#ffffff);border:1px solid var(--dsw-alias-border-l2,#e5e6eb);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.20);padding:12px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box}
+.dshFishing_sidebar{display:flex;flex-direction:column;gap:4px;width:100%;min-width:0}
+.dshFishing_sidebarButton{display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--dsw-alias-label-primary,#1f2329);font-size:13px;font-weight:500;cursor:pointer;border-radius:8px;text-align:left;white-space:nowrap;box-sizing:border-box}
+.dshFishing_sidebarButton:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(0,0,0,.05))}
+.dshFishing_sidebarButtonActive{background:var(--dsw-alias-state-business-primary,#3b82f6);color:#fff}
+.dshFishing_panel{width:100%;max-height:min(560px,calc(100vh - 120px));overflow:hidden;background:var(--dsw-alias-bg-elevated,#ffffff);border:1px solid var(--dsw-alias-border-l2,#e5e6eb);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box}
+.dshFishing_top{flex:0 0 auto;display:flex;flex-direction:column;gap:8px}
+.dshFishing_content{overflow-y:auto;flex:1;min-height:0;display:flex;flex-direction:column;gap:8px}
 .dshFishing_header{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .dshFishing_title{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px}
 .dshFishing_close{border:none;background:transparent;color:var(--dsw-alias-label-tertiary,#8a919f);cursor:pointer;font-size:14px;line-height:1;padding:4px;border-radius:6px}
@@ -45,13 +47,36 @@ window.__ModuleLoader__.load({
 .dshFishing_tab{flex:1;text-align:center;border:1px solid transparent;background:transparent;border-radius:7px;padding:5px 0;font-size:12px;font-weight:600;color:var(--dsw-alias-label-secondary,#4e5969);cursor:pointer}
 .dshFishing_tab:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(0,0,0,.05))}
 .dshFishing_tabActive{background:var(--dsw-alias-state-business-primary,#3b82f6);border-color:transparent;color:#fff}
-.dshFishing_status{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid var(--dsw-alias-border-l1,#eef0f3);font-size:12px;color:var(--dsw-alias-label-secondary,#4e5969)}
+.dshFishing_status{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid var(--dsw-alias-border-l1,#eef0f3);font-size:12px;color:var(--dsw-alias-label-secondary,#4e5969);flex-shrink:0}
 .dshFishing_equipSlots{display:flex;flex-direction:column;gap:6px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:8px;padding:8px}
 .dshFishing_slotRow{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px}
-.dshFishing_slotName{font-weight:600;color:var(--dsw-alias-label-secondary,#4e5969)}
+.dshFishing_slotName{font-weight:600;color:var(--dsw-alias-label-secondary,#4e5969);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dshFishing_equipGrid{display:flex;flex-wrap:wrap;gap:6px}
+.dshFishing_equipCell{width:64px;min-height:64px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px;box-sizing:border-box;text-align:center;font-size:11px;line-height:1.3;position:relative}
+.dshFishing_equipCellEmpty{border-style:dashed;background:var(--dsw-alias-interactive-bg,#f7f8fa);color:var(--dsw-alias-label-tertiary,#8a919f)}
+.dshFishing_equipCellDropTarget{outline:2px solid var(--dsw-alias-state-business-primary,#3b82f6);outline-offset:-1px;background:rgba(59,130,246,.08)}
+.dshFishing_slotEmoji{font-size:22px;line-height:1}
+.dshFishing_slotMeta{font-size:10px;color:var(--dsw-alias-label-tertiary,#8a919f);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dshFishing_backpackGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px}
+.dshFishing_backpackCell{width:auto;min-height:74px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px;box-sizing:border-box;text-align:center;font-size:11px;line-height:1.3;min-width:0;cursor:default}
+.dshFishing_backpackCellDraggable{cursor:grab}
+.dshFishing_backpackCellDraggable:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6)}
+.dshFishing_backpackCellDragging{opacity:.45}
+.dshFishing_backpackCellEquipped{border-color:var(--dsw-alias-state-business-primary,#3b82f6);background:rgba(59,130,246,.05)}
+.dshFishing_backpackCellDisabled{opacity:.5;background:var(--dsw-alias-interactive-bg,#f0f1f4)}
+.dshFishing_slotAction{margin-top:2px;padding:1px 6px;font-size:10px}
 .dshFishing_backpackTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);margin-top:4px}
 .dshFishing_shopGroup{margin-top:6px}
 .dshFishing_shopGroupTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);margin-bottom:4px}
+.dshFishing_shopTabs{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.dshFishing_shopTab{border:1px solid var(--dsw-alias-border-l2,#d8dbe2);background:transparent;border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;color:var(--dsw-alias-label-secondary,#4e5969)}
+.dshFishing_shopTab:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(0,0,0,.05))}
+.dshFishing_shopTabActive{background:var(--dsw-alias-state-business-primary,#3b82f6);border-color:transparent;color:#fff}
+.dshFishing_mapCard{border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:8px;padding:6px;display:flex;flex-direction:column;gap:4px}
+.dshFishing_mapName{font-size:12px;font-weight:700}
+.dshFishing_mapMeta{font-size:11px;color:var(--dsw-alias-label-tertiary,#8a919f);display:flex;flex-wrap:wrap;gap:4px}
+.dshFishing_mapDays{width:58px;padding:3px 6px;border:1px solid var(--dsw-alias-border-l2,#d8dbe2);border-radius:6px;font-size:12px;box-sizing:border-box}
+.dshFishing_mapFish{font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.4}
 `;
     const tagId = "@gitsang/dsh-fishing/style.css";
     if (typeof document !== "undefined" && document.querySelector(`style[data-plugin-css="${tagId}"]`) === null) {
@@ -95,13 +120,21 @@ window.__ModuleLoader__.load({
       );
     }
 
+    const SHOP_TAB_ORDER = ["鱼竿", "鱼篓", "渔轮", "钓线", "假饵", "鱼钩", "浮漂", "铅坠"];
+    const SHOP_SLOT_CATEGORIES = { reel: "渔轮", line: "钓线", lure: "假饵", hook: "鱼钩", bobber: "浮漂", sinker: "铅坠" };
+
     function FishingWidget() {
       const [snap, setSnap] = useState(null);
       const [expanded, setExpanded] = useState(false);
       const [tab, setTab] = useState("game");
+      const [mapDays, setMapDays] = useState(1);
+      const [shopTab, setShopTab] = useState("鱼竿");
       const [busy, setBusy] = useState(false);
       const [loadError, setLoadError] = useState(null);
       const [actionError, setActionError] = useState(null);
+      const [dropSlot, setDropSlot] = useState(null);
+      const [draggedItemId, setDraggedItemId] = useState(null);
+      const draggedAccessoryRef = useRef(null);
 
       useEffect(() => {
         let disposed = false;
@@ -150,48 +183,49 @@ window.__ModuleLoader__.load({
         }
       }, []);
 
-      if (!expanded) {
-        return React.createElement(
-          "div",
-          { className: "dshFishing_root" },
-          React.createElement(
-            "button",
-            {
-              className: "dshFishing_bobber",
-              title: "打开钓鱼游戏",
-              onClick: () => setExpanded(true)
-            },
-            "🎣",
-            snap !== null
-              ? React.createElement(
-                  "span",
-                  { className: "dshFishing_bobberBadge" },
-                  snap.inventory.length > 0 ? snap.inventory.length : "🎣"
-                )
-              : null
-          )
-        );
-      }
+      const onAccessoryDragStart = (e, item) => {
+        if (busy || item.equipped || !item.canEquip) {
+          e.preventDefault();
+          return;
+        }
+        draggedAccessoryRef.current = { itemId: item.itemId, slot: item.slot };
+        setDraggedItemId(item.id);
+        e.dataTransfer.setData("text/plain", JSON.stringify({ itemId: item.itemId, slot: item.slot }));
+        e.dataTransfer.effectAllowed = "move";
+      };
 
-      if (snap === null) {
-        return React.createElement(
-          "div",
-          { className: "dshFishing_root" },
-          React.createElement(
-            "div",
-            { className: "dshFishing_panel" },
-            React.createElement(
-              "div",
-              { className: "dshFishing_header" },
-              React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
-              React.createElement("button", { className: "dshFishing_close", onClick: () => setExpanded(false) }, "—")
-            ),
-            loadError !== null
-              ? React.createElement("div", { className: "dshFishing_error" }, `无法连接游戏服务：${loadError}`)
-              : React.createElement("div", { className: "dshFishing_muted" }, "加载中…")
-          )
-        );
-      }
+      const onAccessoryDragEnd = () => {
+        draggedAccessoryRef.current = null;
+        setDraggedItemId(null);
+        setDropSlot(null);
+      };
+
+      const onAccessorySlotDragOver = (e, slot) => {
+        const dragged = draggedAccessoryRef.current;
+        if (!dragged || dragged.slot !== slot.slot) return;
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+        if (dropSlot !== slot.slot) setDropSlot(slot.slot);
+      };
+
+      const onAccessorySlotDragLeave = () => {
+        setDropSlot(null);
+      };
+
+      const onAccessorySlotDrop = (e, slot) => {
+        e.preventDefault();
+        setDropSlot(null);
+        if (busy) return;
+        const dragged = draggedAccessoryRef.current;
+        const raw = e.dataTransfer.getData("text/plain");
+        let parsed = null;
+        try { parsed = raw ? JSON.parse(raw) : null; } catch (_) {}
+        const data = parsed && parsed.itemId ? parsed : dragged;
+        if (!data || data.slot !== slot.slot) return;
+        send({ type: "EquipAccessory", accessoryId: data.itemId });
+        draggedAccessoryRef.current = null;
+        setDraggedItemId(null);
+      };
 
       const bait = snap.bait ?? 0;
       const pendingBaitTokens = snap.pendingBaitTokens ?? 0;
@@ -204,7 +238,7 @@ window.__ModuleLoader__.load({
         React.createElement(
           "div",
           { className: "dshFishing_tabs" },
-          [["game", "游戏"], ["equip", "装备"], ["shop", "商店"]].map(([id, label]) =>
+          [["game", "游戏"], ["map", "地图"], ["equip", "装备"], ["shop", "商店"]].map(([id, label]) =>
             React.createElement(
               "button",
               {
@@ -235,9 +269,6 @@ window.__ModuleLoader__.load({
               )
             : null,
           React.createElement("div", { className: "dshFishing_event" }, snap.lastEventText || "等待鱼汛…"),
-          actionError !== null
-            ? React.createElement("div", { className: "dshFishing_error" }, actionError)
-            : null,
           React.createElement(
             "details",
             { className: "dshFishing_details" },
@@ -273,129 +304,256 @@ window.__ModuleLoader__.load({
           )
         );
 
-      const renderEquipment = () =>
+      const renderEquipment = () => {
+      const SLOT_EMOJIS = { reel: "🎡", line: "🧵", lure: "🪱", hook: "🪝", bobber: "⚪", sinker: "⚫" };
+      const equippedRod = snap.equippedRod || {};
+      const accessorySlots = (Array.isArray(equippedRod.accessorySlots) && equippedRod.accessorySlots.length > 0)
+        ? equippedRod.accessorySlots
+        : (snap.equippedAccessories || [])
+            .filter((slot) => {
+              const hasCompatibleItem = (snap.items || []).some((item) => item.slot === slot.slot && item.rodTypes && item.rodTypes.includes(equippedRod.id));
+              return hasCompatibleItem || slot.accessory !== null;
+            })
+            .map((slot) => ({ id: slot.slot, name: slot.name }));
+      const accessorySlotById = new Map((snap.equippedAccessories || []).map((slot) => [slot.slot, slot]));
+
+      const equipCellClass = (slotId, empty) =>
+        ["dshFishing_equipCell", empty ? "dshFishing_equipCellEmpty" : "", dropSlot === slotId ? "dshFishing_equipCellDropTarget" : ""]
+          .filter(Boolean)
+          .join(" ");
+
+      const renderEquipCell = (key, emoji, label, meta, opts = {}) =>
         React.createElement(
           "div",
-          { className: "dshFishing_section" },
-          React.createElement(
-            "div",
-            { className: "dshFishing_equipSlots" },
+          {
+            key,
+            className: opts.className || "dshFishing_equipCell",
+            onDragOver: opts.onDragOver,
+            onDragLeave: opts.onDragLeave,
+            onDrop: opts.onDrop
+          },
+          React.createElement("span", { className: "dshFishing_slotEmoji" }, emoji),
+          React.createElement("span", { className: "dshFishing_slotName" }, label),
+          meta ? React.createElement("span", { className: "dshFishing_slotMeta" }, meta) : null,
+          opts.children || null
+        );
+
+      const renderAccessoryCell = (slot) => {
+        const data = accessorySlotById.get(slot.id);
+        const accessory = data && data.accessory ? data.accessory : null;
+        const empty = !accessory;
+        return renderEquipCell(
+          slot.id,
+          accessory ? accessory.emoji : (SLOT_EMOJIS[slot.id] || "➕"),
+          accessory ? accessory.name : slot.name,
+          accessory ? slot.name : "空槽",
+          {
+            className: equipCellClass(slot.id, empty),
+            onDragOver: (e) => onAccessorySlotDragOver(e, { slot: slot.id }),
+            onDragLeave: onAccessorySlotDragLeave,
+            onDrop: (e) => onAccessorySlotDrop(e, { slot: slot.id }),
+            children: accessory
+              ? React.createElement(
+                  "button",
+                  { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "UnequipAccessory", slot: slot.id }) },
+                  "卸下"
+                )
+              : null
+          }
+        );
+      };
+
+      const rodCell = renderEquipCell(
+        "rod",
+        equippedRod.emoji || "🎣",
+        equippedRod.name || "鱼竿",
+        `Lv.${equippedRod.level || 1}`
+      );
+      const basketCell = renderEquipCell(
+        "basket",
+        (snap.equippedBasket || {}).emoji || "🧺",
+        (snap.equippedBasket || {}).name || "鱼篓",
+        `${(snap.equippedBasket || {}).capacity || 0}格`
+      );
+      const accessoryCells = accessorySlots.map(renderAccessoryCell);
+
+      const renderRodBackpack = () => {
+        const rods = snap.rods.filter((rod) => rod.owned);
+        if (rods.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有鱼竿");
+        return React.createElement(
+          "div",
+          { className: "dshFishing_backpackGrid" },
+          rods.map((rod) =>
             React.createElement(
               "div",
-              { className: "dshFishing_slotRow" },
-              React.createElement("span", { className: "dshFishing_slotName" }, "🎣 鱼竿"),
-              React.createElement("span", null, `${snap.equippedRod.emoji} ${snap.equippedRod.name} Lv.${snap.equippedRod.level}`)
-            ),
-            React.createElement(
-              "div",
-              { className: "dshFishing_slotRow" },
-              React.createElement("span", { className: "dshFishing_slotName" }, "🧺 鱼篓"),
-              React.createElement("span", null, `${snap.equippedBasket.emoji} ${snap.equippedBasket.name} (${snap.equippedBasket.capacity}格)`)
-            ),
-            (snap.equippedAccessories || []).map((slot) =>
+              {
+                key: rod.id,
+                className: `dshFishing_backpackCell${rod.equipped ? " dshFishing_backpackCellEquipped" : ""}`
+              },
+              React.createElement("span", { className: "dshFishing_slotEmoji" }, rod.emoji),
+              React.createElement("span", { className: "dshFishing_slotName" }, rod.name),
+              React.createElement("span", { className: "dshFishing_slotMeta" }, `Lv.${rod.level}${rod.equipped ? " · 装备中" : ""}`),
               React.createElement(
                 "div",
-                { key: slot.slot, className: "dshFishing_slotRow" },
-                React.createElement("span", { className: "dshFishing_slotName" }, slot.name),
-                React.createElement("span", null, slot.accessory ? `${slot.accessory.emoji} ${slot.accessory.name}` : "空"),
-                slot.accessory
+                { style: { display: "flex", gap: "2px", flexWrap: "wrap", justifyContent: "center" } },
+                !rod.equipped
                   ? React.createElement(
                       "button",
-                      { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "UnequipAccessory", slot: slot.slot }) },
-                      "卸下"
+                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipRod", rodId: rod.id }) },
+                      "装备"
+                    )
+                  : null,
+                rod.level < rod.maxLevel
+                  ? React.createElement(
+                      "button",
+                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "UpgradeRod", rodId: rod.id }) },
+                      `升级 ${rod.upgradeCost}G`
                     )
                   : null
               )
             )
-          ),
-          React.createElement("div", { className: "dshFishing_backpackTitle" }, "🎒 背包"),
-          React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼竿"),
-          React.createElement(
-            "div",
-            { className: "dshFishing_list" },
-            snap.rods.filter((rod) => rod.owned).map((rod) =>
-              React.createElement(
-                "div",
-                { key: rod.id, className: "dshFishing_row" },
-                React.createElement("span", null, `${rod.emoji} ${rod.name}${rod.equipped ? " · 装备中" : ""} Lv.${rod.level}`),
-                React.createElement(
-                  "div",
-                  { style: { display: "flex", gap: "4px" } },
-                  !rod.equipped
-                    ? React.createElement(
-                        "button",
-                        { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "EquipRod", rodId: rod.id }) },
-                        "装备"
-                      )
-                    : null,
-                  rod.level < rod.maxLevel
-                    ? React.createElement(
-                        "button",
-                        { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "UpgradeRod", rodId: rod.id }) },
-                        `升级 ${rod.upgradeCost}G`
-                      )
-                    : null
-                )
-              )
+          )
+        );
+      };
+
+      const renderBasketBackpack = () => {
+        const baskets = snap.baskets.filter((basket) => basket.owned);
+        if (baskets.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有鱼篓");
+        return React.createElement(
+          "div",
+          { className: "dshFishing_backpackGrid" },
+          baskets.map((basket) =>
+            React.createElement(
+              "div",
+              {
+                key: basket.id,
+                className: `dshFishing_backpackCell${basket.equipped ? " dshFishing_backpackCellEquipped" : ""}`
+              },
+              React.createElement("span", { className: "dshFishing_slotEmoji" }, basket.emoji),
+              React.createElement("span", { className: "dshFishing_slotName" }, basket.name),
+              React.createElement("span", { className: "dshFishing_slotMeta" }, `${basket.capacity}格${basket.equipped ? " · 使用中" : ""}`),
+              !basket.equipped
+                ? React.createElement(
+                    "button",
+                    { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipBasket", basketId: basket.id }) },
+                    "装备"
+                  )
+                : null
             )
-          ),
-          React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼篓"),
-          React.createElement(
-            "div",
-            { className: "dshFishing_list" },
-            snap.baskets.filter((basket) => basket.owned).map((basket) =>
+          )
+        );
+      };
+
+      const renderAccessoryBackpack = () => {
+        const items = snap.items || [];
+        if (items.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有配件，去商店看看吧");
+        return React.createElement(
+          "div",
+          { className: "dshFishing_backpackGrid" },
+          items.map((item) => {
+            const draggable = item.canEquip && !item.equipped && !busy;
+            const classes = ["dshFishing_backpackCell"];
+            if (draggable) classes.push("dshFishing_backpackCellDraggable");
+            if (item.equipped) classes.push("dshFishing_backpackCellEquipped");
+            if (!item.canEquip) classes.push("dshFishing_backpackCellDisabled");
+            if (draggedItemId === item.id) classes.push("dshFishing_backpackCellDragging");
+            return React.createElement(
+              "div",
+              {
+                key: item.id,
+                className: classes.join(" "),
+                draggable: !!draggable,
+                onDragStart: draggable ? (e) => onAccessoryDragStart(e, item) : undefined,
+                onDragEnd: draggable ? onAccessoryDragEnd : undefined
+              },
+              React.createElement("span", { className: "dshFishing_slotEmoji" }, item.emoji),
+              React.createElement("span", { className: "dshFishing_slotName" }, item.name),
               React.createElement(
-                "div",
-                { key: basket.id, className: "dshFishing_row" },
-                React.createElement("span", null, `${basket.emoji} ${basket.name} (${basket.capacity}格)${basket.equipped ? " · 使用中" : ""}`),
-                !basket.equipped
+                "span",
+                { className: "dshFishing_slotMeta" },
+                `[${item.slotName || item.slot}]${item.equipped ? " · 已装备" : ""}${!item.canEquip ? " · 不适用" : ""}`
+              ),
+              item.equipped
+                ? null
+                : item.canEquip
                   ? React.createElement(
                       "button",
-                      { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "EquipBasket", basketId: basket.id }) },
+                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipAccessory", accessoryId: item.itemId }) },
                       "装备"
                     )
                   : null
+            );
+          })
+        );
+      };
+
+      return React.createElement(
+        "div",
+        { className: "dshFishing_section" },
+        React.createElement(
+          "div",
+          { className: "dshFishing_equipGrid" },
+          rodCell,
+          ...accessoryCells,
+          basketCell
+        ),
+        React.createElement("div", { className: "dshFishing_backpackTitle" }, "🎒 背包"),
+        React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼竿"),
+        renderRodBackpack(),
+        React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼篓"),
+        renderBasketBackpack(),
+        React.createElement("div", { className: "dshFishing_backpackTitle" }, "配件"),
+        renderAccessoryBackpack()
+      );
+    };
+
+      const renderShop = () => {
+        const shopCategories = (snap.shopCategories && snap.shopCategories.length > 0)
+          ? snap.shopCategories
+          : (() => {
+              const categories = new Set();
+              for (const item of snap.shopItems || []) {
+                if (!item.category) continue;
+                const mapped = item.category === "配件" && item.slot && SHOP_SLOT_CATEGORIES[item.slot]
+                  ? SHOP_SLOT_CATEGORIES[item.slot]
+                  : item.category;
+                categories.add(mapped);
+              }
+              return SHOP_TAB_ORDER.filter((category) => categories.has(category)).concat(
+                Array.from(categories).filter((category) => !SHOP_TAB_ORDER.includes(category))
+              );
+            })()
+        const shopCategoryOf = (item) =>
+          item.category === "配件" && item.slot && SHOP_SLOT_CATEGORIES[item.slot]
+            ? SHOP_SLOT_CATEGORIES[item.slot]
+            : item.category;
+        const activeShopTab = shopCategories.includes(shopTab) ? shopTab : (shopCategories[0] || "鱼竿");
+        const shopItems = (snap.shopItems || []).filter((item) => shopCategoryOf(item) === activeShopTab);
+
+        return React.createElement(
+          "div",
+          { className: "dshFishing_section" },
+          React.createElement(
+            "div",
+            { className: "dshFishing_shopTabs" },
+            shopCategories.map((category) =>
+              React.createElement(
+                "button",
+                {
+                  key: category,
+                  className: `dshFishing_shopTab${activeShopTab === category ? " dshFishing_shopTabActive" : ""}`,
+                  onClick: () => setShopTab(category)
+                },
+                category
               )
             )
           ),
-          React.createElement("div", { className: "dshFishing_backpackTitle" }, "配件"),
-          snap.items.length === 0
-            ? React.createElement("div", { className: "dshFishing_empty" }, "还没有配件，去商店看看吧")
-            : React.createElement(
-                "div",
-                { className: "dshFishing_list" },
-                snap.items.map((item) =>
-                  React.createElement(
-                    "div",
-                    { key: item.id, className: "dshFishing_row" },
-                    React.createElement("span", null, `${item.emoji} ${item.name} [${item.slot}]${item.equipped ? " · 已装备" : ""}`),
-                    item.equipped
-                      ? null
-                      : item.canEquip
-                        ? React.createElement(
-                            "button",
-                            { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "EquipAccessory", accessoryId: item.itemId }) },
-                            "装备"
-                          )
-                        : React.createElement("span", { className: "dshFishing_muted" }, "当前鱼竿不适用")
-                  )
-                )
-              )
-        );
-
-      const renderShop = () =>
-        React.createElement(
-          "div",
-          { className: "dshFishing_section" },
-          ["鱼竿", "鱼篓", "配件"].map((category) =>
-            React.createElement(
-              "div",
-              { key: category, className: "dshFishing_shopGroup" },
-              React.createElement("div", { className: "dshFishing_shopGroupTitle" }, category),
-              React.createElement(
-                "div",
-                { className: "dshFishing_list" },
-                snap.shopItems.filter((item) => item.category === category).map((item) =>
+          React.createElement(
+            "div",
+            { className: "dshFishing_list" },
+            shopItems.length === 0
+              ? React.createElement("div", { className: "dshFishing_empty" }, "这个分类暂时没有商品")
+              : shopItems.map((item) =>
                   React.createElement(
                     "div",
                     { key: `${item.kind}-${item.id}`, className: "dshFishing_row" },
@@ -417,40 +575,166 @@ window.__ModuleLoader__.load({
                         )
                   )
                 )
-              )
+          )
+        );
+      };
+
+      const renderMap = () => {
+        const maps = snap.maps || [];
+        const currentMap = snap.currentMap || { emoji: "🏞️", name: "初级鱼塘" };
+        const formatRemaining = (ms) => {
+          const days = Math.floor(ms / 86400000);
+          const hours = Math.floor((ms % 86400000) / 3600000);
+          if (days > 0) return `${days}天${hours > 0 ? `${hours}小时` : ""}`;
+          if (hours > 0) return `${hours}小时`;
+          return `${Math.max(0, Math.floor(ms / 60000))}分钟`;
+        };
+
+        return React.createElement(
+          "div",
+          { className: "dshFishing_section" },
+          React.createElement(
+            "div",
+            { className: "dshFishing_row" },
+            React.createElement("span", { className: "dshFishing_sectionTitle" }, `🎖️ Lv.${snap.level ?? 1} · ${currentMap.emoji} ${currentMap.name}`),
+            React.createElement("span", { className: "dshFishing_muted" }, `经验 ${snap.experience}${snap.nextLevelExp ? `/${snap.nextLevelExp}` : ""}`)
+          ),
+          maps.map((map) =>
+            React.createElement(
+              "div",
+              { key: map.id, className: "dshFishing_mapCard" },
+              React.createElement(
+                "div",
+                { className: "dshFishing_row" },
+                React.createElement("span", { className: "dshFishing_mapName" }, `${map.emoji} ${map.name}${map.current ? " · 当前" : ""}`),
+                React.createElement("span", { className: "dshFishing_muted" }, map.locked ? `Lv.${map.requiredLevel} 解锁` : `入场费 ${map.entryFee}G/天`)
+              ),
+              React.createElement(
+                "div",
+                { className: "dshFishing_mapMeta" },
+                map.locked
+                  ? `需要 Lv.${map.requiredLevel}`
+                  : map.hasTicket
+                    ? `有效门票剩余 ${formatRemaining(map.ticketRemainingMs)}`
+                    : "暂无门票"
+              ),
+              React.createElement(
+                "div",
+                { className: "dshFishing_mapFish" },
+                `鱼类：${map.fish.map((fish) => `${fish.emoji}${fish.name}`).join(" ")}`
+              ),
+              map.locked
+                ? null
+                : React.createElement(
+                    "div",
+                    { className: "dshFishing_row" },
+                    map.id === "beginner"
+                      ? map.current
+                        ? React.createElement("span", { className: "dshFishing_muted" }, "免费地图")
+                        : React.createElement(
+                            "button",
+                            { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "ChangeMap", mapId: map.id }) },
+                            "前往"
+                          )
+                      : React.createElement(
+                          React.Fragment,
+                          null,
+                          map.hasTicket && !map.current
+                            ? React.createElement(
+                                "button",
+                                { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "ChangeMap", mapId: map.id }) },
+                                "前往"
+                              )
+                            : null,
+                          React.createElement("input", {
+                            className: "dshFishing_mapDays",
+                            type: "number",
+                            min: 1,
+                            max: 30,
+                            value: mapDays,
+                            onChange: (e) => setMapDays(Math.max(1, Number(e.target.value) || 1))
+                          }),
+                          React.createElement(
+                            "button",
+                            {
+                              className: "dshFishing_btn dshFishing_primary",
+                              disabled: busy,
+                              onClick: () => send({ type: "BuyTicket", mapId: map.id, days: mapDays })
+                            },
+                            `${map.current ? "续期" : map.hasTicket ? "加购并前往" : "购买并进入"} ${map.entryFee * mapDays}G`
+                          )
+                        )
+                  )
             )
           )
         );
+      };
 
       const renderStatus = () =>
         React.createElement(
           "div",
           { className: "dshFishing_status" },
-          React.createElement("span", null, `金币 ${snap.coins}`),
+          React.createElement("span", null, `Lv.${snap.level ?? 1} · 金币 ${snap.coins}`),
           React.createElement("span", null, `鱼饵 ${bait}`),
-          React.createElement("span", null, `鱼 ${snap.inventory.length}/${snap.inventoryCapacity}`)
+          React.createElement("span", null, `鱼 ${snap.inventory.length}/${snap.inventoryCapacity} · ${(snap.currentMap || {}).emoji || "🏞️"}`)
         );
 
       return React.createElement(
         "div",
-        { className: "dshFishing_root" },
+        { className: "dshFishing_sidebar" },
         React.createElement(
-          "div",
-          { className: "dshFishing_panel" },
-          React.createElement(
-            "div",
-            { className: "dshFishing_header" },
-            React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
-            React.createElement(
-              "button",
-              { className: "dshFishing_close", title: "收起", onClick: () => setExpanded(false) },
-              "—"
-            )
-          ),
-          renderTabBar(),
-          tab === "game" ? renderGame() : tab === "equip" ? renderEquipment() : renderShop(),
-          renderStatus()
-        )
+          "button",
+          {
+            className: `dshFishing_sidebarButton${expanded ? " dshFishing_sidebarButtonActive" : ""}`,
+            title: "Fishing",
+            onClick: () => setExpanded(!expanded)
+          },
+          "🎣 Fishing"
+        ),
+        expanded
+          ? snap === null
+            ? React.createElement(
+                "div",
+                { className: "dshFishing_panel" },
+                React.createElement(
+                  "div",
+                  { className: "dshFishing_header" },
+                  React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+                  React.createElement("button", { className: "dshFishing_close", onClick: () => setExpanded(false) }, "—")
+                ),
+                loadError !== null
+                  ? React.createElement("div", { className: "dshFishing_error" }, `无法连接游戏服务：${loadError}`)
+                  : React.createElement("div", { className: "dshFishing_muted" }, "加载中…")
+              )
+            : React.createElement(
+                "div",
+                { className: "dshFishing_panel" },
+                React.createElement(
+                  "div",
+                  { className: "dshFishing_top" },
+                  React.createElement(
+                    "div",
+                    { className: "dshFishing_header" },
+                    React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+                    React.createElement(
+                      "button",
+                      { className: "dshFishing_close", title: "收起", onClick: () => setExpanded(false) },
+                      "—"
+                    )
+                  ),
+                  actionError !== null
+                    ? React.createElement("div", { className: "dshFishing_error" }, actionError)
+                    : null,
+                  renderTabBar()
+                ),
+                React.createElement(
+                  "div",
+                  { className: "dshFishing_content" },
+                  tab === "game" ? renderGame() : tab === "map" ? renderMap() : tab === "equip" ? renderEquipment() : renderShop()
+                ),
+                renderStatus()
+              )
+          : null
       );
 
     }
@@ -459,12 +743,12 @@ window.__ModuleLoader__.load({
     const inject = ["slots"];
 
     function apply(ctx) {
-      ctx.slots.inject("shell.overlay", () =>
+      ctx.slots.inject("shell.sidebar", () =>
         ctx.slots.register(
           {
-            name: "shell.overlay",
+            name: "shell.sidebar",
             id: "dsh-fishing",
-            order: 100
+            order: 50
           },
           FishingWidget
         )
