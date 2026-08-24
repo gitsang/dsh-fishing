@@ -228,6 +228,44 @@ window.__ModuleLoader__.load({
         setDraggedItemId(null);
       };
 
+      if (snap === null) {
+        return React.createElement(
+          React.Fragment,
+          null,
+          React.createElement(
+            "button",
+            {
+              type: "button",
+              className: `dshFishing_sidebarAction${wide ? "" : " dshFishing_sidebarActionRail"}`,
+              title: "Fishing",
+              "aria-expanded": expanded,
+              onClick: () => setExpanded(!expanded)
+            },
+            React.createElement("span", null, "🎣"),
+            wide ? React.createElement("span", { className: "dshFishing_sidebarActionLabel" }, "Fishing") : null
+          ),
+          expanded
+            ? React.createElement(
+                "div",
+                { className: "dshFishing_drawer" },
+                React.createElement(
+                  "div",
+                  { className: "dshFishing_panel" },
+                  React.createElement(
+                    "div",
+                    { className: "dshFishing_header" },
+                    React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+                    React.createElement("button", { className: "dshFishing_close", onClick: () => setExpanded(false) }, "—")
+                  ),
+                  loadError !== null
+                    ? React.createElement("div", { className: "dshFishing_error" }, `无法连接游戏服务：${loadError}`)
+                    : React.createElement("div", { className: "dshFishing_muted" }, "加载中…")
+                )
+              )
+            : null
+        );
+      }
+
       const bait = snap.bait ?? 0;
       const pendingBaitTokens = snap.pendingBaitTokens ?? 0;
       const tokensPerBait = snap.tokensPerBait ?? snap.baitTokensPerCast ?? 1000000;
