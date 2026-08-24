@@ -3,7 +3,7 @@
 # Inserts the fishing host plugin into the web profile. The host half collects
 # token usage from session events and exposes /fishing/snapshot plus
 # /fishing/command; the browser half (dsh.client) registers a Fishing button in
-# the layout's `shell.sidebar` slot.
+# the layout's `sidebar.footer.action` slot.
 - insert:
     - id: fishing
       name: '@gitsang/dsh-fishing'

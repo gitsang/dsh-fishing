@@ -28,7 +28,7 @@ opens the fishing panel directly in the sidebar.
   from the `FISHING_EVENTS` config table. It follows the same core model as the
   pi-fishing design doc, but does not import or depend on pi-fishing.
 - **Browser half** (`src/client.js`): a `dsh.client` web plugin that registers
-  a `Fishing` sidebar button into the layout's `shell.sidebar` slot and polls
+  a `Fishing` sidebar button into the layout's `sidebar.footer.action` slot and polls
   the snapshot endpoint.
 
 ## Install into a web profile

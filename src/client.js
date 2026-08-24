@@ -10,11 +10,12 @@ window.__ModuleLoader__.load({
 
     // ── CSS ─────────────────────────────────────────────────────────────────
     const css = `
-.dshFishing_sidebar{display:flex;flex-direction:column;gap:4px;width:100%;min-width:0}
-.dshFishing_sidebarButton{display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--dsw-alias-label-primary,#1f2329);font-size:13px;font-weight:500;cursor:pointer;border-radius:8px;text-align:left;white-space:nowrap;box-sizing:border-box}
-.dshFishing_sidebarButton:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(0,0,0,.05))}
-.dshFishing_sidebarButtonActive{background:var(--dsw-alias-state-business-primary,#3b82f6);color:#fff}
-.dshFishing_panel{width:100%;max-height:min(560px,calc(100vh - 120px));overflow:hidden;background:var(--dsw-alias-bg-elevated,#ffffff);border:1px solid var(--dsw-alias-border-l2,#e5e6eb);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box}
+.dshFishing_sidebarAction{box-sizing:border-box;cursor:pointer;width:100%;height:42px;color:var(--dsw-alias-label-primary);background:transparent;border:none;border-radius:12px;flex:none;align-items:center;gap:8px;margin:4px 0;padding:0 10px 0 8px;font-family:inherit;font-size:14px;line-height:22px;display:flex;overflow:hidden}
+.dshFishing_sidebarAction:hover{background:var(--dsw-alias-interactive-bg-hover)}
+.dshFishing_sidebarActionRail{border-radius:50%;justify-content:center;gap:0;width:36px;height:36px;margin:8px 0 10px;padding:0}
+.dshFishing_sidebarActionLabel{white-space:nowrap;overflow:hidden}
+.dshFishing_drawer{position:fixed;top:0;left:0;bottom:0;width:min(420px,100vw);max-width:100vw;background:var(--dsw-alias-bg-layer-2,#ffffff);box-shadow:var(--dsw-shadow-lv3);z-index:1000;padding:12px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden}
+.dshFishing_panel{width:100%;height:100%;max-height:none;overflow:hidden;background:var(--dsw-alias-bg-elevated,#ffffff);border:1px solid var(--dsw-alias-border-l2,#e5e6eb);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box}
 .dshFishing_top{flex:0 0 auto;display:flex;flex-direction:column;gap:8px}
 .dshFishing_content{overflow-y:auto;flex:1;min-height:0;display:flex;flex-direction:column;gap:8px}
 .dshFishing_header{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -123,7 +124,7 @@ window.__ModuleLoader__.load({
     const SHOP_TAB_ORDER = ["鱼竿", "鱼篓", "渔轮", "钓线", "假饵", "鱼钩", "浮漂", "铅坠"];
     const SHOP_SLOT_CATEGORIES = { reel: "渔轮", line: "钓线", lure: "假饵", hook: "鱼钩", bobber: "浮漂", sinker: "铅坠" };
 
-    function FishingWidget() {
+    function FishingWidget({ wide }) {
       const [snap, setSnap] = useState(null);
       const [expanded, setExpanded] = useState(false);
       const [tab, setTab] = useState("game");
@@ -680,60 +681,67 @@ window.__ModuleLoader__.load({
         );
 
       return React.createElement(
-        "div",
-        { className: "dshFishing_sidebar" },
+        React.Fragment,
+        null,
         React.createElement(
           "button",
           {
-            className: `dshFishing_sidebarButton${expanded ? " dshFishing_sidebarButtonActive" : ""}`,
+            type: "button",
+            className: `dshFishing_sidebarAction${wide ? "" : " dshFishing_sidebarActionRail"}`,
             title: "Fishing",
+            "aria-expanded": expanded,
             onClick: () => setExpanded(!expanded)
           },
-          "🎣 Fishing"
+          React.createElement("span", null, "🎣"),
+          wide ? React.createElement("span", { className: "dshFishing_sidebarActionLabel" }, "Fishing") : null
         ),
         expanded
-          ? snap === null
-            ? React.createElement(
-                "div",
-                { className: "dshFishing_panel" },
-                React.createElement(
-                  "div",
-                  { className: "dshFishing_header" },
-                  React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
-                  React.createElement("button", { className: "dshFishing_close", onClick: () => setExpanded(false) }, "—")
-                ),
-                loadError !== null
-                  ? React.createElement("div", { className: "dshFishing_error" }, `无法连接游戏服务：${loadError}`)
-                  : React.createElement("div", { className: "dshFishing_muted" }, "加载中…")
-              )
-            : React.createElement(
-                "div",
-                { className: "dshFishing_panel" },
-                React.createElement(
-                  "div",
-                  { className: "dshFishing_top" },
-                  React.createElement(
+          ? React.createElement(
+              "div",
+              { className: "dshFishing_drawer" },
+              snap === null
+                ? React.createElement(
                     "div",
-                    { className: "dshFishing_header" },
-                    React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+                    { className: "dshFishing_panel" },
                     React.createElement(
-                      "button",
-                      { className: "dshFishing_close", title: "收起", onClick: () => setExpanded(false) },
-                      "—"
-                    )
-                  ),
-                  actionError !== null
-                    ? React.createElement("div", { className: "dshFishing_error" }, actionError)
-                    : null,
-                  renderTabBar()
-                ),
-                React.createElement(
-                  "div",
-                  { className: "dshFishing_content" },
-                  tab === "game" ? renderGame() : tab === "map" ? renderMap() : tab === "equip" ? renderEquipment() : renderShop()
-                ),
-                renderStatus()
-              )
+                      "div",
+                      { className: "dshFishing_header" },
+                      React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+                      React.createElement("button", { className: "dshFishing_close", onClick: () => setExpanded(false) }, "—")
+                    ),
+                    loadError !== null
+                      ? React.createElement("div", { className: "dshFishing_error" }, `无法连接游戏服务：${loadError}`)
+                      : React.createElement("div", { className: "dshFishing_muted" }, "加载中…")
+                  )
+                : React.createElement(
+                    "div",
+                    { className: "dshFishing_panel" },
+                    React.createElement(
+                      "div",
+                      { className: "dshFishing_top" },
+                      React.createElement(
+                        "div",
+                        { className: "dshFishing_header" },
+                        React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+                        React.createElement(
+                          "button",
+                          { className: "dshFishing_close", title: "收起", onClick: () => setExpanded(false) },
+                          "—"
+                        )
+                      ),
+                      actionError !== null
+                        ? React.createElement("div", { className: "dshFishing_error" }, actionError)
+                        : null,
+                      renderTabBar()
+                    ),
+                    React.createElement(
+                      "div",
+                      { className: "dshFishing_content" },
+                      tab === "game" ? renderGame() : tab === "map" ? renderMap() : tab === "equip" ? renderEquipment() : renderShop()
+                    ),
+                    renderStatus()
+                  )
+            )
           : null
       );
 
@@ -743,12 +751,12 @@ window.__ModuleLoader__.load({
     const inject = ["slots"];
 
     function apply(ctx) {
-      ctx.slots.inject("shell.sidebar", () =>
+      ctx.slots.inject("sidebar.footer.action", () =>
         ctx.slots.register(
           {
-            name: "shell.sidebar",
+            name: "sidebar.footer.action",
             id: "dsh-fishing",
-            order: 50
+            order: 10
           },
           FishingWidget
         )
