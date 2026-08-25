@@ -146,9 +146,29 @@ window.__ModuleLoader__.load({
     const SHOP_TAB_ORDER = ["鱼竿", "鱼篓", "渔轮", "钓线", "假饵", "鱼钩", "浮漂", "铅坠"];
     const SHOP_SLOT_CATEGORIES = { reel: "渔轮", line: "钓线", lure: "假饵", hook: "鱼钩", bobber: "浮漂", sinker: "铅坠" };
 
-    function FishingWidget({ wide }) {
+    function FishingSidebarButton({ wide, openFishing, closeFishing }) {
+      const [open, setOpen] = useState(false);
+      return React.createElement(
+        "button",
+        {
+          type: "button",
+          className: `dshFishing_sidebarAction${wide ? "" : " dshFishing_sidebarActionRail"}`,
+          title: "Fishing",
+          "aria-expanded": open,
+          onClick: () => {
+            const next = !open;
+            setOpen(next);
+            if (next) openFishing?.();
+            else closeFishing?.();
+          }
+        },
+        React.createElement(FishingIcon, { size: wide ? 16 : 18 }),
+        wide ? React.createElement("span", { className: "dshFishing_sidebarActionLabel" }, "Fishing") : null
+      );
+    }
+
+    function FishingWidget({ closeFishing }) {
       const [snap, setSnap] = useState(null);
-      const [expanded, setExpanded] = useState(false);
       const [tab, setTab] = useState("game");
       const [mapDays, setMapDays] = useState(1);
       const [shopTab, setShopTab] = useState("鱼竿");
@@ -252,39 +272,17 @@ window.__ModuleLoader__.load({
 
       if (snap === null) {
         return React.createElement(
-          React.Fragment,
-          null,
+          "div",
+          { className: "dshFishing_panel" },
           React.createElement(
-            "button",
-            {
-              type: "button",
-              className: `dshFishing_sidebarAction${wide ? "" : " dshFishing_sidebarActionRail"}`,
-              title: "Fishing",
-              "aria-expanded": expanded,
-              onClick: () => setExpanded(!expanded)
-            },
-            React.createElement(FishingIcon, { size: wide ? 16 : 18 }),
-            wide ? React.createElement("span", { className: "dshFishing_sidebarActionLabel" }, "Fishing") : null
+            "div",
+            { className: "dshFishing_header" },
+            React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+            React.createElement("button", { className: "dshFishing_close", onClick: () => closeFishing?.() }, "—")
           ),
-          expanded
-            ? React.createElement(
-                "div",
-                { className: "dshFishing_drawer" },
-                React.createElement(
-                  "div",
-                  { className: "dshFishing_panel" },
-                  React.createElement(
-                    "div",
-                    { className: "dshFishing_header" },
-                    React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
-                    React.createElement("button", { className: "dshFishing_close", onClick: () => setExpanded(false) }, "—")
-                  ),
-                  loadError !== null
-                    ? React.createElement("div", { className: "dshFishing_error" }, `无法连接游戏服务：${loadError}`)
-                    : React.createElement("div", { className: "dshFishing_muted" }, "加载中…")
-                )
-              )
-            : null
+          loadError !== null
+            ? React.createElement("div", { className: "dshFishing_error" }, `无法连接游戏服务：${loadError}`)
+            : React.createElement("div", { className: "dshFishing_muted" }, "加载中…")
         );
       }
 
@@ -741,68 +739,32 @@ window.__ModuleLoader__.load({
         );
 
       return React.createElement(
-        React.Fragment,
-        null,
+        "div",
+        { className: "dshFishing_panel" },
         React.createElement(
-          "button",
-          {
-            type: "button",
-            className: `dshFishing_sidebarAction${wide ? "" : " dshFishing_sidebarActionRail"}`,
-            title: "Fishing",
-            "aria-expanded": expanded,
-            onClick: () => setExpanded(!expanded)
-          },
-          React.createElement(FishingIcon, { size: wide ? 16 : 18 }),
-          wide ? React.createElement("span", { className: "dshFishing_sidebarActionLabel" }, "Fishing") : null
-        ),
-        expanded
-          ? React.createElement(
-              "div",
-              { className: "dshFishing_drawer" },
-              snap === null
-                ? React.createElement(
-                    "div",
-                    { className: "dshFishing_panel" },
-                    React.createElement(
-                      "div",
-                      { className: "dshFishing_header" },
-                      React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
-                      React.createElement("button", { className: "dshFishing_close", onClick: () => setExpanded(false) }, "—")
-                    ),
-                    loadError !== null
-                      ? React.createElement("div", { className: "dshFishing_error" }, `无法连接游戏服务：${loadError}`)
-                      : React.createElement("div", { className: "dshFishing_muted" }, "加载中…")
-                  )
-                : React.createElement(
-                    "div",
-                    { className: "dshFishing_panel" },
-                    React.createElement(
-                      "div",
-                      { className: "dshFishing_top" },
-                      React.createElement(
-                        "div",
-                        { className: "dshFishing_header" },
-                        React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
-                        React.createElement(
-                          "button",
-                          { className: "dshFishing_close", title: "收起", onClick: () => setExpanded(false) },
-                          "—"
-                        )
-                      ),
-                      actionError !== null
-                        ? React.createElement("div", { className: "dshFishing_error" }, actionError)
-                        : null,
-                      renderTabBar()
-                    ),
-                    React.createElement(
-                      "div",
-                      { className: "dshFishing_content" },
-                      tab === "game" ? renderGame() : tab === "map" ? renderMap() : tab === "equip" ? renderEquipment() : renderShop()
-                    ),
-                    renderStatus()
-                  )
+          "div",
+          { className: "dshFishing_top" },
+          React.createElement(
+            "div",
+            { className: "dshFishing_header" },
+            React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+            React.createElement(
+              "button",
+              { className: "dshFishing_close", title: "收起", onClick: () => closeFishing?.() },
+              "—"
             )
-          : null
+          ),
+          actionError !== null
+            ? React.createElement("div", { className: "dshFishing_error" }, actionError)
+            : null,
+          renderTabBar()
+        ),
+        React.createElement(
+          "div",
+          { className: "dshFishing_content" },
+          tab === "game" ? renderGame() : tab === "map" ? renderMap() : tab === "equip" ? renderEquipment() : renderShop()
+        ),
+        renderStatus()
       );
 
     }
@@ -815,8 +777,26 @@ window.__ModuleLoader__.load({
         ctx.slots.register(
           {
             name: "sidebar.footer.action",
-            id: "dsh-fishing",
-            order: 10
+            id: "dsh-fishing-button",
+            order: 10,
+            inject: () => ({
+              openFishing: () => ctx.layout.openDetails(),
+              closeFishing: () => ctx.layout.closeDetails()
+            })
+          },
+          FishingSidebarButton
+        )
+      );
+
+      ctx.slots.inject("details", () =>
+        ctx.slots.register(
+          {
+            name: "details",
+            id: "dsh-fishing-details",
+            order: 10,
+            inject: () => ({
+              closeFishing: () => ctx.layout.closeDetails()
+            })
           },
           FishingWidget
         )
