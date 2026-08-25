@@ -127,16 +127,19 @@ window.__ModuleLoader__.load({
         {
           width: size,
           height: size,
-          viewBox: "0 0 16 16",
+          viewBox: "0 0 24 24",
           fill: "none",
           stroke: "currentColor",
-          strokeWidth: 1.5,
+          strokeWidth: 2,
           strokeLinecap: "round",
           strokeLinejoin: "round",
           "aria-hidden": true
         },
-        React.createElement("path", { d: "M2 8c2.2-2.8 5.2-3.8 8-2.8L13 3.2v3.6l-3-1.6c-2.8 1-5.8 0-8-2.8z" }),
-        React.createElement("path", { d: "M13 5.2l1.2 1.2" })
+        React.createElement("path", { d: "M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6-3.56 0-7.56-2.54-8.5-6Z" }),
+        React.createElement("path", { d: "M18 12v.5" }),
+        React.createElement("path", { d: "M16 17.93a9.77 9.77 0 0 1 0-11.86" }),
+        React.createElement("path", { d: "M7 10.67C7 8 5.5 5.5 3 5.5c0 4 1.5 6.5 4 6.5" }),
+        React.createElement("path", { d: "M7 13.33c0 2.67-1.5 5.17-4 5.17 0-4 1.5-6.5 4-6.5" })
       );
     }
 
