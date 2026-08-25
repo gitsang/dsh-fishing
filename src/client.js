@@ -10,11 +10,11 @@ window.__ModuleLoader__.load({
 
     // ── CSS ─────────────────────────────────────────────────────────────────
     const css = `
-.dshFishing_sidebarAction{box-sizing:border-box;cursor:pointer;width:100%;height:42px;color:var(--dsw-alias-label-primary);background:transparent;border:none;border-radius:12px;flex:none;align-items:center;gap:8px;margin:4px 0;padding:0 10px 0 8px;font-family:inherit;font-size:14px;line-height:22px;display:flex;overflow:hidden}
+.dshFishing_sidebarAction{box-sizing:border-box;cursor:pointer;width:calc(100% + 4px);height:42px;color:var(--dsw-alias-label-primary);background:transparent;border:none;border-radius:12px;flex:none;align-items:center;gap:8px;margin:4px -2px;padding:0 10px 0 8px;font-family:inherit;font-size:14px;line-height:22px;display:flex;overflow:hidden}
 .dshFishing_sidebarAction:hover{background:var(--dsw-alias-interactive-bg-hover)}
 .dshFishing_sidebarActionRail{border-radius:50%;justify-content:center;gap:0;width:36px;height:36px;margin:8px 0 10px;padding:0}
 .dshFishing_sidebarActionLabel{white-space:nowrap;overflow:hidden}
-.dshFishing_drawer{position:fixed;top:0;left:0;bottom:0;width:min(420px,100vw);max-width:100vw;background:var(--dsw-alias-bg-layer-2,#ffffff);box-shadow:var(--dsw-shadow-lv3);z-index:1000;padding:12px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden}
+.dshFishing_drawer{position:fixed;top:0;right:0;bottom:0;left:auto;width:min(420px,100vw);max-width:100vw;background:var(--dsw-alias-bg-layer-2,#ffffff);box-shadow:var(--dsw-shadow-lv3);z-index:1000;padding:12px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden}
 .dshFishing_panel{width:100%;height:100%;max-height:none;overflow:hidden;background:var(--dsw-alias-bg-elevated,#ffffff);border:1px solid var(--dsw-alias-border-l2,#e5e6eb);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box}
 .dshFishing_top{flex:0 0 auto;display:flex;flex-direction:column;gap:8px}
 .dshFishing_content{overflow-y:auto;flex:1;min-height:0;display:flex;flex-direction:column;gap:8px}
@@ -118,6 +118,25 @@ window.__ModuleLoader__.load({
           { className: "dshFishing_btn dshFishing_primary", disabled, onClick: () => onSell(fish.id) },
           "卖"
         )
+      );
+    }
+
+    function FishingIcon({ size = 16 }) {
+      return React.createElement(
+        "svg",
+        {
+          width: size,
+          height: size,
+          viewBox: "0 0 16 16",
+          fill: "none",
+          stroke: "currentColor",
+          strokeWidth: 1.5,
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          "aria-hidden": true
+        },
+        React.createElement("path", { d: "M2 8c2.2-2.8 5.2-3.8 8-2.8L13 3.2v3.6l-3-1.6c-2.8 1-5.8 0-8-2.8z" }),
+        React.createElement("path", { d: "M13 5.2l1.2 1.2" })
       );
     }
 
@@ -241,7 +260,7 @@ window.__ModuleLoader__.load({
               "aria-expanded": expanded,
               onClick: () => setExpanded(!expanded)
             },
-            React.createElement("span", null, "🎣"),
+            React.createElement(FishingIcon, { size: wide ? 16 : 18 }),
             wide ? React.createElement("span", { className: "dshFishing_sidebarActionLabel" }, "Fishing") : null
           ),
           expanded
@@ -730,7 +749,7 @@ window.__ModuleLoader__.load({
             "aria-expanded": expanded,
             onClick: () => setExpanded(!expanded)
           },
-          React.createElement("span", null, "🎣"),
+          React.createElement(FishingIcon, { size: wide ? 16 : 18 }),
           wide ? React.createElement("span", { className: "dshFishing_sidebarActionLabel" }, "Fishing") : null
         ),
         expanded
