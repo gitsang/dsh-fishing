@@ -50,22 +50,22 @@ window.__ModuleLoader__.load({
 .dshFishing_tabActive{background:var(--dsw-alias-state-business-primary,#3b82f6);border-color:transparent;color:#fff}
 .dshFishing_status{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid var(--dsw-alias-border-l1,#eef0f3);font-size:12px;color:var(--dsw-alias-label-secondary,#4e5969);flex-shrink:0}
 .dshFishing_slotName{font-weight:600;color:var(--dsw-alias-label-secondary,#4e5969);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dshFishing_rpgPanel{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;gap:8px;align-items:center;justify-items:center;padding:12px 8px;border:1px solid var(--dsw-alias-border-l2,#d8dbe2);border-radius:14px;background:linear-gradient(145deg,var(--dsw-alias-bg-base,#ffffff),var(--dsw-alias-interactive-bg,#f0f1f4));box-shadow:inset 0 0 0 1px rgba(0,0,0,.02),0 4px 14px rgba(0,0,0,.04)}
-.dshFishing_rodSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:96px;min-height:112px;padding:10px 8px;border-radius:16px;border:2px solid var(--dsw-alias-state-business-primary,#3b82f6);background:radial-gradient(circle at 50% 30%,rgba(59,130,246,.18),var(--dsw-alias-bg-base,#ffffff) 72%);box-shadow:0 0 0 4px rgba(59,130,246,.10),0 6px 18px rgba(59,130,246,.12)}
-.dshFishing_rodIcon{font-size:42px;line-height:1}
-.dshFishing_rodName{font-size:13px;font-weight:800;color:var(--dsw-alias-label-primary,#1f2329);text-align:center;white-space:nowrap}
-.dshFishing_rodLevel{font-size:11px;font-weight:700;color:var(--dsw-alias-state-business-primary,#3b82f6)}
-.dshFishing_basketSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:76px;min-height:72px;padding:8px 6px;border-radius:14px;border:2px dashed var(--dsw-alias-border-l2,#d8dbe2);background:var(--dsw-alias-bg-base,#ffffff)}
-.dshFishing_basketIcon{font-size:28px;line-height:1}
-.dshFishing_basketName{font-size:11px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);text-align:center;white-space:nowrap}
-.dshFishing_gemSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:72px;min-height:80px;padding:6px 4px;border-radius:12px;background:transparent}
-.dshFishing_gemHole{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:var(--dsw-alias-bg-base,#ffffff);transform:rotate(45deg);box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
-.dshFishing_gemIcon{display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;transform:rotate(-45deg)}
+.dshFishing_rpgPanel{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;gap:4px;align-items:center;justify-items:center;padding:8px 6px;border:1px solid var(--dsw-alias-border-l2,#d8dbe2);border-radius:12px;background:linear-gradient(145deg,var(--dsw-alias-bg-base,#ffffff),var(--dsw-alias-interactive-bg,#f0f1f4));box-shadow:inset 0 0 0 1px rgba(0,0,0,.02),0 4px 14px rgba(0,0,0,.04);position:sticky;top:0;z-index:2}
+.dshFishing_rodSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:84px;min-height:88px;padding:6px;border-radius:14px;border:2px solid var(--dsw-alias-state-business-primary,#3b82f6);background:radial-gradient(circle at 50% 30%,rgba(59,130,246,.18),var(--dsw-alias-bg-base,#ffffff) 72%);box-shadow:0 0 0 3px rgba(59,130,246,.10),0 4px 12px rgba(59,130,246,.12)}
+.dshFishing_rodIcon{font-size:32px;line-height:1}
+.dshFishing_rodName{font-size:12px;font-weight:800;color:var(--dsw-alias-label-primary,#1f2329);text-align:center;white-space:nowrap}
+.dshFishing_rodLevel{font-size:10px;font-weight:700;color:var(--dsw-alias-state-business-primary,#3b82f6)}
+.dshFishing_basketSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:64px;min-height:56px;padding:4px;border-radius:12px;border:2px dashed var(--dsw-alias-border-l2,#d8dbe2);background:var(--dsw-alias-bg-base,#ffffff)}
+.dshFishing_basketIcon{font-size:22px;line-height:1}
+.dshFishing_basketName{font-size:10px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);text-align:center;white-space:nowrap}
+.dshFishing_gemSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:60px;min-height:62px;padding:4px 2px;border-radius:10px;background:transparent}
+.dshFishing_gemHole{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--dsw-alias-bg-base,#ffffff);transform:rotate(45deg);box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
+.dshFishing_gemIcon{display:flex;align-items:center;justify-content:center;font-size:17px;line-height:1;transform:rotate(-45deg)}
 .dshFishing_gemSlotEmpty .dshFishing_gemHole{border:2px dashed var(--dsw-alias-border-l2,#d8dbe2);background:var(--dsw-alias-interactive-bg,#f0f1f4);color:var(--dsw-alias-label-tertiary,#8a919f)}
-.dshFishing_gemSlotFilled .dshFishing_gemHole{border:2px solid rgba(59,130,246,.55);background:radial-gradient(circle at 35% 30%,rgba(59,130,246,.28),rgba(59,130,246,.08));box-shadow:0 0 10px rgba(59,130,246,.25)}
+.dshFishing_gemSlotFilled .dshFishing_gemHole{border:2px solid rgba(59,130,246,.55);background:radial-gradient(circle at 35% 30%,rgba(59,130,246,.28),rgba(59,130,246,.08));box-shadow:0 0 8px rgba(59,130,246,.25)}
 .dshFishing_gemSlotDropTarget .dshFishing_gemHole{outline:2px solid var(--dsw-alias-state-business-primary,#3b82f6);outline-offset:2px;background:rgba(59,130,246,.12)}
-.dshFishing_gemLabel{font-size:10px;font-weight:700;color:var(--dsw-alias-label-primary,#1f2329);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dshFishing_gemSlotHint{font-size:9px;color:var(--dsw-alias-label-tertiary,#8a919f)}
+.dshFishing_gemLabel{font-size:9px;font-weight:700;color:var(--dsw-alias-label-primary,#1f2329);max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dshFishing_gemSlotHint{font-size:8px;color:var(--dsw-alias-label-tertiary,#8a919f)}
 .dshFishing_gemUnequip{opacity:.8}
 .dshFishing_gemSlot:hover .dshFishing_gemUnequip{opacity:1}
 .dshFishing_slotEmoji{font-size:22px;line-height:1}
