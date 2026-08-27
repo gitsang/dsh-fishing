@@ -68,6 +68,10 @@ window.__ModuleLoader__.load({
 .dshFishing_gemSlotHint{font-size:8px;color:var(--dsw-alias-label-tertiary,#8a919f)}
 .dshFishing_gemUnequip{opacity:.8}
 .dshFishing_gemSlot:hover .dshFishing_gemUnequip{opacity:1}
+.dshFishing_equipPage{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.dshFishing_backpackPanel{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:12px;padding:8px;box-sizing:border-box;background:var(--dsw-alias-bg-base,#ffffff);overflow:hidden}
+.dshFishing_backpackHeader{flex:0 0 auto;font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);padding-bottom:4px;border-bottom:1px solid var(--dsw-alias-border-l1,#eef0f3)}
+.dshFishing_backpackScroll{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:4px;padding-right:2px}
 .dshFishing_slotEmoji{font-size:22px;line-height:1}
 .dshFishing_slotMeta{font-size:10px;color:var(--dsw-alias-label-tertiary,#8a919f);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dshFishing_backpackGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px}
@@ -577,7 +581,7 @@ window.__ModuleLoader__.load({
 
         return React.createElement(
           "div",
-          { className: "dshFishing_section" },
+          { className: "dshFishing_section dshFishing_equipPage" },
           React.createElement(
             "div",
             { className: "dshFishing_rpgPanel" },
@@ -585,12 +589,20 @@ window.__ModuleLoader__.load({
             basketCell,
             ...accessoryCells
           ),
-          React.createElement("div", { className: "dshFishing_backpackTitle" }, "🎒 背包"),
-          React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼竿"),
-          renderRodBackpack(),
-          React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼篓"),
-          renderBasketBackpack(),
-          renderAccessoryBackpack()
+          React.createElement(
+            "div",
+            { className: "dshFishing_backpackPanel" },
+            React.createElement("div", { className: "dshFishing_backpackHeader" }, "🎒 背包"),
+            React.createElement(
+              "div",
+              { className: "dshFishing_backpackScroll" },
+              React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼竿"),
+              renderRodBackpack(),
+              React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼篓"),
+              renderBasketBackpack(),
+              renderAccessoryBackpack()
+            )
+          )
         );
       };
 
