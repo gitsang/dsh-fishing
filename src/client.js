@@ -520,43 +520,58 @@ window.__ModuleLoader__.load({
         const renderAccessoryBackpack = () => {
           const items = snap.items || [];
           if (items.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有配件，去商店看看吧");
+          const renderItemCell = (item) => {
+            const draggable = item.canEquip && !item.equipped && !busy;
+            const classes = ["dshFishing_backpackCell"];
+            if (draggable) classes.push("dshFishing_backpackCellDraggable");
+            if (item.equipped) classes.push("dshFishing_backpackCellEquipped");
+            if (!item.canEquip) classes.push("dshFishing_backpackCellDisabled");
+            if (draggedItemId === item.id) classes.push("dshFishing_backpackCellDragging");
+            return React.createElement(
+              "div",
+              {
+                key: item.id,
+                className: classes.join(" "),
+                draggable: !!draggable,
+                onDragStart: draggable ? (e) => onAccessoryDragStart(e, item) : undefined,
+                onDragEnd: draggable ? onAccessoryDragEnd : undefined
+              },
+              React.createElement("span", { className: "dshFishing_slotEmoji" }, item.emoji),
+              React.createElement("span", { className: "dshFishing_slotName" }, item.name),
+              React.createElement(
+                "span",
+                { className: "dshFishing_slotMeta" },
+                `[${item.slotName || item.slot}]${item.equipped ? " · 已装备" : ""}${!item.canEquip ? " · 不适用" : ""}`
+              ),
+              item.equipped
+                ? null
+                : item.canEquip
+                  ? React.createElement(
+                      "button",
+                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipAccessory", accessoryId: item.itemId }) },
+                      "装备"
+                    )
+                  : null
+            );
+          };
+          const groups = Object.keys(SHOP_SLOT_CATEGORIES)
+            .map((slot) => ({
+              slot,
+              title: SHOP_SLOT_CATEGORIES[slot],
+              items: items.filter((item) => item.slot === slot)
+            }))
+            .filter((group) => group.items.length > 0);
           return React.createElement(
-            "div",
-            { className: "dshFishing_backpackGrid" },
-            items.map((item) => {
-              const draggable = item.canEquip && !item.equipped && !busy;
-              const classes = ["dshFishing_backpackCell"];
-              if (draggable) classes.push("dshFishing_backpackCellDraggable");
-              if (item.equipped) classes.push("dshFishing_backpackCellEquipped");
-              if (!item.canEquip) classes.push("dshFishing_backpackCellDisabled");
-              if (draggedItemId === item.id) classes.push("dshFishing_backpackCellDragging");
-              return React.createElement(
-                "div",
-                {
-                  key: item.id,
-                  className: classes.join(" "),
-                  draggable: !!draggable,
-                  onDragStart: draggable ? (e) => onAccessoryDragStart(e, item) : undefined,
-                  onDragEnd: draggable ? onAccessoryDragEnd : undefined
-                },
-                React.createElement("span", { className: "dshFishing_slotEmoji" }, item.emoji),
-                React.createElement("span", { className: "dshFishing_slotName" }, item.name),
-                React.createElement(
-                  "span",
-                  { className: "dshFishing_slotMeta" },
-                  `[${item.slotName || item.slot}]${item.equipped ? " · 已装备" : ""}${!item.canEquip ? " · 不适用" : ""}`
-                ),
-                item.equipped
-                  ? null
-                  : item.canEquip
-                    ? React.createElement(
-                        "button",
-                        { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipAccessory", accessoryId: item.itemId }) },
-                        "装备"
-                      )
-                    : null
-              );
-            })
+            React.Fragment,
+            null,
+            groups.map((group) =>
+              React.createElement(
+                React.Fragment,
+                { key: group.slot },
+                React.createElement("div", { className: "dshFishing_backpackTitle" }, group.title),
+                React.createElement("div", { className: "dshFishing_backpackGrid" }, group.items.map(renderItemCell))
+              )
+            )
           );
         };
 
@@ -575,7 +590,6 @@ window.__ModuleLoader__.load({
           renderRodBackpack(),
           React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼篓"),
           renderBasketBackpack(),
-          React.createElement("div", { className: "dshFishing_backpackTitle" }, "配件"),
           renderAccessoryBackpack()
         );
       };
