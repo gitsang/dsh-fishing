@@ -49,13 +49,25 @@ window.__ModuleLoader__.load({
 .dshFishing_tab:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(0,0,0,.05))}
 .dshFishing_tabActive{background:var(--dsw-alias-state-business-primary,#3b82f6);border-color:transparent;color:#fff}
 .dshFishing_status{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid var(--dsw-alias-border-l1,#eef0f3);font-size:12px;color:var(--dsw-alias-label-secondary,#4e5969);flex-shrink:0}
-.dshFishing_equipSlots{display:flex;flex-direction:column;gap:6px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:8px;padding:8px}
-.dshFishing_slotRow{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px}
 .dshFishing_slotName{font-weight:600;color:var(--dsw-alias-label-secondary,#4e5969);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dshFishing_equipGrid{display:flex;flex-wrap:wrap;gap:6px}
-.dshFishing_equipCell{width:64px;min-height:64px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px;box-sizing:border-box;text-align:center;font-size:11px;line-height:1.3;position:relative}
-.dshFishing_equipCellEmpty{border-style:dashed;background:var(--dsw-alias-interactive-bg,#f7f8fa);color:var(--dsw-alias-label-tertiary,#8a919f)}
-.dshFishing_equipCellDropTarget{outline:2px solid var(--dsw-alias-state-business-primary,#3b82f6);outline-offset:-1px;background:rgba(59,130,246,.08)}
+.dshFishing_rpgPanel{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;gap:8px;align-items:center;justify-items:center;padding:12px 8px;border:1px solid var(--dsw-alias-border-l2,#d8dbe2);border-radius:14px;background:linear-gradient(145deg,var(--dsw-alias-bg-base,#ffffff),var(--dsw-alias-interactive-bg,#f0f1f4));box-shadow:inset 0 0 0 1px rgba(0,0,0,.02),0 4px 14px rgba(0,0,0,.04)}
+.dshFishing_rodSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:96px;min-height:112px;padding:10px 8px;border-radius:16px;border:2px solid var(--dsw-alias-state-business-primary,#3b82f6);background:radial-gradient(circle at 50% 30%,rgba(59,130,246,.18),var(--dsw-alias-bg-base,#ffffff) 72%);box-shadow:0 0 0 4px rgba(59,130,246,.10),0 6px 18px rgba(59,130,246,.12)}
+.dshFishing_rodIcon{font-size:42px;line-height:1}
+.dshFishing_rodName{font-size:13px;font-weight:800;color:var(--dsw-alias-label-primary,#1f2329);text-align:center;white-space:nowrap}
+.dshFishing_rodLevel{font-size:11px;font-weight:700;color:var(--dsw-alias-state-business-primary,#3b82f6)}
+.dshFishing_basketSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:76px;min-height:72px;padding:8px 6px;border-radius:14px;border:2px dashed var(--dsw-alias-border-l2,#d8dbe2);background:var(--dsw-alias-bg-base,#ffffff)}
+.dshFishing_basketIcon{font-size:28px;line-height:1}
+.dshFishing_basketName{font-size:11px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);text-align:center;white-space:nowrap}
+.dshFishing_gemSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:72px;min-height:80px;padding:6px 4px;border-radius:12px;background:transparent}
+.dshFishing_gemHole{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:var(--dsw-alias-bg-base,#ffffff);transform:rotate(45deg);box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
+.dshFishing_gemIcon{display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;transform:rotate(-45deg)}
+.dshFishing_gemSlotEmpty .dshFishing_gemHole{border:2px dashed var(--dsw-alias-border-l2,#d8dbe2);background:var(--dsw-alias-interactive-bg,#f0f1f4);color:var(--dsw-alias-label-tertiary,#8a919f)}
+.dshFishing_gemSlotFilled .dshFishing_gemHole{border:2px solid rgba(59,130,246,.55);background:radial-gradient(circle at 35% 30%,rgba(59,130,246,.28),rgba(59,130,246,.08));box-shadow:0 0 10px rgba(59,130,246,.25)}
+.dshFishing_gemSlotDropTarget .dshFishing_gemHole{outline:2px solid var(--dsw-alias-state-business-primary,#3b82f6);outline-offset:2px;background:rgba(59,130,246,.12)}
+.dshFishing_gemLabel{font-size:10px;font-weight:700;color:var(--dsw-alias-label-primary,#1f2329);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dshFishing_gemSlotHint{font-size:9px;color:var(--dsw-alias-label-tertiary,#8a919f)}
+.dshFishing_gemUnequip{opacity:.8}
+.dshFishing_gemSlot:hover .dshFishing_gemUnequip{opacity:1}
 .dshFishing_slotEmoji{font-size:22px;line-height:1}
 .dshFishing_slotMeta{font-size:10px;color:var(--dsw-alias-label-tertiary,#8a919f);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dshFishing_backpackGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px}
@@ -366,207 +378,207 @@ window.__ModuleLoader__.load({
         );
 
       const renderEquipment = () => {
-      const SLOT_EMOJIS = { reel: "🎡", line: "🧵", lure: "🪱", hook: "🪝", bobber: "⚪", sinker: "⚫" };
-      const equippedRod = snap.equippedRod || {};
-      const accessorySlots = (Array.isArray(equippedRod.accessorySlots) && equippedRod.accessorySlots.length > 0)
-        ? equippedRod.accessorySlots
-        : (snap.equippedAccessories || [])
-            .filter((slot) => {
-              const hasCompatibleItem = (snap.items || []).some((item) => item.slot === slot.slot && item.rodTypes && item.rodTypes.includes(equippedRod.id));
-              return hasCompatibleItem || slot.accessory !== null;
-            })
-            .map((slot) => ({ id: slot.slot, name: slot.name }));
-      const accessorySlotById = new Map((snap.equippedAccessories || []).map((slot) => [slot.slot, slot]));
+        const SLOT_EMOJIS = { reel: "🎡", line: "🧵", lure: "🪱", hook: "🪝", bobber: "⚪", sinker: "⚫" };
+        const SOCKET_POSITIONS = [
+          { gridColumn: 1, gridRow: 1 },
+          { gridColumn: 3, gridRow: 1 },
+          { gridColumn: 1, gridRow: 2 },
+          { gridColumn: 3, gridRow: 2 },
+          { gridColumn: 1, gridRow: 3 },
+          { gridColumn: 3, gridRow: 3 }
+        ];
+        const equippedRod = snap.equippedRod || {};
+        const accessorySlots = (Array.isArray(equippedRod.accessorySlots) && equippedRod.accessorySlots.length > 0)
+          ? equippedRod.accessorySlots
+          : (snap.equippedAccessories || [])
+              .filter((slot) => {
+                const hasCompatibleItem = (snap.items || []).some((item) => item.slot === slot.slot && item.rodTypes && item.rodTypes.includes(equippedRod.id));
+                return hasCompatibleItem || slot.accessory !== null;
+              })
+              .map((slot) => ({ id: slot.slot, name: slot.name }));
+        const accessorySlotById = new Map((snap.equippedAccessories || []).map((slot) => [slot.slot, slot]));
 
-      const equipCellClass = (slotId, empty) =>
-        ["dshFishing_equipCell", empty ? "dshFishing_equipCellEmpty" : "", dropSlot === slotId ? "dshFishing_equipCellDropTarget" : ""]
-          .filter(Boolean)
-          .join(" ");
-
-      const renderEquipCell = (key, emoji, label, meta, opts = {}) =>
-        React.createElement(
-          "div",
-          {
-            key,
-            className: opts.className || "dshFishing_equipCell",
-            onDragOver: opts.onDragOver,
-            onDragLeave: opts.onDragLeave,
-            onDrop: opts.onDrop
-          },
-          React.createElement("span", { className: "dshFishing_slotEmoji" }, emoji),
-          React.createElement("span", { className: "dshFishing_slotName" }, label),
-          meta ? React.createElement("span", { className: "dshFishing_slotMeta" }, meta) : null,
-          opts.children || null
-        );
-
-      const renderAccessoryCell = (slot) => {
-        const data = accessorySlotById.get(slot.id);
-        const accessory = data && data.accessory ? data.accessory : null;
-        const empty = !accessory;
-        return renderEquipCell(
-          slot.id,
-          accessory ? accessory.emoji : (SLOT_EMOJIS[slot.id] || "➕"),
-          accessory ? accessory.name : slot.name,
-          accessory ? slot.name : "空槽",
-          {
-            className: equipCellClass(slot.id, empty),
-            onDragOver: (e) => onAccessorySlotDragOver(e, { slot: slot.id }),
-            onDragLeave: onAccessorySlotDragLeave,
-            onDrop: (e) => onAccessorySlotDrop(e, { slot: slot.id }),
-            children: accessory
-              ? React.createElement(
-                  "button",
-                  { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "UnequipAccessory", slot: slot.id }) },
-                  "卸下"
-                )
-              : null
-          }
-        );
-      };
-
-      const rodCell = renderEquipCell(
-        "rod",
-        equippedRod.emoji || "🎣",
-        equippedRod.name || "鱼竿",
-        `Lv.${equippedRod.level || 1}`
-      );
-      const basketCell = renderEquipCell(
-        "basket",
-        (snap.equippedBasket || {}).emoji || "🧺",
-        (snap.equippedBasket || {}).name || "鱼篓",
-        `${(snap.equippedBasket || {}).capacity || 0}格`
-      );
-      const accessoryCells = accessorySlots.map(renderAccessoryCell);
-
-      const renderRodBackpack = () => {
-        const rods = snap.rods.filter((rod) => rod.owned);
-        if (rods.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有鱼竿");
-        return React.createElement(
-          "div",
-          { className: "dshFishing_backpackGrid" },
-          rods.map((rod) =>
+        const renderAccessoryCell = (slot, position) => {
+          const data = accessorySlotById.get(slot.id);
+          const accessory = data && data.accessory ? data.accessory : null;
+          const empty = !accessory;
+          const slotClassName = [
+            "dshFishing_gemSlot",
+            empty ? "dshFishing_gemSlotEmpty" : "dshFishing_gemSlotFilled",
+            dropSlot === slot.id ? "dshFishing_gemSlotDropTarget" : ""
+          ].filter(Boolean).join(" ");
+          return React.createElement(
+            "div",
+            {
+              key: slot.id,
+              className: slotClassName,
+              style: { gridColumn: position.gridColumn, gridRow: position.gridRow },
+              onDragOver: (e) => onAccessorySlotDragOver(e, { slot: slot.id }),
+              onDragLeave: onAccessorySlotDragLeave,
+              onDrop: (e) => onAccessorySlotDrop(e, { slot: slot.id })
+            },
             React.createElement(
               "div",
-              {
-                key: rod.id,
-                className: `dshFishing_backpackCell${rod.equipped ? " dshFishing_backpackCellEquipped" : ""}`
-              },
-              React.createElement("span", { className: "dshFishing_slotEmoji" }, rod.emoji),
-              React.createElement("span", { className: "dshFishing_slotName" }, rod.name),
-              React.createElement("span", { className: "dshFishing_slotMeta" }, `Lv.${rod.level}${rod.equipped ? " · 装备中" : ""}`),
+              { className: "dshFishing_gemHole" },
+              React.createElement("span", { className: "dshFishing_gemIcon" }, accessory ? accessory.emoji : (SLOT_EMOJIS[slot.id] || "➕"))
+            ),
+            React.createElement("span", { className: "dshFishing_gemLabel" }, accessory ? accessory.name : slot.name),
+            empty
+              ? React.createElement("span", { className: "dshFishing_gemSlotHint" }, "空槽")
+              : React.createElement(
+                  "button",
+                  { className: "dshFishing_btn dshFishing_slotAction dshFishing_gemUnequip", disabled: busy, onClick: () => send({ type: "UnequipAccessory", slot: slot.id }) },
+                  "卸下"
+                )
+          );
+        };
+
+        const rodCell = React.createElement(
+          "div",
+          { className: "dshFishing_rodSlot", style: { gridColumn: 2, gridRow: 2 } },
+          React.createElement("div", { className: "dshFishing_rodIcon" }, equippedRod.emoji || "🎣"),
+          React.createElement("div", { className: "dshFishing_rodName" }, equippedRod.name || "鱼竿"),
+          React.createElement("div", { className: "dshFishing_rodLevel" }, `Lv.${equippedRod.level || 1}`)
+        );
+
+        const basketCell = React.createElement(
+          "div",
+          { className: "dshFishing_basketSlot", style: { gridColumn: 2, gridRow: 3 } },
+          React.createElement("div", { className: "dshFishing_basketIcon" }, (snap.equippedBasket || {}).emoji || "🧺"),
+          React.createElement("div", { className: "dshFishing_basketName" }, (snap.equippedBasket || {}).name || "鱼篓")
+        );
+
+        const accessoryCells = accessorySlots.map((slot, index) => renderAccessoryCell(slot, SOCKET_POSITIONS[index] || { gridColumn: 1, gridRow: 1 }));
+
+        const renderRodBackpack = () => {
+          const rods = snap.rods.filter((rod) => rod.owned);
+          if (rods.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有鱼竿");
+          return React.createElement(
+            "div",
+            { className: "dshFishing_backpackGrid" },
+            rods.map((rod) =>
               React.createElement(
                 "div",
-                { style: { display: "flex", gap: "2px", flexWrap: "wrap", justifyContent: "center" } },
-                !rod.equipped
+                {
+                  key: rod.id,
+                  className: `dshFishing_backpackCell${rod.equipped ? " dshFishing_backpackCellEquipped" : ""}`
+                },
+                React.createElement("span", { className: "dshFishing_slotEmoji" }, rod.emoji),
+                React.createElement("span", { className: "dshFishing_slotName" }, rod.name),
+                React.createElement("span", { className: "dshFishing_slotMeta" }, `Lv.${rod.level}${rod.equipped ? " · 装备中" : ""}`),
+                React.createElement(
+                  "div",
+                  { style: { display: "flex", gap: "2px", flexWrap: "wrap", justifyContent: "center" } },
+                  !rod.equipped
+                    ? React.createElement(
+                        "button",
+                        { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipRod", rodId: rod.id }) },
+                        "装备"
+                      )
+                    : null,
+                  rod.level < rod.maxLevel
+                    ? React.createElement(
+                        "button",
+                        { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "UpgradeRod", rodId: rod.id }) },
+                        `升级 ${rod.upgradeCost}G`
+                      )
+                    : null
+                )
+              )
+            )
+          );
+        };
+
+        const renderBasketBackpack = () => {
+          const baskets = snap.baskets.filter((basket) => basket.owned);
+          if (baskets.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有鱼篓");
+          return React.createElement(
+            "div",
+            { className: "dshFishing_backpackGrid" },
+            baskets.map((basket) =>
+              React.createElement(
+                "div",
+                {
+                  key: basket.id,
+                  className: `dshFishing_backpackCell${basket.equipped ? " dshFishing_backpackCellEquipped" : ""}`
+                },
+                React.createElement("span", { className: "dshFishing_slotEmoji" }, basket.emoji),
+                React.createElement("span", { className: "dshFishing_slotName" }, basket.name),
+                React.createElement("span", { className: "dshFishing_slotMeta" }, `${basket.capacity}格${basket.equipped ? " · 使用中" : ""}`),
+                !basket.equipped
                   ? React.createElement(
                       "button",
-                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipRod", rodId: rod.id }) },
+                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipBasket", basketId: basket.id }) },
                       "装备"
-                    )
-                  : null,
-                rod.level < rod.maxLevel
-                  ? React.createElement(
-                      "button",
-                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "UpgradeRod", rodId: rod.id }) },
-                      `升级 ${rod.upgradeCost}G`
                     )
                   : null
               )
             )
-          )
-        );
-      };
+          );
+        };
 
-      const renderBasketBackpack = () => {
-        const baskets = snap.baskets.filter((basket) => basket.owned);
-        if (baskets.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有鱼篓");
+        const renderAccessoryBackpack = () => {
+          const items = snap.items || [];
+          if (items.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有配件，去商店看看吧");
+          return React.createElement(
+            "div",
+            { className: "dshFishing_backpackGrid" },
+            items.map((item) => {
+              const draggable = item.canEquip && !item.equipped && !busy;
+              const classes = ["dshFishing_backpackCell"];
+              if (draggable) classes.push("dshFishing_backpackCellDraggable");
+              if (item.equipped) classes.push("dshFishing_backpackCellEquipped");
+              if (!item.canEquip) classes.push("dshFishing_backpackCellDisabled");
+              if (draggedItemId === item.id) classes.push("dshFishing_backpackCellDragging");
+              return React.createElement(
+                "div",
+                {
+                  key: item.id,
+                  className: classes.join(" "),
+                  draggable: !!draggable,
+                  onDragStart: draggable ? (e) => onAccessoryDragStart(e, item) : undefined,
+                  onDragEnd: draggable ? onAccessoryDragEnd : undefined
+                },
+                React.createElement("span", { className: "dshFishing_slotEmoji" }, item.emoji),
+                React.createElement("span", { className: "dshFishing_slotName" }, item.name),
+                React.createElement(
+                  "span",
+                  { className: "dshFishing_slotMeta" },
+                  `[${item.slotName || item.slot}]${item.equipped ? " · 已装备" : ""}${!item.canEquip ? " · 不适用" : ""}`
+                ),
+                item.equipped
+                  ? null
+                  : item.canEquip
+                    ? React.createElement(
+                        "button",
+                        { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipAccessory", accessoryId: item.itemId }) },
+                        "装备"
+                      )
+                    : null
+              );
+            })
+          );
+        };
+
         return React.createElement(
           "div",
-          { className: "dshFishing_backpackGrid" },
-          baskets.map((basket) =>
-            React.createElement(
-              "div",
-              {
-                key: basket.id,
-                className: `dshFishing_backpackCell${basket.equipped ? " dshFishing_backpackCellEquipped" : ""}`
-              },
-              React.createElement("span", { className: "dshFishing_slotEmoji" }, basket.emoji),
-              React.createElement("span", { className: "dshFishing_slotName" }, basket.name),
-              React.createElement("span", { className: "dshFishing_slotMeta" }, `${basket.capacity}格${basket.equipped ? " · 使用中" : ""}`),
-              !basket.equipped
-                ? React.createElement(
-                    "button",
-                    { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipBasket", basketId: basket.id }) },
-                    "装备"
-                  )
-                : null
-            )
-          )
+          { className: "dshFishing_section" },
+          React.createElement(
+            "div",
+            { className: "dshFishing_rpgPanel" },
+            rodCell,
+            basketCell,
+            ...accessoryCells
+          ),
+          React.createElement("div", { className: "dshFishing_backpackTitle" }, "🎒 背包"),
+          React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼竿"),
+          renderRodBackpack(),
+          React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼篓"),
+          renderBasketBackpack(),
+          React.createElement("div", { className: "dshFishing_backpackTitle" }, "配件"),
+          renderAccessoryBackpack()
         );
       };
-
-      const renderAccessoryBackpack = () => {
-        const items = snap.items || [];
-        if (items.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有配件，去商店看看吧");
-        return React.createElement(
-          "div",
-          { className: "dshFishing_backpackGrid" },
-          items.map((item) => {
-            const draggable = item.canEquip && !item.equipped && !busy;
-            const classes = ["dshFishing_backpackCell"];
-            if (draggable) classes.push("dshFishing_backpackCellDraggable");
-            if (item.equipped) classes.push("dshFishing_backpackCellEquipped");
-            if (!item.canEquip) classes.push("dshFishing_backpackCellDisabled");
-            if (draggedItemId === item.id) classes.push("dshFishing_backpackCellDragging");
-            return React.createElement(
-              "div",
-              {
-                key: item.id,
-                className: classes.join(" "),
-                draggable: !!draggable,
-                onDragStart: draggable ? (e) => onAccessoryDragStart(e, item) : undefined,
-                onDragEnd: draggable ? onAccessoryDragEnd : undefined
-              },
-              React.createElement("span", { className: "dshFishing_slotEmoji" }, item.emoji),
-              React.createElement("span", { className: "dshFishing_slotName" }, item.name),
-              React.createElement(
-                "span",
-                { className: "dshFishing_slotMeta" },
-                `[${item.slotName || item.slot}]${item.equipped ? " · 已装备" : ""}${!item.canEquip ? " · 不适用" : ""}`
-              ),
-              item.equipped
-                ? null
-                : item.canEquip
-                  ? React.createElement(
-                      "button",
-                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipAccessory", accessoryId: item.itemId }) },
-                      "装备"
-                    )
-                  : null
-            );
-          })
-        );
-      };
-
-      return React.createElement(
-        "div",
-        { className: "dshFishing_section" },
-        React.createElement(
-          "div",
-          { className: "dshFishing_equipGrid" },
-          rodCell,
-          ...accessoryCells,
-          basketCell
-        ),
-        React.createElement("div", { className: "dshFishing_backpackTitle" }, "🎒 背包"),
-        React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼竿"),
-        renderRodBackpack(),
-        React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼篓"),
-        renderBasketBackpack(),
-        React.createElement("div", { className: "dshFishing_backpackTitle" }, "配件"),
-        renderAccessoryBackpack()
-      );
-    };
 
       const renderShop = () => {
         const shopCategories = (snap.shopCategories && snap.shopCategories.length > 0)
