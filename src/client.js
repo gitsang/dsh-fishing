@@ -94,6 +94,17 @@ window.__ModuleLoader__.load({
 .dshFishing_mapMeta{font-size:11px;color:var(--dsw-alias-label-tertiary,#8a919f);display:flex;flex-wrap:wrap;gap:4px}
 .dshFishing_mapDays{width:58px;padding:3px 6px;border:1px solid var(--dsw-alias-border-l2,#d8dbe2);border-radius:6px;font-size:12px;box-sizing:border-box}
 .dshFishing_mapFish{font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.4}
+.dshFishing_mapCard{cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease}
+.dshFishing_mapCard:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.dshFishing_mapDetailCard{border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.dshFishing_mapDetailTitle{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700}
+.dshFishing_mapBack{align-self:flex-start;border:1px solid var(--dsw-alias-border-l2,#d8dbe2);background:var(--dsw-alias-bg-base,#ffffff);color:var(--dsw-alias-label-primary,#1f2329);border-radius:7px;padding:3px 10px;font-size:12px;cursor:pointer}
+.dshFishing_mapBack:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(0,0,0,.05))}
+.dshFishing_mapIntro{font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.55;background:var(--dsw-alias-interactive-bg,#f7f8fa);border-radius:8px;padding:6px 8px}
+.dshFishing_fishDetail{border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:8px;padding:6px;display:flex;flex-direction:column;gap:2px}
+.dshFishing_fishDetailName{font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px}
+.dshFishing_fishDetailDesc{font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.45}
+.dshFishing_fishDetailMeta{font-size:10px;color:var(--dsw-alias-label-tertiary,#8a919f);line-height:1.4}
 .dshFishing_codexHeader{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;font-weight:700;padding:2px 0}
 .dshFishing_codexGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .dshFishing_codexCard{display:flex;flex-direction:column;gap:6px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:8px;background:var(--dsw-alias-bg-base,#ffffff)}
@@ -471,6 +482,16 @@ window.__ModuleLoader__.load({
       ]
     };
 
+    Object.assign(MAP_SVG_PATHS, {
+      pearl_river: MAP_SVG_PATHS.mountain_river,
+      northeast_river: MAP_SVG_PATHS.mountain_river,
+      qingdao_coast: MAP_SVG_PATHS.deep_sea,
+      qinghai_lake: MAP_SVG_PATHS.forest_lake,
+      south_sea: MAP_SVG_PATHS.deep_sea,
+      yangtze_river: MAP_SVG_PATHS.mountain_river,
+      xinjiang_lake: MAP_SVG_PATHS.legendary_waters
+    });
+
     function MapSvg({ map, id, size = 16, className }) {
       const mapId = (map && map.id) || id;
       const paths = MAP_SVG_PATHS[mapId] || MAP_SVG_PATHS.beginner;
@@ -662,6 +683,28 @@ window.__ModuleLoader__.load({
       ]
     };
 
+    Object.assign(FISH_SVG_PATHS, {
+      taimen: FISH_SVG_PATHS.trout,
+      lenok: FISH_SVG_PATHS.trout,
+      burbot: FISH_SVG_PATHS.catfish,
+      chum_salmon: FISH_SVG_PATHS.salmon,
+      naked_carp: FISH_SVG_PATHS.crucian,
+      plateau_loach: FISH_SVG_PATHS.eel,
+      spotted_naked_carp: FISH_SVG_PATHS.crucian,
+      humphead_wrasse: FISH_SVG_PATHS.grouper,
+      parrotfish: FISH_SVG_PATHS.bass,
+      moray_eel: FISH_SVG_PATHS.eel,
+      yellowcheek_carp: FISH_SVG_PATHS.carp,
+      longsnout_catfish: FISH_SVG_PATHS.catfish,
+      mud_carp: FISH_SVG_PATHS.crucian,
+      snakehead: FISH_SVG_PATHS.catfish,
+      peled: FISH_SVG_PATHS.salmon,
+      spanish_mackerel: FISH_SVG_PATHS.mackerel,
+      black_seabream: FISH_SVG_PATHS.bream,
+      hairtail: FISH_SVG_PATHS.eel,
+      flatfish: FISH_SVG_PATHS.carp
+    });
+
     function FishSvg({ fish, id, size = 16, className }) {
       const fishId = (fish && (fish.speciesId || fish.id)) || id;
       const paths = FISH_SVG_PATHS[fishId] || FISH_SVG_PATHS.carp;
@@ -678,6 +721,7 @@ window.__ModuleLoader__.load({
       const [expanded, setExpanded] = useState(false);
       const [tab, setTab] = useState("game");
       const [mapDays, setMapDays] = useState(1);
+      const [selectedMapId, setSelectedMapId] = useState(null);
       const [shopTab, setShopTab] = useState("鱼竿");
       const [busy, setBusy] = useState(false);
       const [loadError, setLoadError] = useState(null);
@@ -1202,7 +1246,8 @@ window.__ModuleLoader__.load({
 
       const renderMap = () => {
         const maps = snap.maps || [];
-        const currentMap = snap.currentMap || { id: "beginner", name: "初级鱼塘" };
+        const currentMap = snap.currentMap || { id: "beginner", name: "江苏·苏州·金鸡湖（城市湖泊）" };
+        const selectedMap = maps.find((map) => map.id === selectedMapId) || null;
         const formatRemaining = (ms) => {
           const days = Math.floor(ms / 86400000);
           const hours = Math.floor((ms % 86400000) / 3600000);
@@ -1210,6 +1255,98 @@ window.__ModuleLoader__.load({
           if (hours > 0) return `${hours}小时`;
           return `${Math.max(0, Math.floor(ms / 60000))}分钟`;
         };
+        const renderPurchase = (map) => {
+          if (map.locked) {
+            return React.createElement("span", { className: "dshFishing_muted" }, `需要 Lv.${map.requiredLevel} 解锁`);
+          }
+          if (map.id === "beginner") {
+            return map.current
+              ? React.createElement("span", { className: "dshFishing_muted" }, "免费地图")
+              : React.createElement(
+                  "button",
+                  { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "ChangeMap", mapId: map.id }) },
+                  "前往"
+                );
+          }
+          return React.createElement(
+            "div",
+            { className: "dshFishing_row" },
+            map.hasTicket && !map.current
+              ? React.createElement(
+                  "button",
+                  { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "ChangeMap", mapId: map.id }) },
+                  "前往"
+                )
+              : null,
+            React.createElement("input", {
+              className: "dshFishing_mapDays",
+              type: "number",
+              min: 1,
+              max: 30,
+              value: mapDays,
+              onChange: (e) => setMapDays(Math.max(1, Number(e.target.value) || 1))
+            }),
+            React.createElement(
+              "button",
+              {
+                className: "dshFishing_btn dshFishing_primary",
+                disabled: busy,
+                onClick: () => send({ type: "BuyTicket", mapId: map.id, days: mapDays })
+              },
+              `${map.current ? "续期" : map.hasTicket ? "加购并前往" : "购买并进入"} ${map.entryFee * mapDays}G`
+            )
+          );
+        };
+
+        if (selectedMap) {
+          return React.createElement(
+            "div",
+            { className: "dshFishing_section" },
+            React.createElement(
+              "button",
+              { className: "dshFishing_mapBack", onClick: () => setSelectedMapId(null) },
+              "← 返回地图列表"
+            ),
+            React.createElement(
+              "div",
+              { className: "dshFishing_mapDetailCard" },
+              React.createElement(
+                "div",
+                { className: "dshFishing_mapDetailTitle" },
+                React.createElement(MapSvg, { map: selectedMap, size: 18 }),
+                `${selectedMap.name}${selectedMap.current ? " · 当前" : ""}`
+              ),
+              React.createElement(
+                "div",
+                { className: "dshFishing_mapMeta" },
+                `${selectedMap.region || ""} · ${selectedMap.city || ""} · ${selectedMap.type || ""}`,
+                selectedMap.locked ? ` · 需要 Lv.${selectedMap.requiredLevel}` : ` · 入场费 ${selectedMap.entryFee}G/天`
+              ),
+              React.createElement("div", { className: "dshFishing_mapIntro" }, selectedMap.description),
+              React.createElement("div", { className: "dshFishing_mapIntro" }, `🐟 ${selectedMap.fishIntro || "本地鱼类资源丰富。"}`),
+              React.createElement("div", { className: "dshFishing_sectionTitle" }, `本地鱼类（${selectedMap.fish.length}）`),
+              selectedMap.fish.map((fish) =>
+                React.createElement(
+                  "div",
+                  { key: fish.id, className: "dshFishing_fishDetail" },
+                  React.createElement(
+                    "div",
+                    { className: "dshFishing_fishDetailName" },
+                    React.createElement(FishSvg, { fish, size: 16 }),
+                    `${fish.name} · ${RARITY_LABELS[fish.rarity] || fish.rarity}`
+                  ),
+                  React.createElement("div", { className: "dshFishing_fishDetailDesc" }, fish.description),
+                  React.createElement(
+                    "div",
+                    { className: "dshFishing_fishDetailMeta" },
+                    `习性：${fish.habitat} ｜ 偏好饵：${fish.favoriteBait}`
+                  )
+                )
+              ),
+              renderPurchase(selectedMap)
+            )
+          );
+        }
 
         return React.createElement(
           "div",
@@ -1223,7 +1360,11 @@ window.__ModuleLoader__.load({
           maps.map((map) =>
             React.createElement(
               "div",
-              { key: map.id, className: "dshFishing_mapCard" },
+              {
+                key: map.id,
+                className: "dshFishing_mapCard",
+                onClick: () => setSelectedMapId(map.id)
+              },
               React.createElement(
                 "div",
                 { className: "dshFishing_row" },
@@ -1233,11 +1374,12 @@ window.__ModuleLoader__.load({
               React.createElement(
                 "div",
                 { className: "dshFishing_mapMeta" },
+                `${map.region || ""} · ${map.city || ""} · ${map.type || ""}`,
                 map.locked
-                  ? `需要 Lv.${map.requiredLevel}`
+                  ? ` · 需要 Lv.${map.requiredLevel}`
                   : map.hasTicket
-                    ? `有效门票剩余 ${formatRemaining(map.ticketRemainingMs)}`
-                    : "暂无门票"
+                    ? ` · 有效门票剩余 ${formatRemaining(map.ticketRemainingMs)}`
+                    : " · 暂无门票"
               ),
               React.createElement(
                 "div",
@@ -1252,48 +1394,7 @@ window.__ModuleLoader__.load({
                   )
                 )
               ),
-              map.locked
-                ? null
-                : React.createElement(
-                    "div",
-                    { className: "dshFishing_row" },
-                    map.id === "beginner"
-                      ? map.current
-                        ? React.createElement("span", { className: "dshFishing_muted" }, "免费地图")
-                        : React.createElement(
-                            "button",
-                            { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "ChangeMap", mapId: map.id }) },
-                            "前往"
-                          )
-                      : React.createElement(
-                          React.Fragment,
-                          null,
-                          map.hasTicket && !map.current
-                            ? React.createElement(
-                                "button",
-                                { className: "dshFishing_btn", disabled: busy, onClick: () => send({ type: "ChangeMap", mapId: map.id }) },
-                                "前往"
-                              )
-                            : null,
-                          React.createElement("input", {
-                            className: "dshFishing_mapDays",
-                            type: "number",
-                            min: 1,
-                            max: 30,
-                            value: mapDays,
-                            onChange: (e) => setMapDays(Math.max(1, Number(e.target.value) || 1))
-                          }),
-                          React.createElement(
-                            "button",
-                            {
-                              className: "dshFishing_btn dshFishing_primary",
-                              disabled: busy,
-                              onClick: () => send({ type: "BuyTicket", mapId: map.id, days: mapDays })
-                            },
-                            `${map.current ? "续期" : map.hasTicket ? "加购并前往" : "购买并进入"} ${map.entryFee * mapDays}G`
-                          )
-                        )
-                  )
+              React.createElement("div", { className: "dshFishing_muted" }, "点击查看详情")
             )
           )
         );

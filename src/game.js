@@ -10,47 +10,73 @@ export const GAME_VERSION = 1
 export const BAIT_TOKENS_PER_BAIT = 1_000_000
 
 export const SPECIES = [
-  { id: 'carp', name: '鲫鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 800, minLengthCm: 15, maxLengthCm: 30, baseValue: 12, requiredRodId: 'hand', scoreWeight: 1, maps: ['beginner'], description: '最常见的淡水鱼，适应力强，是新手钓友的好伙伴。', habitat: '水草丰茂的静水区、初级鱼塘', favoriteBait: '蚯蚓、面团', tips: '清晨和傍晚开口更好，手竿轻提即可。' },
+  { id: 'carp', name: '鲫鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 800, minLengthCm: 15, maxLengthCm: 30, baseValue: 12, requiredRodId: 'hand', scoreWeight: 1, maps: ['beginner'], description: '最常见的淡水鱼，适应力强，是新手钓友的好伙伴。', habitat: '水草丰茂的静水区、金鸡湖', favoriteBait: '蚯蚓、面团', tips: '清晨和傍晚开口更好，手竿轻提即可。' },
   { id: 'crucian', name: '鲤鱼', emoji: '🐠', rarity: 'common', minWeightGrams: 500, maxWeightGrams: 1500, minLengthCm: 20, maxLengthCm: 40, baseValue: 20, requiredRodId: 'hand', scoreWeight: 1, maps: ['beginner'], description: '鳞片金黄、体格圆润的鲤鱼，寓意吉祥。', habitat: '湖底淤泥、水草边', favoriteBait: '玉米粒、红薯饵', tips: '咬钩动作沉稳，等浮漂连续下顿再提竿。' },
-  { id: 'koi', name: '锦鲤', emoji: '🐠', rarity: 'epic', minWeightGrams: 1500, maxWeightGrams: 5000, minLengthCm: 35, maxLengthCm: 70, baseValue: 400, requiredRodId: 'hand', scoreWeight: 1, maps: ['forest_lake', 'legendary_waters'], description: '色彩华丽的观赏鲤，传说能带来好运。', habitat: '森林湖泊的深水区、秘境水域', favoriteBait: '特制鱼粮、小虾', tips: '锦鲤很聪明，钓线尽量细、动作要轻。' },
-  { id: 'bass', name: '鲈鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 800, maxWeightGrams: 2500, minLengthCm: 30, maxLengthCm: 55, baseValue: 45, requiredRodId: 'sea', scoreWeight: 1, maps: ['deep_sea'], description: '肉食性海鱼，体型匀称，力道十足。', habitat: '近海岩礁、深水急流', favoriteBait: '小鱼、活虾', tips: '路亚/海竿抛投后慢收，容易触发攻击。' },
-  { id: 'catfish', name: '鲶鱼', emoji: '🐡', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 6000, minLengthCm: 40, maxLengthCm: 80, baseValue: 120, requiredRodId: 'sea', scoreWeight: 1, maps: ['forest_lake'], description: '有须的底栖鱼，白天藏在泥洞中。', habitat: '湖泊泥底、桥洞下', favoriteBait: '鸡肝、腥味饵', tips: '夜钓效率更高，中钩后它会往淤泥里钻。' },
-  { id: 'arowana', name: '龙鱼', emoji: '🐉', rarity: 'legendary', minWeightGrams: 3000, maxWeightGrams: 9000, minLengthCm: 50, maxLengthCm: 90, baseValue: 1200, requiredRodId: 'sea', scoreWeight: 1, maps: ['legendary_waters'], description: '被称为“活化石”的古老鱼类，鳞片如龙甲。', habitat: '秘境水域的上层水面', favoriteBait: '小鱼、昆虫', tips: '需要高等级地图和强力鱼竿，中钩后小心爆发力。' },
-  { id: 'trout', name: '鳟鱼', emoji: '🐠', rarity: 'uncommon', minWeightGrams: 600, maxWeightGrams: 1800, minLengthCm: 25, maxLengthCm: 45, baseValue: 50, requiredRodId: 'fly', scoreWeight: 1, maps: ['mountain_river'], description: '喜欢冷水溪流的鱼，肉质细嫩。', habitat: '山涧急流、清澈浅滩', favoriteBait: '飞蝇、红虫', tips: '用飞蝇竿模拟昆虫落水，溪流中快速收线。' },
-  { id: 'mandarin', name: '鳜鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1000, maxWeightGrams: 3500, minLengthCm: 30, maxLengthCm: 60, baseValue: 150, requiredRodId: 'lure', scoreWeight: 1, maps: ['forest_lake'], description: '身上有斑纹的凶猛淡水鱼，鳜鱼的一种。', habitat: '森林湖泊的乱石底', favoriteBait: '小鱼、泥鳅', tips: '藏在石缝中，路亚饵贴近底部慢拖效果好。' },
-  { id: 'bream', name: '鳊鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 300, maxWeightGrams: 1200, minLengthCm: 18, maxLengthCm: 35, baseValue: 15, requiredRodId: 'feeder', scoreWeight: 1, maps: ['beginner'], description: '体型侧扁的淡水鱼，适合入门垂钓。', habitat: '初级鱼塘的缓流区', favoriteBait: '麦粒、商品粉饵', tips: '浮漂微微点动时别急着提，等真实咬口。' },
-  { id: 'grass_carp', name: '草鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 1000, maxWeightGrams: 4000, minLengthCm: 30, maxLengthCm: 60, baseValue: 55, requiredRodId: 'feeder', scoreWeight: 1, maps: ['beginner'], description: '吃水草长大的大型淡水鱼，力量很大。', habitat: '水草区、人工鱼塘', favoriteBait: '草叶、玉米', tips: '中钩后会猛冲，飞德杆要调好泄力。' },
-  { id: 'black_carp', name: '青鱼', emoji: '🐠', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 8000, minLengthCm: 40, maxLengthCm: 80, baseValue: 180, requiredRodId: 'feeder', scoreWeight: 1, maps: ['forest_lake'], description: '青黑色的大型鲤科鱼，以螺蛳为食。', habitat: '森林湖泊深水底', favoriteBait: '螺蛳、贝类', tips: '底钓为主，饵要沉到泥底才有机会。' },
-  { id: 'tilapia', name: '罗非鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 250, maxWeightGrams: 1000, minLengthCm: 16, maxLengthCm: 35, baseValue: 16, requiredRodId: 'hand', scoreWeight: 1, maps: ['beginner'], description: '繁殖力强、肉质扎实的罗非鱼。', habitat: '温暖浅水、鱼塘岸边', favoriteBait: '腥香饵、面包', tips: '成群活动，找到鱼群后可以连竿。' },
-  { id: 'perch', name: '河鲈', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 500, maxWeightGrams: 2000, minLengthCm: 22, maxLengthCm: 48, baseValue: 60, requiredRodId: 'lure', scoreWeight: 1, maps: ['forest_lake'], description: '河鲈背鳍带刺，性情凶猛，喜欢伏击。', habitat: '森林湖泊的水草边、倒木旁', favoriteBait: '小鱼、亮片', tips: '抛到障碍物附近慢速收线，常有意想不到的咬口。' },
-  { id: 'eel', name: '鳗鱼', emoji: '🐍', rarity: 'rare', minWeightGrams: 800, maxWeightGrams: 3500, minLengthCm: 30, maxLengthCm: 70, baseValue: 160, requiredRodId: 'feeder', scoreWeight: 1, maps: ['forest_lake'], description: '身体细长如蛇，夜间更活跃。', habitat: '湖泊淤泥、石缝', favoriteBait: '蚯蚓、动物内脏', tips: '夜钓、沉底钓更容易遇到。' },
-  { id: 'char', name: '红点鲑', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 400, maxWeightGrams: 1600, minLengthCm: 20, maxLengthCm: 45, baseValue: 70, requiredRodId: 'fly', scoreWeight: 1, maps: ['mountain_river'], description: '红点鲑是冷水鱼中的精灵，体色鲜艳。', habitat: '高海拔冷水溪流', favoriteBait: '飞蝇、小虫', tips: '清晨水面有昆虫时最活跃。' },
-  { id: 'salmon', name: '鲑鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1500, maxWeightGrams: 6000, minLengthCm: 35, maxLengthCm: 80, baseValue: 220, requiredRodId: 'fly', scoreWeight: 1, maps: ['mountain_river'], description: '洄游性鲑鱼，逆流而上时格外凶猛。', habitat: '山涧溪流的深潭、急流', favoriteBait: '鱼卵、飞蝇', tips: '秋季繁殖洄游期更容易碰到大个体。' },
-  { id: 'yellow_croaker', name: '黄花鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 900, minLengthCm: 15, maxLengthCm: 32, baseValue: 22, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea'], description: '近海常见鱼类，因鱼鳔能发声得名。', habitat: '近岸泥沙底、浅海', favoriteBait: '虾肉、沙蚕', tips: '潮水初涨时咬口好，滩钓抛远一些。' },
-  { id: 'mackerel', name: '鲭鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 400, maxWeightGrams: 1600, minLengthCm: 20, maxLengthCm: 45, baseValue: 45, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea'], description: '游速快的海洋鱼类，常成群巡游。', habitat: '深海表层、冷水与暖流交汇处', favoriteBait: '亮片、小鱼段', tips: '看到海鸟聚集时抛竿，往往有鱼群。' },
-  { id: 'grouper', name: '石斑鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1500, maxWeightGrams: 8000, minLengthCm: 30, maxLengthCm: 90, baseValue: 250, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea'], description: '石斑鱼是伏击型海鱼，肉质鲜美。', habitat: '珊瑚礁、岩洞、沉船', favoriteBait: '活虾、小鱼', tips: '重铅快速到底，在礁石缝隙附近多等一会。' },
-  { id: 'tuna', name: '金枪鱼', emoji: '🐟', rarity: 'epic', minWeightGrams: 3000, maxWeightGrams: 15000, minLengthCm: 50, maxLengthCm: 120, baseValue: 800, requiredRodId: 'sea', scoreWeight: 1, maps: ['deep_sea'], description: '金枪鱼是海洋中的高速鱼雷。', habitat: '远洋深水区', favoriteBait: '整条小鱼、鱿鱼', tips: '中钩后第一波冲刺极强，需要高等级海竿。' },
-  { id: 'marlin', name: '旗鱼', emoji: '🐟', rarity: 'legendary', minWeightGrams: 8000, maxWeightGrams: 30000, minLengthCm: 80, maxLengthCm: 180, baseValue: 2500, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea', 'legendary_waters'], description: '旗鱼拥有长吻和帆状背鳍，是海中王者。', habitat: '热带远洋、深蓝水域', favoriteBait: '活饵、拖钓假饵', tips: '遇见后要抓住短暂窗口，稳住鱼竿慢慢消耗体力。' },
-  { id: 'sturgeon', name: '中华鲟', emoji: '🐉', rarity: 'legendary', minWeightGrams: 5000, maxWeightGrams: 20000, minLengthCm: 60, maxLengthCm: 150, baseValue: 3000, requiredRodId: 'feeder', scoreWeight: 1, maps: ['legendary_waters'], description: '中华鲟是古老的珍稀鱼类，有“水中大熊猫”之称。', habitat: '秘境水域的深水底层', favoriteBait: '底栖小生物、特制饵', tips: '极其稀有，需要顶级装备和耐心。' },
-  { id: 'king_salmon', name: '帝王鲑', emoji: '🐠', rarity: 'epic', minWeightGrams: 4000, maxWeightGrams: 12000, minLengthCm: 55, maxLengthCm: 110, baseValue: 900, requiredRodId: 'fly', scoreWeight: 1, maps: ['legendary_waters'], description: '帝王鲑是鲑鱼中的王者，体型与力量俱佳。', habitat: '秘境水域的冷水深渊', favoriteBait: '大号飞蝇、鱼卵', tips: '只在传说水域现身，中钩后准备长时间搏斗。' },
-  { id: 'golden_carp', name: '金鲤', emoji: '🐠', rarity: 'epic', minWeightGrams: 2000, maxWeightGrams: 7000, minLengthCm: 40, maxLengthCm: 85, baseValue: 600, requiredRodId: 'hand', scoreWeight: 1, maps: ['legendary_waters'], description: '通体金红的祥瑞之鲤，据说见过它会有好运。', habitat: '秘境水域的灵泉深处', favoriteBait: '金色谷物、灵泉饵', tips: '传闻它喜欢在满月时浮出水面。' }
+  { id: 'koi', name: '锦鲤', emoji: '🐠', rarity: 'epic', minWeightGrams: 1500, maxWeightGrams: 5000, minLengthCm: 35, maxLengthCm: 70, baseValue: 400, requiredRodId: 'hand', scoreWeight: 1, maps: ['forest_lake', 'legendary_waters'], description: '色彩华丽的观赏鲤，传说能带来好运。', habitat: '西湖的深水区、普达措', favoriteBait: '特制鱼粮、小虾', tips: '锦鲤很聪明，钓线尽量细、动作要轻。' },
+  { id: 'bass', name: '鲈鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 800, maxWeightGrams: 2500, minLengthCm: 30, maxLengthCm: 55, baseValue: 45, requiredRodId: 'sea', scoreWeight: 1, maps: ['deep_sea', 'qingdao_coast', 'south_sea'], description: '肉食性海鱼，体型匀称，力道十足。', habitat: '近海岩礁、深水急流', favoriteBait: '小鱼、活虾', tips: '路亚/海竿抛投后慢收，容易触发攻击。' },
+  { id: 'catfish', name: '鲶鱼', emoji: '🐡', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 6000, minLengthCm: 40, maxLengthCm: 80, baseValue: 120, requiredRodId: 'sea', scoreWeight: 1, maps: ['forest_lake', 'pearl_river'], description: '有须的底栖鱼，白天藏在泥洞中。', habitat: '湖泊泥底、桥洞下', favoriteBait: '鸡肝、腥味饵', tips: '夜钓效率更高，中钩后它会往淤泥里钻。' },
+  { id: 'arowana', name: '龙鱼', emoji: '🐉', rarity: 'legendary', minWeightGrams: 3000, maxWeightGrams: 9000, minLengthCm: 50, maxLengthCm: 90, baseValue: 1200, requiredRodId: 'sea', scoreWeight: 1, maps: ['legendary_waters'], description: '被称为“活化石”的古老鱼类，鳞片如龙甲。', habitat: '普达措的上层水面', favoriteBait: '小鱼、昆虫', tips: '需要高等级地图和强力鱼竿，中钩后小心爆发力。' },
+  { id: 'trout', name: '鳟鱼', emoji: '🐠', rarity: 'uncommon', minWeightGrams: 600, maxWeightGrams: 1800, minLengthCm: 25, maxLengthCm: 45, baseValue: 50, requiredRodId: 'fly', scoreWeight: 1, maps: ['mountain_river', 'northeast_river'], description: '喜欢冷水溪流的鱼，肉质细嫩。', habitat: '山涧急流、清澈浅滩', favoriteBait: '飞蝇、红虫', tips: '用飞蝇竿模拟昆虫落水，溪流中快速收线。' },
+  { id: 'mandarin', name: '鳜鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1000, maxWeightGrams: 3500, minLengthCm: 30, maxLengthCm: 60, baseValue: 150, requiredRodId: 'lure', scoreWeight: 1, maps: ['forest_lake', 'pearl_river'], description: '身上有斑纹的凶猛淡水鱼，鳜鱼的一种。', habitat: '西湖的乱石底', favoriteBait: '小鱼、泥鳅', tips: '藏在石缝中，路亚饵贴近底部慢拖效果好。' },
+  { id: 'bream', name: '鳊鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 300, maxWeightGrams: 1200, minLengthCm: 18, maxLengthCm: 35, baseValue: 15, requiredRodId: 'feeder', scoreWeight: 1, maps: ['beginner'], description: '体型侧扁的淡水鱼，适合入门垂钓。', habitat: '金鸡湖的缓流区', favoriteBait: '麦粒、商品粉饵', tips: '浮漂微微点动时别急着提，等真实咬口。' },
+  { id: 'grass_carp', name: '草鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 1000, maxWeightGrams: 4000, minLengthCm: 30, maxLengthCm: 60, baseValue: 55, requiredRodId: 'feeder', scoreWeight: 1, maps: ['beginner', 'pearl_river', 'yangtze_river'], description: '吃水草长大的大型淡水鱼，力量很大。', habitat: '水草区、人工鱼塘', favoriteBait: '草叶、玉米', tips: '中钩后会猛冲，飞德杆要调好泄力。' },
+  { id: 'black_carp', name: '青鱼', emoji: '🐠', rarity: 'rare', minWeightGrams: 2000, maxWeightGrams: 8000, minLengthCm: 40, maxLengthCm: 80, baseValue: 180, requiredRodId: 'feeder', scoreWeight: 1, maps: ['forest_lake', 'yangtze_river'], description: '青黑色的大型鲤科鱼，以螺蛳为食。', habitat: '西湖深水底', favoriteBait: '螺蛳、贝类', tips: '底钓为主，饵要沉到泥底才有机会。' },
+  { id: 'tilapia', name: '罗非鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 250, maxWeightGrams: 1000, minLengthCm: 16, maxLengthCm: 35, baseValue: 16, requiredRodId: 'hand', scoreWeight: 1, maps: ['beginner', 'pearl_river'], description: '繁殖力强、肉质扎实的罗非鱼。', habitat: '温暖浅水、鱼塘岸边', favoriteBait: '腥香饵、面包', tips: '成群活动，找到鱼群后可以连竿。' },
+  { id: 'perch', name: '河鲈', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 500, maxWeightGrams: 2000, minLengthCm: 22, maxLengthCm: 48, baseValue: 60, requiredRodId: 'lure', scoreWeight: 1, maps: ['forest_lake'], description: '河鲈背鳍带刺，性情凶猛，喜欢伏击。', habitat: '西湖的水草边、倒木旁', favoriteBait: '小鱼、亮片', tips: '抛到障碍物附近慢速收线，常有意想不到的咬口。' },
+  { id: 'eel', name: '鳗鱼', emoji: '🐍', rarity: 'rare', minWeightGrams: 800, maxWeightGrams: 3500, minLengthCm: 30, maxLengthCm: 70, baseValue: 160, requiredRodId: 'feeder', scoreWeight: 1, maps: ['forest_lake', 'pearl_river'], description: '身体细长如蛇，夜间更活跃。', habitat: '湖泊淤泥、石缝', favoriteBait: '蚯蚓、动物内脏', tips: '夜钓、沉底钓更容易遇到。' },
+  { id: 'char', name: '红点鲑', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 400, maxWeightGrams: 1600, minLengthCm: 20, maxLengthCm: 45, baseValue: 70, requiredRodId: 'fly', scoreWeight: 1, maps: ['mountain_river', 'northeast_river'], description: '红点鲑是冷水鱼中的精灵，体色鲜艳。', habitat: '高海拔冷水溪流', favoriteBait: '飞蝇、小虫', tips: '清晨水面有昆虫时最活跃。' },
+  { id: 'salmon', name: '鲑鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1500, maxWeightGrams: 6000, minLengthCm: 35, maxLengthCm: 80, baseValue: 220, requiredRodId: 'fly', scoreWeight: 1, maps: ['mountain_river', 'northeast_river'], description: '洄游性鲑鱼，逆流而上时格外凶猛。', habitat: '漓江的深潭、急流', favoriteBait: '鱼卵、飞蝇', tips: '秋季繁殖洄游期更容易碰到大个体。' },
+  { id: 'yellow_croaker', name: '黄花鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 900, minLengthCm: 15, maxLengthCm: 32, baseValue: 22, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea', 'qingdao_coast'], description: '近海常见鱼类，因鱼鳔能发声得名。', habitat: '近岸泥沙底、浅海', favoriteBait: '虾肉、沙蚕', tips: '潮水初涨时咬口好，滩钓抛远一些。' },
+  { id: 'mackerel', name: '鲭鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 400, maxWeightGrams: 1600, minLengthCm: 20, maxLengthCm: 45, baseValue: 45, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea', 'qingdao_coast'], description: '游速快的海洋鱼类，常成群巡游。', habitat: '深海表层、冷水与暖流交汇处', favoriteBait: '亮片、小鱼段', tips: '看到海鸟聚集时抛竿，往往有鱼群。' },
+  { id: 'grouper', name: '石斑鱼', emoji: '🐟', rarity: 'rare', minWeightGrams: 1500, maxWeightGrams: 8000, minLengthCm: 30, maxLengthCm: 90, baseValue: 250, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea', 'south_sea'], description: '石斑鱼是伏击型海鱼，肉质鲜美。', habitat: '珊瑚礁、岩洞、沉船', favoriteBait: '活虾、小鱼', tips: '重铅快速到底，在礁石缝隙附近多等一会。' },
+  { id: 'tuna', name: '金枪鱼', emoji: '🐟', rarity: 'epic', minWeightGrams: 3000, maxWeightGrams: 15000, minLengthCm: 50, maxLengthCm: 120, baseValue: 800, requiredRodId: 'sea', scoreWeight: 1, maps: ['deep_sea', 'south_sea'], description: '金枪鱼是海洋中的高速鱼雷。', habitat: '远洋深水区', favoriteBait: '整条小鱼、鱿鱼', tips: '中钩后第一波冲刺极强，需要高等级海竿。' },
+  { id: 'marlin', name: '旗鱼', emoji: '🐟', rarity: 'legendary', minWeightGrams: 8000, maxWeightGrams: 30000, minLengthCm: 80, maxLengthCm: 180, baseValue: 2500, requiredRodId: 'surf', scoreWeight: 1, maps: ['deep_sea', 'legendary_waters', 'south_sea'], description: '旗鱼拥有长吻和帆状背鳍，是海中王者。', habitat: '热带远洋、深蓝水域', favoriteBait: '活饵、拖钓假饵', tips: '遇见后要抓住短暂窗口，稳住鱼竿慢慢消耗体力。' },
+  { id: 'sturgeon', name: '中华鲟', emoji: '🐉', rarity: 'legendary', minWeightGrams: 5000, maxWeightGrams: 20000, minLengthCm: 60, maxLengthCm: 150, baseValue: 3000, requiredRodId: 'feeder', scoreWeight: 1, maps: ['legendary_waters', 'yangtze_river'], description: '中华鲟是古老的珍稀鱼类，有“水中大熊猫”之称。', habitat: '普达措的深水底层', favoriteBait: '底栖小生物、特制饵', tips: '极其稀有，需要顶级装备和耐心。' },
+  { id: 'king_salmon', name: '帝王鲑', emoji: '🐠', rarity: 'epic', minWeightGrams: 4000, maxWeightGrams: 12000, minLengthCm: 55, maxLengthCm: 110, baseValue: 900, requiredRodId: 'fly', scoreWeight: 1, maps: ['legendary_waters'], description: '帝王鲑是鲑鱼中的王者，体型与力量俱佳。', habitat: '普达措的冷水深渊', favoriteBait: '大号飞蝇、鱼卵', tips: '只在传说水域现身，中钩后准备长时间搏斗。' },
+  { id: 'golden_carp', name: '金鲤', emoji: '🐠', rarity: 'epic', minWeightGrams: 2000, maxWeightGrams: 7000, minLengthCm: 40, maxLengthCm: 85, baseValue: 600, requiredRodId: 'hand', scoreWeight: 1, maps: ['legendary_waters'], description: '通体金红的祥瑞之鲤，据说见过它会有好运。', habitat: '普达措的灵泉深处', favoriteBait: '金色谷物、灵泉饵', tips: '传闻它喜欢在满月时浮出水面。' },
+  { id: 'taimen', name: '哲罗鲑', emoji: '🐟', rarity: 'legendary', minWeightGrams: 3000, maxWeightGrams: 30000, minLengthCm: 50, maxLengthCm: 150, baseValue: 2800, requiredRodId: 'fly', scoreWeight: 1, maps: ['northeast_river', 'xinjiang_lake'], description: '我国北方冷水溪流中的大型鲑科鱼，有“水中猛虎”之称。', habitat: '清澈冷水的深潭与急流', favoriteBait: '大号飞蝇、小鱼', tips: '清晨和傍晚活性最高，中钩后冲击力极强。' },
+  { id: 'lenok', name: '细鳞鲑', emoji: '🐠', rarity: 'rare', minWeightGrams: 500, maxWeightGrams: 3000, minLengthCm: 20, maxLengthCm: 60, baseValue: 220, requiredRodId: 'fly', scoreWeight: 1, maps: ['northeast_river', 'mountain_river'], description: '冷水性鲑科鱼，体侧有细小鳞片，喜清澈溪流。', habitat: '高海拔冷水溪流', favoriteBait: '飞蝇、昆虫幼虫', tips: '用飞蝇模拟落水昆虫，溪流中快速收线。' },
+  { id: 'burbot', name: '江鳕', emoji: '🐍', rarity: 'rare', minWeightGrams: 800, maxWeightGrams: 5000, minLengthCm: 30, maxLengthCm: 80, baseValue: 260, requiredRodId: 'feeder', scoreWeight: 1, maps: ['northeast_river', 'xinjiang_lake'], description: '唯一生活在淡水的鳕鱼，夜间活动，喜冷水。', habitat: '江河深水与冷水湖底', favoriteBait: '小鱼、动物内脏', tips: '夜钓沉底更容易遇到。' },
+  { id: 'chum_salmon', name: '大马哈鱼', emoji: '🐟', rarity: 'epic', minWeightGrams: 2500, maxWeightGrams: 10000, minLengthCm: 50, maxLengthCm: 100, baseValue: 900, requiredRodId: 'fly', scoreWeight: 1, maps: ['northeast_river'], description: '秋季从太平洋溯河洄游的鲑鱼，是东北界江名鱼。', habitat: '冷水江河与入海口', favoriteBait: '鱼卵、大号飞蝇', tips: '洄游期体力充沛，需要足够强力的飞蝇竿。' },
+  { id: 'naked_carp', name: '青海湖裸鲤', emoji: '🐠', rarity: 'rare', minWeightGrams: 300, maxWeightGrams: 2000, minLengthCm: 15, maxLengthCm: 50, baseValue: 180, requiredRodId: 'hand', scoreWeight: 1, maps: ['qinghai_lake'], description: '俗称“湟鱼”，青海湖特有珍稀鱼类，耐高寒盐碱。', habitat: '高原咸水湖浅水区', favoriteBait: '糌粑饵、小虫', tips: '高原水温低，鱼口轻，浮漂要调灵敏。' },
+  { id: 'plateau_loach', name: '高原鳅', emoji: '🐍', rarity: 'common', minWeightGrams: 50, maxWeightGrams: 300, minLengthCm: 8, maxLengthCm: 20, baseValue: 18, requiredRodId: 'hand', scoreWeight: 1, maps: ['qinghai_lake'], description: '适应高原环境的鳅科小鱼，常在水底砂石间活动。', habitat: '高原湖泊与河流砂石底', favoriteBait: '红虫、蚯蚓段', tips: '底钓小钩细线，动作要轻。' },
+  { id: 'spotted_naked_carp', name: '花斑裸鲤', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 200, maxWeightGrams: 1500, minLengthCm: 12, maxLengthCm: 45, baseValue: 60, requiredRodId: 'hand', scoreWeight: 1, maps: ['qinghai_lake'], description: '高原河流中的鲤科鱼，体侧有稀疏斑点。', habitat: '高原湖泊与河流缓流区', favoriteBait: '谷物饵、小虾', tips: '晴天水温升高时更活跃。' },
+  { id: 'humphead_wrasse', name: '苏眉鱼', emoji: '🐟', rarity: 'legendary', minWeightGrams: 5000, maxWeightGrams: 30000, minLengthCm: 40, maxLengthCm: 120, baseValue: 3500, requiredRodId: 'surf', scoreWeight: 1, maps: ['south_sea'], description: '南海珊瑚礁区的名贵大型鱼，额头隆起，色彩艳丽。', habitat: '热带珊瑚礁与外海岩礁', favoriteBait: '活虾、鱿鱼', tips: '在珊瑚礁边缘守钓，中钩后要防止钻礁。' },
+  { id: 'parrotfish', name: '鹦嘴鱼', emoji: '🐠', rarity: 'uncommon', minWeightGrams: 500, maxWeightGrams: 4000, minLengthCm: 20, maxLengthCm: 70, baseValue: 80, requiredRodId: 'surf', scoreWeight: 1, maps: ['south_sea'], description: '珊瑚礁常见鱼类，嘴部像鹦鹉，啃食珊瑚藻类。', habitat: '热带珊瑚礁区', favoriteBait: '藻饵、虾肉', tips: '白天在礁区觅食，轻矶钓容易遇见。' },
+  { id: 'moray_eel', name: '海鳗', emoji: '🐍', rarity: 'rare', minWeightGrams: 1000, maxWeightGrams: 8000, minLengthCm: 40, maxLengthCm: 120, baseValue: 280, requiredRodId: 'surf', scoreWeight: 1, maps: ['south_sea', 'deep_sea'], description: '凶猛的海底肉食性鱼类，常藏在岩缝中。', habitat: '珊瑚礁、岩洞、沉船', favoriteBait: '鱿鱼、小鱼块', tips: '夜钓或黄昏钓更容易，中钩后立即拉离礁石。' },
+  { id: 'yellowcheek_carp', name: '鳡鱼', emoji: '🐟', rarity: 'epic', minWeightGrams: 2000, maxWeightGrams: 20000, minLengthCm: 40, maxLengthCm: 120, baseValue: 1200, requiredRodId: 'lure', scoreWeight: 1, maps: ['yangtze_river'], description: '长江流域的大型凶猛淡水鱼，游速极快，被称为“水老虎”。', habitat: '大江干流与开阔湖面', favoriteBait: '活鱼、亮片', tips: '路亚远投快速收线，刺激它追咬。' },
+  { id: 'longsnout_catfish', name: '长吻鮠', emoji: '🐟', rarity: 'rare', minWeightGrams: 800, maxWeightGrams: 6000, minLengthCm: 25, maxLengthCm: 80, baseValue: 300, requiredRodId: 'feeder', scoreWeight: 1, maps: ['yangtze_river'], description: '俗称“江团”，长江名贵经济鱼类，吻长、肉质细嫩。', habitat: '江河深水与乱石底', favoriteBait: '虾肉、螺蛳', tips: '底钓为主，水流较急时加重铅坠。' },
+  { id: 'mud_carp', name: '鲮鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 1500, minLengthCm: 15, maxLengthCm: 40, baseValue: 18, requiredRodId: 'hand', scoreWeight: 1, maps: ['pearl_river', 'beginner'], description: '华南暖水性鱼类，喜群游，肉质细嫩。', habitat: '江河缓流、水草边', favoriteBait: '麦麸、商品粉饵', tips: '成群活动，打窝后常能连竿。' },
+  { id: 'snakehead', name: '斑鳢', emoji: '🐍', rarity: 'rare', minWeightGrams: 500, maxWeightGrams: 4000, minLengthCm: 20, maxLengthCm: 70, baseValue: 140, requiredRodId: 'lure', scoreWeight: 1, maps: ['pearl_river', 'forest_lake'], description: '俗称“生鱼”，华南常见的凶猛肉食性淡水鱼。', habitat: '水草茂密、泥底静水', favoriteBait: '青蛙形假饵、小鱼', tips: '雷蛙或软饵在水草区慢拖容易触发攻击。' },
+  { id: 'peled', name: '高白鲑', emoji: '🐟', rarity: 'epic', minWeightGrams: 500, maxWeightGrams: 3500, minLengthCm: 25, maxLengthCm: 60, baseValue: 700, requiredRodId: 'fly', scoreWeight: 1, maps: ['xinjiang_lake'], description: '引入喀纳斯湖等高山冷水湖的鲑科鱼，适应低温。', habitat: '高山冷水湖的中上层', favoriteBait: '飞蝇、小鱼', tips: '清晨风平浪静时在水面附近觅食。' },
+  { id: 'spanish_mackerel', name: '鲅鱼', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 1000, maxWeightGrams: 8000, minLengthCm: 30, maxLengthCm: 100, baseValue: 90, requiredRodId: 'surf', scoreWeight: 1, maps: ['qingdao_coast', 'deep_sea'], description: '北方沿海常见的洄游性鱼类，游速快，味道鲜美。', habitat: '近海表层与沿岸水域', favoriteBait: '亮片、小鱼段', tips: '春秋两季近岸追捕小鱼时最好钓。' },
+  { id: 'black_seabream', name: '黑鲷', emoji: '🐟', rarity: 'uncommon', minWeightGrams: 300, maxWeightGrams: 3000, minLengthCm: 15, maxLengthCm: 55, baseValue: 75, requiredRodId: 'surf', scoreWeight: 1, maps: ['qingdao_coast', 'deep_sea'], description: '北方礁石区常见的鲷科鱼，体色偏黑，警惕性高。', habitat: '近海岩礁、防波堤', favoriteBait: '虾仁、沙蚕', tips: '轻矶钓、细线小钩，打窝后等口。' },
+  { id: 'hairtail', name: '带鱼', emoji: '🐍', rarity: 'rare', minWeightGrams: 200, maxWeightGrams: 2000, minLengthCm: 30, maxLengthCm: 100, baseValue: 120, requiredRodId: 'surf', scoreWeight: 1, maps: ['qingdao_coast'], description: '我国北方沿海重要经济鱼类，体形侧扁如带。', habitat: '近海与较深水域', favoriteBait: '小鱼段、鱿鱼条', tips: '夜钓或晨昏时段更容易遇到。' },
+  { id: 'flatfish', name: '偏口鱼', emoji: '🐟', rarity: 'common', minWeightGrams: 200, maxWeightGrams: 2000, minLengthCm: 15, maxLengthCm: 50, baseValue: 30, requiredRodId: 'surf', scoreWeight: 1, maps: ['qingdao_coast'], description: '比目鱼的一种，两眼同在身体一侧，常伏在沙底。', habitat: '近岸泥沙海底', favoriteBait: '沙蚕、虾肉', tips: '沉底钓，等它吞饵后再提竿。' }
 ]
 
 export const MAPS = [
-  { id: 'beginner', name: '初级鱼塘', emoji: '🏞️', requiredLevel: 1, entryFee: 0, description: '新手钓场，免费进入，适合练手。' },
-  { id: 'forest_lake', name: '森林湖泊', emoji: '🌲', requiredLevel: 3, entryFee: 100, description: '幽静湖泊，有锦鲤、鲶鱼、鳜鱼等。' },
-  { id: 'mountain_river', name: '山涧溪流', emoji: '⛰️', requiredLevel: 5, entryFee: 250, description: '清澈溪流，鳟鱼、鲑鱼在这里出没。' },
-  { id: 'deep_sea', name: '深海渔场', emoji: '🌊', requiredLevel: 8, entryFee: 500, description: '深海巨物，金枪鱼、旗鱼等你挑战。' },
-  { id: 'legendary_waters', name: '秘境水域', emoji: '✨', requiredLevel: 12, entryFee: 1000, description: '传说级鱼群聚集的神秘水域。' }
+  { id: 'beginner', name: '江苏·苏州·金鸡湖（城市湖泊）', emoji: '🏞️', region: '江苏', city: '苏州', spot: '金鸡湖', type: '城市湖泊', requiredLevel: 1, entryFee: 0, description: '苏州金鸡湖是开放式城市湖泊，水域开阔、交通方便，适合新手熟悉抛竿和看漂。', fishIntro: '常见鲫鱼、鲤鱼、鳊鱼、草鱼，也有适应力强的罗非鱼和鲮鱼。' },
+  { id: 'forest_lake', name: '浙江·杭州·西湖（湖泊）', emoji: '🌲', region: '浙江', city: '杭州', spot: '西湖', type: '湖泊', requiredLevel: 3, entryFee: 100, description: '杭州西湖三面环山，湖光潋滟，是江南淡水钓的经典场景。', fishIntro: '湖中鲤科鱼类丰富，也有鳜鱼、青鱼、河鲈、鳗鲡等。' },
+  { id: 'mountain_river', name: '广西·桂林·漓江（江河）', emoji: '⛰️', region: '广西', city: '桂林', spot: '漓江', type: '江河', requiredLevel: 5, entryFee: 250, description: '桂林漓江穿行喀斯特峰林，水清流急，是南方江河钓的代表。', fishIntro: '漓江有鳜鱼、马口鱼、光倒刺鲃等；上游冷水段也能遇到鳟鲑类。' },
+  { id: 'pearl_river', name: '广东·广州·珠江（城市江河）', emoji: '🏙️', region: '广东', city: '广州', spot: '珠江', type: '城市江河', requiredLevel: 6, entryFee: 300, description: '珠江穿城而过，水温较高，鱼种偏南方暖水性。', fishIntro: '罗非鱼、鲮鱼、鳜鱼、斑鳢等华南江河鱼类丰富。' },
+  { id: 'northeast_river', name: '黑龙江·漠河·黑龙江（界江）', emoji: '❄️', region: '黑龙江', city: '漠河', spot: '黑龙江', type: '界江', requiredLevel: 7, entryFee: 350, description: '中国最北的界江，冬季漫长、夏季短暂，江水冰冷，鱼种独特。', fishIntro: '冷水鱼丰富：哲罗鲑、细鳞鲑、江鳕、大马哈鱼等。' },
+  { id: 'qingdao_coast', name: '山东·青岛·栈桥（北方海滨）', emoji: '🏖️', region: '山东', city: '青岛', spot: '栈桥', type: '北方海滨', requiredLevel: 8, entryFee: 450, description: '青岛栈桥一带是北方经典海钓场，礁石与沙滩并存。', fishIntro: '北方近海有鲅鱼、黑鲷、带鱼、鲈鱼、偏口鱼等。' },
+  { id: 'deep_sea', name: '福建·厦门·鼓浪屿（海滨）', emoji: '🌊', region: '福建', city: '厦门', spot: '鼓浪屿', type: '海滨', requiredLevel: 8, entryFee: 500, description: '厦门鼓浪屿周边海域礁石与沙滩交错，是东南沿海矶钓、滩钓的热门地。', fishIntro: '近海有黄花鱼、鲭鱼、石斑和鲈鱼，远一些能碰金枪鱼、旗鱼。' },
+  { id: 'qinghai_lake', name: '青海·海南州·青海湖（高原咸水湖）', emoji: '💧', region: '青海', city: '海南州', spot: '青海湖', type: '高原咸水湖', requiredLevel: 9, entryFee: 600, description: '中国最大的内陆咸水湖，湖水湛蓝，四周草原雪山环绕。', fishIntro: '以青海湖裸鲤（湟鱼）为代表，另有花斑裸鲤和高原鳅等耐盐碱鱼类。' },
+  { id: 'south_sea', name: '海南·三亚·蜈支洲岛（热带海岛）', emoji: '🏝️', region: '海南', city: '三亚', spot: '蜈支洲岛', type: '热带海岛', requiredLevel: 10, entryFee: 750, description: '三亚热带海岛水质清澈、珊瑚礁密布，是南海热带海钓胜地。', fishIntro: '珊瑚礁鱼类丰富：苏眉、鹦嘴鱼、石斑、海鳗，外海有金枪鱼。' },
+  { id: 'yangtze_river', name: '湖北·宜昌·三峡（长江峡谷）', emoji: '⛰️', region: '湖北', city: '宜昌', spot: '三峡', type: '长江峡谷', requiredLevel: 11, entryFee: 850, description: '宜昌三峡江段峡谷深切、水流湍急，是长江大型鱼类栖息地。', fishIntro: '长江江段有青鱼、草鱼、鳡鱼、长吻鮠，历史上也是中华鲟洄游通道。' },
+  { id: 'legendary_waters', name: '云南·香格里拉·普达措（高原湖泊）', emoji: '✨', region: '云南', city: '香格里拉', spot: '普达措', type: '高原湖泊', requiredLevel: 12, entryFee: 1000, description: '普达措国家公园湖泊清澈，海拔高、水温低，带着秘境气质。', fishIntro: '高原冷水湖泊里有锦鲤、龙鱼、金鲤等珍稀鱼种（游戏设定）。' },
+  { id: 'xinjiang_lake', name: '新疆·阿勒泰·喀纳斯湖（高山湖泊）', emoji: '🏔️', region: '新疆', city: '阿勒泰', spot: '喀纳斯湖', type: '高山湖泊', requiredLevel: 13, entryFee: 1200, description: '喀纳斯湖藏身阿尔泰深山，湖水深邃，有“湖怪”传说。', fishIntro: '高山冷水湖中有哲罗鲑、高白鲑、江鳕等珍稀冷水鱼。' }
 ]
 
 export const RODS = [
-  { id: 'hand', name: '手竿', emoji: '🎋', basePrice: 0, upgradeBasePrice: 80, maxLevel: 5, rarityMultiplier: 1.0, weightMultiplier: 1.0, baseSuccessRate: 0.55, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['carp', 'crucian', 'koi', 'tilapia', 'golden_carp'] },
-  { id: 'sea', name: '海竿', emoji: '🎣', basePrice: 300, upgradeBasePrice: 200, maxLevel: 5, rarityMultiplier: 1.5, weightMultiplier: 1.1, baseSuccessRate: 0.60, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['bass', 'catfish', 'arowana', 'tuna'] },
-  { id: 'lure', name: '路亚竿', emoji: '🎣', basePrice: 900, upgradeBasePrice: 500, maxLevel: 5, rarityMultiplier: 2.5, weightMultiplier: 1.2, baseSuccessRate: 0.65, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['perch', 'mandarin'] },
-  { id: 'feeder', name: '飞德杆', emoji: '🎣', basePrice: 600, upgradeBasePrice: 350, maxLevel: 5, rarityMultiplier: 2.0, weightMultiplier: 1.15, baseSuccessRate: 0.62, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['bream', 'grass_carp', 'black_carp', 'eel', 'sturgeon'] },
-  { id: 'fly', name: '飞蝇竿', emoji: '🪰', basePrice: 1200, upgradeBasePrice: 650, maxLevel: 5, rarityMultiplier: 3.0, weightMultiplier: 1.25, baseSuccessRate: 0.68, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['trout', 'char', 'salmon', 'king_salmon'] },
-  { id: 'surf', name: '滩钓竿', emoji: '🏖️', basePrice: 1500, upgradeBasePrice: 800, maxLevel: 5, rarityMultiplier: 3.5, weightMultiplier: 1.3, baseSuccessRate: 0.70, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['yellow_croaker', 'mackerel', 'grouper', 'marlin'] }
+  { id: 'hand', name: '手竿', emoji: '🎋', basePrice: 0, upgradeBasePrice: 80, maxLevel: 5, rarityMultiplier: 1.0, weightMultiplier: 1.0, baseSuccessRate: 0.55, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['carp', 'crucian', 'koi', 'tilapia', 'golden_carp', 'naked_carp', 'plateau_loach', 'spotted_naked_carp', 'mud_carp'] },
+  { id: 'sea', name: '海竿', emoji: '🎣', basePrice: 300, upgradeBasePrice: 200, maxLevel: 5, rarityMultiplier: 1.5, weightMultiplier: 1.1, baseSuccessRate: 0.60, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['bass', 'catfish', 'arowana', 'tuna', 'humphead_wrasse', 'moray_eel'] },
+  { id: 'lure', name: '路亚竿', emoji: '🎣', basePrice: 900, upgradeBasePrice: 500, maxLevel: 5, rarityMultiplier: 2.5, weightMultiplier: 1.2, baseSuccessRate: 0.65, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['perch', 'mandarin', 'snakehead', 'yellowcheek_carp'] },
+  { id: 'feeder', name: '飞德杆', emoji: '🎣', basePrice: 600, upgradeBasePrice: 350, maxLevel: 5, rarityMultiplier: 2.0, weightMultiplier: 1.15, baseSuccessRate: 0.62, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['bream', 'grass_carp', 'black_carp', 'eel', 'sturgeon', 'burbot', 'longsnout_catfish'] },
+  { id: 'fly', name: '飞蝇竿', emoji: '🪰', basePrice: 1200, upgradeBasePrice: 650, maxLevel: 5, rarityMultiplier: 3.0, weightMultiplier: 1.25, baseSuccessRate: 0.68, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['trout', 'char', 'salmon', 'king_salmon', 'taimen', 'lenok', 'chum_salmon', 'peled'] },
+  { id: 'surf', name: '滩钓竿', emoji: '🏖️', basePrice: 1500, upgradeBasePrice: 800, maxLevel: 5, rarityMultiplier: 3.5, weightMultiplier: 1.3, baseSuccessRate: 0.70, successRatePerLevel: 0.04, maxWeightPerLevel: 0.10, species: ['yellow_croaker', 'mackerel', 'grouper', 'marlin', 'humphead_wrasse', 'parrotfish', 'moray_eel', 'spanish_mackerel', 'black_seabream', 'hairtail', 'flatfish'] }
 ]
 
 export const BASKETS = [
@@ -423,7 +449,7 @@ export class FishingGame {
       this.state.fishing.lastEventAt = 0
       this.state.fishing.eventText = ''
     }
-    this.state.lastEventText = '门票已到期，已回到初级鱼塘。'
+    this.state.lastEventText = '门票已到期，已回到新手城市湖泊。'
     effects.push({ type: 'EventLine', text: this.state.lastEventText })
     return effects
   }
@@ -826,7 +852,7 @@ export class FishingGame {
       case 'BuyTicket': {
         const map = MAPS_BY_ID.get(command.mapId)
         if (map === undefined) throw new Error('未知地图')
-        if (map.id === 'beginner') throw new Error('初级鱼塘无需购买门票')
+        if (map.id === 'beginner') throw new Error('新手地图无需购买门票')
         const days = Math.floor(Number(command.days))
         if (!Number.isFinite(days) || days <= 0) throw new Error('天数必须大于 0')
         if (levelFromExperience(this.state.experience) < map.requiredLevel) {
@@ -988,9 +1014,14 @@ export class FishingGame {
         id: map.id,
         name: map.name,
         emoji: map.emoji,
+        region: map.region,
+        city: map.city,
+        spot: map.spot,
+        type: map.type,
         requiredLevel: map.requiredLevel,
         entryFee: map.entryFee,
         description: map.description,
+        fishIntro: map.fishIntro,
         locked,
         current: state.currentMapId === map.id,
         hasTicket: remainingMs > 0,
@@ -1003,7 +1034,11 @@ export class FishingGame {
             name: species.name,
             emoji: species.emoji,
             rarity: species.rarity,
-            requiredRodId: species.requiredRodId
+            requiredRodId: species.requiredRodId,
+            description: species.description ?? '',
+            habitat: species.habitat ?? '',
+            favoriteBait: species.favoriteBait ?? '',
+            tips: species.tips ?? ''
           }))
       }
     })
@@ -1021,9 +1056,14 @@ export class FishingGame {
         id: currentMap.id,
         name: currentMap.name,
         emoji: currentMap.emoji,
+        region: currentMap.region,
+        city: currentMap.city,
+        spot: currentMap.spot,
+        type: currentMap.type,
         requiredLevel: currentMap.requiredLevel,
         entryFee: currentMap.entryFee,
-        description: currentMap.description
+        description: currentMap.description,
+        fishIntro: currentMap.fishIntro
       },
       maps,
       totalTokensConsumed: state.totalTokensConsumed ?? 0,
