@@ -72,7 +72,7 @@ window.__ModuleLoader__.load({
 .dshFishing_backpackPanel{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:12px;padding:8px;box-sizing:border-box;background:var(--dsw-alias-bg-base,#ffffff);overflow:hidden}
 .dshFishing_backpackHeader{flex:0 0 auto;font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);padding-bottom:4px;border-bottom:1px solid var(--dsw-alias-border-l1,#eef0f3)}
 .dshFishing_backpackScroll{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:4px;padding-right:2px}
-.dshFishing_slotEmoji{font-size:22px;line-height:1}
+.dshFishing_slotIcon{font-size:22px;line-height:1;display:inline-flex;align-items:center;justify-content:center}
 .dshFishing_slotMeta{font-size:10px;color:var(--dsw-alias-label-tertiary,#8a919f);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dshFishing_backpackGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px}
 .dshFishing_backpackCell{width:auto;min-height:74px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px;box-sizing:border-box;text-align:center;font-size:11px;line-height:1.3;min-width:0;cursor:default}
@@ -157,6 +157,305 @@ window.__ModuleLoader__.load({
         React.createElement("path", { d: "M7 10.67C7 8 5.5 5.5 3 5.5c0 4 1.5 6.5 4 6.5" }),
         React.createElement("path", { d: "M7 13.33c0 2.67-1.5 5.17-4 5.17 0-4 1.5-6.5 4-6.5" })
       );
+    }
+
+    function SvgIcon({ size = 16, children, className }) {
+      return React.createElement(
+        "svg",
+        {
+          width: size,
+          height: size,
+          viewBox: "0 0 24 24",
+          fill: "none",
+          stroke: "currentColor",
+          strokeWidth: 1.8,
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          "aria-hidden": true,
+          className
+        },
+        children
+      );
+    }
+
+    const iconPath = (d) => React.createElement("path", { key: d, d });
+    const iconCircle = (cx, cy, r) => React.createElement("circle", { key: `${cx}-${cy}`, cx, cy, r });
+
+    const ROD_SVG_PATHS = {
+      hand: [
+        iconPath("M5 20 C9 15, 13 9, 18 4"),
+        iconPath("M17.5 3.5 L19.5 5.5"),
+        iconPath("M10 13.5 L12 12")
+      ],
+      sea: [
+        iconPath("M4 21 L15 4"),
+        iconPath("M14.5 4 L17 6.5"),
+        iconCircle(9, 13, 2.6),
+        iconPath("M11.5 13 C15 13, 16 8, 17.5 5")
+      ],
+      lure: [
+        iconPath("M4 21 L16 4"),
+        iconPath("M15.5 4 L18 6.5"),
+        iconCircle(8, 14, 2),
+        iconPath("M10 14 C14 14, 14 8, 17.5 4.5"),
+        iconPath("M12 16 L13.5 18")
+      ],
+      feeder: [
+        iconPath("M4 20 L16 5"),
+        iconPath("M15.5 5 L18 7.5"),
+        iconCircle(17.5, 6.5, 1.8),
+        iconPath("M8 13 L10 12"),
+        iconPath("M6 17 L8 16")
+      ],
+      fly: [
+        iconPath("M4 20 L16 4"),
+        iconPath("M15.5 4 L18 6.5"),
+        iconPath("M13 7 C10 8, 10 13, 14 14"),
+        iconPath("M14 14 C16 15, 18 13, 19 9")
+      ],
+      surf: [
+        iconPath("M3 21 L18 4"),
+        iconPath("M17.5 4 L20 6.5"),
+        iconPath("M6 17 L8 16"),
+        iconPath("M10 13 L12 12"),
+        iconPath("M14 9 L16 8")
+      ]
+    };
+
+    const BASKET_SVG_PATHS = {
+      small: [
+        iconPath("M8 4 L16 4 L20 8 L4 8 Z"),
+        iconPath("M4 8 L6 20 L18 20 L20 8"),
+        iconPath("M8 4 L8 20"),
+        iconPath("M16 4 L16 20"),
+        iconPath("M12 8 L12 20"),
+        iconPath("M8 12 L18 12"),
+        iconPath("M8 4 C8 1, 16 1, 16 4")
+      ],
+      medium: [
+        iconPath("M8 4 L16 4 L20 8 L4 8 Z"),
+        iconPath("M4 8 L6 20 L18 20 L20 8"),
+        iconPath("M8 4 L8 20"),
+        iconPath("M16 4 L16 20"),
+        iconPath("M12 8 L12 20"),
+        iconPath("M8 12 L18 12"),
+        iconPath("M6 15 L18 15"),
+        iconPath("M8 4 C8 1, 16 1, 16 4")
+      ],
+      large: [
+        iconPath("M8 4 L16 4 L20 8 L4 8 Z"),
+        iconPath("M4 8 L6 20 L18 20 L20 8"),
+        iconPath("M8 4 L8 20"),
+        iconPath("M16 4 L16 20"),
+        iconPath("M12 8 L12 20"),
+        iconPath("M8 11 L18 11"),
+        iconPath("M6 14 L18 14"),
+        iconPath("M6 17 L18 17"),
+        iconPath("M8 4 C8 1, 16 1, 16 4")
+      ],
+      extra_large: [
+        iconPath("M8 4 L16 4 L20 8 L4 8 Z"),
+        iconPath("M4 8 L6 20 L18 20 L20 8"),
+        iconPath("M8 4 L8 20"),
+        iconPath("M16 4 L16 20"),
+        iconPath("M12 8 L12 20"),
+        iconPath("M6 10 L18 10"),
+        iconPath("M6 13 L18 13"),
+        iconPath("M6 16 L18 16"),
+        iconPath("M6 19 L18 19"),
+        iconPath("M8 4 C8 1, 16 1, 16 4")
+      ],
+      deluxe: [
+        iconPath("M8 4 L16 4 L20 8 L4 8 Z"),
+        iconPath("M4 8 L6 20 L18 20 L20 8"),
+        iconPath("M8 4 L8 20"),
+        iconPath("M16 4 L16 20"),
+        iconPath("M12 8 L12 20"),
+        iconPath("M6 10 L18 10"),
+        iconPath("M6 13 L18 13"),
+        iconPath("M6 16 L18 16"),
+        iconPath("M6 19 L18 19"),
+        iconPath("M8 4 C8 1, 16 1, 16 4"),
+        iconPath("M4 8 L20 20")
+      ]
+    };
+
+    const ACCESSORY_SVG_PATHS = {
+      basic_reel: [
+        iconCircle(12, 12, 4),
+        iconCircle(12, 12, 1.2),
+        iconPath("M14.8 8.8 L18.5 5.5"),
+        iconPath("M9.5 15.5 C7 18, 5 18, 4 16")
+      ],
+      strong_reel: [
+        iconCircle(12, 12, 4.2),
+        iconCircle(12, 12, 1.4),
+        iconPath("M12 7.8 L12 4.5"),
+        iconPath("M16.2 12 L19.5 12"),
+        iconPath("M12 16.2 L12 19.5"),
+        iconPath("M7.8 12 L4.5 12"),
+        iconPath("M14.5 9.5 L17.5 6.5")
+      ],
+      master_reel: [
+        iconCircle(12, 12, 4.5),
+        iconCircle(12, 12, 1.2),
+        iconPath("M12 4.8 L13.3 7.5 L16.2 7.9 L14.1 9.9 L14.6 12.8 L12 11.4 L9.4 12.8 L9.9 9.9 L7.8 7.9 L10.7 7.5 Z"),
+        iconPath("M15.5 9.5 L18.5 6.5")
+      ],
+      carbon_line: [
+        iconPath("M3 20 C7 15, 7 9, 11 5"),
+        iconPath("M11 5 C15 9, 15 15, 21 20")
+      ],
+      braided_line: [
+        iconPath("M3 20 C7 15, 9 15, 11 12 C13 9, 15 9, 21 5"),
+        iconPath("M3 14 C7 9, 9 9, 11 6 C13 3, 15 3, 21 -1")
+      ],
+      fluorocarbon_line: [
+        iconPath("M3 20 C7 15, 9 15, 12 12 C15 9, 17 9, 21 5"),
+        iconPath("M12 3 L14 5 L12 7 L10 5 Z")
+      ],
+      fake_lure: [
+        iconPath("M4 12 C6 8, 10 8, 12 12 C14 16, 18 16, 20 12"),
+        iconPath("M12 12 L15 6")
+      ],
+      floating_lure: [
+        iconPath("M4 14 L8 7 L15 7 L19 14 Z"),
+        iconCircle(7, 10, 0.8),
+        iconPath("M19 14 C20 15, 21 15, 21 14")
+      ],
+      deep_diver: [
+        iconPath("M4 15 L8 6 L16 6 L20 15 Z"),
+        iconPath("M12 6 L12 3"),
+        iconPath("M8 18 L16 18")
+      ],
+      soft_bait: [
+        iconPath("M5 12 C5 7, 12 7, 12 12 C12 17, 8 19, 6 16"),
+        iconPath("M12 12 L16 12 L17 16"),
+        iconPath("M16 12 L19 9")
+      ],
+      sharp_hook: [
+        iconPath("M6 3 L6 7 C6 10, 10 11, 10 8 C10 5, 5 6, 5 11 L5 14")
+      ],
+      barbless_hook: [
+        iconPath("M6 3 L6 7 C6 10, 10 11, 10 8 C10 5, 5 6, 5 11 L5 14"),
+        iconPath("M6 3 L8 3")
+      ],
+      circle_hook: [
+        iconPath("M6 3 L6 8 C6 14, 15 14, 15 8 L15 5"),
+        iconPath("M6 3 L9 3")
+      ],
+      small_bobber: [
+        iconPath("M12 3 L12 6"),
+        iconCircle(12, 11, 3.5),
+        iconPath("M12 14.5 L12 20")
+      ],
+      sensitive_bobber: [
+        iconPath("M12 2.5 L12 7"),
+        iconCircle(12, 12, 3),
+        iconPath("M12 15 L12 20")
+      ],
+      glow_bobber: [
+        iconPath("M12 3 L12 8"),
+        iconCircle(12, 12, 4),
+        iconPath("M12 16 L12 20"),
+        iconPath("M5 12 L3 12"),
+        iconPath("M21 12 L19 12"),
+        iconPath("M12 5 L12 3")
+      ],
+      split_shot: [
+        iconPath("M9 4 L15 4 L18 18 L6 18 Z"),
+        iconPath("M12 4 L12 8")
+      ],
+      sliding_sinker: [
+        iconPath("M6 6 L18 6 L16 20 L8 20 Z"),
+        iconPath("M12 6 L12 20")
+      ],
+      heavy_sinker: [
+        iconPath("M9 4 L15 4 L18 20 L6 20 Z"),
+        iconPath("M12 4 L12 8"),
+        iconPath("M10 12 L14 12")
+      ]
+    };
+
+    const ACCESSORY_SLOT_SVG_PATHS = {
+      reel: [iconCircle(12, 12, 4), iconCircle(12, 12, 1.2), iconPath("M14.8 8.8 L18.5 5.5")],
+      line: [iconPath("M3 20 C7 15, 7 9, 11 5"), iconPath("M11 5 C15 9, 15 15, 21 20")],
+      lure: [iconPath("M4 12 C6 8, 10 8, 12 12 C14 16, 18 16, 20 12")],
+      hook: [iconPath("M6 3 L6 7 C6 10, 10 11, 10 8 C10 5, 5 6, 5 11 L5 14")],
+      bobber: [iconPath("M12 3 L12 6"), iconCircle(12, 11, 3.5), iconPath("M12 14.5 L12 20")],
+      sinker: [iconPath("M9 4 L15 4 L18 18 L6 18 Z")]
+    };
+
+    function EquipmentSvg({ item, kind, slot, size = 16, className }) {
+      const id = item && (item.id || item.itemId);
+      const resolvedKind = kind || (item && item.kind === "accessory" ? item.slot : item?.kind) || slot || (item && (item.maxLevel !== undefined ? "rod" : item.capacity !== undefined ? "basket" : item.slot));
+      let paths = null;
+
+      if (resolvedKind === "rod" || (id && ROD_SVG_PATHS[id])) {
+        paths = ROD_SVG_PATHS[id] || ROD_SVG_PATHS.hand;
+      } else if (resolvedKind === "basket" || (id && BASKET_SVG_PATHS[id])) {
+        paths = BASKET_SVG_PATHS[id] || BASKET_SVG_PATHS.small;
+      } else if (id && ACCESSORY_SVG_PATHS[id]) {
+        paths = ACCESSORY_SVG_PATHS[id];
+      } else if (slot && ACCESSORY_SLOT_SVG_PATHS[slot]) {
+        paths = ACCESSORY_SLOT_SVG_PATHS[slot];
+      } else if (resolvedKind && ACCESSORY_SLOT_SVG_PATHS[resolvedKind]) {
+        paths = ACCESSORY_SLOT_SVG_PATHS[resolvedKind];
+      } else {
+        paths = [iconPath("M12 5 L12 19"), iconPath("M5 12 L19 12")];
+      }
+
+      return React.createElement(SvgIcon, { size, className }, paths);
+    }
+
+    function BackpackIcon({ size = 16 }) {
+      return React.createElement(SvgIcon, { size }, [
+        iconPath("M6 3 L18 3 L21 7 L21 21 L3 21 L3 7 Z"),
+        iconPath("M9 3 L9 7"),
+        iconPath("M15 3 L15 7"),
+        iconPath("M6 11 L18 11"),
+        iconPath("M6 16 L18 16")
+      ]);
+    }
+
+    const MAP_SVG_PATHS = {
+      beginner: [
+        iconPath("M3 17 C5 12, 9 12, 11 17"),
+        iconPath("M13 17 C16 12, 20 12, 21 17"),
+        iconPath("M4 17 L20 17 L20 21 L4 21 Z"),
+        iconPath("M7 10 L7 5 L9 7 L11 5 L11 10"),
+        iconPath("M7 10 L11 10")
+      ],
+      forest_lake: [
+        iconPath("M3 15 L7 15 L5 9 Z"),
+        iconPath("M7 15 L11 15 L9 9 Z"),
+        iconPath("M5 15 L5 21"),
+        iconPath("M9 15 L9 21"),
+        iconPath("M12 18 C15 15, 19 15, 21 18 L21 21 L12 21 Z")
+      ],
+      mountain_river: [
+        iconPath("M2 16 L7 6 L12 16"),
+        iconPath("M10 16 L15 8 L20 16"),
+        iconPath("M2 20 C6 17, 10 21, 14 18 C18 15, 21 19, 22 20"),
+        iconPath("M2 21 L22 21")
+      ],
+      deep_sea: [
+        iconPath("M2 8 C5 5, 8 11, 11 8 C14 5, 17 11, 20 8 L22 8"),
+        iconPath("M2 13 C5 10, 8 16, 11 13 C14 10, 17 16, 20 13 L22 13"),
+        iconPath("M2 18 C5 15, 8 21, 11 18 C14 15, 17 21, 20 18 L22 18")
+      ],
+      legendary_waters: [
+        iconPath("M12 3 L13 7 L17 8 L13 9 L12 13 L11 9 L7 8 L11 7 Z"),
+        iconPath("M5 14 L6 16 L8 17 L6 18 L5 20 L4 18 L2 17 L4 16 Z"),
+        iconPath("M18 12 L19 14 L21 15 L19 16 L18 18 L17 16 L15 15 L17 14 Z"),
+        iconPath("M18 20 L18.5 21 L19.5 21.5 L18.5 22 L18 23 L17.5 22 L16.5 21.5 L17.5 21 Z")
+      ]
+    };
+
+    function MapSvg({ map, id, size = 16, className }) {
+      const mapId = (map && map.id) || id;
+      const paths = MAP_SVG_PATHS[mapId] || MAP_SVG_PATHS.beginner;
+      return React.createElement(SvgIcon, { size, className }, paths);
     }
 
     const SHOP_TAB_ORDER = ["鱼竿", "鱼篓", "渔轮", "钓线", "假饵", "鱼钩", "浮漂", "铅坠"];
@@ -292,7 +591,7 @@ window.__ModuleLoader__.load({
                   React.createElement(
                     "div",
                     { className: "dshFishing_header" },
-                    React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+                    React.createElement("span", { className: "dshFishing_title" }, React.createElement(FishingIcon, { size: 16 }), "钓鱼游戏"),
                     React.createElement("button", { className: "dshFishing_close", onClick: () => setExpanded(false) }, "—")
                   ),
                   loadError !== null
@@ -342,7 +641,14 @@ window.__ModuleLoader__.load({
             ? React.createElement(
                 "div",
                 { className: "dshFishing_row" },
-                React.createElement("span", null, fishing.stage === "waiting" ? "⏳ 等待鱼汛" : "🎣 收杆搏鱼")
+                React.createElement(
+                  "span",
+                  { style: { display: "inline-flex", alignItems: "center", gap: 5 } },
+                  fishing.stage === "waiting"
+                    ? React.createElement(EquipmentSvg, { item: { id: "small_bobber" }, slot: "bobber", size: 14 })
+                    : React.createElement(EquipmentSvg, { item: { id: "sea" }, kind: "rod", size: 14 }),
+                  fishing.stage === "waiting" ? "等待鱼汛" : "收杆搏鱼"
+                )
               )
             : null,
           React.createElement("div", { className: "dshFishing_event" }, snap.lastEventText || "等待鱼汛…"),
@@ -352,7 +658,7 @@ window.__ModuleLoader__.load({
             React.createElement(
               "summary",
               { className: "dshFishing_summary" },
-              `🧺 鱼篓 (${snap.inventory.length}/${snap.inventoryCapacity})`
+              React.createElement("span", { style: { display: "inline-flex", alignItems: "center", gap: 5 } }, React.createElement(EquipmentSvg, { item: snap.equippedBasket || { id: "small" }, kind: "basket", size: 14 }), `鱼篓 (${snap.inventory.length}/${snap.inventoryCapacity})`)
             ),
             React.createElement(
               "div",
@@ -382,7 +688,6 @@ window.__ModuleLoader__.load({
         );
 
       const renderEquipment = () => {
-        const SLOT_EMOJIS = { reel: "🎡", line: "🧵", lure: "🪱", hook: "🪝", bobber: "⚪", sinker: "⚫" };
         const SOCKET_POSITIONS = [
           { gridColumn: 1, gridRow: 1 },
           { gridColumn: 3, gridRow: 1 },
@@ -424,7 +729,7 @@ window.__ModuleLoader__.load({
             React.createElement(
               "div",
               { className: "dshFishing_gemHole" },
-              React.createElement("span", { className: "dshFishing_gemIcon" }, accessory ? accessory.emoji : (SLOT_EMOJIS[slot.id] || "➕"))
+              React.createElement("span", { className: "dshFishing_gemIcon" }, React.createElement(EquipmentSvg, { item: accessory, slot: slot.id, size: 17 }))
             ),
             React.createElement("span", { className: "dshFishing_gemLabel" }, accessory ? accessory.name : slot.name),
             empty
@@ -440,7 +745,7 @@ window.__ModuleLoader__.load({
         const rodCell = React.createElement(
           "div",
           { className: "dshFishing_rodSlot", style: { gridColumn: 2, gridRow: 2 } },
-          React.createElement("div", { className: "dshFishing_rodIcon" }, equippedRod.emoji || "🎣"),
+          React.createElement("div", { className: "dshFishing_rodIcon" }, React.createElement(EquipmentSvg, { item: equippedRod, kind: "rod", size: 32 })),
           React.createElement("div", { className: "dshFishing_rodName" }, equippedRod.name || "鱼竿"),
           React.createElement("div", { className: "dshFishing_rodLevel" }, `Lv.${equippedRod.level || 1}`)
         );
@@ -448,7 +753,7 @@ window.__ModuleLoader__.load({
         const basketCell = React.createElement(
           "div",
           { className: "dshFishing_basketSlot", style: { gridColumn: 2, gridRow: 3 } },
-          React.createElement("div", { className: "dshFishing_basketIcon" }, (snap.equippedBasket || {}).emoji || "🧺"),
+          React.createElement("div", { className: "dshFishing_basketIcon" }, React.createElement(EquipmentSvg, { item: snap.equippedBasket || {}, kind: "basket", size: 22 })),
           React.createElement("div", { className: "dshFishing_basketName" }, (snap.equippedBasket || {}).name || "鱼篓")
         );
 
@@ -467,7 +772,7 @@ window.__ModuleLoader__.load({
                   key: rod.id,
                   className: `dshFishing_backpackCell${rod.equipped ? " dshFishing_backpackCellEquipped" : ""}`
                 },
-                React.createElement("span", { className: "dshFishing_slotEmoji" }, rod.emoji),
+                React.createElement("span", { className: "dshFishing_slotIcon" }, React.createElement(EquipmentSvg, { item: rod, kind: "rod", size: 22 })),
                 React.createElement("span", { className: "dshFishing_slotName" }, rod.name),
                 React.createElement("span", { className: "dshFishing_slotMeta" }, `Lv.${rod.level}${rod.equipped ? " · 装备中" : ""}`),
                 React.createElement(
@@ -506,7 +811,7 @@ window.__ModuleLoader__.load({
                   key: basket.id,
                   className: `dshFishing_backpackCell${basket.equipped ? " dshFishing_backpackCellEquipped" : ""}`
                 },
-                React.createElement("span", { className: "dshFishing_slotEmoji" }, basket.emoji),
+                React.createElement("span", { className: "dshFishing_slotIcon" }, React.createElement(EquipmentSvg, { item: basket, kind: "basket", size: 22 })),
                 React.createElement("span", { className: "dshFishing_slotName" }, basket.name),
                 React.createElement("span", { className: "dshFishing_slotMeta" }, `${basket.capacity}格${basket.equipped ? " · 使用中" : ""}`),
                 !basket.equipped
@@ -540,7 +845,7 @@ window.__ModuleLoader__.load({
                 onDragStart: draggable ? (e) => onAccessoryDragStart(e, item) : undefined,
                 onDragEnd: draggable ? onAccessoryDragEnd : undefined
               },
-              React.createElement("span", { className: "dshFishing_slotEmoji" }, item.emoji),
+              React.createElement("span", { className: "dshFishing_slotIcon" }, React.createElement(EquipmentSvg, { item, size: 22 })),
               React.createElement("span", { className: "dshFishing_slotName" }, item.name),
               React.createElement(
                 "span",
@@ -592,7 +897,7 @@ window.__ModuleLoader__.load({
           React.createElement(
             "div",
             { className: "dshFishing_backpackPanel" },
-            React.createElement("div", { className: "dshFishing_backpackHeader" }, "🎒 背包"),
+            React.createElement("div", { className: "dshFishing_backpackHeader" }, React.createElement("span", { style: { display: "inline-flex", alignItems: "center", gap: 5 } }, React.createElement(BackpackIcon, { size: 14 }), "背包")),
             React.createElement(
               "div",
               { className: "dshFishing_backpackScroll" },
@@ -656,7 +961,12 @@ window.__ModuleLoader__.load({
                   React.createElement(
                     "div",
                     { key: `${item.kind}-${item.id}`, className: "dshFishing_row" },
-                    React.createElement("span", null, `${item.emoji} ${item.name}`),
+                    React.createElement(
+                      "span",
+                      { style: { display: "inline-flex", alignItems: "center", gap: 6 } },
+                      React.createElement(EquipmentSvg, { item, size: 18 }),
+                      React.createElement("span", null, item.name)
+                    ),
                     item.owned
                       ? React.createElement("span", { className: "dshFishing_muted" }, "已拥有")
                       : React.createElement(
@@ -680,7 +990,7 @@ window.__ModuleLoader__.load({
 
       const renderMap = () => {
         const maps = snap.maps || [];
-        const currentMap = snap.currentMap || { emoji: "🏞️", name: "初级鱼塘" };
+        const currentMap = snap.currentMap || { id: "beginner", name: "初级鱼塘" };
         const formatRemaining = (ms) => {
           const days = Math.floor(ms / 86400000);
           const hours = Math.floor((ms % 86400000) / 3600000);
@@ -695,7 +1005,7 @@ window.__ModuleLoader__.load({
           React.createElement(
             "div",
             { className: "dshFishing_row" },
-            React.createElement("span", { className: "dshFishing_sectionTitle" }, `🎖️ Lv.${snap.level ?? 1} · ${currentMap.emoji} ${currentMap.name}`),
+            React.createElement("span", { className: "dshFishing_sectionTitle" }, `🎖️ Lv.${snap.level ?? 1} · `, React.createElement("span", { style: { display: "inline-flex", alignItems: "center", gap: 5 } }, React.createElement(MapSvg, { map: currentMap, size: 14 }), currentMap.name)),
             React.createElement("span", { className: "dshFishing_muted" }, `经验 ${snap.experience}${snap.nextLevelExp ? `/${snap.nextLevelExp}` : ""}`)
           ),
           maps.map((map) =>
@@ -705,7 +1015,7 @@ window.__ModuleLoader__.load({
               React.createElement(
                 "div",
                 { className: "dshFishing_row" },
-                React.createElement("span", { className: "dshFishing_mapName" }, `${map.emoji} ${map.name}${map.current ? " · 当前" : ""}`),
+                React.createElement("span", { className: "dshFishing_mapName" }, React.createElement("span", { style: { display: "inline-flex", alignItems: "center", gap: 5 } }, React.createElement(MapSvg, { map, size: 14 }), `${map.name}${map.current ? " · 当前" : ""}`)),
                 React.createElement("span", { className: "dshFishing_muted" }, map.locked ? `Lv.${map.requiredLevel} 解锁` : `入场费 ${map.entryFee}G/天`)
               ),
               React.createElement(
@@ -775,7 +1085,7 @@ window.__ModuleLoader__.load({
           { className: "dshFishing_status" },
           React.createElement("span", null, `Lv.${snap.level ?? 1} · 金币 ${snap.coins}`),
           React.createElement("span", null, `鱼饵 ${bait}`),
-          React.createElement("span", null, `鱼 ${snap.inventory.length}/${snap.inventoryCapacity} · ${(snap.currentMap || {}).emoji || "🏞️"}`)
+          React.createElement("span", null, `鱼 ${snap.inventory.length}/${snap.inventoryCapacity} · `, React.createElement(MapSvg, { map: snap.currentMap || { id: "beginner" }, size: 12 }))
         );
 
       return React.createElement(
@@ -804,7 +1114,7 @@ window.__ModuleLoader__.load({
                     React.createElement(
                       "div",
                       { className: "dshFishing_header" },
-                      React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+                      React.createElement("span", { className: "dshFishing_title" }, React.createElement(FishingIcon, { size: 16 }), "钓鱼游戏"),
                       React.createElement("button", { className: "dshFishing_close", onClick: () => setExpanded(false) }, "—")
                     ),
                     loadError !== null
@@ -820,7 +1130,7 @@ window.__ModuleLoader__.load({
                       React.createElement(
                         "div",
                         { className: "dshFishing_header" },
-                        React.createElement("span", { className: "dshFishing_title" }, "🎣 钓鱼游戏"),
+                        React.createElement("span", { className: "dshFishing_title" }, React.createElement(FishingIcon, { size: 16 }), "钓鱼游戏"),
                         React.createElement(
                           "button",
                           { className: "dshFishing_close", title: "收起", onClick: () => setExpanded(false) },
