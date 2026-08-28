@@ -9,7 +9,9 @@ buy and upgrade rods. Catching fish grants experience and raises your level;
 higher levels unlock new maps. Except for the beginner map, entering another
 map requires a ticket. Each ticket lasts one real day, and you can buy a
 multi-day ticket at once. Different maps contain different fish, and there are
-more rod/basket/accessory options to collect.
+more rod/basket/accessory options to collect. Each newly caught fish unlocks
+its entry in the in-game fish codex (图鉴), which records habitat, favorite
+bait, tips, and your personal best catches.
 
 The game is opened from the left sidebar: a `Fishing` button is placed above
 the settings button and styled like the other sidebar buttons. Clicking it

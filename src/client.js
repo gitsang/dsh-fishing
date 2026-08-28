@@ -94,6 +94,25 @@ window.__ModuleLoader__.load({
 .dshFishing_mapMeta{font-size:11px;color:var(--dsw-alias-label-tertiary,#8a919f);display:flex;flex-wrap:wrap;gap:4px}
 .dshFishing_mapDays{width:58px;padding:3px 6px;border:1px solid var(--dsw-alias-border-l2,#d8dbe2);border-radius:6px;font-size:12px;box-sizing:border-box}
 .dshFishing_mapFish{font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.4}
+.dshFishing_codexHeader{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;font-weight:700;padding:2px 0}
+.dshFishing_codexGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.dshFishing_codexCard{display:flex;flex-direction:column;gap:6px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:8px;background:var(--dsw-alias-bg-base,#ffffff)}
+.dshFishing_codexCardLocked{opacity:.55;background:var(--dsw-alias-interactive-bg,#f7f8fa);filter:grayscale(1)}
+.dshFishing_codexTop{display:flex;align-items:center;gap:8px;min-width:0}
+.dshFishing_codexIcon{width:40px;height:40px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:24px;border-radius:8px;background:var(--dsw-alias-interactive-bg,#f0f1f4);color:var(--dsw-alias-label-tertiary,#8a919f)}
+.dshFishing_codexTitle{flex:1;min-width:0}
+.dshFishing_codexName{font-size:13px;font-weight:700;color:var(--dsw-alias-label-primary,#1f2329);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dshFishing_codexRarity{font-size:10px;font-weight:700;line-height:1.6}
+.dshFishing_codexRarityCommon{color:#5a8a5e}
+.dshFishing_codexRarityUncommon{color:#3b82f6}
+.dshFishing_codexRarityRare{color:#a855f7}
+.dshFishing_codexRarityEpic{color:#f59e0b}
+.dshFishing_codexRarityLegendary{color:#ef4444}
+.dshFishing_codexDesc{font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.45}
+.dshFishing_codexFields{display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.4}
+.dshFishing_codexField{display:flex;gap:4px}
+.dshFishing_codexLabel{flex:0 0 auto;color:var(--dsw-alias-label-tertiary,#8a919f)}
+.dshFishing_codexRecord{border-top:1px dashed var(--dsw-alias-border-l1,#eef0f3);padding-top:4px;font-size:10px;color:var(--dsw-alias-label-tertiary,#8a919f)}
 `;
     const tagId = "@gitsang/dsh-fishing/style.css";
     if (typeof document !== "undefined" && document.querySelector(`style[data-plugin-css="${tagId}"]`) === null) {
@@ -651,6 +670,8 @@ window.__ModuleLoader__.load({
 
     const SHOP_TAB_ORDER = ["鱼竿", "鱼篓", "渔轮", "钓线", "假饵", "鱼钩", "浮漂", "铅坠"];
     const SHOP_SLOT_CATEGORIES = { reel: "渔轮", line: "钓线", lure: "假饵", hook: "鱼钩", bobber: "浮漂", sinker: "铅坠" };
+    const RARITY_LABELS = { common: "普通", uncommon: "稀有", rare: "珍贵", epic: "史诗", legendary: "传说" };
+    const RARITY_CLASS = { common: "dshFishing_codexRarityCommon", uncommon: "dshFishing_codexRarityUncommon", rare: "dshFishing_codexRarityRare", epic: "dshFishing_codexRarityEpic", legendary: "dshFishing_codexRarityLegendary" };
 
     function FishingWidget({ wide }) {
       const [snap, setSnap] = useState(null);
@@ -805,7 +826,7 @@ window.__ModuleLoader__.load({
         React.createElement(
           "div",
           { className: "dshFishing_tabs" },
-          [["game", "游戏"], ["map", "地图"], ["equip", "装备"], ["shop", "商店"]].map(([id, label]) =>
+          [["game", "游戏"], ["codex", "图鉴"], ["map", "地图"], ["equip", "装备"], ["shop", "商店"]].map(([id, label]) =>
             React.createElement(
               "button",
               {
@@ -1278,6 +1299,87 @@ window.__ModuleLoader__.load({
         );
       };
 
+      const renderCodex = () => {
+        const codex = snap.encyclopedia || [];
+        const unlockedCount = codex.filter((item) => item.unlocked).length;
+        const rarityLabel = (rarity) => RARITY_LABELS[rarity] || rarity;
+        const formatKg = (grams) => `${(grams / 1000).toFixed(1)}kg`;
+        const renderField = (label, value) =>
+          value
+            ? React.createElement(
+                "div",
+                { className: "dshFishing_codexField" },
+                React.createElement("span", { className: "dshFishing_codexLabel" }, label),
+                React.createElement("span", null, value)
+              )
+            : null;
+
+        return React.createElement(
+          "div",
+          { className: "dshFishing_section" },
+          React.createElement(
+            "div",
+            { className: "dshFishing_codexHeader" },
+            React.createElement("span", null, "🐟 鱼类图鉴"),
+            React.createElement("span", { className: "dshFishing_muted" }, `已解锁 ${unlockedCount}/${codex.length}`)
+          ),
+          codex.length === 0
+            ? React.createElement("div", { className: "dshFishing_empty" }, "图鉴正在整理中…")
+            : React.createElement(
+                "div",
+                { className: "dshFishing_codexGrid" },
+                codex.map((fish) => {
+                  const locked = !fish.unlocked;
+                  return React.createElement(
+                    "div",
+                    { key: fish.id, className: `dshFishing_codexCard${locked ? " dshFishing_codexCardLocked" : ""}` },
+                    React.createElement(
+                      "div",
+                      { className: "dshFishing_codexTop" },
+                      React.createElement(
+                        "span",
+                        { className: "dshFishing_codexIcon" },
+                        locked ? "❓" : React.createElement(FishSvg, { fish, size: 24 })
+                      ),
+                      React.createElement(
+                        "div",
+                        { className: "dshFishing_codexTitle" },
+                        React.createElement("div", { className: "dshFishing_codexName" }, locked ? "???" : fish.name),
+                        React.createElement(
+                          "span",
+                          { className: `dshFishing_codexRarity ${locked ? "" : (RARITY_CLASS[fish.rarity] || "")}` },
+                          locked ? "未解锁" : `${rarityLabel(fish.rarity)} · ${fish.rodName || fish.requiredRodId || "未知鱼竿"}`
+                        )
+                      )
+                    ),
+                    locked
+                      ? React.createElement("div", { className: "dshFishing_codexDesc" }, "钓到这条鱼后即可解锁图鉴详情。")
+                      : React.createElement(
+                          React.Fragment,
+                          null,
+                          React.createElement("div", { className: "dshFishing_codexDesc" }, fish.description),
+                          React.createElement(
+                            "div",
+                            { className: "dshFishing_codexFields" },
+                            renderField("出没", (fish.maps || []).join("、")),
+                            renderField("习性", fish.habitat),
+                            renderField("偏好饵", fish.favoriteBait),
+                            renderField("体型", `${fish.minLengthCm}-${fish.maxLengthCm}cm · ${formatKg(fish.minWeightGrams)}-${formatKg(fish.maxWeightGrams)}`),
+                            renderField("参考价", `${fish.baseValue}G`),
+                            renderField("攻略", fish.tips)
+                          ),
+                          React.createElement(
+                            "div",
+                            { className: "dshFishing_codexRecord" },
+                            `已钓 ${fish.catches} 次 · 纪录 ${fish.maxCaughtWeightGrams ? `${formatKg(fish.maxCaughtWeightGrams)} / ${fish.maxCaughtLengthCm}cm` : "暂无"}`
+                          )
+                        )
+                  );
+                })
+              )
+        );
+      };
+
       const renderStatus = () =>
         React.createElement(
           "div",
@@ -1344,7 +1446,7 @@ window.__ModuleLoader__.load({
                     React.createElement(
                       "div",
                       { className: "dshFishing_content" },
-                      tab === "game" ? renderGame() : tab === "map" ? renderMap() : tab === "equip" ? renderEquipment() : renderShop()
+                      tab === "game" ? renderGame() : tab === "codex" ? renderCodex() : tab === "map" ? renderMap() : tab === "equip" ? renderEquipment() : renderShop()
                     ),
                     renderStatus()
                   )
