@@ -123,7 +123,7 @@ window.__ModuleLoader__.load({
       return React.createElement(
         "div",
         { className: "dshFishing_fishRow" },
-        React.createElement("span", null, fish.emoji),
+        React.createElement(FishSvg, { fish, size: 18 }),
         React.createElement(
           "span",
           { className: "dshFishing_fishMain" },
@@ -455,6 +455,197 @@ window.__ModuleLoader__.load({
     function MapSvg({ map, id, size = 16, className }) {
       const mapId = (map && map.id) || id;
       const paths = MAP_SVG_PATHS[mapId] || MAP_SVG_PATHS.beginner;
+      return React.createElement(SvgIcon, { size, className }, paths);
+    }
+
+    const FISH_SVG_PATHS = {
+      carp: [
+        iconPath("M4 12 C4 7, 9 4, 14 5 C19 6, 21 10, 21 12 C21 14, 19 18, 14 19 C9 20, 4 17, 4 12 Z"),
+        iconPath("M20 12 L23 8 L23 16 Z"),
+        iconPath("M8 5 C9 2, 13 2, 14 5"),
+        iconCircle(7, 10, 0.8),
+        iconPath("M7 14 L15 15")
+      ],
+      crucian: [
+        iconPath("M4 12 C4 7, 10 3, 15 5 C20 7, 21 11, 21 12 C21 14, 19 18, 14 19 C9 20, 4 17, 4 12 Z"),
+        iconPath("M20 12 L23 7 L23 17 Z"),
+        iconPath("M4 12 L1 11"),
+        iconPath("M4 14 L1 15"),
+        iconCircle(8, 10, 0.8)
+      ],
+      koi: [
+        iconPath("M4 12 C4 6, 10 4, 15 6 C19 8, 21 11, 21 12 C21 15, 18 19, 13 20 C8 21, 4 18, 4 12 Z"),
+        iconPath("M20 12 L23 8 L23 16 Z"),
+        iconCircle(10, 8, 0.7),
+        iconCircle(13, 13, 0.7),
+        iconCircle(8, 14, 0.7),
+        iconCircle(7, 9, 0.8)
+      ],
+      bass: [
+        iconPath("M4 12 C4 8, 8 5, 14 6 C18 7, 21 10, 21 12 C21 14, 18 17, 13 18 C8 19, 4 16, 4 12 Z"),
+        iconPath("M20 12 L23 9 L23 15 Z"),
+        iconPath("M8 6 L9 3 L12 5 L13 2 L16 5"),
+        iconCircle(7, 10, 0.8),
+        iconPath("M7 14 L16 15")
+      ],
+      catfish: [
+        iconPath("M4 12 C4 7, 9 4, 14 5 C18 6, 21 9, 21 12 C21 15, 18 18, 13 19 C8 20, 4 17, 4 12 Z"),
+        iconPath("M20 12 L24 10 L24 14 Z"),
+        iconPath("M4 11 L0 9"),
+        iconPath("M4 12 L0 12"),
+        iconPath("M4 13 L0 15"),
+        iconCircle(7, 10, 0.8)
+      ],
+      arowana: [
+        iconPath("M3 12 C4 8, 9 5, 15 6 C19 7, 21 10, 21 12 C21 14, 19 17, 14 18 C9 19, 4 16, 3 12 Z"),
+        iconPath("M20 12 L23 8 L23 16 Z"),
+        iconPath("M3 12 L0 10"),
+        iconPath("M3 13 L0 15"),
+        iconPath("M8 8 L16 9"),
+        iconPath("M8 11 L16 12"),
+        iconPath("M8 14 L16 15"),
+        iconCircle(7, 9, 0.8)
+      ],
+      trout: [
+        iconPath("M4 12 C4 7, 9 4, 14 5 C19 6, 21 10, 21 12 C21 14, 19 18, 14 19 C9 20, 4 17, 4 12 Z"),
+        iconPath("M20 12 L23 7 L23 17 Z"),
+        iconCircle(10, 9, 0.5),
+        iconCircle(13, 12, 0.5),
+        iconCircle(9, 13, 0.5),
+        iconCircle(15, 9, 0.5),
+        iconCircle(7, 10, 0.8)
+      ],
+      mandarin: [
+        iconPath("M4 12 C4 8, 8 5, 14 6 C18 7, 21 10, 21 12 C21 14, 18 17, 13 18 C8 19, 4 16, 4 12 Z"),
+        iconPath("M20 12 L23 9 L23 15 Z"),
+        iconPath("M8 6 L9 2 L11 5 L13 2 L15 6"),
+        iconPath("M9 7 L8 17"),
+        iconPath("M12 6 L11 18"),
+        iconPath("M15 7 L14 17"),
+        iconCircle(7, 10, 0.8)
+      ],
+      bream: [
+        iconPath("M5 12 C5 6, 9 3, 13 4 C17 5, 20 8, 20 12 C20 16, 17 19, 13 20 C9 21, 5 18, 5 12 Z"),
+        iconPath("M19 12 L22 9 L22 15 Z"),
+        iconPath("M5 12 L3 12"),
+        iconCircle(8, 9, 0.8),
+        iconPath("M8 16 L15 16")
+      ],
+      grass_carp: [
+        iconPath("M3 12 C4 7, 10 4, 16 6 C20 7, 21 10, 21 12 C21 14, 19 18, 14 19 C9 20, 3 17, 3 12 Z"),
+        iconPath("M20 12 L23 8 L23 16 Z"),
+        iconCircle(7, 10, 0.8),
+        iconPath("M7 13 L17 14")
+      ],
+      black_carp: [
+        iconPath("M3 12 C4 7, 10 4, 16 6 C20 7, 21 10, 21 12 C21 14, 19 18, 14 19 C9 20, 3 17, 3 12 Z"),
+        iconPath("M20 12 L23 8 L23 16 Z"),
+        iconCircle(7, 10, 0.8),
+        iconPath("M8 8 C10 10, 12 10, 14 8"),
+        iconPath("M8 12 C10 14, 12 14, 14 12"),
+        iconPath("M8 16 C10 18, 12 18, 14 16")
+      ],
+      tilapia: [
+        iconPath("M5 12 C5 7, 9 4, 14 5 C18 6, 21 9, 21 12 C21 15, 18 18, 13 19 C8 20, 5 17, 5 12 Z"),
+        iconPath("M20 12 L23 9 L23 15 Z"),
+        iconPath("M9 5 C10 3, 14 3, 15 6"),
+        iconCircle(8, 10, 0.8),
+        iconPath("M9 8 L9 16")
+      ],
+      perch: [
+        iconPath("M4 12 C4 8, 8 5, 14 6 C18 7, 21 10, 21 12 C21 14, 18 17, 13 18 C8 19, 4 16, 4 12 Z"),
+        iconPath("M20 12 L23 9 L23 15 Z"),
+        iconPath("M9 6 L8 18"),
+        iconPath("M13 6 L12 18"),
+        iconCircle(7, 10, 0.8),
+        iconPath("M8 14 L5 18")
+      ],
+      eel: [
+        iconPath("M2 14 C6 8, 12 6, 17 8 C21 10, 22 13, 21 15 C20 18, 15 20, 10 18 C6 16, 3 18, 2 14 Z"),
+        iconPath("M20 15 L23 13 L23 17 Z"),
+        iconCircle(6, 11, 0.8),
+        iconPath("M8 10 C12 9, 16 10, 19 13")
+      ],
+      char: [
+        iconPath("M4 12 C4 7, 9 4, 14 5 C19 6, 21 10, 21 12 C21 14, 19 18, 14 19 C9 20, 4 17, 4 12 Z"),
+        iconPath("M20 12 L23 8 L23 16 Z"),
+        iconCircle(10, 10, 0.6),
+        iconCircle(13, 13, 0.6),
+        iconCircle(9, 13, 0.6),
+        iconCircle(7, 10, 0.8)
+      ],
+      salmon: [
+        iconPath("M4 12 C4 6, 9 3, 15 5 C20 7, 21 11, 21 12 C21 15, 18 19, 13 20 C8 21, 4 18, 4 12 Z"),
+        iconPath("M20 12 L23 7 L23 17 Z"),
+        iconCircle(7, 9, 0.8),
+        iconPath("M7 13 L16 14")
+      ],
+      yellow_croaker: [
+        iconPath("M4 12 C4 8, 8 5, 14 6 C18 7, 21 10, 21 12 C21 14, 18 17, 13 18 C8 19, 4 16, 4 12 Z"),
+        iconPath("M20 12 L23 9 L23 15 Z"),
+        iconCircle(7, 10, 0.8),
+        iconPath("M6 12 L9 12")
+      ],
+      mackerel: [
+        iconPath("M3 12 C4 6, 10 3, 16 5 C20 7, 21 10, 21 12 C21 14, 19 18, 14 19 C9 20, 3 17, 3 12 Z"),
+        iconPath("M20 12 L24 7 L24 17 Z"),
+        iconPath("M8 7 C10 10, 12 10, 14 7"),
+        iconPath("M8 11 C10 14, 12 14, 14 11"),
+        iconPath("M8 15 C10 18, 12 18, 14 15"),
+        iconCircle(7, 9, 0.8)
+      ],
+      grouper: [
+        iconPath("M4 12 C4 6, 9 3, 14 4 C19 5, 21 9, 21 12 C21 16, 18 20, 13 21 C8 22, 4 18, 4 12 Z"),
+        iconPath("M20 12 L23 9 L23 15 Z"),
+        iconCircle(10, 8, 0.6),
+        iconCircle(13, 11, 0.6),
+        iconCircle(9, 14, 0.6),
+        iconCircle(14, 16, 0.6),
+        iconCircle(7, 9, 0.8)
+      ],
+      tuna: [
+        iconPath("M2 12 C3 5, 10 2, 17 5 C21 7, 22 10, 22 12 C22 15, 19 19, 14 20 C8 21, 2 18, 2 12 Z"),
+        iconPath("M21 12 L24 7 L24 17 Z"),
+        iconPath("M8 13 L5 18"),
+        iconCircle(6, 9, 0.8),
+        iconPath("M8 15 L17 16")
+      ],
+      marlin: [
+        iconPath("M3 12 L0 12"),
+        iconPath("M3 12 C4 7, 10 4, 16 6 C20 7, 22 10, 22 12 C22 14, 20 18, 15 19 C9 20, 3 17, 3 12 Z"),
+        iconPath("M21 12 L24 7 L24 17 Z"),
+        iconPath("M7 5 C10 1, 15 1, 18 6"),
+        iconCircle(7, 10, 0.8)
+      ],
+      sturgeon: [
+        iconPath("M2 12 L5 10 L5 14 Z"),
+        iconPath("M5 11 C7 7, 12 5, 17 7 C21 9, 22 12, 21 14 C20 17, 14 19, 9 18 C6 17, 5 15, 5 11 Z"),
+        iconPath("M20 14 L23 11 L23 17 Z"),
+        iconPath("M8 8 L8 17"),
+        iconPath("M12 7 L12 18"),
+        iconPath("M16 8 L16 17"),
+        iconCircle(7, 10, 0.8)
+      ],
+      king_salmon: [
+        iconPath("M4 12 C4 6, 9 3, 15 5 C20 7, 21 11, 21 12 C21 15, 18 19, 13 20 C8 21, 4 18, 4 12 Z"),
+        iconPath("M20 12 L23 7 L23 17 Z"),
+        iconPath("M10 3 L11 5 L13 5 L11.5 6.5 L12.5 8 L10 6.5 L7.5 8 L8.5 6.5 L7 5 L9 5 Z"),
+        iconCircle(7, 9, 0.8),
+        iconPath("M8 13 L16 14")
+      ],
+      golden_carp: [
+        iconPath("M4 12 C4 6, 10 4, 15 6 C19 8, 21 11, 21 12 C21 15, 18 19, 13 20 C8 21, 4 18, 4 12 Z"),
+        iconPath("M20 12 L23 7 L23 17 Z"),
+        iconPath("M4 12 L1 11"),
+        iconPath("M4 13 L1 14"),
+        iconPath("M12 8 L13 10 L15 10.5 L13.5 12 L14 14 L12 12.8 L10 14 L10.5 12 L9 10.5 L11 10 Z"),
+        iconCircle(7, 9, 0.8)
+      ]
+    };
+
+    function FishSvg({ fish, id, size = 16, className }) {
+      const fishId = (fish && (fish.speciesId || fish.id)) || id;
+      const paths = FISH_SVG_PATHS[fishId] || FISH_SVG_PATHS.carp;
       return React.createElement(SvgIcon, { size, className }, paths);
     }
 
@@ -1030,7 +1221,15 @@ window.__ModuleLoader__.load({
               React.createElement(
                 "div",
                 { className: "dshFishing_mapFish" },
-                `鱼类：${map.fish.map((fish) => `${fish.emoji}${fish.name}`).join(" ")}`
+                "鱼类：",
+                map.fish.map((fish) =>
+                  React.createElement(
+                    "span",
+                    { key: fish.id, style: { display: "inline-flex", alignItems: "center", gap: 4, marginRight: 6 } },
+                    React.createElement(FishSvg, { fish, size: 14 }),
+                    fish.name
+                  )
+                )
               ),
               map.locked
                 ? null
