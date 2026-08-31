@@ -83,6 +83,13 @@ window.__ModuleLoader__.load({
 .dshFishing_backpackCellDisabled{opacity:.5;background:var(--dsw-alias-interactive-bg,#f0f1f4)}
 .dshFishing_slotAction{margin-top:2px;padding:1px 6px;font-size:10px}
 .dshFishing_backpackTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);margin-top:4px}
+.dshFishing_backpackTabs{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.dshFishing_inventoryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px}
+.dshFishing_inventoryCell{aspect-ratio:1;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;align-items:center;justify-content:center;position:relative;box-sizing:border-box;cursor:pointer;font-size:22px;line-height:1;min-width:0;transition:border-color .15s ease,background .15s ease}
+.dshFishing_inventoryCell:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6);background:var(--dsw-alias-interactive-bg-hover,rgba(0,0,0,.03))}
+.dshFishing_inventoryCellEquipped{border-color:var(--dsw-alias-state-business-primary,#3b82f6);background:rgba(59,130,246,.08);box-shadow:0 0 0 1px rgba(59,130,246,.12)}
+.dshFishing_inventoryCellDisabled{opacity:.45;background:var(--dsw-alias-interactive-bg,#f0f1f4)}
+.dshFishing_inventoryCellBadge{position:absolute;top:2px;right:4px;font-size:9px;font-weight:700;color:var(--dsw-alias-state-business-primary,#3b82f6);pointer-events:none}
 .dshFishing_shopGroup{margin-top:6px}
 .dshFishing_shopCard{border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:8px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;align-items:center;justify-content:space-between;gap:8px;transition:border-color .15s ease,box-shadow .15s ease}
 .dshFishing_shopCard:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6);box-shadow:0 2px 8px rgba(0,0,0,.05)}
@@ -726,6 +733,7 @@ window.__ModuleLoader__.load({
 
     const SHOP_TAB_ORDER = ["鱼竿", "鱼篓", "渔轮", "钓线", "假饵", "鱼钩", "浮漂", "铅坠"];
     const SHOP_SLOT_CATEGORIES = { reel: "渔轮", line: "钓线", lure: "假饵", hook: "鱼钩", bobber: "浮漂", sinker: "铅坠" };
+    const BACKPACK_TAB_ORDER = ["全部", "鱼竿", "鱼篓", "渔轮", "钓线", "假饵", "鱼钩", "浮漂", "铅坠"];
     const ROD_TYPE_LABELS = { hand: "手竿", sea: "海竿", lure: "路亚竿", feeder: "飞德杆", fly: "飞蝇竿", surf: "滩钓竿" };
 
     function FishingWidget({ wide }) {
@@ -735,6 +743,7 @@ window.__ModuleLoader__.load({
       const [mapDays, setMapDays] = useState(1);
       const [selectedMapId, setSelectedMapId] = useState(null);
       const [shopTab, setShopTab] = useState("鱼竿");
+      const [backpackTab, setBackpackTab] = useState("全部");
       const [busy, setBusy] = useState(false);
       const [loadError, setLoadError] = useState(null);
       const [actionError, setActionError] = useState(null);
@@ -903,11 +912,57 @@ window.__ModuleLoader__.load({
         return lines;
       };
 
+      const rodTooltip = (rod) => {
+        const lines = [rod.name || "鱼竿"];
+        if (rod.type) lines.push(`类型：${rod.type}`);
+        if (rod.model) lines.push(`型号：${rod.model}`);
+        if (rod.material) lines.push(`材质：${rod.material}`);
+        if (rod.length) lines.push(`长度：${rod.length}`);
+        if (rod.sections) lines.push(`节数：${rod.sections}节`);
+        if (rod.power) lines.push(`硬度：${rod.power}`);
+        if (rod.action) lines.push(`调性：${rod.action}`);
+        if (rod.weight) lines.push(`自重：${rod.weight}`);
+        if (rod.lureWeight && rod.lureWeight !== "—") lines.push(`饵重：${rod.lureWeight}`);
+        if (rod.lineWeight) lines.push(`线重：${rod.lineWeight}`);
+        if (rod.closedLength) lines.push(`收纳：${rod.closedLength}`);
+        if (rod.tipDiameter) lines.push(`先径：${rod.tipDiameter}`);
+        if (rod.buttDiameter) lines.push(`元径：${rod.buttDiameter}`);
+        if (rod.baseSuccessRate) lines.push(`基础成功率：${Math.round(rod.baseSuccessRate * 100)}%`);
+        if (rod.equipped) lines.push("当前装备中");
+        else lines.push("双击装备");
+        return lines.join("\n");
+      };
+
+      const basketTooltip = (basket) => {
+        const lines = [basket.name || "鱼篓"];
+        if (basket.capacity) lines.push(`容量：${basket.capacity}格`);
+        if (basket.basePrice) lines.push(`价格：${basket.basePrice}G`);
+        if (basket.equipped) lines.push("当前使用中");
+        else lines.push("双击装备");
+        return lines.join("\n");
+      };
+
+      const accessoryTooltip = (item, equippedInSlot) => {
+        const lines = [item.name || "配件"];
+        if (item.slotName) lines.push(`类型：${item.slotName}`);
+        lines.push(...accessoryAttrLines(item));
+        if (item.basePrice) lines.push(`价格：${item.basePrice}G`);
+        if (item.equipped) lines.push("当前已装备（双击卸下）");
+        else if (item.canEquip) lines.push("可装备（双击装备）");
+        else lines.push("当前鱼竿不适用");
+        if (equippedInSlot && equippedInSlot.itemId !== item.itemId) {
+          lines.push("", "── 当前已装备 ──", equippedInSlot.name || "未知配件");
+          const equippedLines = accessoryAttrLines(equippedInSlot);
+          if (equippedLines.length > 0) lines.push(...equippedLines);
+        }
+        return lines.join("\n");
+      };
+
       const renderTabBar = () =>
         React.createElement(
           "div",
           { className: "dshFishing_tabs" },
-          [["game", "游戏"], ["codex", "图鉴"], ["map", "地图"], ["equip", "装备"], ["shop", "商店"]].map(([id, label]) =>
+          [["game", "游戏"], ["map", "地图"], ["equip", "装备"], ["shop", "商店"], ["codex", "图鉴"]].map(([id, label]) =>
             React.createElement(
               "button",
               {
@@ -999,11 +1054,25 @@ window.__ModuleLoader__.load({
               })
               .map((slot) => ({ id: slot.slot, name: slot.name }));
         const accessorySlotById = new Map((snap.equippedAccessories || []).map((slot) => [slot.slot, slot]));
+        const ownedRods = snap.rods.filter((rod) => rod.owned);
+        const ownedBaskets = snap.baskets.filter((basket) => basket.owned);
+        const ownedAccessories = snap.items || [];
+
+        const equippedAccessoryDetail = (slotId) => {
+          const slot = accessorySlotById.get(slotId);
+          if (!slot || !slot.accessory) return null;
+          return ownedAccessories.find((item) => item.itemId === slot.accessory.id) || null;
+        };
 
         const renderAccessoryCell = (slot, position) => {
           const data = accessorySlotById.get(slot.id);
           const accessory = data && data.accessory ? data.accessory : null;
+          const detail = equippedAccessoryDetail(slot.id);
           const empty = !accessory;
+          const slotCategory = SHOP_SLOT_CATEGORIES[slot.id] || slot.name;
+          const tooltip = detail
+            ? accessoryTooltip({ ...detail, equipped: true, canEquip: true }, null)
+            : `${slot.name}\n点击切换到背包分类`;
           const slotClassName = [
             "dshFishing_gemSlot",
             empty ? "dshFishing_gemSlotEmpty" : "dshFishing_gemSlotFilled",
@@ -1015,6 +1084,9 @@ window.__ModuleLoader__.load({
               key: slot.id,
               className: slotClassName,
               style: { gridColumn: position.gridColumn, gridRow: position.gridRow },
+              title: tooltip,
+              onClick: () => setBackpackTab(slotCategory),
+              onDoubleClick: detail ? () => { if (!busy) send({ type: "UnequipAccessory", slot: slot.id }); } : undefined,
               onDragOver: (e) => onAccessorySlotDragOver(e, { slot: slot.id }),
               onDragLeave: onAccessorySlotDragLeave,
               onDrop: (e) => onAccessorySlotDrop(e, { slot: slot.id })
@@ -1024,168 +1096,126 @@ window.__ModuleLoader__.load({
               { className: "dshFishing_gemHole" },
               React.createElement("span", { className: "dshFishing_gemIcon" }, React.createElement(EquipmentSvg, { item: accessory, slot: slot.id, size: 17 }))
             ),
-            React.createElement("span", { className: "dshFishing_gemLabel" }, accessory ? accessory.name : slot.name),
-            empty
-              ? React.createElement("span", { className: "dshFishing_gemSlotHint" }, "空槽")
-              : React.createElement(
-                  "button",
-                  { className: "dshFishing_btn dshFishing_slotAction dshFishing_gemUnequip", disabled: busy, onClick: () => send({ type: "UnequipAccessory", slot: slot.id }) },
-                  "卸下"
-                )
+            React.createElement("span", { className: "dshFishing_gemLabel" }, accessory ? accessory.name : slot.name)
           );
         };
 
         const rodCell = React.createElement(
           "div",
-          { className: "dshFishing_rodSlot", style: { gridColumn: 2, gridRow: 2 } },
+          {
+            className: "dshFishing_rodSlot",
+            style: { gridColumn: 2, gridRow: 2 },
+            title: rodTooltip({ ...equippedRod, equipped: true }),
+            onClick: () => setBackpackTab("鱼竿")
+          },
           React.createElement("div", { className: "dshFishing_rodIcon" }, React.createElement(EquipmentSvg, { item: equippedRod, kind: "rod", size: 32 })),
-          React.createElement("div", { className: "dshFishing_rodName" }, equippedRod.name || "鱼竿"),
-          React.createElement(
-            "div",
-            { className: "dshFishing_rodLevel" },
-            rodAttrLines(equippedRod).slice(0, 5).map((line, index) =>
-              React.createElement("div", { key: index }, line)
-            )
-          )
+          React.createElement("div", { className: "dshFishing_rodName" }, equippedRod.name || "鱼竿")
         );
 
         const basketCell = React.createElement(
           "div",
-          { className: "dshFishing_basketSlot", style: { gridColumn: 2, gridRow: 3 } },
+          {
+            className: "dshFishing_basketSlot",
+            style: { gridColumn: 2, gridRow: 3 },
+            title: basketTooltip({ ...(snap.equippedBasket || {}), equipped: true }),
+            onClick: () => setBackpackTab("鱼篓")
+          },
           React.createElement("div", { className: "dshFishing_basketIcon" }, React.createElement(EquipmentSvg, { item: snap.equippedBasket || {}, kind: "basket", size: 22 })),
           React.createElement("div", { className: "dshFishing_basketName" }, (snap.equippedBasket || {}).name || "鱼篓")
         );
 
         const accessoryCells = accessorySlots.map((slot, index) => renderAccessoryCell(slot, SOCKET_POSITIONS[index] || { gridColumn: 1, gridRow: 1 }));
 
-        const renderRodBackpack = () => {
-          const rods = snap.rods.filter((rod) => rod.owned);
-          if (rods.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有鱼竿");
-          return React.createElement(
+        const renderBackpackTabs = () =>
+          React.createElement(
             "div",
-            { className: "dshFishing_backpackGrid" },
-            rods.map((rod) =>
+            { className: "dshFishing_backpackTabs" },
+            BACKPACK_TAB_ORDER.map((category) =>
               React.createElement(
-                "div",
+                "button",
                 {
-                  key: rod.id,
-                  className: `dshFishing_backpackCell${rod.equipped ? " dshFishing_backpackCellEquipped" : ""}`
+                  key: category,
+                  className: `dshFishing_shopTab${backpackTab === category ? " dshFishing_shopTabActive" : ""}`,
+                  onClick: () => setBackpackTab(category)
                 },
-                React.createElement("span", { className: "dshFishing_slotIcon" }, React.createElement(EquipmentSvg, { item: rod, kind: "rod", size: 22 })),
-                React.createElement("span", { className: "dshFishing_slotName" }, rod.name),
-                React.createElement(
-                  "div",
-                  { className: "dshFishing_slotMeta" },
-                  rodAttrLines(rod).slice(0, 4).map((line, index) =>
-                    React.createElement("div", { key: index }, line)
-                  ),
-                  rod.equipped ? React.createElement("div", null, "装备中") : null
-                ),
-                !rod.equipped
-                  ? React.createElement(
-                      "button",
-                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipRod", rodId: rod.id }) },
-                      "装备"
-                    )
-                  : null
+                category
               )
             )
+          );
+
+        const renderInventoryCell = (entry) => {
+          const kind = entry.kind;
+          const data = entry.data;
+          let icon = null;
+          let tooltip = "";
+          let equipped = false;
+          let disabled = false;
+          let onDoubleClick = undefined;
+
+          if (kind === "rod") {
+            icon = React.createElement(EquipmentSvg, { item: data, kind: "rod", size: 24 });
+            tooltip = rodTooltip(data);
+            equipped = !!data.equipped;
+            onDoubleClick = () => {
+              if (busy || equipped) return;
+              send({ type: "EquipRod", rodId: data.id });
+            };
+          } else if (kind === "basket") {
+            icon = React.createElement(EquipmentSvg, { item: data, kind: "basket", size: 24 });
+            tooltip = basketTooltip(data);
+            equipped = !!data.equipped;
+            onDoubleClick = () => {
+              if (busy || equipped) return;
+              send({ type: "EquipBasket", basketId: data.id });
+            };
+          } else {
+            icon = React.createElement(EquipmentSvg, { item: { ...data, id: data.itemId }, size: 24 });
+            const equippedInSlot = equippedAccessoryDetail(data.slot);
+            tooltip = accessoryTooltip(data, equippedInSlot);
+            equipped = !!data.equipped;
+            disabled = !data.canEquip && !equipped;
+            onDoubleClick = () => {
+              if (busy) return;
+              if (equipped) send({ type: "UnequipAccessory", slot: data.slot });
+              else if (data.canEquip) send({ type: "EquipAccessory", accessoryId: data.itemId });
+            };
+          }
+
+          const classes = ["dshFishing_inventoryCell"];
+          if (equipped) classes.push("dshFishing_inventoryCellEquipped");
+          if (disabled) classes.push("dshFishing_inventoryCellDisabled");
+
+          return React.createElement(
+            "div",
+            {
+              key: `${kind}-${data.id || data.itemId}`,
+              className: classes.join(" "),
+              title: tooltip,
+              onDoubleClick: onDoubleClick
+            },
+            icon,
+            equipped
+              ? React.createElement("span", { className: "dshFishing_inventoryCellBadge" }, "装")
+              : null
           );
         };
 
-        const renderBasketBackpack = () => {
-          const baskets = snap.baskets.filter((basket) => basket.owned);
-          if (baskets.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有鱼篓");
-          return React.createElement(
-            "div",
-            { className: "dshFishing_backpackGrid" },
-            baskets.map((basket) =>
-              React.createElement(
-                "div",
-                {
-                  key: basket.id,
-                  className: `dshFishing_backpackCell${basket.equipped ? " dshFishing_backpackCellEquipped" : ""}`
-                },
-                React.createElement("span", { className: "dshFishing_slotIcon" }, React.createElement(EquipmentSvg, { item: basket, kind: "basket", size: 22 })),
-                React.createElement("span", { className: "dshFishing_slotName" }, basket.name),
-                React.createElement("span", { className: "dshFishing_slotMeta" }, `${basket.capacity}格${basket.equipped ? " · 使用中" : ""}`),
-                !basket.equipped
-                  ? React.createElement(
-                      "button",
-                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipBasket", basketId: basket.id }) },
-                      "装备"
-                    )
-                  : null
-              )
-            )
-          );
-        };
-
-        const renderAccessoryBackpack = () => {
-          const items = snap.items || [];
-          if (items.length === 0) return React.createElement("div", { className: "dshFishing_empty" }, "还没有配件，去商店看看吧");
-          const renderItemCell = (item) => {
-            const draggable = item.canEquip && !item.equipped && !busy;
-            const classes = ["dshFishing_backpackCell"];
-            if (draggable) classes.push("dshFishing_backpackCellDraggable");
-            if (item.equipped) classes.push("dshFishing_backpackCellEquipped");
-            if (!item.canEquip) classes.push("dshFishing_backpackCellDisabled");
-            if (draggedItemId === item.id) classes.push("dshFishing_backpackCellDragging");
-            return React.createElement(
-              "div",
-              {
-                key: item.id,
-                className: classes.join(" "),
-                draggable: !!draggable,
-                onDragStart: draggable ? (e) => onAccessoryDragStart(e, item) : undefined,
-                onDragEnd: draggable ? onAccessoryDragEnd : undefined
-              },
-              React.createElement("span", { className: "dshFishing_slotIcon" }, React.createElement(EquipmentSvg, { item, size: 22 })),
-              React.createElement("span", { className: "dshFishing_slotName" }, item.name),
-              React.createElement(
-                "div",
-                { className: "dshFishing_slotMeta" },
-                React.createElement("div", null, item.slotName || item.slot),
-                accessoryAttrLines(item).map((line, index) =>
-                  React.createElement("div", { key: index }, line)
-                ),
-                item.equipped
-                  ? React.createElement("div", null, "已装备")
-                  : !item.canEquip
-                    ? React.createElement("div", null, "不适用")
-                    : null
-              ),
-              item.equipped
-                ? null
-                : item.canEquip
-                  ? React.createElement(
-                      "button",
-                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipAccessory", accessoryId: item.itemId }) },
-                      "装备"
-                    )
-                  : null
-            );
-          };
-          const groups = Object.keys(SHOP_SLOT_CATEGORIES)
-            .map((slot) => ({
-              slot,
-              title: SHOP_SLOT_CATEGORIES[slot],
-              items: items.filter((item) => item.slot === slot)
-            }))
-            .filter((group) => group.items.length > 0);
-          return React.createElement(
-            React.Fragment,
-            null,
-            groups.map((group) =>
-              React.createElement(
-                React.Fragment,
-                { key: group.slot },
-                React.createElement("div", { className: "dshFishing_backpackTitle" }, group.title),
-                React.createElement("div", { className: "dshFishing_backpackGrid" }, group.items.map(renderItemCell))
-              )
-            )
-          );
-        };
+        const backpackEntries = [];
+        if (backpackTab === "全部" || backpackTab === "鱼竿") {
+          for (const rod of ownedRods) backpackEntries.push({ kind: "rod", data: rod });
+        }
+        if (backpackTab === "全部" || backpackTab === "鱼篓") {
+          for (const basket of ownedBaskets) backpackEntries.push({ kind: "basket", data: basket });
+        }
+        const accessoryCategory = SHOP_SLOT_CATEGORIES[backpackTab];
+        if (backpackTab === "全部" || accessoryCategory !== undefined) {
+          const slotKey = Object.keys(SHOP_SLOT_CATEGORIES).find((key) => SHOP_SLOT_CATEGORIES[key] === backpackTab);
+          for (const item of ownedAccessories) {
+            if (backpackTab === "全部" || item.slot === slotKey) {
+              backpackEntries.push({ kind: "accessory", data: item });
+            }
+          }
+        }
 
         return React.createElement(
           "div",
@@ -1201,14 +1231,17 @@ window.__ModuleLoader__.load({
             "div",
             { className: "dshFishing_backpackPanel" },
             React.createElement("div", { className: "dshFishing_backpackHeader" }, React.createElement("span", { style: { display: "inline-flex", alignItems: "center", gap: 5 } }, React.createElement(BackpackIcon, { size: 14 }), "背包")),
+            renderBackpackTabs(),
             React.createElement(
               "div",
               { className: "dshFishing_backpackScroll" },
-              React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼竿"),
-              renderRodBackpack(),
-              React.createElement("div", { className: "dshFishing_backpackTitle" }, "鱼篓"),
-              renderBasketBackpack(),
-              renderAccessoryBackpack()
+              backpackEntries.length === 0
+                ? React.createElement("div", { className: "dshFishing_empty" }, "这个分类暂时没有物品")
+                : React.createElement(
+                    "div",
+                    { className: "dshFishing_inventoryGrid" },
+                    backpackEntries.map(renderInventoryCell)
+                  )
             )
           )
         );

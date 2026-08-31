@@ -102,24 +102,24 @@ export const ACCESSORY_SLOTS = [
 ]
 
 export const ACCESSORIES = [
-  { id: 'basic_reel', brand: '云川', model: 'YR-1000', name: '云川·入门渔轮', emoji: '🎡', slot: 'reel', material: '铝合金', spec: '1000型 / 5+1轴承', basePrice: 80, rodTypes: ['sea', 'feeder'], successRateBonus: 0.03 },
-  { id: 'strong_reel', brand: '苍澜', model: 'CL-2000', name: '苍澜·竞技渔轮', emoji: '⚙️', slot: 'reel', material: '铝合金+碳素', spec: '2000型 / 7+1轴承', basePrice: 220, rodTypes: ['sea', 'feeder'], successRateBonus: 0.06 },
-  { id: 'master_reel', brand: '极川', model: 'JC-3000', name: '极川·旗舰渔轮', emoji: '🎯', slot: 'reel', material: '钛合金', spec: '3000型 / 9+1轴承', basePrice: 600, rodTypes: ['sea', 'feeder', 'fly', 'surf'], successRateBonus: 0.09 },
+  { id: 'basic_reel', brand: '云川', model: 'YR-1000', name: '云川·入门渔轮', emoji: '🎡', slot: 'reel', material: '铝合金', spec: '1000型 / 5+1轴承', basePrice: 80, rodTypes: ['sea', 'feeder', 'lure'], successRateBonus: 0.03 },
+  { id: 'strong_reel', brand: '苍澜', model: 'CL-2000', name: '苍澜·竞技渔轮', emoji: '⚙️', slot: 'reel', material: '铝合金+碳素', spec: '2000型 / 7+1轴承', basePrice: 220, rodTypes: ['sea', 'feeder', 'lure'], successRateBonus: 0.06 },
+  { id: 'master_reel', brand: '极川', model: 'JC-3000', name: '极川·旗舰渔轮', emoji: '🎯', slot: 'reel', material: '钛合金', spec: '3000型 / 9+1轴承', basePrice: 600, rodTypes: ['sea', 'feeder', 'lure', 'fly', 'surf'], successRateBonus: 0.09 },
   { id: 'carbon_line', brand: '云川', model: 'CL-02', name: '云川·碳素线', emoji: '🧵', slot: 'line', material: '碳素线', spec: '0.2mm / 50m', basePrice: 100, rodTypes: ['hand', 'sea', 'lure', 'feeder'], maxWeightBonus: 0.1 },
   { id: 'braided_line', brand: '苍澜', model: 'BL-08', name: '苍澜·编织线', emoji: '🪢', slot: 'line', material: 'PE编织线', spec: '0.8号 / 150m', basePrice: 260, rodTypes: ['sea', 'surf', 'feeder', 'fly'], maxWeightBonus: 0.18 },
   { id: 'fluorocarbon_line', brand: '极川', model: 'FL-12', name: '极川·氟碳线', emoji: '💎', slot: 'line', material: '氟碳线', spec: '1.2号 / 100m', basePrice: 500, rodTypes: ['hand', 'lure', 'fly'], maxWeightBonus: 0.25 },
-  { id: 'fake_lure', brand: '云川', model: 'SW-05', name: '云川·卷尾蛆', emoji: '🪱', slot: 'lure', material: '软胶', spec: '5cm / 卷尾蛆', basePrice: 120, rodTypes: ['lure', 'feeder'], catchBonus: 2 },
+  { id: 'fake_lure', brand: '云川', model: 'SW-05', name: '云川·卷尾蛆', emoji: '🪱', slot: 'lure', material: '软胶', spec: '5cm / 卷尾蛆', basePrice: 120, rodTypes: ['lure'], catchBonus: 2 },
   { id: 'floating_lure', brand: '苍澜', model: 'FP-70', name: '苍澜·浮水米诺', emoji: '🦐', slot: 'lure', material: '硬塑浮水', spec: '7cm / 浮水米诺', basePrice: 180, rodTypes: ['lure'], successRateBonus: 0.04 },
-  { id: 'deep_diver', brand: '极川', model: 'DD-90', name: '极川·深潜米诺', emoji: '🐙', slot: 'lure', material: '硬塑深潜', spec: '9cm / 深潜米诺', basePrice: 320, rodTypes: ['lure', 'fly', 'surf'], catchBonus: 3 },
-  { id: 'soft_bait', brand: '苍澜', model: 'SB-12', name: '苍澜·软饵', emoji: '🦑', slot: 'lure', material: '软胶', spec: '12cm / 软饵', basePrice: 450, rodTypes: ['feeder', 'surf', 'fly'], successRateBonus: 0.06, catchBonus: 1 },
+  { id: 'deep_diver', brand: '极川', model: 'DD-90', name: '极川·深潜米诺', emoji: '🐙', slot: 'lure', material: '硬塑深潜', spec: '9cm / 深潜米诺', basePrice: 320, rodTypes: ['lure', 'surf'], catchBonus: 3 },
+  { id: 'soft_bait', brand: '苍澜', model: 'SB-12', name: '苍澜·软饵', emoji: '🦑', slot: 'lure', material: '软胶', spec: '12cm / 软饵', basePrice: 450, rodTypes: ['lure', 'surf'], successRateBonus: 0.06, catchBonus: 1 },
   { id: 'sharp_hook', brand: '云川', model: 'SH-6', name: '云川·伊势尼', emoji: '🪝', slot: 'hook', material: '高碳钢', spec: '6号 / 伊势尼', basePrice: 90, rodTypes: ['hand', 'sea', 'feeder', 'surf'], successRateBonus: 0.03 },
   { id: 'barbless_hook', brand: '苍澜', model: 'BH-4', name: '苍澜·无倒刺', emoji: '🪝', slot: 'hook', material: '高碳钢', spec: '4号 / 无倒刺', basePrice: 240, rodTypes: ['lure', 'fly', 'feeder'], catchBonus: 1, successRateBonus: 0.02 },
   { id: 'circle_hook', brand: '极川', model: 'CH-2', name: '极川·圆口钩', emoji: '🌀', slot: 'hook', material: '钛合金', spec: '2号 / 圆口', basePrice: 380, rodTypes: ['sea', 'surf', 'feeder'], maxWeightBonus: 0.12 },
   { id: 'small_bobber', brand: '云川', model: 'SB-1', name: '云川·巴尔杉浮漂', emoji: '⚪', slot: 'bobber', material: '巴尔杉木', spec: '1号 / 浮漂', basePrice: 60, rodTypes: ['hand', 'sea', 'feeder'], successRateBonus: 0.02 },
-  { id: 'sensitive_bobber', brand: '苍澜', model: 'FB-3', name: '苍澜·芦苇漂', emoji: '🔴', slot: 'bobber', material: '芦苇', spec: '3号 / 灵敏漂', basePrice: 180, rodTypes: ['hand', 'lure', 'feeder', 'fly'], successRateBonus: 0.05 },
+  { id: 'sensitive_bobber', brand: '苍澜', model: 'FB-3', name: '苍澜·芦苇漂', emoji: '🔴', slot: 'bobber', material: '芦苇', spec: '3号 / 灵敏漂', basePrice: 180, rodTypes: ['hand', 'feeder'], successRateBonus: 0.05 },
   { id: 'glow_bobber', brand: '极川', model: 'GB-5', name: '极川·夜光漂', emoji: '💡', slot: 'bobber', material: '电子夜光', spec: '5号 / 夜光漂', basePrice: 320, rodTypes: ['hand', 'sea', 'feeder', 'surf'], catchBonus: 1 },
   { id: 'split_shot', brand: '云川', model: 'SS-1', name: '云川·咬铅', emoji: '⚫', slot: 'sinker', material: '纯铅', spec: '1B / 咬铅', basePrice: 70, rodTypes: ['hand', 'sea', 'feeder', 'surf'], maxWeightBonus: 0.05 },
-  { id: 'sliding_sinker', brand: '苍澜', model: 'SL-5', name: '苍澜·滑铅', emoji: '🔩', slot: 'sinker', material: '铜制', spec: '5g / 滑铅', basePrice: 200, rodTypes: ['sea', 'surf', 'feeder', 'lure'], successRateBonus: 0.04 },
+  { id: 'sliding_sinker', brand: '苍澜', model: 'SL-5', name: '苍澜·滑铅', emoji: '🔩', slot: 'sinker', material: '铜制', spec: '5g / 滑铅', basePrice: 200, rodTypes: ['sea', 'surf', 'feeder'], successRateBonus: 0.04 },
   { id: 'heavy_sinker', brand: '极川', model: 'HS-20', name: '极川·重铅', emoji: '⛓️', slot: 'sinker', material: '钨合金', spec: '20g / 重铅', basePrice: 420, rodTypes: ['sea', 'surf', 'feeder'], maxWeightBonus: 0.14 }
 ]
 
@@ -359,6 +359,22 @@ function normalizeState(state) {
   }
   for (const slot of ACCESSORY_SLOTS) {
     if (state.equippedAccessories[slot.id] === undefined) state.equippedAccessories[slot.id] = null
+  }
+
+  // Clear accessories that are not compatible with the currently equipped rod.
+  const normalizedRod = RODS_BY_ID.get(state.equippedRodId)
+  if (normalizedRod !== undefined) {
+    for (const slot of ACCESSORY_SLOTS) {
+      const itemId = state.equippedAccessories[slot.id]
+      if (itemId === null || itemId === undefined) continue
+      const accessory = ACCESSORIES_BY_ID.get(itemId)
+      if (accessory === undefined || !accessory.rodTypes.includes(normalizedRod.rodType)) {
+        state.equippedAccessories[slot.id] = null
+        for (const entry of state.items) {
+          if (entry.itemId === itemId) entry.equipped = false
+        }
+      }
+    }
   }
 
   // Remove the aquarium feature; move any old aquarium fish back to the basket.
