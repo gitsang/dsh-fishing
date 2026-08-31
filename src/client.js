@@ -84,12 +84,14 @@ window.__ModuleLoader__.load({
 .dshFishing_slotAction{margin-top:2px;padding:1px 6px;font-size:10px}
 .dshFishing_backpackTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);margin-top:4px}
 .dshFishing_backpackTabs{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
-.dshFishing_inventoryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px}
+.dshFishing_inventoryGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:4px}
 .dshFishing_inventoryCell{aspect-ratio:1;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;align-items:center;justify-content:center;position:relative;box-sizing:border-box;cursor:pointer;font-size:22px;line-height:1;min-width:0;transition:border-color .15s ease,background .15s ease}
 .dshFishing_inventoryCell:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6);background:var(--dsw-alias-interactive-bg-hover,rgba(0,0,0,.03))}
 .dshFishing_inventoryCellEquipped{border-color:var(--dsw-alias-state-business-primary,#3b82f6);background:rgba(59,130,246,.08);box-shadow:0 0 0 1px rgba(59,130,246,.12)}
 .dshFishing_inventoryCellDisabled{opacity:.45;background:var(--dsw-alias-interactive-bg,#f0f1f4)}
 .dshFishing_inventoryCellBadge{position:absolute;top:2px;right:4px;font-size:9px;font-weight:700;color:var(--dsw-alias-state-business-primary,#3b82f6);pointer-events:none}
+.dshFishing_tooltip{position:fixed;z-index:9999;max-width:260px;white-space:pre-line;background:rgba(15,23,42,.92);color:#f8fafc;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:8px 11px;font-size:11px;line-height:1.55;box-shadow:0 10px 28px rgba(0,0,0,.22),0 2px 8px rgba(0,0,0,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s ease,transform .12s ease}
+.dshFishing_tooltipVisible{opacity:1;transform:translateY(0)}
 .dshFishing_shopGroup{margin-top:6px}
 .dshFishing_shopCard{border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:8px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;align-items:center;justify-content:space-between;gap:8px;transition:border-color .15s ease,box-shadow .15s ease}
 .dshFishing_shopCard:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6);box-shadow:0 2px 8px rgba(0,0,0,.05)}
@@ -747,6 +749,7 @@ window.__ModuleLoader__.load({
       const [busy, setBusy] = useState(false);
       const [loadError, setLoadError] = useState(null);
       const [actionError, setActionError] = useState(null);
+      const [tooltip, setTooltip] = useState(null);
       const [dropSlot, setDropSlot] = useState(null);
       const [draggedItemId, setDraggedItemId] = useState(null);
       const draggedAccessoryRef = useRef(null);
@@ -797,6 +800,12 @@ window.__ModuleLoader__.load({
           setBusy(false);
         }
       }, []);
+
+      const tipHandlers = (text) => ({
+        onMouseEnter: (e) => setTooltip({ text, x: e.clientX, y: e.clientY }),
+        onMouseMove: (e) => setTooltip((prev) => prev ? { ...prev, x: e.clientX, y: e.clientY } : prev),
+        onMouseLeave: () => setTooltip(null)
+      });
 
       const onAccessoryDragStart = (e, item) => {
         if (busy || item.equipped || !item.canEquip) {
@@ -1084,7 +1093,7 @@ window.__ModuleLoader__.load({
               key: slot.id,
               className: slotClassName,
               style: { gridColumn: position.gridColumn, gridRow: position.gridRow },
-              title: tooltip,
+              ...tipHandlers(tooltip),
               onClick: () => setBackpackTab(slotCategory),
               onDoubleClick: detail ? () => { if (!busy) send({ type: "UnequipAccessory", slot: slot.id }); } : undefined,
               onDragOver: (e) => onAccessorySlotDragOver(e, { slot: slot.id }),
@@ -1105,7 +1114,7 @@ window.__ModuleLoader__.load({
           {
             className: "dshFishing_rodSlot",
             style: { gridColumn: 2, gridRow: 2 },
-            title: rodTooltip({ ...equippedRod, equipped: true }),
+            ...tipHandlers(rodTooltip({ ...equippedRod, equipped: true })),
             onClick: () => setBackpackTab("鱼竿")
           },
           React.createElement("div", { className: "dshFishing_rodIcon" }, React.createElement(EquipmentSvg, { item: equippedRod, kind: "rod", size: 32 })),
@@ -1117,7 +1126,7 @@ window.__ModuleLoader__.load({
           {
             className: "dshFishing_basketSlot",
             style: { gridColumn: 2, gridRow: 3 },
-            title: basketTooltip({ ...(snap.equippedBasket || {}), equipped: true }),
+            ...tipHandlers(basketTooltip({ ...(snap.equippedBasket || {}), equipped: true })),
             onClick: () => setBackpackTab("鱼篓")
           },
           React.createElement("div", { className: "dshFishing_basketIcon" }, React.createElement(EquipmentSvg, { item: snap.equippedBasket || {}, kind: "basket", size: 22 })),
@@ -1190,7 +1199,7 @@ window.__ModuleLoader__.load({
             {
               key: `${kind}-${data.id || data.itemId}`,
               className: classes.join(" "),
-              title: tooltip,
+              ...tipHandlers(tooltip),
               onDoubleClick: onDoubleClick
             },
             icon,
@@ -1656,6 +1665,16 @@ window.__ModuleLoader__.load({
                     ),
                     renderStatus()
                   )
+            )
+          : null,
+        tooltip !== null
+          ? React.createElement(
+              "div",
+              {
+                className: "dshFishing_tooltip dshFishing_tooltipVisible",
+                style: { left: tooltip.x + 14, top: tooltip.y + 14 }
+              },
+              tooltip.text
             )
           : null
       );
