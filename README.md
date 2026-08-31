@@ -5,7 +5,7 @@ A floating fishing game for the deepseek-harness **web** surface.
 While you use the agent, token usage is collected as bait: every 1M consumed
 tokens add 1 bait. Each cast consumes 1 bait, so the game casts the equipped
 rod once per 1M tokens and catches a fish. Fish can be sold for coins; coins
-buy and upgrade rods. Catching fish grants experience and raises your level;
+buy different branded rod models. Rods no longer have levels or upgrade paths. Catching fish grants experience and raises your level;
 higher levels unlock new maps. Except for the beginner map, entering another
 map requires a ticket. Each ticket lasts one real day, and you can buy a
 multi-day ticket at once. Different maps contain different fish, and there are
@@ -81,7 +81,7 @@ The sidebar panel exposes the common actions. The raw HTTP API accepts these
 command types:
 
 - `SellFish` / `SellAllFish`
-- `BuyRod` / `UpgradeRod` / `EquipRod`
+- `BuyRod` / `EquipRod`
 - `BuyBasket` / `EquipBasket`
 - `BuyAccessory` / `EquipAccessory` / `UnequipAccessory`
 - `BuyTicket` / `ChangeMap` — buy multi-day map tickets and move between maps

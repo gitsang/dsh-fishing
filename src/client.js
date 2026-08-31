@@ -84,6 +84,8 @@ window.__ModuleLoader__.load({
 .dshFishing_slotAction{margin-top:2px;padding:1px 6px;font-size:10px}
 .dshFishing_backpackTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);margin-top:4px}
 .dshFishing_shopGroup{margin-top:6px}
+.dshFishing_shopCard{border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:8px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;align-items:center;justify-content:space-between;gap:8px;transition:border-color .15s ease,box-shadow .15s ease}
+.dshFishing_shopCard:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6);box-shadow:0 2px 8px rgba(0,0,0,.05)}
 .dshFishing_shopGroupTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);margin-bottom:4px}
 .dshFishing_shopTabs{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
 .dshFishing_shopTab{border:1px solid var(--dsw-alias-border-l2,#d8dbe2);background:transparent;border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;color:var(--dsw-alias-label-secondary,#4e5969)}
@@ -105,6 +107,8 @@ window.__ModuleLoader__.load({
 .dshFishing_fishDetailName{font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px}
 .dshFishing_fishDetailDesc{font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.45}
 .dshFishing_fishDetailMeta{font-size:10px;color:var(--dsw-alias-label-tertiary,#8a919f);line-height:1.4}
+.dshFishing_purchaseBox{margin-top:2px;border:1px dashed rgba(59,130,246,.45);border-radius:10px;padding:8px;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(255,255,255,.92));display:flex;flex-direction:column;gap:6px}
+.dshFishing_purchaseTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969)}
 .dshFishing_codexHeader{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;font-weight:700;padding:2px 0}
 .dshFishing_codexGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .dshFishing_codexCard{display:flex;flex-direction:column;gap:6px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:8px;background:var(--dsw-alias-bg-base,#ffffff)}
@@ -113,12 +117,7 @@ window.__ModuleLoader__.load({
 .dshFishing_codexIcon{width:40px;height:40px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:24px;border-radius:8px;background:var(--dsw-alias-interactive-bg,#f0f1f4);color:var(--dsw-alias-label-tertiary,#8a919f)}
 .dshFishing_codexTitle{flex:1;min-width:0}
 .dshFishing_codexName{font-size:13px;font-weight:700;color:var(--dsw-alias-label-primary,#1f2329);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dshFishing_codexRarity{font-size:10px;font-weight:700;line-height:1.6}
-.dshFishing_codexRarityCommon{color:#5a8a5e}
-.dshFishing_codexRarityUncommon{color:#3b82f6}
-.dshFishing_codexRarityRare{color:#a855f7}
-.dshFishing_codexRarityEpic{color:#f59e0b}
-.dshFishing_codexRarityLegendary{color:#ef4444}
+.dshFishing_codexMeta{font-size:10px;font-weight:700;line-height:1.6}
 .dshFishing_codexDesc{font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.45}
 .dshFishing_codexFields{display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.4}
 .dshFishing_codexField{display:flex;gap:4px}
@@ -251,6 +250,20 @@ window.__ModuleLoader__.load({
         iconPath("M14 9 L16 8")
       ]
     };
+
+    Object.assign(ROD_SVG_PATHS, {
+      yunchuan_bamboo: ROD_SVG_PATHS.hand,
+      yunchuan_river: ROD_SVG_PATHS.feeder,
+      yunchuan_coast: ROD_SVG_PATHS.surf,
+      canglan_hand: ROD_SVG_PATHS.hand,
+      canglan_sea: ROD_SVG_PATHS.sea,
+      canglan_lure: ROD_SVG_PATHS.lure,
+      canglan_fly: ROD_SVG_PATHS.fly,
+      jichuan_hand: ROD_SVG_PATHS.hand,
+      jichuan_sea: ROD_SVG_PATHS.sea,
+      jichuan_fly: ROD_SVG_PATHS.fly,
+      jichuan_surf: ROD_SVG_PATHS.surf
+    });
 
     const BASKET_SVG_PATHS = {
       small: [
@@ -713,8 +726,7 @@ window.__ModuleLoader__.load({
 
     const SHOP_TAB_ORDER = ["鱼竿", "鱼篓", "渔轮", "钓线", "假饵", "鱼钩", "浮漂", "铅坠"];
     const SHOP_SLOT_CATEGORIES = { reel: "渔轮", line: "钓线", lure: "假饵", hook: "鱼钩", bobber: "浮漂", sinker: "铅坠" };
-    const RARITY_LABELS = { common: "普通", uncommon: "稀有", rare: "珍贵", epic: "史诗", legendary: "传说" };
-    const RARITY_CLASS = { common: "dshFishing_codexRarityCommon", uncommon: "dshFishing_codexRarityUncommon", rare: "dshFishing_codexRarityRare", epic: "dshFishing_codexRarityEpic", legendary: "dshFishing_codexRarityLegendary" };
+    const ROD_TYPE_LABELS = { hand: "手竿", sea: "海竿", lure: "路亚竿", feeder: "飞德杆", fly: "飞蝇竿", surf: "滩钓竿" };
 
     function FishingWidget({ wide }) {
       const [snap, setSnap] = useState(null);
@@ -866,6 +878,31 @@ window.__ModuleLoader__.load({
       const lastFish = snap.inventory.length > 0 ? snap.inventory[snap.inventory.length - 1] : null;
       const fishing = snap.fishing || { status: "idle", stage: null, remainingMs: 0, durationMs: 0, eventText: "" };
 
+      const rodAttrLines = (rod) => {
+        const lines = [];
+        if (rod.model) lines.push(`型号：${rod.model}`);
+        if (rod.type) lines.push(`类型：${rod.type}`);
+        if (rod.material) lines.push(`材质：${rod.material}`);
+        if (rod.length) lines.push(`长度：${rod.length}`);
+        if (rod.sections) lines.push(`节数：${rod.sections}节`);
+        if (rod.power) lines.push(`硬度：${rod.power}`);
+        if (rod.action) lines.push(`调性：${rod.action}`);
+        if (rod.weight) lines.push(`自重：${rod.weight}`);
+        if (rod.lureWeight && rod.lureWeight !== "—") lines.push(`饵重：${rod.lureWeight}`);
+        if (rod.lineWeight) lines.push(`线重：${rod.lineWeight}`);
+        if (rod.closedLength) lines.push(`收纳：${rod.closedLength}`);
+        if (rod.tipDiameter) lines.push(`先径：${rod.tipDiameter}`);
+        if (rod.buttDiameter) lines.push(`元径：${rod.buttDiameter}`);
+        return lines;
+      };
+      const accessoryAttrLines = (item) => {
+        const lines = [];
+        if (item.model) lines.push(`型号：${item.model}`);
+        if (item.material) lines.push(`材质：${item.material}`);
+        if (item.spec) lines.push(`规格：${item.spec}`);
+        return lines;
+      };
+
       const renderTabBar = () =>
         React.createElement(
           "div",
@@ -1003,7 +1040,13 @@ window.__ModuleLoader__.load({
           { className: "dshFishing_rodSlot", style: { gridColumn: 2, gridRow: 2 } },
           React.createElement("div", { className: "dshFishing_rodIcon" }, React.createElement(EquipmentSvg, { item: equippedRod, kind: "rod", size: 32 })),
           React.createElement("div", { className: "dshFishing_rodName" }, equippedRod.name || "鱼竿"),
-          React.createElement("div", { className: "dshFishing_rodLevel" }, `Lv.${equippedRod.level || 1}`)
+          React.createElement(
+            "div",
+            { className: "dshFishing_rodLevel" },
+            rodAttrLines(equippedRod).slice(0, 5).map((line, index) =>
+              React.createElement("div", { key: index }, line)
+            )
+          )
         );
 
         const basketCell = React.createElement(
@@ -1030,25 +1073,21 @@ window.__ModuleLoader__.load({
                 },
                 React.createElement("span", { className: "dshFishing_slotIcon" }, React.createElement(EquipmentSvg, { item: rod, kind: "rod", size: 22 })),
                 React.createElement("span", { className: "dshFishing_slotName" }, rod.name),
-                React.createElement("span", { className: "dshFishing_slotMeta" }, `Lv.${rod.level}${rod.equipped ? " · 装备中" : ""}`),
                 React.createElement(
                   "div",
-                  { style: { display: "flex", gap: "2px", flexWrap: "wrap", justifyContent: "center" } },
-                  !rod.equipped
-                    ? React.createElement(
-                        "button",
-                        { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipRod", rodId: rod.id }) },
-                        "装备"
-                      )
-                    : null,
-                  rod.level < rod.maxLevel
-                    ? React.createElement(
-                        "button",
-                        { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "UpgradeRod", rodId: rod.id }) },
-                        `升级 ${rod.upgradeCost}G`
-                      )
-                    : null
-                )
+                  { className: "dshFishing_slotMeta" },
+                  rodAttrLines(rod).slice(0, 4).map((line, index) =>
+                    React.createElement("div", { key: index }, line)
+                  ),
+                  rod.equipped ? React.createElement("div", null, "装备中") : null
+                ),
+                !rod.equipped
+                  ? React.createElement(
+                      "button",
+                      { className: "dshFishing_btn dshFishing_slotAction", disabled: busy, onClick: () => send({ type: "EquipRod", rodId: rod.id }) },
+                      "装备"
+                    )
+                  : null
               )
             )
           );
@@ -1104,9 +1143,17 @@ window.__ModuleLoader__.load({
               React.createElement("span", { className: "dshFishing_slotIcon" }, React.createElement(EquipmentSvg, { item, size: 22 })),
               React.createElement("span", { className: "dshFishing_slotName" }, item.name),
               React.createElement(
-                "span",
+                "div",
                 { className: "dshFishing_slotMeta" },
-                `[${item.slotName || item.slot}]${item.equipped ? " · 已装备" : ""}${!item.canEquip ? " · 不适用" : ""}`
+                React.createElement("div", null, item.slotName || item.slot),
+                accessoryAttrLines(item).map((line, index) =>
+                  React.createElement("div", { key: index }, line)
+                ),
+                item.equipped
+                  ? React.createElement("div", null, "已装备")
+                  : !item.canEquip
+                    ? React.createElement("div", null, "不适用")
+                    : null
               ),
               item.equipped
                 ? null
@@ -1216,12 +1263,33 @@ window.__ModuleLoader__.load({
               : shopItems.map((item) =>
                   React.createElement(
                     "div",
-                    { key: `${item.kind}-${item.id}`, className: "dshFishing_row" },
+                    { key: `${item.kind}-${item.id}`, className: "dshFishing_shopCard" },
                     React.createElement(
                       "span",
                       { style: { display: "inline-flex", alignItems: "center", gap: 6 } },
                       React.createElement(EquipmentSvg, { item, size: 18 }),
-                      React.createElement("span", null, item.name)
+                      React.createElement(
+                        "span",
+                        { style: { display: "flex", flexDirection: "column", gap: 1 } },
+                        React.createElement("span", null, item.name),
+                        item.kind === "rod"
+                          ? React.createElement(
+                              React.Fragment,
+                              null,
+                              rodAttrLines(item).map((line, index) =>
+                                React.createElement("span", { key: index, className: "dshFishing_muted" }, line)
+                              )
+                            )
+                          : item.kind === "accessory"
+                            ? React.createElement(
+                                React.Fragment,
+                                null,
+                                accessoryAttrLines(item).map((line, index) =>
+                                  React.createElement("span", { key: index, className: "dshFishing_muted" }, line)
+                                )
+                              )
+                            : null
+                      )
                     ),
                     item.owned
                       ? React.createElement("span", { className: "dshFishing_muted" }, "已拥有")
@@ -1333,7 +1401,7 @@ window.__ModuleLoader__.load({
                     "div",
                     { className: "dshFishing_fishDetailName" },
                     React.createElement(FishSvg, { fish, size: 16 }),
-                    `${fish.name} · ${RARITY_LABELS[fish.rarity] || fish.rarity}`
+                    `${fish.name}`
                   ),
                   React.createElement("div", { className: "dshFishing_fishDetailDesc" }, fish.description),
                   React.createElement(
@@ -1343,7 +1411,12 @@ window.__ModuleLoader__.load({
                   )
                 )
               ),
-              renderPurchase(selectedMap)
+              React.createElement(
+                "div",
+                { className: "dshFishing_purchaseBox" },
+                React.createElement("div", { className: "dshFishing_purchaseTitle" }, "🎫 门票"),
+                renderPurchase(selectedMap)
+              )
             )
           );
         }
@@ -1403,7 +1476,6 @@ window.__ModuleLoader__.load({
       const renderCodex = () => {
         const codex = snap.encyclopedia || [];
         const unlockedCount = codex.filter((item) => item.unlocked).length;
-        const rarityLabel = (rarity) => RARITY_LABELS[rarity] || rarity;
         const formatKg = (grams) => `${(grams / 1000).toFixed(1)}kg`;
         const renderField = (label, value) =>
           value
@@ -1448,8 +1520,8 @@ window.__ModuleLoader__.load({
                         React.createElement("div", { className: "dshFishing_codexName" }, locked ? "???" : fish.name),
                         React.createElement(
                           "span",
-                          { className: `dshFishing_codexRarity ${locked ? "" : (RARITY_CLASS[fish.rarity] || "")}` },
-                          locked ? "未解锁" : `${rarityLabel(fish.rarity)} · ${fish.rodName || fish.requiredRodId || "未知鱼竿"}`
+                          { className: "dshFishing_codexMeta" },
+                          locked ? "未解锁" : `${fish.rodName || fish.requiredRodId || "未知鱼竿"} · 参考价 ${fish.baseValue || 0}G`
                         )
                       )
                     ),
