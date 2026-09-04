@@ -14,7 +14,8 @@
       "lure"
     ],
     "successRateBonus": 0.03,
-    "icon": "assets/accessories/basic_reel.svg"
+    "icon": "assets/accessories/basic_reel.svg",
+    "unlockLevel": 2
   },
   {
     "id": "strong_reel",
@@ -31,7 +32,8 @@
       "lure"
     ],
     "successRateBonus": 0.06,
-    "icon": "assets/accessories/strong_reel.svg"
+    "icon": "assets/accessories/strong_reel.svg",
+    "unlockLevel": 5
   },
   {
     "id": "master_reel",
@@ -50,7 +52,8 @@
       "surf"
     ],
     "successRateBonus": 0.09,
-    "icon": "assets/accessories/master_reel.svg"
+    "icon": "assets/accessories/master_reel.svg",
+    "unlockLevel": 10
   },
   {
     "id": "carbon_line",
@@ -68,7 +71,8 @@
       "feeder"
     ],
     "maxWeightBonus": 0.1,
-    "icon": "assets/accessories/carbon_line.svg"
+    "icon": "assets/accessories/carbon_line.svg",
+    "unlockLevel": 2
   },
   {
     "id": "braided_line",
@@ -86,7 +90,8 @@
       "fly"
     ],
     "maxWeightBonus": 0.18,
-    "icon": "assets/accessories/braided_line.svg"
+    "icon": "assets/accessories/braided_line.svg",
+    "unlockLevel": 5
   },
   {
     "id": "fluorocarbon_line",
@@ -103,7 +108,8 @@
       "fly"
     ],
     "maxWeightBonus": 0.25,
-    "icon": "assets/accessories/fluorocarbon_line.svg"
+    "icon": "assets/accessories/fluorocarbon_line.svg",
+    "unlockLevel": 9
   },
   {
     "id": "fake_lure",
@@ -118,7 +124,8 @@
       "lure"
     ],
     "catchBonus": 2,
-    "icon": "assets/accessories/fake_lure.svg"
+    "icon": "assets/accessories/fake_lure.svg",
+    "unlockLevel": 4
   },
   {
     "id": "floating_lure",
@@ -133,7 +140,8 @@
       "lure"
     ],
     "successRateBonus": 0.04,
-    "icon": "assets/accessories/floating_lure.svg"
+    "icon": "assets/accessories/floating_lure.svg",
+    "unlockLevel": 5
   },
   {
     "id": "deep_diver",
@@ -149,7 +157,8 @@
       "surf"
     ],
     "catchBonus": 3,
-    "icon": "assets/accessories/deep_diver.svg"
+    "icon": "assets/accessories/deep_diver.svg",
+    "unlockLevel": 7
   },
   {
     "id": "soft_bait",
@@ -166,7 +175,8 @@
     ],
     "successRateBonus": 0.06,
     "catchBonus": 1,
-    "icon": "assets/accessories/soft_bait.svg"
+    "icon": "assets/accessories/soft_bait.svg",
+    "unlockLevel": 8
   },
   {
     "id": "sharp_hook",
@@ -184,7 +194,8 @@
       "surf"
     ],
     "successRateBonus": 0.03,
-    "icon": "assets/accessories/sharp_hook.svg"
+    "icon": "assets/accessories/sharp_hook.svg",
+    "unlockLevel": 2
   },
   {
     "id": "barbless_hook",
@@ -202,7 +213,8 @@
     ],
     "catchBonus": 1,
     "successRateBonus": 0.02,
-    "icon": "assets/accessories/barbless_hook.svg"
+    "icon": "assets/accessories/barbless_hook.svg",
+    "unlockLevel": 5
   },
   {
     "id": "circle_hook",
@@ -219,7 +231,8 @@
       "feeder"
     ],
     "maxWeightBonus": 0.12,
-    "icon": "assets/accessories/circle_hook.svg"
+    "icon": "assets/accessories/circle_hook.svg",
+    "unlockLevel": 8
   },
   {
     "id": "small_bobber",
@@ -236,7 +249,8 @@
       "feeder"
     ],
     "successRateBonus": 0.02,
-    "icon": "assets/accessories/small_bobber.svg"
+    "icon": "assets/accessories/small_bobber.svg",
+    "unlockLevel": 1
   },
   {
     "id": "sensitive_bobber",
@@ -252,7 +266,8 @@
       "feeder"
     ],
     "successRateBonus": 0.05,
-    "icon": "assets/accessories/sensitive_bobber.svg"
+    "icon": "assets/accessories/sensitive_bobber.svg",
+    "unlockLevel": 5
   },
   {
     "id": "glow_bobber",
@@ -270,7 +285,8 @@
       "surf"
     ],
     "catchBonus": 1,
-    "icon": "assets/accessories/glow_bobber.svg"
+    "icon": "assets/accessories/glow_bobber.svg",
+    "unlockLevel": 7
   },
   {
     "id": "split_shot",
@@ -288,7 +304,8 @@
       "surf"
     ],
     "maxWeightBonus": 0.05,
-    "icon": "assets/accessories/split_shot.svg"
+    "icon": "assets/accessories/split_shot.svg",
+    "unlockLevel": 1
   },
   {
     "id": "sliding_sinker",
@@ -305,7 +322,8 @@
       "feeder"
     ],
     "successRateBonus": 0.04,
-    "icon": "assets/accessories/sliding_sinker.svg"
+    "icon": "assets/accessories/sliding_sinker.svg",
+    "unlockLevel": 4
   },
   {
     "id": "heavy_sinker",
@@ -322,6 +340,7 @@
       "feeder"
     ],
     "maxWeightBonus": 0.14,
-    "icon": "assets/accessories/heavy_sinker.svg"
+    "icon": "assets/accessories/heavy_sinker.svg",
+    "unlockLevel": 8
   }
 ]

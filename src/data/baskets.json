@@ -8,7 +8,8 @@
     "spec": "5格 / 轻便便携",
     "capacity": 5,
     "basePrice": 0,
-    "icon": "assets/baskets/small.svg"
+    "icon": "assets/baskets/small.svg",
+    "unlockLevel": 1
   },
   {
     "id": "medium",
@@ -19,7 +20,8 @@
     "spec": "10格 / 加厚提手",
     "capacity": 10,
     "basePrice": 200,
-    "icon": "assets/baskets/medium.svg"
+    "icon": "assets/baskets/medium.svg",
+    "unlockLevel": 3
   },
   {
     "id": "large",
@@ -30,7 +32,8 @@
     "spec": "15格 / 可折叠",
     "capacity": 15,
     "basePrice": 500,
-    "icon": "assets/baskets/large.svg"
+    "icon": "assets/baskets/large.svg",
+    "unlockLevel": 5
   },
   {
     "id": "extra_large",
@@ -41,7 +44,8 @@
     "spec": "20格 / 密封防漏",
     "capacity": 20,
     "basePrice": 900,
-    "icon": "assets/baskets/extra_large.svg"
+    "icon": "assets/baskets/extra_large.svg",
+    "unlockLevel": 8
   },
   {
     "id": "deluxe",
@@ -52,6 +56,7 @@
     "spec": "30格 / 恒温保鲜",
     "capacity": 30,
     "basePrice": 1600,
-    "icon": "assets/baskets/deluxe.svg"
+    "icon": "assets/baskets/deluxe.svg",
+    "unlockLevel": 12
   }
 ]

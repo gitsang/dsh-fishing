@@ -94,6 +94,7 @@
   "tipDiameter": "先径",
   "buttDiameter": "元径",
   "basePrice": 0,
+  "unlockLevel": 1,
   "baseSuccessRate": 0.55,
   "weightMultiplier": 1,
   "catchMultiplier": 1
@@ -115,6 +116,7 @@
   "material": "材质",
   "spec": "规格",
   "basePrice": 100,
+  "unlockLevel": 1,
   "rodTypes": ["hand"],
   "successRateBonus": 0.01
 }

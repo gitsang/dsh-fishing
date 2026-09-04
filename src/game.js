@@ -803,6 +803,7 @@ export class FishingGame {
         tipDiameter: rod.tipDiameter,
         buttDiameter: rod.buttDiameter,
         basePrice: rod.basePrice,
+        unlockLevel: rod.unlockLevel ?? 1,
         baseSuccessRate: rod.baseSuccessRate,
         weightMultiplier: rod.weightMultiplier,
         catchMultiplier: rod.catchMultiplier,
@@ -823,6 +824,7 @@ export class FishingGame {
         spec: basket.spec,
         capacity: basket.capacity,
         basePrice: basket.basePrice,
+        unlockLevel: basket.unlockLevel ?? 1,
         owned,
         equipped: state.equippedBasketId === basket.id
       }
@@ -843,6 +845,7 @@ export class FishingGame {
         material: accessory.material,
         spec: accessory.spec,
         basePrice: accessory.basePrice,
+        unlockLevel: accessory.unlockLevel ?? 1,
         rodTypes: accessory.rodTypes,
         equipped: item.equipped,
         canEquip: accessory.rodTypes.includes(equipped.rod.rodType)
@@ -882,6 +885,7 @@ export class FishingGame {
         tipDiameter: rod.tipDiameter,
         buttDiameter: rod.buttDiameter,
         price: rod.basePrice,
+        unlockLevel: rod.unlockLevel ?? 1,
         baseSuccessRate: rod.baseSuccessRate,
         weightMultiplier: rod.weightMultiplier,
         catchMultiplier: rod.catchMultiplier,
@@ -899,6 +903,7 @@ export class FishingGame {
         spec: basket.spec,
         capacity: basket.capacity,
         price: basket.basePrice,
+        unlockLevel: basket.unlockLevel ?? 1,
         owned: state.ownedBaskets[basket.id] !== undefined
       })),
       ...ACCESSORIES.map((accessory) => {
@@ -915,6 +920,7 @@ export class FishingGame {
           material: accessory.material,
           spec: accessory.spec,
           price: accessory.basePrice,
+          unlockLevel: accessory.unlockLevel ?? 1,
           owned: state.items.some((item) => item.itemId === accessory.id),
           canEquip: accessory.rodTypes.includes(equipped.rod.rodType)
         }

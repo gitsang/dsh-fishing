@@ -1337,6 +1337,7 @@ window.__ModuleLoader__.load({
                       : item.kind === "basket"
                         ? basketAttrLines(item)
                         : [];
+                  const locked = (item.unlockLevel ?? 1) > (snap.level ?? 1);
                   return React.createElement(
                     "div",
                     { key: `${item.kind}-${item.id}`, className: "dshFishing_shopCard" },
@@ -1351,19 +1352,25 @@ window.__ModuleLoader__.load({
                       ),
                       item.owned
                         ? React.createElement("span", { className: "dshFishing_muted" }, "已拥有")
-                        : React.createElement(
-                            "button",
-                            {
-                              className: "dshFishing_btn dshFishing_primary",
-                              disabled: busy,
-                              onClick: () => {
-                                if (item.kind === "rod") send({ type: "BuyRod", rodId: item.id })
-                                else if (item.kind === "basket") send({ type: "BuyBasket", basketId: item.id })
-                                else send({ type: "BuyAccessory", accessoryId: item.id })
-                              }
-                            },
-                            `购买 ${item.price}G`
-                          )
+                        : locked
+                          ? React.createElement(
+                              "span",
+                              { className: "dshFishing_muted" },
+                              `Lv.${item.unlockLevel} 解锁`
+                            )
+                          : React.createElement(
+                              "button",
+                              {
+                                className: "dshFishing_btn dshFishing_primary",
+                                disabled: busy,
+                                onClick: () => {
+                                  if (item.kind === "rod") send({ type: "BuyRod", rodId: item.id })
+                                  else if (item.kind === "basket") send({ type: "BuyBasket", basketId: item.id })
+                                  else send({ type: "BuyAccessory", accessoryId: item.id })
+                                }
+                              },
+                              `购买 ${item.price}G`
+                            )
                     ),
                     attrLines.length > 0
                       ? React.createElement(
