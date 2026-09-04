@@ -1043,6 +1043,102 @@ window.__ModuleLoader__.load({
           React.createElement(
             "details",
             { className: "dshFishing_details" },
+            React.createElement("summary", { className: "dshFishing_summary" }, "出钓设置"),
+            React.createElement(
+              "div",
+              { className: "dshFishing_list" },
+              React.createElement(
+                "div",
+                { className: "dshFishing_row" },
+                React.createElement("span", { className: "dshFishing_muted" }, "饵料"),
+                React.createElement(
+                  "span",
+                  null,
+                  (() => {
+                    const b = (snap.baits || []).find((x) => x.id === snap.equippedBaitId);
+                    return b ? `${b.name} ×${b.quantity}` : "未装备";
+                  })()
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "dshFishing_row", style: { flexWrap: "wrap", gap: 4 } },
+                (snap.baits || []).filter((b) => b.quantity > 0).map((b) =>
+                  React.createElement(
+                    "button",
+                    {
+                      key: b.id,
+                      className: `dshFishing_btn${b.equipped ? " dshFishing_primary" : ""}`,
+                      disabled: busy,
+                      onClick: () => send({ type: "EquipBait", baitId: b.id })
+                    },
+                    b.name
+                  )
+                )
+              ),
+              (snap.equippedRod && snap.equippedRod.rodType === "lure")
+                ? React.createElement(
+                    React.Fragment,
+                    null,
+                    React.createElement(
+                      "div",
+                      { className: "dshFishing_row" },
+                      React.createElement("span", { className: "dshFishing_muted" }, "假饵")
+                    ),
+                    React.createElement(
+                      "div",
+                      { className: "dshFishing_row", style: { flexWrap: "wrap", gap: 4 } },
+                      (snap.lures || []).filter((l) => l.owned).map((l) =>
+                        React.createElement(
+                          "button",
+                          {
+                            key: l.id,
+                            className: `dshFishing_btn${l.equipped ? " dshFishing_primary" : ""}`,
+                            disabled: busy,
+                            onClick: () => send({ type: "EquipLure", lureId: l.id })
+                          },
+                          l.name
+                        )
+                      )
+                    )
+                  )
+                : null,
+              React.createElement(
+                "div",
+                { className: "dshFishing_row" },
+                React.createElement("span", { className: "dshFishing_muted" }, "水深"),
+                React.createElement("span", null, snap.fishingDepthM === null ? "自动" : `${snap.fishingDepthM}m`)
+              ),
+              React.createElement(
+                "div",
+                { className: "dshFishing_row", style: { flexWrap: "wrap", gap: 4 } },
+                React.createElement(
+                  "button",
+                  {
+                    className: `dshFishing_btn${snap.fishingDepthM === null ? " dshFishing_primary" : ""}`,
+                    disabled: busy,
+                    onClick: () => send({ type: "SetDepth", depthM: null })
+                  },
+                  "自动"
+                ),
+                [1, 2, 3, 5, 8, 12, 20].map((d) =>
+                  React.createElement(
+                    "button",
+                    {
+                      key: d,
+                      className: `dshFishing_btn${snap.fishingDepthM === d ? " dshFishing_primary" : ""}`,
+                      disabled: busy || d > (snap.currentMap && snap.currentMap.maxDepthM ? snap.currentMap.maxDepthM : 100),
+                      onClick: () => send({ type: "SetDepth", depthM: d })
+                    },
+                    `${d}m`
+                  )
+                )
+              )
+            )
+          ),
+          React.createElement(
+            "details",
+            { className: "dshFishing_details" },
             React.createElement(
               "summary",
               { className: "dshFishing_summary" },

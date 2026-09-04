@@ -1253,6 +1253,7 @@ export class FishingGame {
         requiredLevel: map.requiredLevel,
         entryFee: map.entryFee,
         staminaCost: map.staminaCost ?? 1,
+        maxDepthM: map.maxDepthM ?? null,
         description: map.description,
         fishIntro: map.fishIntro,
         locked,
@@ -1295,6 +1296,7 @@ export class FishingGame {
         requiredLevel: currentMap.requiredLevel,
         entryFee: currentMap.entryFee,
         staminaCost: currentMap.staminaCost ?? 1,
+        maxDepthM: currentMap.maxDepthM ?? null,
         description: currentMap.description,
         fishIntro: currentMap.fishIntro
       },
