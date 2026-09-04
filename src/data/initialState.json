@@ -47,5 +47,15 @@
     "eventText": ""
   },
   "stamina": 0,
-  "pendingStaminaTokens": 0
+  "pendingStaminaTokens": 0,
+  "ownedBaits": {
+    "dough": 30,
+    "earthworm": 20,
+    "corn": 10,
+    "wheat": 10
+  },
+  "equippedBaitId": "dough",
+  "ownedLures": [],
+  "equippedLureId": null,
+  "fishingDepthM": null
 }

@@ -210,6 +210,18 @@ function normalizeState(state) {
 
   if (!Array.isArray(state.items)) state.items = []
   if (!Array.isArray(state.collection)) state.collection = []
+  if (state.ownedBaits === null || typeof state.ownedBaits !== 'object') state.ownedBaits = {}
+  for (const bait of BAITS) {
+    if (!Number.isFinite(state.ownedBaits[bait.id])) state.ownedBaits[bait.id] = 0
+  }
+  if (!BAITS_BY_ID.has(state.equippedBaitId)) state.equippedBaitId = BAITS[0]?.id ?? null
+  if (!Array.isArray(state.ownedLures)) state.ownedLures = []
+  if (state.equippedLureId !== null && state.equippedLureId !== undefined && !LURES_BY_ID.has(state.equippedLureId)) {
+    state.equippedLureId = null
+  }
+  if (state.fishingDepthM !== null && state.fishingDepthM !== undefined && !Number.isFinite(state.fishingDepthM)) {
+    state.fishingDepthM = null
+  }
   if (state.equippedAccessories === null || typeof state.equippedAccessories !== 'object') {
     state.equippedAccessories = Object.fromEntries(ACCESSORY_SLOTS.map((slot) => [slot.id, null]))
   }
@@ -291,9 +303,84 @@ export class FishingGame {
     return basket
   }
 
-  currentMapCandidates() {
-    const { rod } = this.equippedRod()
-    return SPECIES.filter((species) => species.requiredRodId === rod.rodType && (species.maps ?? []).includes(this.state.currentMapId))
+  currentMap() {
+    return MAPS_BY_ID.get(this.state.currentMapId) ?? MAPS[0]
+  }
+
+  currentMapHour(now = Date.now()) {
+    const timeZone = this.currentMap().timezone || 'Asia/Shanghai'
+    try {
+      return Number(new Intl.DateTimeFormat('en-US', { timeZone, hour: 'numeric', hourCycle: 'h23' }).format(now))
+    } catch {
+      return new Date(now).getHours()
+    }
+  }
+
+  currentWaterTemp(now = Date.now()) {
+    const timeZone = this.currentMap().timezone || 'Asia/Shanghai'
+    let month = 1
+    try {
+      month = Number(new Intl.DateTimeFormat('en-US', { timeZone, month: 'numeric' }).format(now))
+    } catch {
+      month = new Date(now).getMonth() + 1
+    }
+    const seasonal = [5, 5, 8, 14, 19, 24, 27, 27, 22, 16, 10, 6][month - 1] ?? 15
+    const latitude = this.currentMap().latitude ?? 30
+    return clamp(seasonal + (30 - latitude) * 0.1, -5, 35)
+  }
+
+  currentLightLevel(now = Date.now()) {
+    const hour = this.currentMapHour(now)
+    if (hour >= 7 && hour < 17) return 80
+    if (hour >= 5 && hour < 7) return 30
+    if (hour >= 17 && hour < 20) return 30
+    return 10
+  }
+
+  isTimeInRanges(hour, ranges) {
+    if (!Array.isArray(ranges) || ranges.length === 0) return true
+    return ranges.some((range) => hour >= (range.startHour ?? 0) && hour < (range.endHour ?? 24))
+  }
+
+  currentFoodMode() {
+    const rod = this.equippedRod().rod
+    if (rod.rodType === 'lure' && this.state.equippedLureId !== null && this.state.equippedLureId !== undefined) {
+      return { mode: 'lure', id: this.state.equippedLureId }
+    }
+    return { mode: 'bait', id: this.state.equippedBaitId }
+  }
+
+  currentMapCandidates(now = Date.now()) {
+    const mapId = this.state.currentMapId
+    const food = this.currentFoodMode()
+    if (!food.id) return []
+    const hour = this.currentMapHour(now)
+    const waterTemp = this.currentWaterTemp(now)
+    const light = this.currentLightLevel(now)
+    const depth = this.state.fishingDepthM
+    return SPECIES.filter((species) => {
+      const areas = species.activeAreas ?? species.maps ?? []
+      if (!areas.includes(mapId)) return false
+      if (food.mode === 'lure') {
+        if (!(species.lureIds ?? []).includes(food.id)) return false
+      } else {
+        if (!(species.baitIds ?? []).includes(food.id)) return false
+      }
+      if (!this.isTimeInRanges(hour, species.activeTimeRanges)) return false
+      if (species.waterTempRange) {
+        const temp = species.waterTempRange
+        if (waterTemp < (temp.minC ?? -99) || waterTemp > (temp.maxC ?? 99)) return false
+      }
+      if (Array.isArray(species.lightRanges) && species.lightRanges.length > 0) {
+        const ok = species.lightRanges.some((range) => light >= (range.min ?? 0) && light <= (range.max ?? 100))
+        if (!ok) return false
+      }
+      if (depth !== null && depth !== undefined && species.depthRange) {
+        const range = species.depthRange
+        if (depth < (range.minM ?? 0) || depth > (range.maxM ?? 999)) return false
+      }
+      return true
+    })
   }
 
   handleTokensConsumed(amount, source = 'msg', ts = Date.now()) {
@@ -369,12 +456,24 @@ export class FishingGame {
         effects.push({ type: 'EventLine', text: this.state.lastEventText })
         break
       }
-      if (this.currentMapCandidates().length === 0) {
-        this.state.lastEventText = '当前鱼竿在这张地图钓不到鱼，请更换鱼竿或地图。'
+      const food = this.currentFoodMode()
+      if (food.mode === 'bait' && (this.state.ownedBaits[food.id] ?? 0) <= 0) {
+        this.state.lastEventText = '饵料不足，请先购买或更换饵料。'
+        effects.push({ type: 'EventLine', text: this.state.lastEventText })
+        break
+      }
+      if (food.mode === 'lure' && !this.state.ownedLures.includes(food.id)) {
+        this.state.lastEventText = '尚未拥有当前假饵，请先购买或更换。'
+        effects.push({ type: 'EventLine', text: this.state.lastEventText })
+        break
+      }
+      if (this.currentMapCandidates(now).length === 0) {
+        this.state.lastEventText = '当前条件下没有鱼开口，请更换饵料、时间或水深后再试。'
         effects.push({ type: 'EventLine', text: this.state.lastEventText })
         break
       }
       this.state.stamina -= staminaCost
+      if (food.mode === 'bait') this.state.ownedBaits[food.id] -= 1
       effects.push(...this.cast(now))
       guard += 1
 
@@ -404,14 +503,13 @@ export class FishingGame {
       this.state.lastEventText = '鱼篓已满，停止钓鱼。'
       return [{ type: 'EventLine', text: this.state.lastEventText }]
     }
-    const { rod } = this.equippedRod()
     const staminaCost = this.currentMapStaminaCost()
     this.state.stats.totalStaminaUsed = (this.state.stats.totalStaminaUsed ?? 0) + staminaCost
 
-    const candidates = SPECIES.filter((species) => species.requiredRodId === rod.rodType && (species.maps ?? []).includes(this.state.currentMapId))
+    const candidates = this.currentMapCandidates(now)
     if (candidates.length === 0) {
       this.state.stamina += staminaCost
-      this.state.lastEventText = '当前鱼竿在这张地图钓不到鱼，请更换鱼竿或地图。'
+      this.state.lastEventText = '当前条件下没有鱼开口，请更换饵料、时间或水深后再试。'
       return [{ type: 'EventLine', text: this.state.lastEventText }]
     }
 
@@ -466,7 +564,7 @@ export class FishingGame {
   }
 
   resolveCast(now = Date.now()) {
-    const { rod, effects } = this.equippedRod()
+    const { effects } = this.equippedRod()
     this.state.fishing.status = 'idle'
     this.state.fishing.stage = null
     this.state.fishing.startedAt = 0
@@ -475,9 +573,9 @@ export class FishingGame {
     this.state.fishing.lastEventAt = 0
     this.state.fishing.eventText = ''
 
-    const candidates = SPECIES.filter((species) => species.requiredRodId === rod.rodType && (species.maps ?? []).includes(this.state.currentMapId))
+    const candidates = this.currentMapCandidates(now)
     if (candidates.length === 0) {
-      this.state.lastEventText = '当前鱼竿还钓不到任何鱼。'
+      this.state.lastEventText = '当前条件下没有鱼开口。'
       return [{ type: 'EventLine', text: this.state.lastEventText }]
     }
 
@@ -1040,6 +1138,13 @@ export class FishingGame {
       baskets,
       items,
       equippedAccessories,
+      baits: BAITS.map((bait) => ({ ...bait, quantity: state.ownedBaits[bait.id] ?? 0, equipped: state.equippedBaitId === bait.id })),
+      equippedBaitId: state.equippedBaitId ?? null,
+      lures: LURES.map((lure) => ({ ...lure, owned: state.ownedLures.includes(lure.id), equipped: state.equippedLureId === lure.id })),
+      equippedLureId: state.equippedLureId ?? null,
+      ownedBaits: state.ownedBaits,
+      ownedLures: state.ownedLures,
+      fishingDepthM: state.fishingDepthM ?? null,
       shopCategories,
       shopItems,
       stats: state.stats,
