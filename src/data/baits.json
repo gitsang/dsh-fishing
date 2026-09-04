@@ -1,0 +1,14 @@
+[
+  { "id": "earthworm", "name": "蚯蚓", "icon": "assets/baits/earthworm.svg", "price": 10, "packSize": 20, "unlockLevel": 1 },
+  { "id": "redworm", "name": "红虫", "icon": "assets/baits/redworm.svg", "price": 15, "packSize": 20, "unlockLevel": 2 },
+  { "id": "corn", "name": "玉米", "icon": "assets/baits/corn.svg", "price": 8, "packSize": 30, "unlockLevel": 1 },
+  { "id": "wheat", "name": "麦粒", "icon": "assets/baits/wheat.svg", "price": 8, "packSize": 30, "unlockLevel": 1 },
+  { "id": "dough", "name": "商品粉饵", "icon": "assets/baits/dough.svg", "price": 20, "packSize": 20, "unlockLevel": 2 },
+  { "id": "grass", "name": "草叶", "icon": "assets/baits/grass.svg", "price": 5, "packSize": 30, "unlockLevel": 1 },
+  { "id": "small_fish", "name": "小鱼", "icon": "assets/baits/small_fish.svg", "price": 30, "packSize": 10, "unlockLevel": 5 },
+  { "id": "shrimp", "name": "活虾", "icon": "assets/baits/shrimp.svg", "price": 35, "packSize": 10, "unlockLevel": 6 },
+  { "id": "snail", "name": "螺蛳", "icon": "assets/baits/snail.svg", "price": 25, "packSize": 15, "unlockLevel": 7 },
+  { "id": "insect", "name": "昆虫", "icon": "assets/baits/insect.svg", "price": 18, "packSize": 15, "unlockLevel": 5 },
+  { "id": "organ", "name": "动物内脏", "icon": "assets/baits/organ.svg", "price": 22, "packSize": 10, "unlockLevel": 4 },
+  { "id": "fish_roe", "name": "鱼卵", "icon": "assets/baits/fish_roe.svg", "price": 40, "packSize": 10, "unlockLevel": 8 }
+]

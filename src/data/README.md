@@ -11,6 +11,8 @@
 | `rods.json` | 鱼竿商品 | 在数组末尾添加一个对象 |
 | `baskets.json` | 鱼篓商品 | 在数组末尾添加一个对象 |
 | `accessories.json` | 配件商品 | 在数组末尾添加一个对象 |
+| `baits.json` | 消耗型饵料 | 在数组末尾添加一个对象 |
+| `lures.json` | 路亚假饵 | 在数组末尾添加一个对象 |
 | `accessorySlots.json` | 配件槽位枚举 | 新增配件类型时修改 |
 | `rodTypes.json` | 鱼竿类型枚举 | 新增竿型时修改 |
 | `junkItems.json` | 垃圾/杂物枚举 | 新增杂物文案时修改 |

@@ -21,7 +21,43 @@
     "favoriteBait": "蚯蚓、面团",
     "tips": "清晨和傍晚开口更好，手竿轻提即可。",
     "icon": "assets/fish/carp.svg",
-    "staminaPerKg": 8
+    "staminaPerKg": 8,
+    "activeAreas": [
+      "beginner",
+      "xuanwu_lake",
+      "east_lake",
+      "erhai_lake",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "earthworm",
+      "dough"
+    ],
+    "lureIds": []
   },
   {
     "id": "crucian",
@@ -45,7 +81,39 @@
     "favoriteBait": "玉米粒、红薯饵",
     "tips": "咬钩动作沉稳，等浮漂连续下顿再提竿。",
     "icon": "assets/fish/crucian.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "beginner",
+      "xuanwu_lake",
+      "east_lake",
+      "erhai_lake",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "corn",
+      "dough"
+    ],
+    "lureIds": []
   },
   {
     "id": "koi",
@@ -67,7 +135,37 @@
     "favoriteBait": "特制鱼粮、小虾",
     "tips": "锦鲤很聪明，钓线尽量细、动作要轻。",
     "icon": "assets/fish/koi.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "forest_lake",
+      "legendary_waters",
+      "east_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "dough",
+      "shrimp"
+    ],
+    "lureIds": []
   },
   {
     "id": "bass",
@@ -92,7 +190,46 @@
     "favoriteBait": "小鱼、活虾",
     "tips": "路亚/海竿抛投后慢收，容易触发攻击。",
     "icon": "assets/fish/bass.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "deep_sea",
+      "qingdao_coast",
+      "south_sea",
+      "weihai_coast",
+      "shengsi_islands",
+      "xisha_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "small_fish",
+      "shrimp"
+    ],
+    "lureIds": [
+      "spinner",
+      "minnow",
+      "popper",
+      "soft_bait",
+      "crankbait"
+    ]
   },
   {
     "id": "catfish",
@@ -116,7 +253,42 @@
     "favoriteBait": "鸡肝、腥味饵",
     "tips": "夜钓效率更高，中钩后它会往淤泥里钻。",
     "icon": "assets/fish/catfish.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "forest_lake",
+      "pearl_river",
+      "east_lake",
+      "erhai_lake",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 6
+      },
+      {
+        "startHour": 18,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 2,
+      "maxM": 60
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 40
+      }
+    ],
+    "baitIds": [
+      "organ"
+    ],
+    "lureIds": []
   },
   {
     "id": "arowana",
@@ -136,7 +308,38 @@
     "favoriteBait": "小鱼、昆虫",
     "tips": "需要高等级地图和强力鱼竿，中钩后小心爆发力。",
     "icon": "assets/fish/arowana.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "legendary_waters"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "small_fish",
+      "insect"
+    ],
+    "lureIds": [
+      "minnow",
+      "soft_bait"
+    ]
   },
   {
     "id": "trout",
@@ -157,7 +360,39 @@
     "favoriteBait": "飞蝇、红虫",
     "tips": "用飞蝇竿模拟昆虫落水，溪流中快速收线。",
     "icon": "assets/fish/trout.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "mountain_river",
+      "northeast_river"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "redworm"
+    ],
+    "lureIds": []
   },
   {
     "id": "mandarin",
@@ -180,7 +415,40 @@
     "favoriteBait": "小鱼、泥鳅",
     "tips": "藏在石缝中，路亚饵贴近底部慢拖效果好。",
     "icon": "assets/fish/mandarin.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "forest_lake",
+      "pearl_river",
+      "east_lake",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": [
+      "minnow",
+      "soft_bait"
+    ]
   },
   {
     "id": "bream",
@@ -202,7 +470,37 @@
     "favoriteBait": "麦粒、商品粉饵",
     "tips": "浮漂微微点动时别急着提，等真实咬口。",
     "icon": "assets/fish/bream.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "beginner",
+      "xuanwu_lake",
+      "east_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "wheat",
+      "dough"
+    ],
+    "lureIds": []
   },
   {
     "id": "grass_carp",
@@ -228,7 +526,41 @@
     "favoriteBait": "草叶、玉米",
     "tips": "中钩后会猛冲，飞德杆要调好泄力。",
     "icon": "assets/fish/grass_carp.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "beginner",
+      "pearl_river",
+      "yangtze_river",
+      "xuanwu_lake",
+      "east_lake",
+      "erhai_lake",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "corn",
+      "grass"
+    ],
+    "lureIds": []
   },
   {
     "id": "black_carp",
@@ -251,7 +583,37 @@
     "favoriteBait": "螺蛳、贝类",
     "tips": "底钓为主，饵要沉到泥底才有机会。",
     "icon": "assets/fish/black_carp.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "forest_lake",
+      "yangtze_river",
+      "east_lake",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 2,
+      "maxM": 60
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "snail"
+    ],
+    "lureIds": []
   },
   {
     "id": "tilapia",
@@ -275,7 +637,38 @@
     "favoriteBait": "腥香饵、面包",
     "tips": "成群活动，找到鱼群后可以连竿。",
     "icon": "assets/fish/tilapia.svg",
-    "staminaPerKg": 8
+    "staminaPerKg": 8,
+    "activeAreas": [
+      "beginner",
+      "pearl_river",
+      "xuanwu_lake",
+      "east_lake",
+      "erhai_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "dough"
+    ],
+    "lureIds": []
   },
   {
     "id": "perch",
@@ -297,7 +690,40 @@
     "favoriteBait": "小鱼、亮片",
     "tips": "抛到障碍物附近慢速收线，常有意想不到的咬口。",
     "icon": "assets/fish/perch.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "forest_lake",
+      "east_lake",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": [
+      "spinner",
+      "minnow",
+      "soft_bait"
+    ]
   },
   {
     "id": "eel",
@@ -322,7 +748,44 @@
     "favoriteBait": "蚯蚓、动物内脏",
     "tips": "夜钓、沉底钓更容易遇到。",
     "icon": "assets/fish/eel.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "forest_lake",
+      "pearl_river",
+      "xuanwu_lake",
+      "east_lake",
+      "erhai_lake",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 6
+      },
+      {
+        "startHour": 18,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 2,
+      "maxM": 60
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 40
+      }
+    ],
+    "baitIds": [
+      "earthworm",
+      "organ"
+    ],
+    "lureIds": []
   },
   {
     "id": "char",
@@ -343,7 +806,39 @@
     "favoriteBait": "飞蝇、小虫",
     "tips": "清晨水面有昆虫时最活跃。",
     "icon": "assets/fish/char.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "mountain_river",
+      "northeast_river"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "insect"
+    ],
+    "lureIds": []
   },
   {
     "id": "salmon",
@@ -364,7 +859,39 @@
     "favoriteBait": "鱼卵、飞蝇",
     "tips": "秋季繁殖洄游期更容易碰到大个体。",
     "icon": "assets/fish/salmon.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "mountain_river",
+      "northeast_river"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "fish_roe"
+    ],
+    "lureIds": []
   },
   {
     "id": "yellow_croaker",
@@ -388,7 +915,41 @@
     "favoriteBait": "虾肉、沙蚕",
     "tips": "潮水初涨时咬口好，滩钓抛远一些。",
     "icon": "assets/fish/yellow_croaker.svg",
-    "staminaPerKg": 8
+    "staminaPerKg": 8,
+    "activeAreas": [
+      "deep_sea",
+      "qingdao_coast",
+      "weihai_coast",
+      "shengsi_islands",
+      "xisha_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "earthworm",
+      "shrimp"
+    ],
+    "lureIds": [
+      "soft_bait"
+    ]
   },
   {
     "id": "mackerel",
@@ -411,7 +972,44 @@
     "favoriteBait": "亮片、小鱼段",
     "tips": "看到海鸟聚集时抛竿，往往有鱼群。",
     "icon": "assets/fish/mackerel.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "deep_sea",
+      "qingdao_coast",
+      "weihai_coast",
+      "shengsi_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": [
+      "spinner",
+      "spoon"
+    ]
   },
   {
     "id": "grouper",
@@ -434,7 +1032,41 @@
     "favoriteBait": "活虾、小鱼",
     "tips": "重铅快速到底，在礁石缝隙附近多等一会。",
     "icon": "assets/fish/grouper.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "deep_sea",
+      "south_sea",
+      "shengsi_islands",
+      "xisha_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "small_fish",
+      "shrimp"
+    ],
+    "lureIds": [
+      "soft_bait",
+      "crankbait"
+    ]
   },
   {
     "id": "tuna",
@@ -457,7 +1089,40 @@
     "favoriteBait": "整条小鱼、鱿鱼",
     "tips": "中钩后第一波冲刺极强，需要高等级海竿。",
     "icon": "assets/fish/tuna.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "deep_sea",
+      "south_sea",
+      "shengsi_islands",
+      "xisha_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 5,
+      "maxM": 80
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": [
+      "spoon",
+      "popper"
+    ]
   },
   {
     "id": "marlin",
@@ -480,7 +1145,40 @@
     "favoriteBait": "活饵、拖钓假饵",
     "tips": "遇见后要抓住短暂窗口，稳住鱼竿慢慢消耗体力。",
     "icon": "assets/fish/marlin.svg",
-    "staminaPerKg": 2
+    "staminaPerKg": 2,
+    "activeAreas": [
+      "deep_sea",
+      "legendary_waters",
+      "south_sea",
+      "xisha_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 5,
+      "maxM": 80
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "earthworm"
+    ],
+    "lureIds": [
+      "popper",
+      "spoon"
+    ]
   },
   {
     "id": "sturgeon",
@@ -501,7 +1199,35 @@
     "favoriteBait": "底栖小生物、特制饵",
     "tips": "极其稀有，需要顶级装备和耐心。",
     "icon": "assets/fish/sturgeon.svg",
-    "staminaPerKg": 2
+    "staminaPerKg": 2,
+    "activeAreas": [
+      "legendary_waters",
+      "yangtze_river"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 2,
+      "maxM": 60
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "dough"
+    ],
+    "lureIds": []
   },
   {
     "id": "king_salmon",
@@ -521,7 +1247,34 @@
     "favoriteBait": "大号飞蝇、鱼卵",
     "tips": "只在传说水域现身，中钩后准备长时间搏斗。",
     "icon": "assets/fish/king_salmon.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "legendary_waters"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 5,
+      "maxM": 80
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "fish_roe"
+    ],
+    "lureIds": []
   },
   {
     "id": "golden_carp",
@@ -541,7 +1294,39 @@
     "favoriteBait": "金色谷物、灵泉饵",
     "tips": "传闻它喜欢在满月时浮出水面。",
     "icon": "assets/fish/golden_carp.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "legendary_waters"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 6
+      },
+      {
+        "startHour": 18,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 40
+      }
+    ],
+    "baitIds": [
+      "corn",
+      "dough"
+    ],
+    "lureIds": []
   },
   {
     "id": "taimen",
@@ -562,7 +1347,39 @@
     "favoriteBait": "大号飞蝇、小鱼",
     "tips": "清晨和傍晚活性最高，中钩后冲击力极强。",
     "icon": "assets/fish/taimen.svg",
-    "staminaPerKg": 2
+    "staminaPerKg": 2,
+    "activeAreas": [
+      "northeast_river",
+      "xinjiang_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 5,
+      "maxM": 80
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": []
   },
   {
     "id": "lenok",
@@ -583,7 +1400,39 @@
     "favoriteBait": "飞蝇、昆虫幼虫",
     "tips": "用飞蝇模拟落水昆虫，溪流中快速收线。",
     "icon": "assets/fish/lenok.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "northeast_river",
+      "mountain_river"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "insect"
+    ],
+    "lureIds": []
   },
   {
     "id": "burbot",
@@ -604,7 +1453,40 @@
     "favoriteBait": "小鱼、动物内脏",
     "tips": "夜钓沉底更容易遇到。",
     "icon": "assets/fish/burbot.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "northeast_river",
+      "xinjiang_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 6
+      },
+      {
+        "startHour": 18,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 2,
+      "maxM": 60
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 40
+      }
+    ],
+    "baitIds": [
+      "small_fish",
+      "organ"
+    ],
+    "lureIds": []
   },
   {
     "id": "chum_salmon",
@@ -624,7 +1506,38 @@
     "favoriteBait": "鱼卵、大号飞蝇",
     "tips": "洄游期体力充沛，需要足够强力的飞蝇竿。",
     "icon": "assets/fish/chum_salmon.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "northeast_river"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 5,
+      "maxM": 80
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "fish_roe"
+    ],
+    "lureIds": []
   },
   {
     "id": "naked_carp",
@@ -645,7 +1558,35 @@
     "favoriteBait": "糌粑饵、小虫",
     "tips": "高原水温低，鱼口轻，浮漂要调灵敏。",
     "icon": "assets/fish/naked_carp.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "qinghai_lake",
+      "namtso_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "insect"
+    ],
+    "lureIds": []
   },
   {
     "id": "plateau_loach",
@@ -666,7 +1607,36 @@
     "favoriteBait": "红虫、蚯蚓段",
     "tips": "底钓小钩细线，动作要轻。",
     "icon": "assets/fish/plateau_loach.svg",
-    "staminaPerKg": 8
+    "staminaPerKg": 8,
+    "activeAreas": [
+      "qinghai_lake",
+      "namtso_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 2,
+      "maxM": 60
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "earthworm",
+      "redworm"
+    ],
+    "lureIds": []
   },
   {
     "id": "spotted_naked_carp",
@@ -687,7 +1657,37 @@
     "favoriteBait": "谷物饵、小虾",
     "tips": "晴天水温升高时更活跃。",
     "icon": "assets/fish/spotted_naked_carp.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "qinghai_lake",
+      "namtso_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "corn",
+      "wheat",
+      "shrimp"
+    ],
+    "lureIds": []
   },
   {
     "id": "humphead_wrasse",
@@ -708,7 +1708,37 @@
     "favoriteBait": "活虾、鱿鱼",
     "tips": "在珊瑚礁边缘守钓，中钩后要防止钻礁。",
     "icon": "assets/fish/humphead_wrasse.svg",
-    "staminaPerKg": 2
+    "staminaPerKg": 2,
+    "activeAreas": [
+      "south_sea",
+      "xisha_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 5,
+      "maxM": 80
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "shrimp"
+    ],
+    "lureIds": [
+      "soft_bait"
+    ]
   },
   {
     "id": "parrotfish",
@@ -729,7 +1759,35 @@
     "favoriteBait": "藻饵、虾肉",
     "tips": "白天在礁区觅食，轻矶钓容易遇见。",
     "icon": "assets/fish/parrotfish.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "south_sea",
+      "xisha_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "shrimp"
+    ],
+    "lureIds": []
   },
   {
     "id": "moray_eel",
@@ -752,7 +1810,43 @@
     "favoriteBait": "鱿鱼、小鱼块",
     "tips": "夜钓或黄昏钓更容易，中钩后立即拉离礁石。",
     "icon": "assets/fish/moray_eel.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "south_sea",
+      "deep_sea",
+      "shengsi_islands",
+      "xisha_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 6
+      },
+      {
+        "startHour": 18,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 40
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": [
+      "soft_bait"
+    ]
   },
   {
     "id": "yellowcheek_carp",
@@ -773,7 +1867,38 @@
     "favoriteBait": "活鱼、亮片",
     "tips": "路亚远投快速收线，刺激它追咬。",
     "icon": "assets/fish/yellowcheek_carp.svg",
-    "staminaPerKg": 2
+    "staminaPerKg": 2,
+    "activeAreas": [
+      "yangtze_river",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 5,
+      "maxM": 80
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": [
+      "spinner",
+      "spoon"
+    ]
   },
   {
     "id": "longsnout_catfish",
@@ -794,7 +1919,38 @@
     "favoriteBait": "虾肉、螺蛳",
     "tips": "底钓为主，水流较急时加重铅坠。",
     "icon": "assets/fish/longsnout_catfish.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "yangtze_river",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 2,
+      "maxM": 60
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "shrimp",
+      "snail"
+    ],
+    "lureIds": [
+      "soft_bait"
+    ]
   },
   {
     "id": "mud_carp",
@@ -817,7 +1973,38 @@
     "favoriteBait": "麦麸、商品粉饵",
     "tips": "成群活动，打窝后常能连竿。",
     "icon": "assets/fish/mud_carp.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "pearl_river",
+      "beginner",
+      "xuanwu_lake",
+      "east_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "wheat",
+      "dough"
+    ],
+    "lureIds": []
   },
   {
     "id": "snakehead",
@@ -840,7 +2027,44 @@
     "favoriteBait": "青蛙形假饵、小鱼",
     "tips": "雷蛙或软饵在水草区慢拖容易触发攻击。",
     "icon": "assets/fish/snakehead.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "pearl_river",
+      "forest_lake",
+      "east_lake",
+      "dongting_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 6
+      },
+      {
+        "startHour": 18,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 2,
+      "maxM": 60
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 40
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": [
+      "soft_bait",
+      "popper"
+    ]
   },
   {
     "id": "peled",
@@ -860,7 +2084,38 @@
     "favoriteBait": "飞蝇、小鱼",
     "tips": "清晨风平浪静时在水面附近觅食。",
     "icon": "assets/fish/peled.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "xinjiang_lake"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 5,
+      "maxC": 20
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": []
   },
   {
     "id": "spanish_mackerel",
@@ -884,7 +2139,45 @@
     "favoriteBait": "亮片、小鱼段",
     "tips": "春秋两季近岸追捕小鱼时最好钓。",
     "icon": "assets/fish/spanish_mackerel.svg",
-    "staminaPerKg": 2.5
+    "staminaPerKg": 2.5,
+    "activeAreas": [
+      "qingdao_coast",
+      "deep_sea",
+      "weihai_coast",
+      "shengsi_islands",
+      "xisha_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": [
+      "spinner",
+      "spoon"
+    ]
   },
   {
     "id": "black_seabream",
@@ -907,7 +2200,44 @@
     "favoriteBait": "虾仁、沙蚕",
     "tips": "轻矶钓、细线小钩，打窝后等口。",
     "icon": "assets/fish/black_seabream.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "qingdao_coast",
+      "deep_sea",
+      "weihai_coast",
+      "shengsi_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 5,
+        "endHour": 10
+      },
+      {
+        "startHour": 17,
+        "endHour": 22
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 10,
+        "max": 80
+      }
+    ],
+    "baitIds": [
+      "earthworm",
+      "shrimp"
+    ],
+    "lureIds": [
+      "soft_bait"
+    ]
   },
   {
     "id": "hairtail",
@@ -929,7 +2259,42 @@
     "favoriteBait": "小鱼段、鱿鱼条",
     "tips": "夜钓或晨昏时段更容易遇到。",
     "icon": "assets/fish/hairtail.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "qingdao_coast",
+      "weihai_coast",
+      "shengsi_islands"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 6
+      },
+      {
+        "startHour": 18,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 0.5,
+      "maxM": 20
+    },
+    "waterTempRange": {
+      "minC": 10,
+      "maxC": 30
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 40
+      }
+    ],
+    "baitIds": [
+      "small_fish"
+    ],
+    "lureIds": [
+      "spoon"
+    ]
   },
   {
     "id": "flatfish",
@@ -950,6 +2315,35 @@
     "favoriteBait": "沙蚕、虾肉",
     "tips": "沉底钓，等它吞饵后再提竿。",
     "icon": "assets/fish/flatfish.svg",
-    "staminaPerKg": 4
+    "staminaPerKg": 4,
+    "activeAreas": [
+      "qingdao_coast",
+      "weihai_coast"
+    ],
+    "activeTimeRanges": [
+      {
+        "startHour": 0,
+        "endHour": 24
+      }
+    ],
+    "depthRange": {
+      "minM": 2,
+      "maxM": 60
+    },
+    "waterTempRange": {
+      "minC": 18,
+      "maxC": 32
+    },
+    "lightRanges": [
+      {
+        "min": 0,
+        "max": 100
+      }
+    ],
+    "baitIds": [
+      "earthworm",
+      "shrimp"
+    ],
+    "lureIds": []
   }
 ]

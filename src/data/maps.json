@@ -12,7 +12,12 @@
     "fishIntro": "常见鲫鱼、鲤鱼、鳊鱼、草鱼，也有适应力强的罗非鱼和鲮鱼。",
     "icon": "assets/maps/beginner.svg",
     "staminaCost": 1,
-    "maxDepthM": 6
+    "maxDepthM": 6,
+    "latitude": 31.31,
+    "longitude": 120.68,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "slow"
   },
   {
     "id": "xuanwu_lake",
@@ -48,7 +53,12 @@
     "fishIntro": "湖中鲤科鱼类丰富，也有鳜鱼、青鱼、河鲈、鳗鲡等。",
     "icon": "assets/maps/forest_lake.svg",
     "staminaCost": 2,
-    "maxDepthM": 6
+    "maxDepthM": 6,
+    "latitude": 30.24,
+    "longitude": 120.15,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "slow"
   },
   {
     "id": "east_lake",
@@ -105,7 +115,12 @@
     "fishIntro": "漓江有鳜鱼、马口鱼、光倒刺鲃等；上游冷水段也能遇到鳟鲑类。",
     "icon": "assets/maps/mountain_river.svg",
     "staminaCost": 2,
-    "maxDepthM": 12
+    "maxDepthM": 12,
+    "latitude": 25.27,
+    "longitude": 110.29,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "fast"
   },
   {
     "id": "dongting_lake",
@@ -141,7 +156,12 @@
     "fishIntro": "罗非鱼、鲮鱼、鳜鱼、斑鳢等华南江河鱼类丰富。",
     "icon": "assets/maps/pearl_river.svg",
     "staminaCost": 2,
-    "maxDepthM": 15
+    "maxDepthM": 15,
+    "latitude": 23.13,
+    "longitude": 113.26,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "medium"
   },
   {
     "id": "northeast_river",
@@ -156,7 +176,12 @@
     "fishIntro": "冷水鱼丰富：哲罗鲑、细鳞鲑、江鳕、大马哈鱼等。",
     "icon": "assets/maps/northeast_river.svg",
     "staminaCost": 3,
-    "maxDepthM": 20
+    "maxDepthM": 20,
+    "latitude": 52.97,
+    "longitude": 122.54,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "fast"
   },
   {
     "id": "weihai_coast",
@@ -192,7 +217,12 @@
     "fishIntro": "北方近海有鲅鱼、黑鲷、带鱼、鲈鱼、偏口鱼等。",
     "icon": "assets/maps/qingdao_coast.svg",
     "staminaCost": 3,
-    "maxDepthM": 20
+    "maxDepthM": 20,
+    "latitude": 36.07,
+    "longitude": 120.38,
+    "timezone": "Asia/Shanghai",
+    "waterType": "salt",
+    "current": "medium"
   },
   {
     "id": "deep_sea",
@@ -207,7 +237,12 @@
     "fishIntro": "近海有黄花鱼、鲭鱼、石斑和鲈鱼，远一些能碰金枪鱼、旗鱼。",
     "icon": "assets/maps/deep_sea.svg",
     "staminaCost": 3,
-    "maxDepthM": 80
+    "maxDepthM": 80,
+    "latitude": 24.45,
+    "longitude": 118.08,
+    "timezone": "Asia/Shanghai",
+    "waterType": "salt",
+    "current": "fast"
   },
   {
     "id": "qinghai_lake",
@@ -222,7 +257,12 @@
     "fishIntro": "以青海湖裸鲤（湟鱼）为代表，另有花斑裸鲤和高原鳅等耐盐碱鱼类。",
     "icon": "assets/maps/qinghai_lake.svg",
     "staminaCost": 4,
-    "maxDepthM": 30
+    "maxDepthM": 30,
+    "latitude": 36.89,
+    "longitude": 100.18,
+    "timezone": "Asia/Shanghai",
+    "waterType": "brackish",
+    "current": "slow"
   },
   {
     "id": "shengsi_islands",
@@ -258,7 +298,12 @@
     "fishIntro": "珊瑚礁鱼类丰富：苏眉、鹦嘴鱼、石斑、海鳗，外海有金枪鱼。",
     "icon": "assets/maps/south_sea.svg",
     "staminaCost": 4,
-    "maxDepthM": 80
+    "maxDepthM": 80,
+    "latitude": 18.22,
+    "longitude": 109.51,
+    "timezone": "Asia/Shanghai",
+    "waterType": "salt",
+    "current": "medium"
   },
   {
     "id": "yangtze_river",
@@ -273,7 +318,12 @@
     "fishIntro": "长江江段有青鱼、草鱼、鳡鱼、长吻鮠，历史上也是中华鲟洄游通道。",
     "icon": "assets/maps/yangtze_river.svg",
     "staminaCost": 4,
-    "maxDepthM": 60
+    "maxDepthM": 60,
+    "latitude": 30.7,
+    "longitude": 111.29,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "fast"
   },
   {
     "id": "legendary_waters",
@@ -288,7 +338,12 @@
     "fishIntro": "高原冷水湖泊里有锦鲤、龙鱼、金鲤等珍稀鱼种（游戏设定）。",
     "icon": "assets/maps/legendary_waters.svg",
     "staminaCost": 5,
-    "maxDepthM": 30
+    "maxDepthM": 30,
+    "latitude": 27.9,
+    "longitude": 99.95,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "slow"
   },
   {
     "id": "namtso_lake",
@@ -324,7 +379,12 @@
     "fishIntro": "高山冷水湖中有哲罗鲑、高白鲑、江鳕等珍稀冷水鱼。",
     "icon": "assets/maps/xinjiang_lake.svg",
     "staminaCost": 5,
-    "maxDepthM": 60
+    "maxDepthM": 60,
+    "latitude": 48.82,
+    "longitude": 87.02,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "slow"
   },
   {
     "id": "xisha_islands",

@@ -1,0 +1,8 @@
+[
+  { "id": "spinner", "name": "亮片", "icon": "assets/lures/spinner.svg", "price": 120, "unlockLevel": 4, "rodTypes": ["lure"] },
+  { "id": "minnow", "name": "米诺", "icon": "assets/lures/minnow.svg", "price": 180, "unlockLevel": 5, "rodTypes": ["lure"] },
+  { "id": "soft_bait", "name": "软饵", "icon": "assets/lures/soft_bait.svg", "price": 150, "unlockLevel": 5, "rodTypes": ["lure"] },
+  { "id": "popper", "name": "波趴", "icon": "assets/lures/popper.svg", "price": 200, "unlockLevel": 6, "rodTypes": ["lure"] },
+  { "id": "crankbait", "name": "深潜米诺", "icon": "assets/lures/crankbait.svg", "price": 220, "unlockLevel": 7, "rodTypes": ["lure"] },
+  { "id": "spoon", "name": "铁板", "icon": "assets/lures/spoon.svg", "price": 260, "unlockLevel": 8, "rodTypes": ["lure"] }
+]
