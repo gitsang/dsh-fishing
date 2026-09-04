@@ -905,10 +905,10 @@ window.__ModuleLoader__.load({
         );
       }
 
-      const bait = snap.bait ?? 0;
-      const pendingBaitTokens = snap.pendingBaitTokens ?? 0;
-      const tokensPerBait = snap.tokensPerBait ?? snap.baitTokensPerCast ?? 1000000;
-      const baitPercent = Math.max(0, Math.min(100, Math.round((pendingBaitTokens / tokensPerBait) * 100)));
+      const stamina = snap.stamina ?? 0;
+      const pendingStaminaTokens = snap.pendingStaminaTokens ?? 0;
+      const tokensPerStamina = snap.tokensPerStamina ?? 1000000;
+      const staminaPercent = Math.max(0, Math.min(100, Math.round((pendingStaminaTokens / tokensPerStamina) * 100)));
       const lastFish = snap.inventory.length > 0 ? snap.inventory[snap.inventory.length - 1] : null;
       const fishing = snap.fishing || { status: "idle", stage: null, remainingMs: 0, durationMs: 0, eventText: "" };
 
@@ -1016,7 +1016,7 @@ window.__ModuleLoader__.load({
           React.createElement(
             "div",
             { className: "dshFishing_bar" },
-            React.createElement("div", { className: "dshFishing_barFill", style: { width: `${baitPercent}%` } })
+            React.createElement("div", { className: "dshFishing_barFill", style: { width: `${staminaPercent}%` } })
           ),
           fishing.status === "fishing"
             ? React.createElement(
@@ -1645,7 +1645,7 @@ window.__ModuleLoader__.load({
           "div",
           { className: "dshFishing_status" },
           React.createElement("span", null, `Lv.${snap.level ?? 1} · 金币 ${snap.coins}`),
-          React.createElement("span", null, `鱼饵 ${bait}`),
+          React.createElement("span", null, `体力 ${stamina}`),
           React.createElement("span", null, `鱼 ${snap.inventory.length}/${snap.inventoryCapacity} · `, React.createElement(MapSvg, { map: snap.currentMap || { id: "beginner" }, size: 12 }))
         );
 

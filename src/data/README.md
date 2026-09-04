@@ -6,8 +6,8 @@
 
 | 文件 | 内容 | 新增一条数据的位置 |
 |---|---|---|
-| `species.json` | 鱼种 | 在数组末尾添加一个对象 |
-| `maps.json` | 地图 | 在数组末尾添加一个对象 |
+| `species.json` | 鱼种（含搏鱼体力系数） | 在数组末尾添加一个对象 |
+| `maps.json` | 地图（含体力成本） | 在数组末尾添加一个对象 |
 | `rods.json` | 鱼竿商品 | 在数组末尾添加一个对象 |
 | `baskets.json` | 鱼篓商品 | 在数组末尾添加一个对象 |
 | `accessories.json` | 配件商品 | 在数组末尾添加一个对象 |
@@ -36,6 +36,7 @@
   "maxWeightGrams": 500,
   "minLengthCm": 10,
   "maxLengthCm": 30,
+  "staminaPerKg": 8,
   "baseValue": 20,
   "requiredRodId": "hand",
   "scoreWeight": 1,
@@ -62,6 +63,7 @@
   "type": "湖泊",
   "requiredLevel": 1,
   "entryFee": 0,
+  "staminaCost": 1,
   "description": "描述",
   "fishIntro": "鱼种介绍"
 }

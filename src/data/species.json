@@ -16,7 +16,8 @@
     "habitat": "水草丰茂的静水区、金鸡湖",
     "favoriteBait": "蚯蚓、面团",
     "tips": "清晨和傍晚开口更好，手竿轻提即可。",
-    "icon": "assets/fish/carp.svg"
+    "icon": "assets/fish/carp.svg",
+    "staminaPerKg": 8
   },
   {
     "id": "crucian",
@@ -35,7 +36,8 @@
     "habitat": "湖底淤泥、水草边",
     "favoriteBait": "玉米粒、红薯饵",
     "tips": "咬钩动作沉稳，等浮漂连续下顿再提竿。",
-    "icon": "assets/fish/crucian.svg"
+    "icon": "assets/fish/crucian.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "koi",
@@ -55,7 +57,8 @@
     "habitat": "西湖的深水区、普达措",
     "favoriteBait": "特制鱼粮、小虾",
     "tips": "锦鲤很聪明，钓线尽量细、动作要轻。",
-    "icon": "assets/fish/koi.svg"
+    "icon": "assets/fish/koi.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "bass",
@@ -76,7 +79,8 @@
     "habitat": "近海岩礁、深水急流",
     "favoriteBait": "小鱼、活虾",
     "tips": "路亚/海竿抛投后慢收，容易触发攻击。",
-    "icon": "assets/fish/bass.svg"
+    "icon": "assets/fish/bass.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "catfish",
@@ -96,7 +100,8 @@
     "habitat": "湖泊泥底、桥洞下",
     "favoriteBait": "鸡肝、腥味饵",
     "tips": "夜钓效率更高，中钩后它会往淤泥里钻。",
-    "icon": "assets/fish/catfish.svg"
+    "icon": "assets/fish/catfish.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "arowana",
@@ -115,7 +120,8 @@
     "habitat": "普达措的上层水面",
     "favoriteBait": "小鱼、昆虫",
     "tips": "需要高等级地图和强力鱼竿，中钩后小心爆发力。",
-    "icon": "assets/fish/arowana.svg"
+    "icon": "assets/fish/arowana.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "trout",
@@ -135,7 +141,8 @@
     "habitat": "山涧急流、清澈浅滩",
     "favoriteBait": "飞蝇、红虫",
     "tips": "用飞蝇竿模拟昆虫落水，溪流中快速收线。",
-    "icon": "assets/fish/trout.svg"
+    "icon": "assets/fish/trout.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "mandarin",
@@ -155,7 +162,8 @@
     "habitat": "西湖的乱石底",
     "favoriteBait": "小鱼、泥鳅",
     "tips": "藏在石缝中，路亚饵贴近底部慢拖效果好。",
-    "icon": "assets/fish/mandarin.svg"
+    "icon": "assets/fish/mandarin.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "bream",
@@ -174,7 +182,8 @@
     "habitat": "金鸡湖的缓流区",
     "favoriteBait": "麦粒、商品粉饵",
     "tips": "浮漂微微点动时别急着提，等真实咬口。",
-    "icon": "assets/fish/bream.svg"
+    "icon": "assets/fish/bream.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "grass_carp",
@@ -195,7 +204,8 @@
     "habitat": "水草区、人工鱼塘",
     "favoriteBait": "草叶、玉米",
     "tips": "中钩后会猛冲，飞德杆要调好泄力。",
-    "icon": "assets/fish/grass_carp.svg"
+    "icon": "assets/fish/grass_carp.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "black_carp",
@@ -215,7 +225,8 @@
     "habitat": "西湖深水底",
     "favoriteBait": "螺蛳、贝类",
     "tips": "底钓为主，饵要沉到泥底才有机会。",
-    "icon": "assets/fish/black_carp.svg"
+    "icon": "assets/fish/black_carp.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "tilapia",
@@ -235,7 +246,8 @@
     "habitat": "温暖浅水、鱼塘岸边",
     "favoriteBait": "腥香饵、面包",
     "tips": "成群活动，找到鱼群后可以连竿。",
-    "icon": "assets/fish/tilapia.svg"
+    "icon": "assets/fish/tilapia.svg",
+    "staminaPerKg": 8
   },
   {
     "id": "perch",
@@ -254,7 +266,8 @@
     "habitat": "西湖的水草边、倒木旁",
     "favoriteBait": "小鱼、亮片",
     "tips": "抛到障碍物附近慢速收线，常有意想不到的咬口。",
-    "icon": "assets/fish/perch.svg"
+    "icon": "assets/fish/perch.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "eel",
@@ -274,7 +287,8 @@
     "habitat": "湖泊淤泥、石缝",
     "favoriteBait": "蚯蚓、动物内脏",
     "tips": "夜钓、沉底钓更容易遇到。",
-    "icon": "assets/fish/eel.svg"
+    "icon": "assets/fish/eel.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "char",
@@ -294,7 +308,8 @@
     "habitat": "高海拔冷水溪流",
     "favoriteBait": "飞蝇、小虫",
     "tips": "清晨水面有昆虫时最活跃。",
-    "icon": "assets/fish/char.svg"
+    "icon": "assets/fish/char.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "salmon",
@@ -314,7 +329,8 @@
     "habitat": "漓江的深潭、急流",
     "favoriteBait": "鱼卵、飞蝇",
     "tips": "秋季繁殖洄游期更容易碰到大个体。",
-    "icon": "assets/fish/salmon.svg"
+    "icon": "assets/fish/salmon.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "yellow_croaker",
@@ -334,7 +350,8 @@
     "habitat": "近岸泥沙底、浅海",
     "favoriteBait": "虾肉、沙蚕",
     "tips": "潮水初涨时咬口好，滩钓抛远一些。",
-    "icon": "assets/fish/yellow_croaker.svg"
+    "icon": "assets/fish/yellow_croaker.svg",
+    "staminaPerKg": 8
   },
   {
     "id": "mackerel",
@@ -354,7 +371,8 @@
     "habitat": "深海表层、冷水与暖流交汇处",
     "favoriteBait": "亮片、小鱼段",
     "tips": "看到海鸟聚集时抛竿，往往有鱼群。",
-    "icon": "assets/fish/mackerel.svg"
+    "icon": "assets/fish/mackerel.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "grouper",
@@ -374,7 +392,8 @@
     "habitat": "珊瑚礁、岩洞、沉船",
     "favoriteBait": "活虾、小鱼",
     "tips": "重铅快速到底，在礁石缝隙附近多等一会。",
-    "icon": "assets/fish/grouper.svg"
+    "icon": "assets/fish/grouper.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "tuna",
@@ -394,7 +413,8 @@
     "habitat": "远洋深水区",
     "favoriteBait": "整条小鱼、鱿鱼",
     "tips": "中钩后第一波冲刺极强，需要高等级海竿。",
-    "icon": "assets/fish/tuna.svg"
+    "icon": "assets/fish/tuna.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "marlin",
@@ -415,7 +435,8 @@
     "habitat": "热带远洋、深蓝水域",
     "favoriteBait": "活饵、拖钓假饵",
     "tips": "遇见后要抓住短暂窗口，稳住鱼竿慢慢消耗体力。",
-    "icon": "assets/fish/marlin.svg"
+    "icon": "assets/fish/marlin.svg",
+    "staminaPerKg": 2
   },
   {
     "id": "sturgeon",
@@ -435,7 +456,8 @@
     "habitat": "普达措的深水底层",
     "favoriteBait": "底栖小生物、特制饵",
     "tips": "极其稀有，需要顶级装备和耐心。",
-    "icon": "assets/fish/sturgeon.svg"
+    "icon": "assets/fish/sturgeon.svg",
+    "staminaPerKg": 2
   },
   {
     "id": "king_salmon",
@@ -454,7 +476,8 @@
     "habitat": "普达措的冷水深渊",
     "favoriteBait": "大号飞蝇、鱼卵",
     "tips": "只在传说水域现身，中钩后准备长时间搏斗。",
-    "icon": "assets/fish/king_salmon.svg"
+    "icon": "assets/fish/king_salmon.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "golden_carp",
@@ -473,7 +496,8 @@
     "habitat": "普达措的灵泉深处",
     "favoriteBait": "金色谷物、灵泉饵",
     "tips": "传闻它喜欢在满月时浮出水面。",
-    "icon": "assets/fish/golden_carp.svg"
+    "icon": "assets/fish/golden_carp.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "taimen",
@@ -493,7 +517,8 @@
     "habitat": "清澈冷水的深潭与急流",
     "favoriteBait": "大号飞蝇、小鱼",
     "tips": "清晨和傍晚活性最高，中钩后冲击力极强。",
-    "icon": "assets/fish/taimen.svg"
+    "icon": "assets/fish/taimen.svg",
+    "staminaPerKg": 2
   },
   {
     "id": "lenok",
@@ -513,7 +538,8 @@
     "habitat": "高海拔冷水溪流",
     "favoriteBait": "飞蝇、昆虫幼虫",
     "tips": "用飞蝇模拟落水昆虫，溪流中快速收线。",
-    "icon": "assets/fish/lenok.svg"
+    "icon": "assets/fish/lenok.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "burbot",
@@ -533,7 +559,8 @@
     "habitat": "江河深水与冷水湖底",
     "favoriteBait": "小鱼、动物内脏",
     "tips": "夜钓沉底更容易遇到。",
-    "icon": "assets/fish/burbot.svg"
+    "icon": "assets/fish/burbot.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "chum_salmon",
@@ -552,7 +579,8 @@
     "habitat": "冷水江河与入海口",
     "favoriteBait": "鱼卵、大号飞蝇",
     "tips": "洄游期体力充沛，需要足够强力的飞蝇竿。",
-    "icon": "assets/fish/chum_salmon.svg"
+    "icon": "assets/fish/chum_salmon.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "naked_carp",
@@ -571,7 +599,8 @@
     "habitat": "高原咸水湖浅水区",
     "favoriteBait": "糌粑饵、小虫",
     "tips": "高原水温低，鱼口轻，浮漂要调灵敏。",
-    "icon": "assets/fish/naked_carp.svg"
+    "icon": "assets/fish/naked_carp.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "plateau_loach",
@@ -590,7 +619,8 @@
     "habitat": "高原湖泊与河流砂石底",
     "favoriteBait": "红虫、蚯蚓段",
     "tips": "底钓小钩细线，动作要轻。",
-    "icon": "assets/fish/plateau_loach.svg"
+    "icon": "assets/fish/plateau_loach.svg",
+    "staminaPerKg": 8
   },
   {
     "id": "spotted_naked_carp",
@@ -609,7 +639,8 @@
     "habitat": "高原湖泊与河流缓流区",
     "favoriteBait": "谷物饵、小虾",
     "tips": "晴天水温升高时更活跃。",
-    "icon": "assets/fish/spotted_naked_carp.svg"
+    "icon": "assets/fish/spotted_naked_carp.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "humphead_wrasse",
@@ -628,7 +659,8 @@
     "habitat": "热带珊瑚礁与外海岩礁",
     "favoriteBait": "活虾、鱿鱼",
     "tips": "在珊瑚礁边缘守钓，中钩后要防止钻礁。",
-    "icon": "assets/fish/humphead_wrasse.svg"
+    "icon": "assets/fish/humphead_wrasse.svg",
+    "staminaPerKg": 2
   },
   {
     "id": "parrotfish",
@@ -647,7 +679,8 @@
     "habitat": "热带珊瑚礁区",
     "favoriteBait": "藻饵、虾肉",
     "tips": "白天在礁区觅食，轻矶钓容易遇见。",
-    "icon": "assets/fish/parrotfish.svg"
+    "icon": "assets/fish/parrotfish.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "moray_eel",
@@ -667,7 +700,8 @@
     "habitat": "珊瑚礁、岩洞、沉船",
     "favoriteBait": "鱿鱼、小鱼块",
     "tips": "夜钓或黄昏钓更容易，中钩后立即拉离礁石。",
-    "icon": "assets/fish/moray_eel.svg"
+    "icon": "assets/fish/moray_eel.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "yellowcheek_carp",
@@ -686,7 +720,8 @@
     "habitat": "大江干流与开阔湖面",
     "favoriteBait": "活鱼、亮片",
     "tips": "路亚远投快速收线，刺激它追咬。",
-    "icon": "assets/fish/yellowcheek_carp.svg"
+    "icon": "assets/fish/yellowcheek_carp.svg",
+    "staminaPerKg": 2
   },
   {
     "id": "longsnout_catfish",
@@ -705,7 +740,8 @@
     "habitat": "江河深水与乱石底",
     "favoriteBait": "虾肉、螺蛳",
     "tips": "底钓为主，水流较急时加重铅坠。",
-    "icon": "assets/fish/longsnout_catfish.svg"
+    "icon": "assets/fish/longsnout_catfish.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "mud_carp",
@@ -725,7 +761,8 @@
     "habitat": "江河缓流、水草边",
     "favoriteBait": "麦麸、商品粉饵",
     "tips": "成群活动，打窝后常能连竿。",
-    "icon": "assets/fish/mud_carp.svg"
+    "icon": "assets/fish/mud_carp.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "snakehead",
@@ -745,7 +782,8 @@
     "habitat": "水草茂密、泥底静水",
     "favoriteBait": "青蛙形假饵、小鱼",
     "tips": "雷蛙或软饵在水草区慢拖容易触发攻击。",
-    "icon": "assets/fish/snakehead.svg"
+    "icon": "assets/fish/snakehead.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "peled",
@@ -764,7 +802,8 @@
     "habitat": "高山冷水湖的中上层",
     "favoriteBait": "飞蝇、小鱼",
     "tips": "清晨风平浪静时在水面附近觅食。",
-    "icon": "assets/fish/peled.svg"
+    "icon": "assets/fish/peled.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "spanish_mackerel",
@@ -784,7 +823,8 @@
     "habitat": "近海表层与沿岸水域",
     "favoriteBait": "亮片、小鱼段",
     "tips": "春秋两季近岸追捕小鱼时最好钓。",
-    "icon": "assets/fish/spanish_mackerel.svg"
+    "icon": "assets/fish/spanish_mackerel.svg",
+    "staminaPerKg": 2.5
   },
   {
     "id": "black_seabream",
@@ -804,7 +844,8 @@
     "habitat": "近海岩礁、防波堤",
     "favoriteBait": "虾仁、沙蚕",
     "tips": "轻矶钓、细线小钩，打窝后等口。",
-    "icon": "assets/fish/black_seabream.svg"
+    "icon": "assets/fish/black_seabream.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "hairtail",
@@ -823,7 +864,8 @@
     "habitat": "近海与较深水域",
     "favoriteBait": "小鱼段、鱿鱼条",
     "tips": "夜钓或晨昏时段更容易遇到。",
-    "icon": "assets/fish/hairtail.svg"
+    "icon": "assets/fish/hairtail.svg",
+    "staminaPerKg": 4
   },
   {
     "id": "flatfish",
@@ -842,6 +884,7 @@
     "habitat": "近岸泥沙海底",
     "favoriteBait": "沙蚕、虾肉",
     "tips": "沉底钓，等它吞饵后再提竿。",
-    "icon": "assets/fish/flatfish.svg"
+    "icon": "assets/fish/flatfish.svg",
+    "staminaPerKg": 4
   }
 ]

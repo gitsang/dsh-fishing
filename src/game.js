@@ -12,7 +12,8 @@ function loadJson(file) {
 }
 
 export const GAME_VERSION = 1
-export const BAIT_TOKENS_PER_BAIT = 1_000_000
+export const TOKENS_PER_STAMINA = 1_000_000
+export const BAIT_TOKENS_PER_BAIT = TOKENS_PER_STAMINA
 
 export const SPECIES = loadJson('species.json')
 export const MAPS = loadJson('maps.json')
@@ -138,6 +139,13 @@ function collectionEntry(state, speciesId) {
 }
 
 function normalizeState(state) {
+  // Keep old bait-era fields for migration before base defaults overwrite them.
+  const oldBait = state.bait
+  const oldPendingBaitTokens = state.pendingBaitTokens
+  const oldTotalBaitTokensUsed = state.stats?.totalBaitTokensUsed
+  delete state.bait
+  delete state.pendingBaitTokens
+
   const base = createInitialState()
   for (const key of Object.keys(base)) {
     if (state[key] === undefined) state[key] = base[key]
@@ -238,12 +246,16 @@ function normalizeState(state) {
   for (const key of Object.keys(base.stats)) {
     if (state.stats[key] === undefined) state.stats[key] = base.stats[key]
   }
-  if (!Number.isFinite(state.totalTokensConsumed)) state.totalTokensConsumed = 0
-  if (!Number.isFinite(state.pendingBaitTokens)) state.pendingBaitTokens = 0
-  if (!Number.isFinite(state.bait)) state.bait = 0
-  if (state.pendingBaitTokens >= BAIT_TOKENS_PER_BAIT) {
-    state.bait += Math.floor(state.pendingBaitTokens / BAIT_TOKENS_PER_BAIT)
-    state.pendingBaitTokens %= BAIT_TOKENS_PER_BAIT
+  // Migrate old bait-era fields to stamina.
+  if (oldBait !== undefined) state.stamina = oldBait
+  if (oldPendingBaitTokens !== undefined) state.pendingStaminaTokens = oldPendingBaitTokens
+  if (oldTotalBaitTokensUsed !== undefined) state.stats.totalStaminaUsed = oldTotalBaitTokensUsed
+  delete state.stats.totalBaitTokensUsed
+  if (!Number.isFinite(state.stamina)) state.stamina = 0
+  if (!Number.isFinite(state.pendingStaminaTokens)) state.pendingStaminaTokens = 0
+  if (state.pendingStaminaTokens >= TOKENS_PER_STAMINA) {
+    state.stamina += Math.floor(state.pendingStaminaTokens / TOKENS_PER_STAMINA)
+    state.pendingStaminaTokens %= TOKENS_PER_STAMINA
   }
   return state
 }
@@ -283,9 +295,9 @@ export class FishingGame {
   handleTokensConsumed(amount, source = 'msg', ts = Date.now()) {
     const rounded = Math.max(0, Math.round(amount))
     this.state.totalTokensConsumed += rounded
-    const pending = this.state.pendingBaitTokens + rounded
-    this.state.bait += Math.floor(pending / BAIT_TOKENS_PER_BAIT)
-    this.state.pendingBaitTokens = pending % BAIT_TOKENS_PER_BAIT
+    const pending = this.state.pendingStaminaTokens + rounded
+    this.state.stamina += Math.floor(pending / TOKENS_PER_STAMINA)
+    this.state.pendingStaminaTokens = pending % TOKENS_PER_STAMINA
     return []
   }
 
@@ -311,9 +323,13 @@ export class FishingGame {
     return effects
   }
 
-  cancelFishing({ refundBait = false } = {}) {
+  currentMapStaminaCost() {
+    return MAPS_BY_ID.get(this.state.currentMapId)?.staminaCost ?? 1
+  }
+
+  cancelFishing({ refundStamina = false } = {}) {
     if (this.state.fishing?.status !== 'fishing') return false
-    const refund = refundBait === true
+    const refund = refundStamina === true
     this.state.fishing.status = 'idle'
     this.state.fishing.stage = null
     this.state.fishing.startedAt = 0
@@ -321,7 +337,7 @@ export class FishingGame {
     this.state.fishing.durationMs = 0
     this.state.fishing.lastEventAt = 0
     this.state.fishing.eventText = ''
-    if (refund) this.state.bait += 1
+    if (refund) this.state.stamina += this.currentMapStaminaCost()
     return true
   }
 
@@ -342,7 +358,8 @@ export class FishingGame {
     }
 
     let guard = 0
-    while (this.state.bait >= 1 && this.state.fishing.status === 'idle' && guard < 100) {
+    const staminaCost = this.currentMapStaminaCost()
+    while (this.state.stamina >= staminaCost && this.state.fishing.status === 'idle' && guard < 100) {
       if (this.state.inventory.length >= this.state.inventoryCapacity) {
         this.state.lastEventText = '鱼篓已满，停止钓鱼。'
         effects.push({ type: 'EventLine', text: this.state.lastEventText })
@@ -353,11 +370,11 @@ export class FishingGame {
         effects.push({ type: 'EventLine', text: this.state.lastEventText })
         break
       }
-      this.state.bait -= 1
+      this.state.stamina -= staminaCost
       effects.push(...this.cast(now))
       guard += 1
 
-      // If both stages rolled 0s, finish immediately so remaining bait can proceed.
+      // If both stages rolled 0s, finish immediately so remaining stamina can proceed.
       let resolveGuard = 0
       while (this.state.fishing.status === 'fishing' && now >= this.state.fishing.endsAt && resolveGuard < 3) {
         this.advanceFishing(now, effects)
@@ -384,11 +401,12 @@ export class FishingGame {
       return [{ type: 'EventLine', text: this.state.lastEventText }]
     }
     const { rod } = this.equippedRod()
-    this.state.stats.totalBaitTokensUsed += BAIT_TOKENS_PER_BAIT
+    const staminaCost = this.currentMapStaminaCost()
+    this.state.stats.totalStaminaUsed = (this.state.stats.totalStaminaUsed ?? 0) + staminaCost
 
     const candidates = SPECIES.filter((species) => species.requiredRodId === rod.rodType && (species.maps ?? []).includes(this.state.currentMapId))
     if (candidates.length === 0) {
-      this.state.bait += 1
+      this.state.stamina += staminaCost
       this.state.lastEventText = '当前鱼竿在这张地图钓不到鱼，请更换鱼竿或地图。'
       return [{ type: 'EventLine', text: this.state.lastEventText }]
     }
@@ -518,6 +536,13 @@ export class FishingGame {
       sold: false,
       location: 'inventory'
     }
+
+    const fightStaminaCost = Math.max(1, Math.ceil(fish.weightGrams / 1000 / (species.staminaPerKg || 2)))
+    if (this.state.stamina < fightStaminaCost) {
+      this.state.lastEventText = `体力不足，[${species.name}] 挣脱了……`
+      return [{ type: 'EventLine', text: this.state.lastEventText }]
+    }
+    this.state.stamina -= fightStaminaCost
 
     this.state.stats.totalCatches += 1
 
@@ -702,7 +727,7 @@ export class FishingGame {
         }
         const cost = map.entryFee * days
         if (this.state.coins < cost) throw new Error('金币不足')
-        const canceled = this.cancelFishing({ refundBait: true })
+        const canceled = this.cancelFishing({ refundStamina: true })
         const oldExpiry = this.state.mapTickets[map.id] ?? 0
         const base = Math.max(now, oldExpiry)
         const expiresAt = base + days * TICKET_DAY_MS
@@ -710,7 +735,7 @@ export class FishingGame {
         this.state.stats.totalCoinsSpent += cost
         this.state.mapTickets[map.id] = expiresAt
         this.state.currentMapId = map.id
-        const cancelText = canceled ? '已取消当前钓鱼并退还 1 个鱼饵。' : ''
+        const cancelText = canceled ? `已取消当前钓鱼并退还 ${this.currentMapStaminaCost()} 点体力。` : ''
         this.state.lastEventText = `${cancelText}购买了 ${map.name} ${days} 天门票，已进入${map.name}。`
         const effects = [
           { type: 'Purchase', kind: 'ticket', id: map.id, cost, days },
@@ -729,9 +754,9 @@ export class FishingGame {
           const expiresAt = this.state.mapTickets[map.id] ?? 0
           if (expiresAt <= now) throw new Error(`${map.name} 没有有效门票，请先购买`)
         }
-        const canceled = this.cancelFishing({ refundBait: true })
+        const canceled = this.cancelFishing({ refundStamina: true })
         this.state.currentMapId = map.id
-        const cancelText = canceled ? '已取消当前钓鱼并退还 1 个鱼饵。' : ''
+        const cancelText = canceled ? `已取消当前钓鱼并退还 ${this.currentMapStaminaCost()} 点体力。` : ''
         this.state.lastEventText = `${cancelText}已前往 ${map.name}。`
         return [{ type: 'EventLine', text: this.state.lastEventText }]
       }
@@ -912,6 +937,7 @@ export class FishingGame {
         type: map.type,
         requiredLevel: map.requiredLevel,
         entryFee: map.entryFee,
+        staminaCost: map.staminaCost ?? 1,
         description: map.description,
         fishIntro: map.fishIntro,
         locked,
@@ -953,14 +979,15 @@ export class FishingGame {
         type: currentMap.type,
         requiredLevel: currentMap.requiredLevel,
         entryFee: currentMap.entryFee,
+        staminaCost: currentMap.staminaCost ?? 1,
         description: currentMap.description,
         fishIntro: currentMap.fishIntro
       },
       maps,
       totalTokensConsumed: state.totalTokensConsumed ?? 0,
-      pendingBaitTokens: state.pendingBaitTokens ?? 0,
-      bait: state.bait ?? 0,
-      tokensPerBait: BAIT_TOKENS_PER_BAIT,
+      pendingStaminaTokens: state.pendingStaminaTokens ?? 0,
+      stamina: state.stamina ?? 0,
+      tokensPerStamina: TOKENS_PER_STAMINA,
       equippedRod: {
         id: equipped.rod.id,
         brand: equipped.rod.brand,

@@ -4,9 +4,10 @@
 
 A floating fishing game for the deepseek-harness **web** surface.
 
-While you use the agent, token usage is collected as bait: every 1M consumed
-tokens add 1 bait. Each cast consumes 1 bait, so the game casts the equipped
-rod once per 1M tokens and catches a fish. Fish can be sold for coins; coins
+While you use the agent, token usage is collected as stamina: every 1M consumed
+tokens add 1 stamina. Each cast consumes the current map's stamina cost, and
+large fish may consume extra stamina while fighting, so the game casts when
+enough stamina is available and catches a fish. Fish can be sold for coins; coins
 buy different branded rod models. Rods no longer have levels or upgrade paths. Catching fish grants experience and raises your level;
 higher levels unlock new maps. Except for the beginner map, entering another
 map requires a ticket. Each ticket lasts one real day, and you can buy a
@@ -99,7 +100,7 @@ command types:
 - `BuyTicket` / `ChangeMap` — buy multi-day map tickets and move between maps
   (e.g. `{"type":"BuyTicket","mapId":"forest_lake","days":3}`,
   `{"type":"ChangeMap","mapId":"forest_lake"}`). If a cast is in progress, it
-  is cancelled and the consumed bait is refunded.
+  is cancelled and the consumed stamina is refunded.
 
 ## Development notes
 

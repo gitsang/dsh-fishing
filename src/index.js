@@ -2,7 +2,7 @@
  * dsh-fishing host plugin.
  *
  * - Subscribes to `session/event` and converts assistant/compaction token
- *   usage into bait (1M tokens = 1 bait).
+ *   usage into stamina (1M tokens = 1 stamina).
  * - Runs the fishing game core on a 500ms tick.
  * - Persists state under `$DSH_HOME/storages/dsh-fishing/`.
  * - Serves `/fishing/snapshot` (GET) and `/fishing/command` (POST) for the

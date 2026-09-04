@@ -5,15 +5,17 @@
   "currentMapId": "beginner",
   "mapTickets": {},
   "totalTokensConsumed": 0,
-  "pendingBaitTokens": 0,
-  "bait": 0,
   "equippedRodId": "yunchuan_bamboo",
   "ownedRods": {
-    "yunchuan_bamboo": { "rodId": "yunchuan_bamboo" }
+    "yunchuan_bamboo": {
+      "rodId": "yunchuan_bamboo"
+    }
   },
   "equippedBasketId": "small",
   "ownedBaskets": {
-    "small": { "basketId": "small" }
+    "small": {
+      "basketId": "small"
+    }
   },
   "items": [],
   "equippedAccessories": {
@@ -31,10 +33,10 @@
     "totalSales": 0,
     "totalCoinsEarned": 0,
     "totalCoinsSpent": 0,
-    "totalBaitTokensUsed": 0
+    "totalStaminaUsed": 0
   },
   "inventoryCapacity": 5,
-  "lastEventText": "欢迎来到钓鱼小游戏！每 1M token 会增加 1 个鱼饵，消耗鱼饵自动抛竿。",
+  "lastEventText": "欢迎来到钓鱼小游戏！每 1M token 会增加 1 点体力，消耗体力自动抛竿。",
   "fishing": {
     "status": "idle",
     "stage": null,
@@ -43,5 +45,7 @@
     "durationMs": 0,
     "lastEventAt": 0,
     "eventText": ""
-  }
+  },
+  "stamina": 0,
+  "pendingStaminaTokens": 0
 }

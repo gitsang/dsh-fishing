@@ -10,7 +10,8 @@
     "entryFee": 0,
     "description": "苏州金鸡湖是开放式城市湖泊，水域开阔、交通方便，适合新手熟悉抛竿和看漂。",
     "fishIntro": "常见鲫鱼、鲤鱼、鳊鱼、草鱼，也有适应力强的罗非鱼和鲮鱼。",
-    "icon": "assets/maps/beginner.svg"
+    "icon": "assets/maps/beginner.svg",
+    "staminaCost": 1
   },
   {
     "id": "forest_lake",
@@ -23,7 +24,8 @@
     "entryFee": 100,
     "description": "杭州西湖三面环山，湖光潋滟，是江南淡水钓的经典场景。",
     "fishIntro": "湖中鲤科鱼类丰富，也有鳜鱼、青鱼、河鲈、鳗鲡等。",
-    "icon": "assets/maps/forest_lake.svg"
+    "icon": "assets/maps/forest_lake.svg",
+    "staminaCost": 2
   },
   {
     "id": "mountain_river",
@@ -36,7 +38,8 @@
     "entryFee": 250,
     "description": "桂林漓江穿行喀斯特峰林，水清流急，是南方江河钓的代表。",
     "fishIntro": "漓江有鳜鱼、马口鱼、光倒刺鲃等；上游冷水段也能遇到鳟鲑类。",
-    "icon": "assets/maps/mountain_river.svg"
+    "icon": "assets/maps/mountain_river.svg",
+    "staminaCost": 2
   },
   {
     "id": "pearl_river",
@@ -49,7 +52,8 @@
     "entryFee": 300,
     "description": "珠江穿城而过，水温较高，鱼种偏南方暖水性。",
     "fishIntro": "罗非鱼、鲮鱼、鳜鱼、斑鳢等华南江河鱼类丰富。",
-    "icon": "assets/maps/pearl_river.svg"
+    "icon": "assets/maps/pearl_river.svg",
+    "staminaCost": 2
   },
   {
     "id": "northeast_river",
@@ -62,7 +66,8 @@
     "entryFee": 350,
     "description": "中国最北的界江，冬季漫长、夏季短暂，江水冰冷，鱼种独特。",
     "fishIntro": "冷水鱼丰富：哲罗鲑、细鳞鲑、江鳕、大马哈鱼等。",
-    "icon": "assets/maps/northeast_river.svg"
+    "icon": "assets/maps/northeast_river.svg",
+    "staminaCost": 3
   },
   {
     "id": "qingdao_coast",
@@ -75,7 +80,8 @@
     "entryFee": 450,
     "description": "青岛栈桥一带是北方经典海钓场，礁石与沙滩并存。",
     "fishIntro": "北方近海有鲅鱼、黑鲷、带鱼、鲈鱼、偏口鱼等。",
-    "icon": "assets/maps/qingdao_coast.svg"
+    "icon": "assets/maps/qingdao_coast.svg",
+    "staminaCost": 3
   },
   {
     "id": "deep_sea",
@@ -88,7 +94,8 @@
     "entryFee": 500,
     "description": "厦门鼓浪屿周边海域礁石与沙滩交错，是东南沿海矶钓、滩钓的热门地。",
     "fishIntro": "近海有黄花鱼、鲭鱼、石斑和鲈鱼，远一些能碰金枪鱼、旗鱼。",
-    "icon": "assets/maps/deep_sea.svg"
+    "icon": "assets/maps/deep_sea.svg",
+    "staminaCost": 3
   },
   {
     "id": "qinghai_lake",
@@ -101,7 +108,8 @@
     "entryFee": 600,
     "description": "中国最大的内陆咸水湖，湖水湛蓝，四周草原雪山环绕。",
     "fishIntro": "以青海湖裸鲤（湟鱼）为代表，另有花斑裸鲤和高原鳅等耐盐碱鱼类。",
-    "icon": "assets/maps/qinghai_lake.svg"
+    "icon": "assets/maps/qinghai_lake.svg",
+    "staminaCost": 4
   },
   {
     "id": "south_sea",
@@ -114,7 +122,8 @@
     "entryFee": 750,
     "description": "三亚热带海岛水质清澈、珊瑚礁密布，是南海热带海钓胜地。",
     "fishIntro": "珊瑚礁鱼类丰富：苏眉、鹦嘴鱼、石斑、海鳗，外海有金枪鱼。",
-    "icon": "assets/maps/south_sea.svg"
+    "icon": "assets/maps/south_sea.svg",
+    "staminaCost": 4
   },
   {
     "id": "yangtze_river",
@@ -127,7 +136,8 @@
     "entryFee": 850,
     "description": "宜昌三峡江段峡谷深切、水流湍急，是长江大型鱼类栖息地。",
     "fishIntro": "长江江段有青鱼、草鱼、鳡鱼、长吻鮠，历史上也是中华鲟洄游通道。",
-    "icon": "assets/maps/yangtze_river.svg"
+    "icon": "assets/maps/yangtze_river.svg",
+    "staminaCost": 4
   },
   {
     "id": "legendary_waters",
@@ -140,7 +150,8 @@
     "entryFee": 1000,
     "description": "普达措国家公园湖泊清澈，海拔高、水温低，带着秘境气质。",
     "fishIntro": "高原冷水湖泊里有锦鲤、龙鱼、金鲤等珍稀鱼种（游戏设定）。",
-    "icon": "assets/maps/legendary_waters.svg"
+    "icon": "assets/maps/legendary_waters.svg",
+    "staminaCost": 5
   },
   {
     "id": "xinjiang_lake",
@@ -153,6 +164,7 @@
     "entryFee": 1200,
     "description": "喀纳斯湖藏身阿尔泰深山，湖水深邃，有“湖怪”传说。",
     "fishIntro": "高山冷水湖中有哲罗鲑、高白鲑、江鳕等珍稀冷水鱼。",
-    "icon": "assets/maps/xinjiang_lake.svg"
+    "icon": "assets/maps/xinjiang_lake.svg",
+    "staminaCost": 5
   }
 ]

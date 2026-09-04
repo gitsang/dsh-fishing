@@ -63,7 +63,7 @@ export class FishingStore {
         }
       }
     }
-    // Settle any available bait into catches so the rebuilt state is current.
+    // Settle any available stamina into catches so the rebuilt state is current.
     game.tick(Date.now())
     return game
   }
