@@ -108,6 +108,15 @@ export function computeRodEffects(rod, accessories = []) {
   }
 }
 
+export function computeEffectiveMaxLoadKg(rod, accessories = []) {
+  const parts = []
+  if (rod?.maxLoadKg) parts.push(rod.maxLoadKg)
+  for (const accessory of accessories) {
+    if (accessory?.maxLoadKg) parts.push(accessory.maxLoadKg)
+  }
+  return parts.length > 0 ? Math.min(...parts) : Infinity
+}
+
 export function salePrice(species, fish) {
   const weightSpan = species.maxWeightGrams - species.minWeightGrams || 1
   const lengthSpan = species.maxLengthCm - species.minLengthCm || 1
@@ -295,7 +304,12 @@ export class FishingGame {
     const accessories = Object.values(this.state.equippedAccessories ?? {})
       .map((itemId) => ACCESSORIES_BY_ID.get(itemId))
       .filter((accessory) => accessory !== undefined && accessory.rodTypes.includes(rod.rodType))
-    return { rod, effects: computeRodEffects(rod, accessories), accessories }
+    return {
+      rod,
+      effects: computeRodEffects(rod, accessories),
+      accessories,
+      maxLoadKg: computeEffectiveMaxLoadKg(rod, accessories)
+    }
   }
 
   equippedBasket() {
@@ -639,6 +653,25 @@ export class FishingGame {
       location: 'inventory'
     }
 
+    // Landing check by tackle load (钓重).
+    const equipped = this.equippedRod()
+    const maxLoadKg = Number.isFinite(equipped.maxLoadKg) ? equipped.maxLoadKg : 999
+    const loadRatio = (fish.weightGrams / 1000) / maxLoadKg
+    let hookChance = 1
+    if (loadRatio > 1.2) {
+      this.state.lastEventText = `[${species.name}] 太重了，超出钓重${(loadRatio * 100).toFixed(0)}%，线组承受不住，鱼逃走了！`
+      return [{ type: 'EventLine', text: this.state.lastEventText }]
+    }
+    if (loadRatio > 1) {
+      hookChance = clamp(0.5 - (loadRatio - 1) * 2.5, 0, 0.5)
+    } else if (loadRatio > 0.5) {
+      hookChance = clamp(0.9 - (loadRatio - 0.5) * 0.8, 0.05, 0.98)
+    }
+    if (this.rng() > hookChance) {
+      this.state.lastEventText = `[${species.name}] 在搏鱼时挣脱了（当前钓重利用率 ${(loadRatio * 100).toFixed(0)}%）。`
+      return [{ type: 'EventLine', text: this.state.lastEventText }]
+    }
+
     const fightStaminaCost = Math.max(1, Math.ceil(fish.weightGrams / 1000 / (species.staminaPerKg || 2)))
     if (this.state.stamina < fightStaminaCost) {
       this.state.lastEventText = `体力不足，[${species.name}] 挣脱了……`
@@ -978,6 +1011,9 @@ export class FishingGame {
         baseSuccessRate: rod.baseSuccessRate,
         weightMultiplier: rod.weightMultiplier,
         catchMultiplier: rod.catchMultiplier,
+        maxLoadKg: rod.maxLoadKg ?? null,
+        depthControl: rod.depthControl ?? 'adjust',
+        depthRangeM: rod.depthRangeM ?? null,
         owned: owned !== undefined,
         equipped: state.equippedRodId === rod.id
       }
@@ -1017,6 +1053,7 @@ export class FishingGame {
         spec: accessory.spec,
         basePrice: accessory.basePrice,
         unlockLevel: accessory.unlockLevel ?? 1,
+        maxLoadKg: accessory.maxLoadKg ?? null,
         rodTypes: accessory.rodTypes,
         equipped: item.equipped,
         canEquip: accessory.rodTypes.includes(equipped.rod.rodType)
@@ -1060,6 +1097,9 @@ export class FishingGame {
         baseSuccessRate: rod.baseSuccessRate,
         weightMultiplier: rod.weightMultiplier,
         catchMultiplier: rod.catchMultiplier,
+        maxLoadKg: rod.maxLoadKg ?? null,
+        depthControl: rod.depthControl ?? 'adjust',
+        depthRangeM: rod.depthRangeM ?? null,
         owned: state.ownedRods[rod.id] !== undefined
       })),
       ...BASKETS.map((basket) => ({
@@ -1092,6 +1132,7 @@ export class FishingGame {
           spec: accessory.spec,
           price: accessory.basePrice,
           unlockLevel: accessory.unlockLevel ?? 1,
+          maxLoadKg: accessory.maxLoadKg ?? null,
           owned: state.items.some((item) => item.itemId === accessory.id),
           canEquip: accessory.rodTypes.includes(equipped.rod.rodType)
         }
@@ -1210,6 +1251,9 @@ export class FishingGame {
         baseSuccessRate: equipped.rod.baseSuccessRate,
         weightMultiplier: equipped.effects.weightMultiplier,
         catchMultiplier: equipped.effects.catchMultiplier,
+        maxLoadKg: equipped.maxLoadKg,
+        depthControl: equipped.rod.depthControl ?? 'adjust',
+        depthRangeM: equipped.rod.depthRangeM ?? null,
         accessorySlots: ACCESSORY_SLOTS
           .filter((slot) => ACCESSORIES.some((accessory) => accessory.slot === slot.id && accessory.rodTypes.includes(equipped.rod.rodType)))
           .map((slot) => ({ id: slot.id, name: slot.name }))

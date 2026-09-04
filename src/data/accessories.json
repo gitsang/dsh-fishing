@@ -15,7 +15,8 @@
     ],
     "successRateBonus": 0.03,
     "icon": "assets/accessories/basic_reel.svg",
-    "unlockLevel": 2
+    "unlockLevel": 2,
+    "maxLoadKg": 3
   },
   {
     "id": "strong_reel",
@@ -33,7 +34,8 @@
     ],
     "successRateBonus": 0.06,
     "icon": "assets/accessories/strong_reel.svg",
-    "unlockLevel": 5
+    "unlockLevel": 5,
+    "maxLoadKg": 8
   },
   {
     "id": "master_reel",
@@ -53,7 +55,8 @@
     ],
     "successRateBonus": 0.09,
     "icon": "assets/accessories/master_reel.svg",
-    "unlockLevel": 10
+    "unlockLevel": 10,
+    "maxLoadKg": 20
   },
   {
     "id": "carbon_line",
@@ -72,7 +75,8 @@
     ],
     "maxWeightBonus": 0.1,
     "icon": "assets/accessories/carbon_line.svg",
-    "unlockLevel": 2
+    "unlockLevel": 2,
+    "maxLoadKg": 4
   },
   {
     "id": "braided_line",
@@ -91,7 +95,8 @@
     ],
     "maxWeightBonus": 0.18,
     "icon": "assets/accessories/braided_line.svg",
-    "unlockLevel": 5
+    "unlockLevel": 5,
+    "maxLoadKg": 15
   },
   {
     "id": "fluorocarbon_line",
@@ -109,7 +114,8 @@
     ],
     "maxWeightBonus": 0.25,
     "icon": "assets/accessories/fluorocarbon_line.svg",
-    "unlockLevel": 9
+    "unlockLevel": 9,
+    "maxLoadKg": 8
   },
   {
     "id": "fake_lure",
@@ -125,7 +131,8 @@
     ],
     "catchBonus": 2,
     "icon": "assets/accessories/fake_lure.svg",
-    "unlockLevel": 4
+    "unlockLevel": 4,
+    "maxLoadKg": null
   },
   {
     "id": "floating_lure",
@@ -141,7 +148,8 @@
     ],
     "successRateBonus": 0.04,
     "icon": "assets/accessories/floating_lure.svg",
-    "unlockLevel": 5
+    "unlockLevel": 5,
+    "maxLoadKg": null
   },
   {
     "id": "deep_diver",
@@ -158,7 +166,8 @@
     ],
     "catchBonus": 3,
     "icon": "assets/accessories/deep_diver.svg",
-    "unlockLevel": 7
+    "unlockLevel": 7,
+    "maxLoadKg": null
   },
   {
     "id": "soft_bait",
@@ -176,7 +185,8 @@
     "successRateBonus": 0.06,
     "catchBonus": 1,
     "icon": "assets/accessories/soft_bait.svg",
-    "unlockLevel": 8
+    "unlockLevel": 8,
+    "maxLoadKg": null
   },
   {
     "id": "sharp_hook",
@@ -195,7 +205,8 @@
     ],
     "successRateBonus": 0.03,
     "icon": "assets/accessories/sharp_hook.svg",
-    "unlockLevel": 2
+    "unlockLevel": 2,
+    "maxLoadKg": 5
   },
   {
     "id": "barbless_hook",
@@ -214,7 +225,8 @@
     "catchBonus": 1,
     "successRateBonus": 0.02,
     "icon": "assets/accessories/barbless_hook.svg",
-    "unlockLevel": 5
+    "unlockLevel": 5,
+    "maxLoadKg": 3
   },
   {
     "id": "circle_hook",
@@ -232,7 +244,8 @@
     ],
     "maxWeightBonus": 0.12,
     "icon": "assets/accessories/circle_hook.svg",
-    "unlockLevel": 8
+    "unlockLevel": 8,
+    "maxLoadKg": 12
   },
   {
     "id": "small_bobber",
@@ -250,7 +263,8 @@
     ],
     "successRateBonus": 0.02,
     "icon": "assets/accessories/small_bobber.svg",
-    "unlockLevel": 1
+    "unlockLevel": 1,
+    "maxLoadKg": null
   },
   {
     "id": "sensitive_bobber",
@@ -267,7 +281,8 @@
     ],
     "successRateBonus": 0.05,
     "icon": "assets/accessories/sensitive_bobber.svg",
-    "unlockLevel": 5
+    "unlockLevel": 5,
+    "maxLoadKg": null
   },
   {
     "id": "glow_bobber",
@@ -286,7 +301,8 @@
     ],
     "catchBonus": 1,
     "icon": "assets/accessories/glow_bobber.svg",
-    "unlockLevel": 7
+    "unlockLevel": 7,
+    "maxLoadKg": null
   },
   {
     "id": "split_shot",
@@ -305,7 +321,8 @@
     ],
     "maxWeightBonus": 0.05,
     "icon": "assets/accessories/split_shot.svg",
-    "unlockLevel": 1
+    "unlockLevel": 1,
+    "maxLoadKg": null
   },
   {
     "id": "sliding_sinker",
@@ -323,7 +340,8 @@
     ],
     "successRateBonus": 0.04,
     "icon": "assets/accessories/sliding_sinker.svg",
-    "unlockLevel": 4
+    "unlockLevel": 4,
+    "maxLoadKg": null
   },
   {
     "id": "heavy_sinker",
@@ -341,6 +359,7 @@
     ],
     "maxWeightBonus": 0.14,
     "icon": "assets/accessories/heavy_sinker.svg",
-    "unlockLevel": 8
+    "unlockLevel": 8,
+    "maxLoadKg": null
   }
 ]

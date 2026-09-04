@@ -924,6 +924,9 @@ window.__ModuleLoader__.load({
         if (rod.weight) lines.push(`自重：${rod.weight}`);
         if (rod.lureWeight && rod.lureWeight !== "—") lines.push(`饵重：${rod.lureWeight}`);
         if (rod.lineWeight) lines.push(`线重：${rod.lineWeight}`);
+        if (rod.maxLoadKg) lines.push(`钓重：${rod.maxLoadKg}kg`);
+        if (rod.depthRangeM) lines.push(`水深：${rod.depthRangeM.minM}-${rod.depthRangeM.maxM}m`);
+        else if (rod.depthControl === "bottom") lines.push("水深：固定沉底");
         if (rod.closedLength) lines.push(`收纳：${rod.closedLength}`);
         if (rod.tipDiameter) lines.push(`先径：${rod.tipDiameter}`);
         if (rod.buttDiameter) lines.push(`元径：${rod.buttDiameter}`);
@@ -934,6 +937,7 @@ window.__ModuleLoader__.load({
         if (item.model) lines.push(`型号：${item.model}`);
         if (item.material) lines.push(`材质：${item.material}`);
         if (item.spec) lines.push(`规格：${item.spec}`);
+        if (item.maxLoadKg) lines.push(`钓重：${item.maxLoadKg}kg`);
         return lines;
       };
       const basketAttrLines = (basket) => {
@@ -957,6 +961,9 @@ window.__ModuleLoader__.load({
         if (rod.weight) lines.push(`自重：${rod.weight}`);
         if (rod.lureWeight && rod.lureWeight !== "—") lines.push(`饵重：${rod.lureWeight}`);
         if (rod.lineWeight) lines.push(`线重：${rod.lineWeight}`);
+        if (rod.maxLoadKg) lines.push(`钓重：${rod.maxLoadKg}kg`);
+        if (rod.depthRangeM) lines.push(`水深：${rod.depthRangeM.minM}-${rod.depthRangeM.maxM}m`);
+        else if (rod.depthControl === "bottom") lines.push("水深：固定沉底");
         if (rod.closedLength) lines.push(`收纳：${rod.closedLength}`);
         if (rod.tipDiameter) lines.push(`先径：${rod.tipDiameter}`);
         if (rod.buttDiameter) lines.push(`元径：${rod.buttDiameter}`);

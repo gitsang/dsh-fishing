@@ -22,7 +22,13 @@
     "weightMultiplier": 1,
     "catchMultiplier": 1,
     "icon": "assets/rods/yunchuan_bamboo.svg",
-    "unlockLevel": 1
+    "unlockLevel": 1,
+    "maxLoadKg": 1,
+    "depthControl": "adjust",
+    "depthRangeM": {
+      "minM": 0.5,
+      "maxM": 4
+    }
   },
   {
     "id": "yunchuan_river",
@@ -47,7 +53,10 @@
     "weightMultiplier": 1.05,
     "catchMultiplier": 1.3,
     "icon": "assets/rods/yunchuan_river.svg",
-    "unlockLevel": 3
+    "unlockLevel": 3,
+    "maxLoadKg": 2.5,
+    "depthControl": "bottom",
+    "depthRangeM": null
   },
   {
     "id": "yunchuan_coast",
@@ -72,7 +81,13 @@
     "weightMultiplier": 1.1,
     "catchMultiplier": 1.6,
     "icon": "assets/rods/yunchuan_coast.svg",
-    "unlockLevel": 4
+    "unlockLevel": 4,
+    "maxLoadKg": 3.5,
+    "depthControl": "adjust",
+    "depthRangeM": {
+      "minM": 0.5,
+      "maxM": 15
+    }
   },
   {
     "id": "canglan_hand",
@@ -97,7 +112,13 @@
     "weightMultiplier": 1.15,
     "catchMultiplier": 1.9,
     "icon": "assets/rods/canglan_hand.svg",
-    "unlockLevel": 5
+    "unlockLevel": 5,
+    "maxLoadKg": 2.5,
+    "depthControl": "adjust",
+    "depthRangeM": {
+      "minM": 0.5,
+      "maxM": 5
+    }
   },
   {
     "id": "canglan_sea",
@@ -122,7 +143,13 @@
     "weightMultiplier": 1.2,
     "catchMultiplier": 2.2,
     "icon": "assets/rods/canglan_sea.svg",
-    "unlockLevel": 6
+    "unlockLevel": 6,
+    "maxLoadKg": 6,
+    "depthControl": "adjust",
+    "depthRangeM": {
+      "minM": 2,
+      "maxM": 60
+    }
   },
   {
     "id": "canglan_lure",
@@ -147,7 +174,13 @@
     "weightMultiplier": 1.25,
     "catchMultiplier": 2.6,
     "icon": "assets/rods/canglan_lure.svg",
-    "unlockLevel": 7
+    "unlockLevel": 7,
+    "maxLoadKg": 3,
+    "depthControl": "adjust",
+    "depthRangeM": {
+      "minM": 0.5,
+      "maxM": 8
+    }
   },
   {
     "id": "canglan_fly",
@@ -172,7 +205,13 @@
     "weightMultiplier": 1.3,
     "catchMultiplier": 3,
     "icon": "assets/rods/canglan_fly.svg",
-    "unlockLevel": 8
+    "unlockLevel": 8,
+    "maxLoadKg": 4,
+    "depthControl": "adjust",
+    "depthRangeM": {
+      "minM": 0.5,
+      "maxM": 5
+    }
   },
   {
     "id": "jichuan_hand",
@@ -197,7 +236,13 @@
     "weightMultiplier": 1.45,
     "catchMultiplier": 3.6,
     "icon": "assets/rods/jichuan_hand.svg",
-    "unlockLevel": 9
+    "unlockLevel": 9,
+    "maxLoadKg": 5,
+    "depthControl": "adjust",
+    "depthRangeM": {
+      "minM": 0.5,
+      "maxM": 6
+    }
   },
   {
     "id": "jichuan_sea",
@@ -222,7 +267,13 @@
     "weightMultiplier": 1.5,
     "catchMultiplier": 4.2,
     "icon": "assets/rods/jichuan_sea.svg",
-    "unlockLevel": 10
+    "unlockLevel": 10,
+    "maxLoadKg": 12,
+    "depthControl": "adjust",
+    "depthRangeM": {
+      "minM": 2,
+      "maxM": 100
+    }
   },
   {
     "id": "jichuan_fly",
@@ -247,7 +298,13 @@
     "weightMultiplier": 1.6,
     "catchMultiplier": 5,
     "icon": "assets/rods/jichuan_fly.svg",
-    "unlockLevel": 11
+    "unlockLevel": 11,
+    "maxLoadKg": 8,
+    "depthControl": "adjust",
+    "depthRangeM": {
+      "minM": 0.5,
+      "maxM": 6
+    }
   },
   {
     "id": "jichuan_surf",
@@ -272,6 +329,12 @@
     "weightMultiplier": 1.7,
     "catchMultiplier": 5.8,
     "icon": "assets/rods/jichuan_surf.svg",
-    "unlockLevel": 12
+    "unlockLevel": 12,
+    "maxLoadKg": 15,
+    "depthControl": "adjust",
+    "depthRangeM": {
+      "minM": 1,
+      "maxM": 40
+    }
   }
 ]
