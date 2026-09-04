@@ -11,7 +11,29 @@
     "description": "苏州金鸡湖是开放式城市湖泊，水域开阔、交通方便，适合新手熟悉抛竿和看漂。",
     "fishIntro": "常见鲫鱼、鲤鱼、鳊鱼、草鱼，也有适应力强的罗非鱼和鲮鱼。",
     "icon": "assets/maps/beginner.svg",
-    "staminaCost": 1
+    "staminaCost": 1,
+    "maxDepthM": 6
+  },
+  {
+    "id": "xuanwu_lake",
+    "name": "江苏·南京·玄武湖（城市湖泊）",
+    "emoji": "🏞️",
+    "region": "江苏",
+    "city": "南京",
+    "spot": "玄武湖",
+    "type": "城市湖泊",
+    "requiredLevel": 2,
+    "entryFee": 50,
+    "description": "南京玄武湖依城墙而建，水面开阔，是城市里最方便的练竿场。",
+    "fishIntro": "常见鲫鱼、鲤鱼、鳊鱼、草鱼、罗非鱼等。",
+    "icon": "assets/maps/xuanwu_lake.svg",
+    "staminaCost": 1,
+    "maxDepthM": 4,
+    "latitude": 32.07,
+    "longitude": 118.79,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "slow"
   },
   {
     "id": "forest_lake",
@@ -25,7 +47,50 @@
     "description": "杭州西湖三面环山，湖光潋滟，是江南淡水钓的经典场景。",
     "fishIntro": "湖中鲤科鱼类丰富，也有鳜鱼、青鱼、河鲈、鳗鲡等。",
     "icon": "assets/maps/forest_lake.svg",
-    "staminaCost": 2
+    "staminaCost": 2,
+    "maxDepthM": 6
+  },
+  {
+    "id": "east_lake",
+    "name": "湖北·武汉·东湖（城市湖泊）",
+    "emoji": "🌲",
+    "region": "湖北",
+    "city": "武汉",
+    "spot": "东湖",
+    "type": "城市湖泊",
+    "requiredLevel": 4,
+    "entryFee": 200,
+    "description": "武汉东湖是中国最大的城中湖之一，湖汊众多，鱼种丰富。",
+    "fishIntro": "青鱼、草鱼、鲤鱼、鳊鱼、鲶鱼、鳜鱼等。",
+    "icon": "assets/maps/east_lake.svg",
+    "staminaCost": 2,
+    "maxDepthM": 6,
+    "latitude": 30.56,
+    "longitude": 114.42,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "slow"
+  },
+  {
+    "id": "erhai_lake",
+    "name": "云南·大理·洱海（高原湖泊）",
+    "emoji": "💧",
+    "region": "云南",
+    "city": "大理",
+    "spot": "洱海",
+    "type": "高原湖泊",
+    "requiredLevel": 4,
+    "entryFee": 220,
+    "description": "洱海是云南第二大高原湖泊，水质清澈，适合体验高原湖钓。",
+    "fishIntro": "鲫鱼、鲤鱼、草鱼、鲶鱼等高原湖鱼。",
+    "icon": "assets/maps/erhai_lake.svg",
+    "staminaCost": 2,
+    "maxDepthM": 20,
+    "latitude": 25.77,
+    "longitude": 100.18,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "slow"
   },
   {
     "id": "mountain_river",
@@ -39,7 +104,29 @@
     "description": "桂林漓江穿行喀斯特峰林，水清流急，是南方江河钓的代表。",
     "fishIntro": "漓江有鳜鱼、马口鱼、光倒刺鲃等；上游冷水段也能遇到鳟鲑类。",
     "icon": "assets/maps/mountain_river.svg",
-    "staminaCost": 2
+    "staminaCost": 2,
+    "maxDepthM": 12
+  },
+  {
+    "id": "dongting_lake",
+    "name": "湖南·岳阳·洞庭湖（大型淡水湖）",
+    "emoji": "🌊",
+    "region": "湖南",
+    "city": "岳阳",
+    "spot": "洞庭湖",
+    "type": "大型淡水湖",
+    "requiredLevel": 5,
+    "entryFee": 280,
+    "description": "洞庭湖是长江中游重要调蓄湖，水域辽阔，是钓大鱼的理想场所。",
+    "fishIntro": "青鱼、草鱼、鲤鱼、鲶鱼、鳡鱼等大型淡水鱼。",
+    "icon": "assets/maps/dongting_lake.svg",
+    "staminaCost": 2,
+    "maxDepthM": 30,
+    "latitude": 29.31,
+    "longitude": 113.08,
+    "timezone": "Asia/Shanghai",
+    "waterType": "fresh",
+    "current": "medium"
   },
   {
     "id": "pearl_river",
@@ -53,7 +140,8 @@
     "description": "珠江穿城而过，水温较高，鱼种偏南方暖水性。",
     "fishIntro": "罗非鱼、鲮鱼、鳜鱼、斑鳢等华南江河鱼类丰富。",
     "icon": "assets/maps/pearl_river.svg",
-    "staminaCost": 2
+    "staminaCost": 2,
+    "maxDepthM": 15
   },
   {
     "id": "northeast_river",
@@ -67,7 +155,29 @@
     "description": "中国最北的界江，冬季漫长、夏季短暂，江水冰冷，鱼种独特。",
     "fishIntro": "冷水鱼丰富：哲罗鲑、细鳞鲑、江鳕、大马哈鱼等。",
     "icon": "assets/maps/northeast_river.svg",
-    "staminaCost": 3
+    "staminaCost": 3,
+    "maxDepthM": 20
+  },
+  {
+    "id": "weihai_coast",
+    "name": "山东·威海·刘公岛（北方海岛）",
+    "emoji": "🏖️",
+    "region": "山东",
+    "city": "威海",
+    "spot": "刘公岛",
+    "type": "北方海岛",
+    "requiredLevel": 7,
+    "entryFee": 420,
+    "description": "威海刘公岛周围礁石密布，是北方矶钓和路亚的热门地点。",
+    "fishIntro": "鲅鱼、黑鲷、鲈鱼、带鱼、偏口鱼等。",
+    "icon": "assets/maps/weihai_coast.svg",
+    "staminaCost": 3,
+    "maxDepthM": 25,
+    "latitude": 37.5,
+    "longitude": 122.18,
+    "timezone": "Asia/Shanghai",
+    "waterType": "salt",
+    "current": "medium"
   },
   {
     "id": "qingdao_coast",
@@ -81,7 +191,8 @@
     "description": "青岛栈桥一带是北方经典海钓场，礁石与沙滩并存。",
     "fishIntro": "北方近海有鲅鱼、黑鲷、带鱼、鲈鱼、偏口鱼等。",
     "icon": "assets/maps/qingdao_coast.svg",
-    "staminaCost": 3
+    "staminaCost": 3,
+    "maxDepthM": 20
   },
   {
     "id": "deep_sea",
@@ -95,7 +206,8 @@
     "description": "厦门鼓浪屿周边海域礁石与沙滩交错，是东南沿海矶钓、滩钓的热门地。",
     "fishIntro": "近海有黄花鱼、鲭鱼、石斑和鲈鱼，远一些能碰金枪鱼、旗鱼。",
     "icon": "assets/maps/deep_sea.svg",
-    "staminaCost": 3
+    "staminaCost": 3,
+    "maxDepthM": 80
   },
   {
     "id": "qinghai_lake",
@@ -109,7 +221,29 @@
     "description": "中国最大的内陆咸水湖，湖水湛蓝，四周草原雪山环绕。",
     "fishIntro": "以青海湖裸鲤（湟鱼）为代表，另有花斑裸鲤和高原鳅等耐盐碱鱼类。",
     "icon": "assets/maps/qinghai_lake.svg",
-    "staminaCost": 4
+    "staminaCost": 4,
+    "maxDepthM": 30
+  },
+  {
+    "id": "shengsi_islands",
+    "name": "浙江·舟山·嵊泗列岛（海岛）",
+    "emoji": "🌊",
+    "region": "浙江",
+    "city": "舟山",
+    "spot": "嵊泗列岛",
+    "type": "海岛",
+    "requiredLevel": 9,
+    "entryFee": 650,
+    "description": "嵊泗列岛海域水深流急，礁石岛链复杂，是东南沿海海钓胜地。",
+    "fishIntro": "石斑、鲈鱼、鲭鱼、带鱼、黑鲷等。",
+    "icon": "assets/maps/shengsi_islands.svg",
+    "staminaCost": 4,
+    "maxDepthM": 50,
+    "latitude": 30.72,
+    "longitude": 122.45,
+    "timezone": "Asia/Shanghai",
+    "waterType": "salt",
+    "current": "fast"
   },
   {
     "id": "south_sea",
@@ -123,7 +257,8 @@
     "description": "三亚热带海岛水质清澈、珊瑚礁密布，是南海热带海钓胜地。",
     "fishIntro": "珊瑚礁鱼类丰富：苏眉、鹦嘴鱼、石斑、海鳗，外海有金枪鱼。",
     "icon": "assets/maps/south_sea.svg",
-    "staminaCost": 4
+    "staminaCost": 4,
+    "maxDepthM": 80
   },
   {
     "id": "yangtze_river",
@@ -137,7 +272,8 @@
     "description": "宜昌三峡江段峡谷深切、水流湍急，是长江大型鱼类栖息地。",
     "fishIntro": "长江江段有青鱼、草鱼、鳡鱼、长吻鮠，历史上也是中华鲟洄游通道。",
     "icon": "assets/maps/yangtze_river.svg",
-    "staminaCost": 4
+    "staminaCost": 4,
+    "maxDepthM": 60
   },
   {
     "id": "legendary_waters",
@@ -151,7 +287,29 @@
     "description": "普达措国家公园湖泊清澈，海拔高、水温低，带着秘境气质。",
     "fishIntro": "高原冷水湖泊里有锦鲤、龙鱼、金鲤等珍稀鱼种（游戏设定）。",
     "icon": "assets/maps/legendary_waters.svg",
-    "staminaCost": 5
+    "staminaCost": 5,
+    "maxDepthM": 30
+  },
+  {
+    "id": "namtso_lake",
+    "name": "西藏·那曲·纳木错（高原咸水湖）",
+    "emoji": "🏔️",
+    "region": "西藏",
+    "city": "那曲",
+    "spot": "纳木错",
+    "type": "高原咸水湖",
+    "requiredLevel": 12,
+    "entryFee": 1100,
+    "description": "纳木错是世界上海拔最高的大型湖泊之一，湖水清冷，鱼种独特。",
+    "fishIntro": "高原裸鲤、高原鳅等耐高寒盐碱鱼类。",
+    "icon": "assets/maps/namtso_lake.svg",
+    "staminaCost": 5,
+    "maxDepthM": 40,
+    "latitude": 30.72,
+    "longitude": 90.65,
+    "timezone": "Asia/Shanghai",
+    "waterType": "brackish",
+    "current": "slow"
   },
   {
     "id": "xinjiang_lake",
@@ -165,6 +323,28 @@
     "description": "喀纳斯湖藏身阿尔泰深山，湖水深邃，有“湖怪”传说。",
     "fishIntro": "高山冷水湖中有哲罗鲑、高白鲑、江鳕等珍稀冷水鱼。",
     "icon": "assets/maps/xinjiang_lake.svg",
-    "staminaCost": 5
+    "staminaCost": 5,
+    "maxDepthM": 60
+  },
+  {
+    "id": "xisha_islands",
+    "name": "海南·三沙·西沙群岛（热带远海珊瑚礁）",
+    "emoji": "🏝️",
+    "region": "海南",
+    "city": "三沙",
+    "spot": "西沙群岛",
+    "type": "热带远海珊瑚礁",
+    "requiredLevel": 15,
+    "entryFee": 1800,
+    "description": "西沙群岛水质极清，珊瑚礁生态系统完整，是远海大型鱼类的乐园。",
+    "fishIntro": "苏眉、石斑、金枪鱼、旗鱼、海鳗等。",
+    "icon": "assets/maps/xisha_islands.svg",
+    "staminaCost": 8,
+    "maxDepthM": 80,
+    "latitude": 16.83,
+    "longitude": 112.33,
+    "timezone": "Asia/Shanghai",
+    "waterType": "salt",
+    "current": "fast"
   }
 ]

@@ -10,7 +10,11 @@
     "requiredRodId": "hand",
     "scoreWeight": 1,
     "maps": [
-      "beginner"
+      "beginner",
+      "xuanwu_lake",
+      "east_lake",
+      "erhai_lake",
+      "dongting_lake"
     ],
     "description": "最常见的淡水鱼，适应力强，是新手钓友的好伙伴。",
     "habitat": "水草丰茂的静水区、金鸡湖",
@@ -30,7 +34,11 @@
     "requiredRodId": "hand",
     "scoreWeight": 1,
     "maps": [
-      "beginner"
+      "beginner",
+      "xuanwu_lake",
+      "east_lake",
+      "erhai_lake",
+      "dongting_lake"
     ],
     "description": "鳞片金黄、体格圆润的鲤鱼，寓意吉祥。",
     "habitat": "湖底淤泥、水草边",
@@ -51,7 +59,8 @@
     "scoreWeight": 1,
     "maps": [
       "forest_lake",
-      "legendary_waters"
+      "legendary_waters",
+      "east_lake"
     ],
     "description": "色彩华丽的观赏鲤，传说能带来好运。",
     "habitat": "西湖的深水区、普达措",
@@ -73,7 +82,10 @@
     "maps": [
       "deep_sea",
       "qingdao_coast",
-      "south_sea"
+      "south_sea",
+      "weihai_coast",
+      "shengsi_islands",
+      "xisha_islands"
     ],
     "description": "肉食性海鱼，体型匀称，力道十足。",
     "habitat": "近海岩礁、深水急流",
@@ -94,7 +106,10 @@
     "scoreWeight": 1,
     "maps": [
       "forest_lake",
-      "pearl_river"
+      "pearl_river",
+      "east_lake",
+      "erhai_lake",
+      "dongting_lake"
     ],
     "description": "有须的底栖鱼，白天藏在泥洞中。",
     "habitat": "湖泊泥底、桥洞下",
@@ -156,7 +171,9 @@
     "scoreWeight": 1,
     "maps": [
       "forest_lake",
-      "pearl_river"
+      "pearl_river",
+      "east_lake",
+      "dongting_lake"
     ],
     "description": "身上有斑纹的凶猛淡水鱼，鳜鱼的一种。",
     "habitat": "西湖的乱石底",
@@ -176,7 +193,9 @@
     "requiredRodId": "feeder",
     "scoreWeight": 1,
     "maps": [
-      "beginner"
+      "beginner",
+      "xuanwu_lake",
+      "east_lake"
     ],
     "description": "体型侧扁的淡水鱼，适合入门垂钓。",
     "habitat": "金鸡湖的缓流区",
@@ -198,7 +217,11 @@
     "maps": [
       "beginner",
       "pearl_river",
-      "yangtze_river"
+      "yangtze_river",
+      "xuanwu_lake",
+      "east_lake",
+      "erhai_lake",
+      "dongting_lake"
     ],
     "description": "吃水草长大的大型淡水鱼，力量很大。",
     "habitat": "水草区、人工鱼塘",
@@ -219,7 +242,9 @@
     "scoreWeight": 1,
     "maps": [
       "forest_lake",
-      "yangtze_river"
+      "yangtze_river",
+      "east_lake",
+      "dongting_lake"
     ],
     "description": "青黑色的大型鲤科鱼，以螺蛳为食。",
     "habitat": "西湖深水底",
@@ -240,7 +265,10 @@
     "scoreWeight": 1,
     "maps": [
       "beginner",
-      "pearl_river"
+      "pearl_river",
+      "xuanwu_lake",
+      "east_lake",
+      "erhai_lake"
     ],
     "description": "繁殖力强、肉质扎实的罗非鱼。",
     "habitat": "温暖浅水、鱼塘岸边",
@@ -260,7 +288,9 @@
     "requiredRodId": "lure",
     "scoreWeight": 1,
     "maps": [
-      "forest_lake"
+      "forest_lake",
+      "east_lake",
+      "dongting_lake"
     ],
     "description": "河鲈背鳍带刺，性情凶猛，喜欢伏击。",
     "habitat": "西湖的水草边、倒木旁",
@@ -281,7 +311,11 @@
     "scoreWeight": 1,
     "maps": [
       "forest_lake",
-      "pearl_river"
+      "pearl_river",
+      "xuanwu_lake",
+      "east_lake",
+      "erhai_lake",
+      "dongting_lake"
     ],
     "description": "身体细长如蛇，夜间更活跃。",
     "habitat": "湖泊淤泥、石缝",
@@ -344,7 +378,10 @@
     "scoreWeight": 1,
     "maps": [
       "deep_sea",
-      "qingdao_coast"
+      "qingdao_coast",
+      "weihai_coast",
+      "shengsi_islands",
+      "xisha_islands"
     ],
     "description": "近海常见鱼类，因鱼鳔能发声得名。",
     "habitat": "近岸泥沙底、浅海",
@@ -365,7 +402,9 @@
     "scoreWeight": 1,
     "maps": [
       "deep_sea",
-      "qingdao_coast"
+      "qingdao_coast",
+      "weihai_coast",
+      "shengsi_islands"
     ],
     "description": "游速快的海洋鱼类，常成群巡游。",
     "habitat": "深海表层、冷水与暖流交汇处",
@@ -386,7 +425,9 @@
     "scoreWeight": 1,
     "maps": [
       "deep_sea",
-      "south_sea"
+      "south_sea",
+      "shengsi_islands",
+      "xisha_islands"
     ],
     "description": "石斑鱼是伏击型海鱼，肉质鲜美。",
     "habitat": "珊瑚礁、岩洞、沉船",
@@ -407,7 +448,9 @@
     "scoreWeight": 1,
     "maps": [
       "deep_sea",
-      "south_sea"
+      "south_sea",
+      "shengsi_islands",
+      "xisha_islands"
     ],
     "description": "金枪鱼是海洋中的高速鱼雷。",
     "habitat": "远洋深水区",
@@ -429,7 +472,8 @@
     "maps": [
       "deep_sea",
       "legendary_waters",
-      "south_sea"
+      "south_sea",
+      "xisha_islands"
     ],
     "description": "旗鱼拥有长吻和帆状背鳍，是海中王者。",
     "habitat": "热带远洋、深蓝水域",
@@ -593,7 +637,8 @@
     "requiredRodId": "hand",
     "scoreWeight": 1,
     "maps": [
-      "qinghai_lake"
+      "qinghai_lake",
+      "namtso_lake"
     ],
     "description": "俗称“湟鱼”，青海湖特有珍稀鱼类，耐高寒盐碱。",
     "habitat": "高原咸水湖浅水区",
@@ -613,7 +658,8 @@
     "requiredRodId": "hand",
     "scoreWeight": 1,
     "maps": [
-      "qinghai_lake"
+      "qinghai_lake",
+      "namtso_lake"
     ],
     "description": "适应高原环境的鳅科小鱼，常在水底砂石间活动。",
     "habitat": "高原湖泊与河流砂石底",
@@ -633,7 +679,8 @@
     "requiredRodId": "hand",
     "scoreWeight": 1,
     "maps": [
-      "qinghai_lake"
+      "qinghai_lake",
+      "namtso_lake"
     ],
     "description": "高原河流中的鲤科鱼，体侧有稀疏斑点。",
     "habitat": "高原湖泊与河流缓流区",
@@ -653,7 +700,8 @@
     "requiredRodId": "surf",
     "scoreWeight": 1,
     "maps": [
-      "south_sea"
+      "south_sea",
+      "xisha_islands"
     ],
     "description": "南海珊瑚礁区的名贵大型鱼，额头隆起，色彩艳丽。",
     "habitat": "热带珊瑚礁与外海岩礁",
@@ -673,7 +721,8 @@
     "requiredRodId": "surf",
     "scoreWeight": 1,
     "maps": [
-      "south_sea"
+      "south_sea",
+      "xisha_islands"
     ],
     "description": "珊瑚礁常见鱼类，嘴部像鹦鹉，啃食珊瑚藻类。",
     "habitat": "热带珊瑚礁区",
@@ -694,7 +743,9 @@
     "scoreWeight": 1,
     "maps": [
       "south_sea",
-      "deep_sea"
+      "deep_sea",
+      "shengsi_islands",
+      "xisha_islands"
     ],
     "description": "凶猛的海底肉食性鱼类，常藏在岩缝中。",
     "habitat": "珊瑚礁、岩洞、沉船",
@@ -714,7 +765,8 @@
     "requiredRodId": "lure",
     "scoreWeight": 1,
     "maps": [
-      "yangtze_river"
+      "yangtze_river",
+      "dongting_lake"
     ],
     "description": "长江流域的大型凶猛淡水鱼，游速极快，被称为“水老虎”。",
     "habitat": "大江干流与开阔湖面",
@@ -734,7 +786,8 @@
     "requiredRodId": "feeder",
     "scoreWeight": 1,
     "maps": [
-      "yangtze_river"
+      "yangtze_river",
+      "dongting_lake"
     ],
     "description": "俗称“江团”，长江名贵经济鱼类，吻长、肉质细嫩。",
     "habitat": "江河深水与乱石底",
@@ -755,7 +808,9 @@
     "scoreWeight": 1,
     "maps": [
       "pearl_river",
-      "beginner"
+      "beginner",
+      "xuanwu_lake",
+      "east_lake"
     ],
     "description": "华南暖水性鱼类，喜群游，肉质细嫩。",
     "habitat": "江河缓流、水草边",
@@ -776,7 +831,9 @@
     "scoreWeight": 1,
     "maps": [
       "pearl_river",
-      "forest_lake"
+      "forest_lake",
+      "east_lake",
+      "dongting_lake"
     ],
     "description": "俗称“生鱼”，华南常见的凶猛肉食性淡水鱼。",
     "habitat": "水草茂密、泥底静水",
@@ -817,7 +874,10 @@
     "scoreWeight": 1,
     "maps": [
       "qingdao_coast",
-      "deep_sea"
+      "deep_sea",
+      "weihai_coast",
+      "shengsi_islands",
+      "xisha_islands"
     ],
     "description": "北方沿海常见的洄游性鱼类，游速快，味道鲜美。",
     "habitat": "近海表层与沿岸水域",
@@ -838,7 +898,9 @@
     "scoreWeight": 1,
     "maps": [
       "qingdao_coast",
-      "deep_sea"
+      "deep_sea",
+      "weihai_coast",
+      "shengsi_islands"
     ],
     "description": "北方礁石区常见的鲷科鱼，体色偏黑，警惕性高。",
     "habitat": "近海岩礁、防波堤",
@@ -858,7 +920,9 @@
     "requiredRodId": "surf",
     "scoreWeight": 1,
     "maps": [
-      "qingdao_coast"
+      "qingdao_coast",
+      "weihai_coast",
+      "shengsi_islands"
     ],
     "description": "我国北方沿海重要经济鱼类，体形侧扁如带。",
     "habitat": "近海与较深水域",
@@ -878,7 +942,8 @@
     "requiredRodId": "surf",
     "scoreWeight": 1,
     "maps": [
-      "qingdao_coast"
+      "qingdao_coast",
+      "weihai_coast"
     ],
     "description": "比目鱼的一种，两眼同在身体一侧，常伏在沙底。",
     "habitat": "近岸泥沙海底",
