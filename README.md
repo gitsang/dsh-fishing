@@ -97,6 +97,9 @@ command types:
 - `BuyRod` / `EquipRod`
 - `BuyBasket` / `EquipBasket`
 - `BuyAccessory` / `EquipAccessory` / `UnequipAccessory`
+- `BuyBait` / `EquipBait`
+- `BuyLure` / `EquipLure`
+- `SetDepth`
 - `BuyTicket` / `ChangeMap` — buy multi-day map tickets and move between maps
   (e.g. `{"type":"BuyTicket","mapId":"forest_lake","days":3}`,
   `{"type":"ChangeMap","mapId":"forest_lake"}`). If a cast is in progress, it

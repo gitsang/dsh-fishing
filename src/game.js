@@ -818,6 +818,75 @@ export class FishingGame {
         return [{ type: 'EventLine', text: this.state.lastEventText }]
       }
 
+      case 'BuyBait': {
+        const bait = BAITS_BY_ID.get(command.baitId)
+        if (bait === undefined) throw new Error('未知饵料')
+        if (levelFromExperience(this.state.experience) < (bait.unlockLevel ?? 1)) {
+          throw new Error(`需要 Lv.${bait.unlockLevel} 才能购买${bait.name}`)
+        }
+        const packs = Math.max(1, Math.floor(Number(command.quantity) || 1))
+        const cost = bait.price * packs
+        if (this.state.coins < cost) throw new Error('金币不足')
+        this.state.coins -= cost
+        this.state.stats.totalCoinsSpent += cost
+        const amount = packs * (bait.packSize || 1)
+        this.state.ownedBaits[bait.id] = (this.state.ownedBaits[bait.id] ?? 0) + amount
+        this.state.lastEventText = `购买了 ${bait.name} ×${amount}，花费 ${cost} 金币。`
+        return [
+          { type: 'Purchase', kind: 'bait', id: bait.id, cost, quantity: amount },
+          { type: 'EventLine', text: this.state.lastEventText }
+        ]
+      }
+
+      case 'EquipBait': {
+        const bait = BAITS_BY_ID.get(command.baitId)
+        if (bait === undefined) throw new Error('未知饵料')
+        if ((this.state.ownedBaits[bait.id] ?? 0) <= 0) throw new Error(`尚未拥有${bait.name}`)
+        this.state.equippedBaitId = bait.id
+        this.state.lastEventText = `装备了饵料 ${bait.name}。`
+        return [{ type: 'EventLine', text: this.state.lastEventText }]
+      }
+
+      case 'BuyLure': {
+        const lure = LURES_BY_ID.get(command.lureId)
+        if (lure === undefined) throw new Error('未知假饵')
+        if (levelFromExperience(this.state.experience) < (lure.unlockLevel ?? 1)) {
+          throw new Error(`需要 Lv.${lure.unlockLevel} 才能购买${lure.name}`)
+        }
+        if (this.state.ownedLures.includes(lure.id)) throw new Error('已经拥有这个假饵')
+        if (this.state.coins < lure.price) throw new Error('金币不足')
+        this.state.coins -= lure.price
+        this.state.stats.totalCoinsSpent += lure.price
+        this.state.ownedLures.push(lure.id)
+        this.state.lastEventText = `购买了假饵 ${lure.name}。`
+        return [
+          { type: 'Purchase', kind: 'lure', id: lure.id, cost: lure.price },
+          { type: 'EventLine', text: this.state.lastEventText }
+        ]
+      }
+
+      case 'EquipLure': {
+        const lure = LURES_BY_ID.get(command.lureId)
+        if (lure === undefined) throw new Error('未知假饵')
+        if (!this.state.ownedLures.includes(lure.id)) throw new Error('尚未拥有这个假饵')
+        if (this.equippedRod().rod.rodType !== 'lure') throw new Error('只有路亚竿可以装配假饵')
+        this.state.equippedLureId = lure.id
+        this.state.lastEventText = `装备了假饵 ${lure.name}。`
+        return [{ type: 'EventLine', text: this.state.lastEventText }]
+      }
+
+      case 'SetDepth': {
+        const map = MAPS_BY_ID.get(this.state.currentMapId)
+        const depthM = command.depthM === null || command.depthM === undefined || command.depthM === 'auto' ? null : Number(command.depthM)
+        if (depthM !== null && (!Number.isFinite(depthM) || depthM < 0)) throw new Error('水深必须是非负数字')
+        if (depthM !== null && map !== undefined && depthM > (map.maxDepthM ?? 100)) {
+          throw new Error(`该地图最大水深为 ${map.maxDepthM}m`)
+        }
+        this.state.fishingDepthM = depthM
+        this.state.lastEventText = depthM === null ? '已切换为自动水深。' : `已设置钓深 ${depthM}m。`
+        return [{ type: 'EventLine', text: this.state.lastEventText }]
+      }
+
       case 'BuyTicket': {
         const map = MAPS_BY_ID.get(command.mapId)
         if (map === undefined) throw new Error('未知地图')
@@ -1026,7 +1095,30 @@ export class FishingGame {
           owned: state.items.some((item) => item.itemId === accessory.id),
           canEquip: accessory.rodTypes.includes(equipped.rod.rodType)
         }
-      })
+      }),
+      ...BAITS.map((bait) => ({
+        kind: 'bait',
+        category: '饵料',
+        id: bait.id,
+        name: bait.name,
+        icon: bait.icon,
+        price: bait.price,
+        packSize: bait.packSize ?? 1,
+        unlockLevel: bait.unlockLevel ?? 1,
+        owned: (state.ownedBaits[bait.id] ?? 0) > 0,
+        quantity: state.ownedBaits[bait.id] ?? 0
+      })),
+      ...LURES.map((lure) => ({
+        kind: 'lure',
+        category: '假饵',
+        id: lure.id,
+        name: lure.name,
+        icon: lure.icon,
+        price: lure.price,
+        unlockLevel: lure.unlockLevel ?? 1,
+        owned: state.ownedLures.includes(lure.id),
+        canEquip: equipped.rod.rodType === 'lure'
+      }))
     ]
 
     const level = levelFromExperience(state.experience)
@@ -1068,7 +1160,7 @@ export class FishingGame {
       }
     })
 
-    const shopCategories = ['鱼竿', '鱼篓', ...ACCESSORY_SLOTS.map((slot) => slot.name)]
+    const shopCategories = [...new Set(['鱼竿', '鱼篓', ...ACCESSORY_SLOTS.map((slot) => slot.name), '饵料', '假饵'])]
 
     return {
       version: state.version,

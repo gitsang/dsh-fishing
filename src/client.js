@@ -1329,48 +1329,54 @@ window.__ModuleLoader__.load({
             { className: "dshFishing_list" },
             shopItems.length === 0
               ? React.createElement("div", { className: "dshFishing_empty" }, "这个分类暂时没有商品")
-              : shopItems.map((item) => {
-                  const attrLines = item.kind === "rod"
-                    ? rodAttrLines(item)
-                    : item.kind === "accessory"
-                      ? accessoryAttrLines(item)
-                      : item.kind === "basket"
-                        ? basketAttrLines(item)
-                        : [];
-                  const locked = (item.unlockLevel ?? 1) > (snap.level ?? 1);
-                  return React.createElement(
-                    "div",
-                    { key: `${item.kind}-${item.id}`, className: "dshFishing_shopCard" },
-                    React.createElement(
+                : shopItems.map((item) => {
+                    const attrLines = item.kind === "rod"
+                      ? rodAttrLines(item)
+                      : item.kind === "accessory"
+                        ? accessoryAttrLines(item)
+                        : item.kind === "basket"
+                          ? basketAttrLines(item)
+                          : [];
+                    const locked = (item.unlockLevel ?? 1) > (snap.level ?? 1);
+                    const isBait = item.kind === "bait";
+                    const alreadyOwned = item.owned && !isBait;
+                    const ownedLabel = isBait ? `拥有 ${item.quantity}` : "已拥有";
+                    const sendShopAction = () => {
+                      if (item.kind === "rod") send({ type: "BuyRod", rodId: item.id })
+                      else if (item.kind === "basket") send({ type: "BuyBasket", basketId: item.id })
+                      else if (item.kind === "accessory") send({ type: "BuyAccessory", accessoryId: item.id })
+                      else if (item.kind === "bait") send({ type: "BuyBait", baitId: item.id })
+                      else if (item.kind === "lure") send({ type: "BuyLure", lureId: item.id })
+                    };
+                    return React.createElement(
                       "div",
-                      { className: "dshFishing_shopCardHead" },
+                      { key: `${item.kind}-${item.id}`, className: "dshFishing_shopCard" },
                       React.createElement(
-                        "span",
-                        { className: "dshFishing_shopCardTitle" },
-                        React.createElement(EquipmentSvg, { item, size: 22 }),
-                        React.createElement("span", { className: "dshFishing_shopCardName" }, item.name)
-                      ),
-                      item.owned
-                        ? React.createElement("span", { className: "dshFishing_muted" }, "已拥有")
-                        : locked
-                          ? React.createElement(
-                              "span",
-                              { className: "dshFishing_muted" },
-                              `Lv.${item.unlockLevel} 解锁`
-                            )
-                          : React.createElement(
-                              "button",
-                              {
-                                className: "dshFishing_btn dshFishing_primary",
-                                disabled: busy,
-                                onClick: () => {
-                                  if (item.kind === "rod") send({ type: "BuyRod", rodId: item.id })
-                                  else if (item.kind === "basket") send({ type: "BuyBasket", basketId: item.id })
-                                  else send({ type: "BuyAccessory", accessoryId: item.id })
-                                }
-                              },
-                              `购买 ${item.price}G`
-                            )
+                        "div",
+                        { className: "dshFishing_shopCardHead" },
+                        React.createElement(
+                          "span",
+                          { className: "dshFishing_shopCardTitle" },
+                          React.createElement(EquipmentSvg, { item, size: 22 }),
+                          React.createElement("span", { className: "dshFishing_shopCardName" }, item.name)
+                        ),
+                        alreadyOwned
+                          ? React.createElement("span", { className: "dshFishing_muted" }, ownedLabel)
+                          : locked
+                            ? React.createElement(
+                                "span",
+                                { className: "dshFishing_muted" },
+                                `Lv.${item.unlockLevel} 解锁`
+                              )
+                            : React.createElement(
+                                "button",
+                                {
+                                  className: "dshFishing_btn dshFishing_primary",
+                                  disabled: busy,
+                                  onClick: sendShopAction
+                                },
+                                `购买 ${item.price}G`
+                              )
                     ),
                     attrLines.length > 0
                       ? React.createElement(
