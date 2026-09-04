@@ -17,6 +17,16 @@ The game is opened from the left sidebar: a `Fishing` button is placed above
 the settings button and styled like the other sidebar buttons. Clicking it
 opens the fishing panel directly in the sidebar.
 
+## Screenshots
+
+<img src="assets/screenshots/fishing-game.png" width="170" alt="钓鱼主界面" title="钓鱼主界面">
+<img src="assets/screenshots/fishing-equipment.png" width="170" alt="装备与背包" title="装备与背包">
+<img src="assets/screenshots/fishing-map.png" width="170" alt="地图详情" title="地图详情">
+<img src="assets/screenshots/fishing-shop.png" width="170" alt="商店" title="商店">
+<img src="assets/screenshots/fishing-codex.png" width="170" alt="鱼类图鉴" title="鱼类图鉴">
+
+> 截图为侧栏钓鱼面板的静态示例；实际运行时会轮询实时快照并支持交互。
+
 ## How it works
 
 - **Host half** (`src/index.js`): subscribes to `session/event`, reads
