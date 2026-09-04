@@ -377,7 +377,10 @@ export class FishingGame {
     const hour = this.currentMapHour(now)
     const waterTemp = this.currentWaterTemp(now)
     const light = this.currentLightLevel(now)
-    const depth = this.state.fishingDepthM
+    const rod = this.equippedRod().rod
+    const depth = rod.depthControl === 'bottom'
+      ? (this.currentMap().maxDepthM ?? 10)
+      : this.state.fishingDepthM
     return SPECIES.filter((species) => {
       const areas = species.activeAreas ?? species.maps ?? []
       if (!areas.includes(mapId)) return false
@@ -982,7 +985,11 @@ export class FishingGame {
 
       case 'SetDepth': {
         const map = MAPS_BY_ID.get(this.state.currentMapId)
+        const rod = this.equippedRod().rod
         const depthM = command.depthM === null || command.depthM === undefined || command.depthM === 'auto' ? null : Number(command.depthM)
+        if (rod.depthControl === 'bottom' && depthM !== null) {
+          throw new Error(`${rod.name}是沉底钓法，不能手动调节水深`)
+        }
         if (depthM !== null && (!Number.isFinite(depthM) || depthM < 0)) throw new Error('水深必须是非负数字')
         if (depthM !== null && map !== undefined && depthM > (map.maxDepthM ?? 100)) {
           throw new Error(`该地图最大水深为 ${map.maxDepthM}m`)
