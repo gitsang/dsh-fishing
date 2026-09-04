@@ -1,0 +1,104 @@
+[
+  {
+    "id": "wait_stargazing",
+    "stage": "waiting",
+    "text": "你正在数星星，差点忘了自己在钓鱼……"
+  },
+  {
+    "id": "wait_daydreaming",
+    "stage": "waiting",
+    "text": "你正在发呆，浮标轻轻晃了一下。"
+  },
+  {
+    "id": "wait_rod_shake",
+    "stage": "waiting",
+    "text": "你正在晃动鱼竿，水波一圈圈荡开。"
+  },
+  {
+    "id": "wait_dragonfly",
+    "stage": "waiting",
+    "text": "一只蜻蜓落在鱼竿上，你屏住了呼吸。"
+  },
+  {
+    "id": "wait_bubbles",
+    "stage": "waiting",
+    "text": "水面冒出一串泡泡，好像有鱼在附近。"
+  },
+  {
+    "id": "wait_bobber_twitch",
+    "stage": "waiting",
+    "text": "浮标轻轻动了一下，是你的错觉吗？"
+  },
+  {
+    "id": "reel_reeling",
+    "stage": "reeling",
+    "text": "你正在收杆，鱼线在水面划出一道弧线。"
+  },
+  {
+    "id": "reel_fighting",
+    "stage": "reeling",
+    "text": "鱼在疯狂挣扎，你赶紧握紧鱼竿！"
+  },
+  {
+    "id": "reel_deep_run",
+    "stage": "reeling",
+    "text": "鱼突然向深水冲去，鱼线绷得紧紧的！"
+  },
+  {
+    "id": "reel_jump",
+    "stage": "reeling",
+    "text": "鱼跃出水面，溅起一片水花！"
+  },
+  {
+    "id": "reel_tension",
+    "stage": "reeling",
+    "text": "鱼线发出嗡嗡声，感觉随时会断！"
+  },
+  {
+    "id": "reel_side_swim",
+    "stage": "reeling",
+    "text": "鱼开始向左边猛冲，你不得不跟着移动。"
+  },
+  {
+    "id": "result_nothing",
+    "stage": "result",
+    "kind": "nothing",
+    "text": "什么也没钓到……"
+  },
+  {
+    "id": "result_escape",
+    "stage": "result",
+    "kind": "escape",
+    "text": "有鱼咬钩了，但挣脱了！"
+  },
+  {
+    "id": "result_junk_bottle",
+    "stage": "result",
+    "kind": "junk",
+    "text": "钓到了垃圾（塑料瓶），扔掉了。"
+  },
+  {
+    "id": "result_junk_can",
+    "stage": "result",
+    "kind": "junk",
+    "text": "钓到了垃圾（易拉罐），扔掉了。"
+  },
+  {
+    "id": "result_junk_shoe",
+    "stage": "result",
+    "kind": "junk",
+    "text": "钓到了垃圾（破拖鞋），扔掉了。"
+  },
+  {
+    "id": "result_junk_branch",
+    "stage": "result",
+    "kind": "junk",
+    "text": "钓到了垃圾（烂树枝），扔掉了。"
+  },
+  {
+    "id": "result_seaweed",
+    "stage": "result",
+    "kind": "junk",
+    "text": "钓到了水草，缠得乱七八糟。"
+  }
+]

@@ -1,0 +1,8 @@
+[
+  { "id": "hand", "name": "手竿" },
+  { "id": "sea", "name": "海竿" },
+  { "id": "lure", "name": "路亚竿" },
+  { "id": "feeder", "name": "飞德杆" },
+  { "id": "fly", "name": "飞蝇竿" },
+  { "id": "surf", "name": "滩钓竿" }
+]

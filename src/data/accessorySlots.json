@@ -1,0 +1,26 @@
+[
+  {
+    "id": "reel",
+    "name": "渔轮"
+  },
+  {
+    "id": "line",
+    "name": "钓线"
+  },
+  {
+    "id": "lure",
+    "name": "假饵"
+  },
+  {
+    "id": "hook",
+    "name": "鱼钩"
+  },
+  {
+    "id": "bobber",
+    "name": "浮漂"
+  },
+  {
+    "id": "sinker",
+    "name": "铅坠"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "bamboo": "yunchuan_bamboo",
+  "carbon": "canglan_sea",
+  "long_cast": "canglan_lure",
+  "golden": "jichuan_hand",
+  "hand": "yunchuan_bamboo",
+  "sea": "canglan_sea",
+  "lure": "canglan_lure",
+  "feeder": "yunchuan_river",
+  "fly": "canglan_fly",
+  "surf": "yunchuan_coast"
+}
