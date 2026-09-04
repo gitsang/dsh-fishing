@@ -884,6 +884,45 @@ export class FishingGame {
         return [{ type: 'EventLine', text: this.state.lastEventText }]
       }
 
+      case 'RepairGear': {
+        const kind = command.kind
+        const id = command.id
+        let target = null
+        let price = 0
+        let name = ''
+        if (kind === 'rod') {
+          const rod = RODS_BY_ID.get(id)
+          if (rod === undefined) throw new Error('未知鱼竿')
+          const entry = this.state.ownedRods[id]
+          if (entry === undefined) throw new Error('尚未拥有这支鱼竿')
+          target = entry
+          price = rod.basePrice
+          name = rod.name
+        } else if (kind === 'accessory') {
+          const accessory = ACCESSORIES_BY_ID.get(id)
+          if (accessory === undefined) throw new Error('未知配件')
+          const entry = this.state.items.find((item) => item.itemId === id)
+          if (entry === undefined) throw new Error('尚未拥有这个配件')
+          target = entry
+          price = accessory.basePrice
+          name = accessory.name
+        } else {
+          throw new Error('未知维修类型')
+        }
+        const current = target.condition ?? 100
+        if (current >= 100) throw new Error(`${name}不需要维修`)
+        const cost = Math.max(1, Math.ceil(price * (100 - current) / 100 * 0.5))
+        if (this.state.coins < cost) throw new Error('金币不足')
+        this.state.coins -= cost
+        this.state.stats.totalCoinsSpent += cost
+        target.condition = 100
+        this.state.lastEventText = `维修了 ${name}，花费 ${cost} 金币。`
+        return [
+          { type: 'Repair', kind, id, cost },
+          { type: 'EventLine', text: this.state.lastEventText }
+        ]
+      }
+
       case 'BuyBait': {
         const bait = BAITS_BY_ID.get(command.baitId)
         if (bait === undefined) throw new Error('未知饵料')
