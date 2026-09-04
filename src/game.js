@@ -190,12 +190,12 @@ function normalizeState(state) {
       const newId = OLD_ROD_MIGRATION[oldId]
       if (newId === undefined || !RODS_BY_ID.has(newId)) continue
       if (state.ownedRods[newId] === undefined) {
-        state.ownedRods[newId] = { rodId: newId }
+        state.ownedRods[newId] = { rodId: newId, condition: 100 }
       }
     }
     for (const id of Object.keys(state.ownedRods)) {
       if (!RODS_BY_ID.has(id)) delete state.ownedRods[id]
-      else state.ownedRods[id] = { rodId: id }
+      else state.ownedRods[id] = { rodId: id, condition: state.ownedRods[id]?.condition ?? 100 }
     }
   }
   if (typeof state.equippedRodId === 'string' && OLD_ROD_MIGRATION[state.equippedRodId] !== undefined) {
@@ -203,7 +203,10 @@ function normalizeState(state) {
   }
   if (!RODS_BY_ID.has(state.equippedRodId)) state.equippedRodId = RODS[0].id
   if (state.ownedRods[state.equippedRodId] === undefined) {
-    state.ownedRods[state.equippedRodId] = { rodId: state.equippedRodId }
+    state.ownedRods[state.equippedRodId] = { rodId: state.equippedRodId, condition: 100 }
+  }
+  for (const rodId of Object.keys(state.ownedRods)) {
+    if (!Number.isFinite(state.ownedRods[rodId].condition)) state.ownedRods[rodId].condition = 100
   }
 
   // Normalize baskets and derive inventory capacity from the equipped basket.
@@ -218,6 +221,9 @@ function normalizeState(state) {
   state.inventoryCapacity = BASKETS_BY_ID.get(state.equippedBasketId).capacity
 
   if (!Array.isArray(state.items)) state.items = []
+  for (const item of state.items) {
+    if (!Number.isFinite(item.condition)) item.condition = 100
+  }
   if (!Array.isArray(state.collection)) state.collection = []
   if (state.ownedBaits === null || typeof state.ownedBaits !== 'object') state.ownedBaits = {}
   for (const bait of BAITS) {
@@ -430,6 +436,29 @@ export class FishingGame {
 
   currentMapStaminaCost() {
     return MAPS_BY_ID.get(this.state.currentMapId)?.staminaCost ?? 1
+  }
+
+  damageEquippedGear() {
+    const rodId = this.state.equippedRodId
+    const rodEntry = this.state.ownedRods[rodId]
+    const parts = []
+    if (rodEntry) parts.push({ kind: '鱼竿', id: rodId, ref: rodEntry, maxLoadKg: RODS_BY_ID.get(rodId)?.maxLoadKg ?? Infinity })
+    for (const slot of ACCESSORY_SLOTS) {
+      const itemId = this.state.equippedAccessories?.[slot.id]
+      if (!itemId) continue
+      const entry = this.state.items.find((item) => item.itemId === itemId)
+      const accessory = ACCESSORIES_BY_ID.get(itemId)
+      if (entry && accessory) {
+        parts.push({ kind: ACCESSORY_SLOTS_BY_ID.get(slot.id)?.name ?? slot.id, id: itemId, ref: entry, maxLoadKg: accessory.maxLoadKg ?? Infinity })
+      }
+    }
+    parts.sort((a, b) => (a.maxLoadKg || Infinity) - (b.maxLoadKg || Infinity))
+    const part = parts[0]
+    if (!part) return null
+    const damage = Math.max(1, Math.floor(this.rng() * 15) + 5)
+    part.ref.condition = Math.max(0, (part.ref.condition ?? 100) - damage)
+    this.state.lastEventText = `${part.kind}因超过钓重受损，耐久度 -${damage}（当前 ${part.ref.condition}）。`
+    return part
   }
 
   cancelFishing({ refundStamina = false } = {}) {
@@ -658,6 +687,10 @@ export class FishingGame {
     const maxLoadKg = Number.isFinite(equipped.maxLoadKg) ? equipped.maxLoadKg : 999
     const loadRatio = (fish.weightGrams / 1000) / maxLoadKg
     let hookChance = 1
+    if (loadRatio > 1) {
+      const damageChance = Math.min(0.8, (loadRatio - 1) * 1.5)
+      if (this.rng() < damageChance) this.damageEquippedGear()
+    }
     if (loadRatio > 1.2) {
       this.state.lastEventText = `[${species.name}] 太重了，超出钓重${(loadRatio * 100).toFixed(0)}%，线组承受不住，鱼逃走了！`
       return [{ type: 'EventLine', text: this.state.lastEventText }]
@@ -758,7 +791,7 @@ export class FishingGame {
         if (this.state.coins < rod.basePrice) throw new Error('金币不足')
         this.state.coins -= rod.basePrice
         this.state.stats.totalCoinsSpent += rod.basePrice
-        this.state.ownedRods[rod.id] = { rodId: rod.id }
+        this.state.ownedRods[rod.id] = { rodId: rod.id, condition: 100 }
         this.state.lastEventText = `购买了 ${rod.name}。`
         return [{ type: 'Purchase', kind: 'rod', id: rod.id, cost: rod.basePrice }, { type: 'EventLine', text: this.state.lastEventText }]
       }
@@ -817,7 +850,7 @@ export class FishingGame {
         if (this.state.coins < accessory.basePrice) throw new Error('金币不足')
         this.state.coins -= accessory.basePrice
         this.state.stats.totalCoinsSpent += accessory.basePrice
-        this.state.items.push({ id: randomUUID().slice(0, 8), itemId: accessory.id, equipped: false })
+        this.state.items.push({ id: randomUUID().slice(0, 8), itemId: accessory.id, equipped: false, condition: 100 })
         this.state.lastEventText = `购买了 ${accessory.name}。`
         return [{ type: 'Purchase', kind: 'accessory', id: accessory.id, cost: accessory.basePrice }, { type: 'EventLine', text: this.state.lastEventText }]
       }
@@ -1015,7 +1048,8 @@ export class FishingGame {
         depthControl: rod.depthControl ?? 'adjust',
         depthRangeM: rod.depthRangeM ?? null,
         owned: owned !== undefined,
-        equipped: state.equippedRodId === rod.id
+        equipped: state.equippedRodId === rod.id,
+        condition: owned?.condition ?? 100
       }
     })
 
@@ -1056,6 +1090,7 @@ export class FishingGame {
         maxLoadKg: accessory.maxLoadKg ?? null,
         rodTypes: accessory.rodTypes,
         equipped: item.equipped,
+        condition: item.condition ?? 100,
         canEquip: accessory.rodTypes.includes(equipped.rod.rodType)
       }
     }).filter((item) => item !== null)
