@@ -4,7 +4,6 @@
     "brand": "云川",
     "model": "YR-1000",
     "name": "云川·入门渔轮",
-    "emoji": "🎡",
     "slot": "reel",
     "material": "铝合金",
     "spec": "1000型 / 5+1轴承",
@@ -14,14 +13,14 @@
       "feeder",
       "lure"
     ],
-    "successRateBonus": 0.03
+    "successRateBonus": 0.03,
+    "icon": "assets/accessories/basic_reel.svg"
   },
   {
     "id": "strong_reel",
     "brand": "苍澜",
     "model": "CL-2000",
     "name": "苍澜·竞技渔轮",
-    "emoji": "⚙️",
     "slot": "reel",
     "material": "铝合金+碳素",
     "spec": "2000型 / 7+1轴承",
@@ -31,14 +30,14 @@
       "feeder",
       "lure"
     ],
-    "successRateBonus": 0.06
+    "successRateBonus": 0.06,
+    "icon": "assets/accessories/strong_reel.svg"
   },
   {
     "id": "master_reel",
     "brand": "极川",
     "model": "JC-3000",
     "name": "极川·旗舰渔轮",
-    "emoji": "🎯",
     "slot": "reel",
     "material": "钛合金",
     "spec": "3000型 / 9+1轴承",
@@ -50,14 +49,14 @@
       "fly",
       "surf"
     ],
-    "successRateBonus": 0.09
+    "successRateBonus": 0.09,
+    "icon": "assets/accessories/master_reel.svg"
   },
   {
     "id": "carbon_line",
     "brand": "云川",
     "model": "CL-02",
     "name": "云川·碳素线",
-    "emoji": "🧵",
     "slot": "line",
     "material": "碳素线",
     "spec": "0.2mm / 50m",
@@ -68,14 +67,14 @@
       "lure",
       "feeder"
     ],
-    "maxWeightBonus": 0.1
+    "maxWeightBonus": 0.1,
+    "icon": "assets/accessories/carbon_line.svg"
   },
   {
     "id": "braided_line",
     "brand": "苍澜",
     "model": "BL-08",
     "name": "苍澜·编织线",
-    "emoji": "🪢",
     "slot": "line",
     "material": "PE编织线",
     "spec": "0.8号 / 150m",
@@ -86,14 +85,14 @@
       "feeder",
       "fly"
     ],
-    "maxWeightBonus": 0.18
+    "maxWeightBonus": 0.18,
+    "icon": "assets/accessories/braided_line.svg"
   },
   {
     "id": "fluorocarbon_line",
     "brand": "极川",
     "model": "FL-12",
     "name": "极川·氟碳线",
-    "emoji": "💎",
     "slot": "line",
     "material": "氟碳线",
     "spec": "1.2号 / 100m",
@@ -103,14 +102,14 @@
       "lure",
       "fly"
     ],
-    "maxWeightBonus": 0.25
+    "maxWeightBonus": 0.25,
+    "icon": "assets/accessories/fluorocarbon_line.svg"
   },
   {
     "id": "fake_lure",
     "brand": "云川",
     "model": "SW-05",
     "name": "云川·卷尾蛆",
-    "emoji": "🪱",
     "slot": "lure",
     "material": "软胶",
     "spec": "5cm / 卷尾蛆",
@@ -118,14 +117,14 @@
     "rodTypes": [
       "lure"
     ],
-    "catchBonus": 2
+    "catchBonus": 2,
+    "icon": "assets/accessories/fake_lure.svg"
   },
   {
     "id": "floating_lure",
     "brand": "苍澜",
     "model": "FP-70",
     "name": "苍澜·浮水米诺",
-    "emoji": "🦐",
     "slot": "lure",
     "material": "硬塑浮水",
     "spec": "7cm / 浮水米诺",
@@ -133,14 +132,14 @@
     "rodTypes": [
       "lure"
     ],
-    "successRateBonus": 0.04
+    "successRateBonus": 0.04,
+    "icon": "assets/accessories/floating_lure.svg"
   },
   {
     "id": "deep_diver",
     "brand": "极川",
     "model": "DD-90",
     "name": "极川·深潜米诺",
-    "emoji": "🐙",
     "slot": "lure",
     "material": "硬塑深潜",
     "spec": "9cm / 深潜米诺",
@@ -149,14 +148,14 @@
       "lure",
       "surf"
     ],
-    "catchBonus": 3
+    "catchBonus": 3,
+    "icon": "assets/accessories/deep_diver.svg"
   },
   {
     "id": "soft_bait",
     "brand": "苍澜",
     "model": "SB-12",
     "name": "苍澜·软饵",
-    "emoji": "🦑",
     "slot": "lure",
     "material": "软胶",
     "spec": "12cm / 软饵",
@@ -166,14 +165,14 @@
       "surf"
     ],
     "successRateBonus": 0.06,
-    "catchBonus": 1
+    "catchBonus": 1,
+    "icon": "assets/accessories/soft_bait.svg"
   },
   {
     "id": "sharp_hook",
     "brand": "云川",
     "model": "SH-6",
     "name": "云川·伊势尼",
-    "emoji": "🪝",
     "slot": "hook",
     "material": "高碳钢",
     "spec": "6号 / 伊势尼",
@@ -184,14 +183,14 @@
       "feeder",
       "surf"
     ],
-    "successRateBonus": 0.03
+    "successRateBonus": 0.03,
+    "icon": "assets/accessories/sharp_hook.svg"
   },
   {
     "id": "barbless_hook",
     "brand": "苍澜",
     "model": "BH-4",
     "name": "苍澜·无倒刺",
-    "emoji": "🪝",
     "slot": "hook",
     "material": "高碳钢",
     "spec": "4号 / 无倒刺",
@@ -202,14 +201,14 @@
       "feeder"
     ],
     "catchBonus": 1,
-    "successRateBonus": 0.02
+    "successRateBonus": 0.02,
+    "icon": "assets/accessories/barbless_hook.svg"
   },
   {
     "id": "circle_hook",
     "brand": "极川",
     "model": "CH-2",
     "name": "极川·圆口钩",
-    "emoji": "🌀",
     "slot": "hook",
     "material": "钛合金",
     "spec": "2号 / 圆口",
@@ -219,14 +218,14 @@
       "surf",
       "feeder"
     ],
-    "maxWeightBonus": 0.12
+    "maxWeightBonus": 0.12,
+    "icon": "assets/accessories/circle_hook.svg"
   },
   {
     "id": "small_bobber",
     "brand": "云川",
     "model": "SB-1",
     "name": "云川·巴尔杉浮漂",
-    "emoji": "⚪",
     "slot": "bobber",
     "material": "巴尔杉木",
     "spec": "1号 / 浮漂",
@@ -236,14 +235,14 @@
       "sea",
       "feeder"
     ],
-    "successRateBonus": 0.02
+    "successRateBonus": 0.02,
+    "icon": "assets/accessories/small_bobber.svg"
   },
   {
     "id": "sensitive_bobber",
     "brand": "苍澜",
     "model": "FB-3",
     "name": "苍澜·芦苇漂",
-    "emoji": "🔴",
     "slot": "bobber",
     "material": "芦苇",
     "spec": "3号 / 灵敏漂",
@@ -252,14 +251,14 @@
       "hand",
       "feeder"
     ],
-    "successRateBonus": 0.05
+    "successRateBonus": 0.05,
+    "icon": "assets/accessories/sensitive_bobber.svg"
   },
   {
     "id": "glow_bobber",
     "brand": "极川",
     "model": "GB-5",
     "name": "极川·夜光漂",
-    "emoji": "💡",
     "slot": "bobber",
     "material": "电子夜光",
     "spec": "5号 / 夜光漂",
@@ -270,14 +269,14 @@
       "feeder",
       "surf"
     ],
-    "catchBonus": 1
+    "catchBonus": 1,
+    "icon": "assets/accessories/glow_bobber.svg"
   },
   {
     "id": "split_shot",
     "brand": "云川",
     "model": "SS-1",
     "name": "云川·咬铅",
-    "emoji": "⚫",
     "slot": "sinker",
     "material": "纯铅",
     "spec": "1B / 咬铅",
@@ -288,14 +287,14 @@
       "feeder",
       "surf"
     ],
-    "maxWeightBonus": 0.05
+    "maxWeightBonus": 0.05,
+    "icon": "assets/accessories/split_shot.svg"
   },
   {
     "id": "sliding_sinker",
     "brand": "苍澜",
     "model": "SL-5",
     "name": "苍澜·滑铅",
-    "emoji": "🔩",
     "slot": "sinker",
     "material": "铜制",
     "spec": "5g / 滑铅",
@@ -305,14 +304,14 @@
       "surf",
       "feeder"
     ],
-    "successRateBonus": 0.04
+    "successRateBonus": 0.04,
+    "icon": "assets/accessories/sliding_sinker.svg"
   },
   {
     "id": "heavy_sinker",
     "brand": "极川",
     "model": "HS-20",
     "name": "极川·重铅",
-    "emoji": "⛓️",
     "slot": "sinker",
     "material": "钨合金",
     "spec": "20g / 重铅",
@@ -322,6 +321,7 @@
       "surf",
       "feeder"
     ],
-    "maxWeightBonus": 0.14
+    "maxWeightBonus": 0.14,
+    "icon": "assets/accessories/heavy_sinker.svg"
   }
 ]

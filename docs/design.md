@@ -155,7 +155,7 @@
 {
   id: 'carp',
   name: '鲫鱼',
-  emoji: '🐟',
+  icon: 'assets/fish/carp.svg',
 
   // 重量范围，单位克
   minWeightGrams: 200,

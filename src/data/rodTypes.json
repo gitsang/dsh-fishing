@@ -1,8 +1,32 @@
 [
-  { "id": "hand", "name": "手竿" },
-  { "id": "sea", "name": "海竿" },
-  { "id": "lure", "name": "路亚竿" },
-  { "id": "feeder", "name": "飞德杆" },
-  { "id": "fly", "name": "飞蝇竿" },
-  { "id": "surf", "name": "滩钓竿" }
+  {
+    "id": "hand",
+    "name": "手竿",
+    "icon": "assets/rod-types/hand.svg"
+  },
+  {
+    "id": "sea",
+    "name": "海竿",
+    "icon": "assets/rod-types/sea.svg"
+  },
+  {
+    "id": "lure",
+    "name": "路亚竿",
+    "icon": "assets/rod-types/lure.svg"
+  },
+  {
+    "id": "feeder",
+    "name": "飞德杆",
+    "icon": "assets/rod-types/feeder.svg"
+  },
+  {
+    "id": "fly",
+    "name": "飞蝇竿",
+    "icon": "assets/rod-types/fly.svg"
+  },
+  {
+    "id": "surf",
+    "name": "滩钓竿",
+    "icon": "assets/rod-types/surf.svg"
+  }
 ]

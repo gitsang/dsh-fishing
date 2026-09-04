@@ -763,7 +763,7 @@ export class FishingGame {
         brand: rod.brand,
         model: rod.model,
         name: rod.name,
-        emoji: rod.emoji,
+        icon: rod.icon,
         rodType: rod.rodType,
         type: rod.type,
         material: rod.material,
@@ -793,7 +793,7 @@ export class FishingGame {
         brand: basket.brand,
         model: basket.model,
         name: basket.name,
-        emoji: basket.emoji,
+        icon: basket.icon,
         material: basket.material,
         spec: basket.spec,
         capacity: basket.capacity,
@@ -812,7 +812,7 @@ export class FishingGame {
         brand: accessory.brand,
         model: accessory.model,
         name: accessory.name,
-        emoji: accessory.emoji,
+        icon: accessory.icon,
         slot: accessory.slot,
         slotName: ACCESSORY_SLOTS_BY_ID.get(accessory.slot)?.name ?? accessory.slot,
         material: accessory.material,
@@ -830,7 +830,7 @@ export class FishingGame {
       return {
         slot: slot.id,
         name: slot.name,
-        accessory: accessory === null || accessory === undefined ? null : { id: accessory.id, name: accessory.name, emoji: accessory.emoji }
+        accessory: accessory === null || accessory === undefined ? null : { id: accessory.id, name: accessory.name, icon: accessory.icon }
       }
     })
 
@@ -842,7 +842,7 @@ export class FishingGame {
         brand: rod.brand,
         model: rod.model,
         name: rod.name,
-        emoji: rod.emoji,
+        icon: rod.icon,
         rodType: rod.rodType,
         type: rod.type,
         material: rod.material,
@@ -869,7 +869,7 @@ export class FishingGame {
         brand: basket.brand,
         model: basket.model,
         name: basket.name,
-        emoji: basket.emoji,
+        icon: basket.icon,
         material: basket.material,
         spec: basket.spec,
         capacity: basket.capacity,
@@ -885,7 +885,7 @@ export class FishingGame {
           brand: accessory.brand,
           model: accessory.model,
           name: accessory.name,
-          emoji: accessory.emoji,
+          icon: accessory.icon,
           slot: accessory.slot,
           material: accessory.material,
           spec: accessory.spec,
@@ -905,7 +905,7 @@ export class FishingGame {
       return {
         id: map.id,
         name: map.name,
-        emoji: map.emoji,
+        icon: map.icon,
         region: map.region,
         city: map.city,
         spot: map.spot,
@@ -924,7 +924,7 @@ export class FishingGame {
           .map((species) => ({
             id: species.id,
             name: species.name,
-            emoji: species.emoji,
+            icon: species.icon,
             requiredRodId: species.requiredRodId,
             description: species.description ?? '',
             habitat: species.habitat ?? '',
@@ -946,7 +946,7 @@ export class FishingGame {
       currentMap: {
         id: currentMap.id,
         name: currentMap.name,
-        emoji: currentMap.emoji,
+        icon: currentMap.icon,
         region: currentMap.region,
         city: currentMap.city,
         spot: currentMap.spot,
@@ -966,7 +966,7 @@ export class FishingGame {
         brand: equipped.rod.brand,
         model: equipped.rod.model,
         name: equipped.rod.name,
-        emoji: equipped.rod.emoji,
+        icon: equipped.rod.icon,
         rodType: equipped.rod.rodType,
         type: equipped.rod.type,
         material: equipped.rod.material,
@@ -992,7 +992,7 @@ export class FishingGame {
         brand: equippedBasket.brand,
         model: equippedBasket.model,
         name: equippedBasket.name,
-        emoji: equippedBasket.emoji,
+        icon: equippedBasket.icon,
         material: equippedBasket.material,
         spec: equippedBasket.spec,
         capacity: equippedBasket.capacity
@@ -1012,7 +1012,7 @@ export class FishingGame {
         return {
           id: species.id,
           name: species.name,
-          emoji: species.emoji,
+          icon: species.icon,
           baseValue: species.baseValue,
           minWeightGrams: species.minWeightGrams,
           maxWeightGrams: species.maxWeightGrams,
@@ -1045,11 +1045,11 @@ export class FishingGame {
 
   fishView(fish) {
     const species = SPECIES_BY_ID.get(fish.speciesId)
-    if (species === undefined) return { ...fish, name: fish.speciesId, emoji: '🐟', value: 0 }
+    if (species === undefined) return { ...fish, name: fish.speciesId, icon: 'assets/fish/unknown.svg', value: 0 }
     return {
       ...fish,
       name: species.name,
-      emoji: species.emoji,
+      icon: species.icon,
       value: salePrice(species, fish)
     }
   }

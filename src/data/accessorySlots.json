@@ -1,26 +1,32 @@
 [
   {
     "id": "reel",
-    "name": "渔轮"
+    "name": "渔轮",
+    "icon": "assets/accessory-slots/reel.svg"
   },
   {
     "id": "line",
-    "name": "钓线"
+    "name": "钓线",
+    "icon": "assets/accessory-slots/line.svg"
   },
   {
     "id": "lure",
-    "name": "假饵"
+    "name": "假饵",
+    "icon": "assets/accessory-slots/lure.svg"
   },
   {
     "id": "hook",
-    "name": "鱼钩"
+    "name": "鱼钩",
+    "icon": "assets/accessory-slots/hook.svg"
   },
   {
     "id": "bobber",
-    "name": "浮漂"
+    "name": "浮漂",
+    "icon": "assets/accessory-slots/bobber.svg"
   },
   {
     "id": "sinker",
-    "name": "铅坠"
+    "name": "铅坠",
+    "icon": "assets/accessory-slots/sinker.svg"
   }
 ]
