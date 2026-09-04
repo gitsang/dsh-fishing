@@ -1,5 +1,7 @@
 # @gitsang/dsh-fishing
 
+[English](README.md) · [简体中文](README.zh-cn.md)
+
 A floating fishing game for the deepseek-harness **web** surface.
 
 While you use the agent, token usage is collected as bait: every 1M consumed

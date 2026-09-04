@@ -15,7 +15,8 @@
     "src",
     "assets/screenshots",
     "cordis.patch.yml",
-    "README.md"
+    "README.md",
+    "README.zh-cn.md"
   ],
   "dsh": {
     "bundle": {
