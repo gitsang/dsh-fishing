@@ -50,17 +50,18 @@ window.__ModuleLoader__.load({
 .dshFishing_tabActive{background:var(--dsw-alias-state-business-primary,#3b82f6);border-color:transparent;color:#fff}
 .dshFishing_status{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid var(--dsw-alias-border-l1,#eef0f3);font-size:12px;color:var(--dsw-alias-label-secondary,#4e5969);flex-shrink:0}
 .dshFishing_slotName{font-weight:600;color:var(--dsw-alias-label-secondary,#4e5969);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dshFishing_rpgPanel{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;gap:4px;align-items:center;justify-items:center;padding:8px 6px;border:1px solid var(--dsw-alias-border-l2,#d8dbe2);border-radius:12px;background:linear-gradient(145deg,var(--dsw-alias-bg-base,#ffffff),var(--dsw-alias-interactive-bg,#f0f1f4));box-shadow:inset 0 0 0 1px rgba(0,0,0,.02),0 4px 14px rgba(0,0,0,.04);position:sticky;top:0;z-index:2}
-.dshFishing_rodSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:84px;min-height:88px;padding:6px;border-radius:14px;border:2px solid var(--dsw-alias-state-business-primary,#3b82f6);background:radial-gradient(circle at 50% 30%,rgba(59,130,246,.18),var(--dsw-alias-bg-base,#ffffff) 72%);box-shadow:0 0 0 3px rgba(59,130,246,.10),0 4px 12px rgba(59,130,246,.12)}
-.dshFishing_rodIcon{font-size:32px;line-height:1}
-.dshFishing_rodName{font-size:12px;font-weight:800;color:var(--dsw-alias-label-primary,#1f2329);text-align:center;white-space:nowrap}
+.dshFishing_rpgPanel{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:10px;padding:8px;border:1px solid var(--dsw-alias-border-l2,#d8dbe2);border-radius:12px;background:linear-gradient(145deg,var(--dsw-alias-bg-base,#ffffff),var(--dsw-alias-interactive-bg,#f0f1f4));box-shadow:inset 0 0 0 1px rgba(0,0,0,.02),0 4px 14px rgba(0,0,0,.04);position:sticky;top:0;z-index:2}
+.dshFishing_rodArea{display:grid;grid-template-columns:repeat(3,52px);grid-template-rows:repeat(3,52px);gap:2px;align-items:center;justify-items:center}
+.dshFishing_rodSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:52px;height:52px;min-width:52px;min-height:52px;padding:3px;border-radius:12px;border:2px solid var(--dsw-alias-state-business-primary,#3b82f6);background:radial-gradient(circle at 50% 30%,rgba(59,130,246,.18),var(--dsw-alias-bg-base,#ffffff) 72%);box-shadow:0 0 0 2px rgba(59,130,246,.10),0 4px 12px rgba(59,130,246,.12);box-sizing:border-box}
+.dshFishing_rodIcon{font-size:24px;line-height:1}
+.dshFishing_rodName{font-size:9px;font-weight:800;color:var(--dsw-alias-label-primary,#1f2329);text-align:center;white-space:nowrap;max-width:50px;overflow:hidden;text-overflow:ellipsis}
 .dshFishing_rodLevel{font-size:10px;font-weight:700;color:var(--dsw-alias-state-business-primary,#3b82f6)}
-.dshFishing_basketSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:64px;min-height:56px;padding:4px;border-radius:12px;border:2px dashed var(--dsw-alias-border-l2,#d8dbe2);background:var(--dsw-alias-bg-base,#ffffff)}
+.dshFishing_basketSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:52px;height:52px;min-width:52px;min-height:52px;padding:3px;border-radius:12px;border:2px dashed var(--dsw-alias-border-l2,#d8dbe2);background:var(--dsw-alias-bg-base,#ffffff);box-sizing:border-box}
 .dshFishing_basketIcon{font-size:22px;line-height:1}
-.dshFishing_basketName{font-size:10px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);text-align:center;white-space:nowrap}
-.dshFishing_gemSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:60px;min-height:62px;padding:4px 2px;border-radius:10px;background:transparent}
-.dshFishing_gemHole{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--dsw-alias-bg-base,#ffffff);transform:rotate(45deg);box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
-.dshFishing_gemIcon{display:flex;align-items:center;justify-content:center;font-size:17px;line-height:1;transform:rotate(-45deg)}
+.dshFishing_basketName{font-size:9px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);text-align:center;white-space:nowrap;max-width:50px;overflow:hidden;text-overflow:ellipsis}
+.dshFishing_gemSlot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;width:44px;height:44px;min-width:44px;min-height:44px;padding:2px;border-radius:8px;background:transparent;box-sizing:border-box}
+.dshFishing_gemHole{width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:7px;background:var(--dsw-alias-bg-base,#ffffff);transform:rotate(45deg);box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
+.dshFishing_gemIcon{display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;transform:rotate(-45deg)}
 .dshFishing_gemSlotEmpty .dshFishing_gemHole{border:2px dashed var(--dsw-alias-border-l2,#d8dbe2);background:var(--dsw-alias-interactive-bg,#f0f1f4);color:var(--dsw-alias-label-tertiary,#8a919f)}
 .dshFishing_gemSlotFilled .dshFishing_gemHole{border:2px solid rgba(59,130,246,.55);background:radial-gradient(circle at 35% 30%,rgba(59,130,246,.28),rgba(59,130,246,.08));box-shadow:0 0 8px rgba(59,130,246,.25)}
 .dshFishing_gemSlotDropTarget .dshFishing_gemHole{outline:2px solid var(--dsw-alias-state-business-primary,#3b82f6);outline-offset:2px;background:rgba(59,130,246,.12)}
@@ -85,16 +86,22 @@ window.__ModuleLoader__.load({
 .dshFishing_backpackTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);margin-top:4px}
 .dshFishing_backpackTabs{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 .dshFishing_inventoryGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:4px}
-.dshFishing_inventoryCell{aspect-ratio:1;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;align-items:center;justify-content:center;position:relative;box-sizing:border-box;cursor:pointer;font-size:22px;line-height:1;min-width:0;transition:border-color .15s ease,background .15s ease}
+.dshFishing_inventoryCell{aspect-ratio:1;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:relative;box-sizing:border-box;cursor:pointer;font-size:22px;line-height:1;min-width:0;transition:border-color .15s ease,background .15s ease}
 .dshFishing_inventoryCell:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6);background:var(--dsw-alias-interactive-bg-hover,rgba(0,0,0,.03))}
 .dshFishing_inventoryCellEquipped{border-color:var(--dsw-alias-state-business-primary,#3b82f6);background:rgba(59,130,246,.08);box-shadow:0 0 0 1px rgba(59,130,246,.12)}
 .dshFishing_inventoryCellDisabled{opacity:.45;background:var(--dsw-alias-interactive-bg,#f0f1f4)}
 .dshFishing_inventoryCellBadge{position:absolute;top:2px;right:4px;font-size:9px;font-weight:700;color:var(--dsw-alias-state-business-primary,#3b82f6);pointer-events:none}
-.dshFishing_tooltip{position:fixed;z-index:9999;max-width:260px;white-space:pre-line;background:rgba(15,23,42,.92);color:#f8fafc;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:8px 11px;font-size:11px;line-height:1.55;box-shadow:0 10px 28px rgba(0,0,0,.22),0 2px 8px rgba(0,0,0,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s ease,transform .12s ease}
+.dshFishing_inventoryName{font-size:9px;line-height:1.2;color:var(--dsw-alias-label-secondary,#4e5969);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 2px;box-sizing:border-box}
+.dshFishing_tooltip{position:fixed;z-index:9999;width:max-content;max-width:260px;white-space:pre-line;background:rgba(15,23,42,.92);color:#f8fafc;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:8px 11px;font-size:11px;line-height:1.55;box-shadow:0 10px 28px rgba(0,0,0,.22),0 2px 8px rgba(0,0,0,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s ease,transform .12s ease}
 .dshFishing_tooltipVisible{opacity:1;transform:translateY(0)}
 .dshFishing_shopGroup{margin-top:6px}
-.dshFishing_shopCard{border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:8px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;align-items:center;justify-content:space-between;gap:8px;transition:border-color .15s ease,box-shadow .15s ease}
+.dshFishing_shopCard{border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:8px;background:var(--dsw-alias-bg-base,#ffffff);display:flex;flex-direction:column;gap:8px;transition:border-color .15s ease,box-shadow .15s ease}
 .dshFishing_shopCard:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.dshFishing_shopCardHead{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.dshFishing_shopCardTitle{display:inline-flex;align-items:center;gap:8px;min-width:0}
+.dshFishing_shopCardName{font-size:15px;font-weight:700;color:var(--dsw-alias-label-primary,#1f2329);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dshFishing_shopCardDivider{height:1px;background:var(--dsw-alias-border-l1,#eef0f3)}
+.dshFishing_shopCardAttrs{display:flex;flex-direction:column;gap:2px}
 .dshFishing_shopGroupTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);margin-bottom:4px}
 .dshFishing_shopTabs{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
 .dshFishing_shopTab{border:1px solid var(--dsw-alias-border-l2,#d8dbe2);background:transparent;border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;color:var(--dsw-alias-label-secondary,#4e5969)}
@@ -107,6 +114,14 @@ window.__ModuleLoader__.load({
 .dshFishing_mapFish{font-size:11px;color:var(--dsw-alias-label-secondary,#4e5969);line-height:1.4}
 .dshFishing_mapCard{cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease}
 .dshFishing_mapCard:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.dshFishing_mapCardCurrent{border:2px solid var(--dsw-alias-state-business-primary,#3b82f6);box-shadow:0 0 0 1px rgba(59,130,246,.15),0 2px 8px rgba(59,130,246,.12);background:rgba(59,130,246,.03)}
+.dshFishing_mapCardCurrent:hover{border-color:var(--dsw-alias-state-business-primary,#3b82f6);box-shadow:0 0 0 1px rgba(59,130,246,.18),0 2px 8px rgba(59,130,246,.18);background:rgba(59,130,246,.05)}
+.dshFishing_fishDetails{border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:6px 8px;display:flex;flex-direction:column;gap:6px}
+.dshFishing_fishSummary{cursor:pointer;font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969);display:flex;align-items:center;justify-content:space-between;gap:8px;list-style:none}
+.dshFishing_fishSummary::-webkit-details-marker{display:none}
+.dshFishing_fishSummary::after{content:"▾";font-size:10px;color:var(--dsw-alias-label-tertiary,#8a919f);transition:transform .15s ease}
+.dshFishing_fishDetails[open] .dshFishing_fishSummary::after{transform:rotate(180deg)}
+.dshFishing_fishList{display:flex;flex-direction:column;gap:4px}
 .dshFishing_mapDetailCard{border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px}
 .dshFishing_mapDetailTitle{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700}
 .dshFishing_mapBack{align-self:flex-start;border:1px solid var(--dsw-alias-border-l2,#d8dbe2);background:var(--dsw-alias-bg-base,#ffffff);color:var(--dsw-alias-label-primary,#1f2329);border-radius:7px;padding:3px 10px;font-size:12px;cursor:pointer}
@@ -118,6 +133,7 @@ window.__ModuleLoader__.load({
 .dshFishing_fishDetailMeta{font-size:10px;color:var(--dsw-alias-label-tertiary,#8a919f);line-height:1.4}
 .dshFishing_purchaseBox{margin-top:2px;border:1px dashed rgba(59,130,246,.45);border-radius:10px;padding:8px;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(255,255,255,.92));display:flex;flex-direction:column;gap:6px}
 .dshFishing_purchaseTitle{font-size:12px;font-weight:700;color:var(--dsw-alias-label-secondary,#4e5969)}
+.dshFishing_ticketRemain{font-size:12px;color:var(--dsw-alias-state-business-primary,#3b82f6)}
 .dshFishing_codexHeader{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;font-weight:700;padding:2px 0}
 .dshFishing_codexGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .dshFishing_codexCard{display:flex;flex-direction:column;gap:6px;border:1px solid var(--dsw-alias-border-l1,#eef0f3);border-radius:10px;padding:8px;background:var(--dsw-alias-bg-base,#ffffff)}
@@ -920,6 +936,14 @@ window.__ModuleLoader__.load({
         if (item.spec) lines.push(`规格：${item.spec}`);
         return lines;
       };
+      const basketAttrLines = (basket) => {
+        const lines = [];
+        if (basket.capacity) lines.push(`容量：${basket.capacity}格`);
+        if (basket.model) lines.push(`型号：${basket.model}`);
+        if (basket.material) lines.push(`材质：${basket.material}`);
+        if (basket.spec) lines.push(`规格：${basket.spec}`);
+        return lines;
+      };
 
       const rodTooltip = (rod) => {
         const lines = [rod.name || "鱼竿"];
@@ -944,7 +968,7 @@ window.__ModuleLoader__.load({
 
       const basketTooltip = (basket) => {
         const lines = [basket.name || "鱼篓"];
-        if (basket.capacity) lines.push(`容量：${basket.capacity}格`);
+        lines.push(...basketAttrLines(basket));
         if (basket.basePrice) lines.push(`价格：${basket.basePrice}G`);
         if (basket.equipped) lines.push("当前使用中");
         else lines.push("双击装备");
@@ -1117,7 +1141,7 @@ window.__ModuleLoader__.load({
             ...tipHandlers(rodTooltip({ ...equippedRod, equipped: true })),
             onClick: () => setBackpackTab("鱼竿")
           },
-          React.createElement("div", { className: "dshFishing_rodIcon" }, React.createElement(EquipmentSvg, { item: equippedRod, kind: "rod", size: 32 })),
+          React.createElement("div", { className: "dshFishing_rodIcon" }, React.createElement(EquipmentSvg, { item: equippedRod, kind: "rod", size: 22 })),
           React.createElement("div", { className: "dshFishing_rodName" }, equippedRod.name || "鱼竿")
         );
 
@@ -1125,7 +1149,6 @@ window.__ModuleLoader__.load({
           "div",
           {
             className: "dshFishing_basketSlot",
-            style: { gridColumn: 2, gridRow: 3 },
             ...tipHandlers(basketTooltip({ ...(snap.equippedBasket || {}), equipped: true })),
             onClick: () => setBackpackTab("鱼篓")
           },
@@ -1203,6 +1226,7 @@ window.__ModuleLoader__.load({
               onDoubleClick: onDoubleClick
             },
             icon,
+            React.createElement("span", { className: "dshFishing_inventoryName" }, data.name || ""),
             equipped
               ? React.createElement("span", { className: "dshFishing_inventoryCellBadge" }, "装")
               : null
@@ -1216,9 +1240,8 @@ window.__ModuleLoader__.load({
         if (backpackTab === "全部" || backpackTab === "鱼篓") {
           for (const basket of ownedBaskets) backpackEntries.push({ kind: "basket", data: basket });
         }
-        const accessoryCategory = SHOP_SLOT_CATEGORIES[backpackTab];
-        if (backpackTab === "全部" || accessoryCategory !== undefined) {
-          const slotKey = Object.keys(SHOP_SLOT_CATEGORIES).find((key) => SHOP_SLOT_CATEGORIES[key] === backpackTab);
+        const slotKey = Object.keys(SHOP_SLOT_CATEGORIES).find((key) => SHOP_SLOT_CATEGORIES[key] === backpackTab);
+        if (backpackTab === "全部" || slotKey !== undefined) {
           for (const item of ownedAccessories) {
             if (backpackTab === "全部" || item.slot === slotKey) {
               backpackEntries.push({ kind: "accessory", data: item });
@@ -1232,9 +1255,13 @@ window.__ModuleLoader__.load({
           React.createElement(
             "div",
             { className: "dshFishing_rpgPanel" },
-            rodCell,
             basketCell,
-            ...accessoryCells
+            React.createElement(
+              "div",
+              { className: "dshFishing_rodArea" },
+              rodCell,
+              ...accessoryCells
+            )
           ),
           React.createElement(
             "div",
@@ -1302,54 +1329,58 @@ window.__ModuleLoader__.load({
             { className: "dshFishing_list" },
             shopItems.length === 0
               ? React.createElement("div", { className: "dshFishing_empty" }, "这个分类暂时没有商品")
-              : shopItems.map((item) =>
-                  React.createElement(
+              : shopItems.map((item) => {
+                  const attrLines = item.kind === "rod"
+                    ? rodAttrLines(item)
+                    : item.kind === "accessory"
+                      ? accessoryAttrLines(item)
+                      : item.kind === "basket"
+                        ? basketAttrLines(item)
+                        : [];
+                  return React.createElement(
                     "div",
                     { key: `${item.kind}-${item.id}`, className: "dshFishing_shopCard" },
                     React.createElement(
-                      "span",
-                      { style: { display: "inline-flex", alignItems: "center", gap: 6 } },
-                      React.createElement(EquipmentSvg, { item, size: 18 }),
+                      "div",
+                      { className: "dshFishing_shopCardHead" },
                       React.createElement(
                         "span",
-                        { style: { display: "flex", flexDirection: "column", gap: 1 } },
-                        React.createElement("span", null, item.name),
-                        item.kind === "rod"
-                          ? React.createElement(
-                              React.Fragment,
-                              null,
-                              rodAttrLines(item).map((line, index) =>
-                                React.createElement("span", { key: index, className: "dshFishing_muted" }, line)
-                              )
-                            )
-                          : item.kind === "accessory"
-                            ? React.createElement(
-                                React.Fragment,
-                                null,
-                                accessoryAttrLines(item).map((line, index) =>
-                                  React.createElement("span", { key: index, className: "dshFishing_muted" }, line)
-                                )
-                              )
-                            : null
-                      )
+                        { className: "dshFishing_shopCardTitle" },
+                        React.createElement(EquipmentSvg, { item, size: 22 }),
+                        React.createElement("span", { className: "dshFishing_shopCardName" }, item.name)
+                      ),
+                      item.owned
+                        ? React.createElement("span", { className: "dshFishing_muted" }, "已拥有")
+                        : React.createElement(
+                            "button",
+                            {
+                              className: "dshFishing_btn dshFishing_primary",
+                              disabled: busy,
+                              onClick: () => {
+                                if (item.kind === "rod") send({ type: "BuyRod", rodId: item.id })
+                                else if (item.kind === "basket") send({ type: "BuyBasket", basketId: item.id })
+                                else send({ type: "BuyAccessory", accessoryId: item.id })
+                              }
+                            },
+                            `购买 ${item.price}G`
+                          )
                     ),
-                    item.owned
-                      ? React.createElement("span", { className: "dshFishing_muted" }, "已拥有")
-                      : React.createElement(
-                          "button",
-                          {
-                            className: "dshFishing_btn dshFishing_primary",
-                            disabled: busy,
-                            onClick: () => {
-                              if (item.kind === "rod") send({ type: "BuyRod", rodId: item.id })
-                              else if (item.kind === "basket") send({ type: "BuyBasket", basketId: item.id })
-                              else send({ type: "BuyAccessory", accessoryId: item.id })
-                            }
-                          },
-                          `购买 ${item.price}G`
+                    attrLines.length > 0
+                      ? React.createElement(
+                          React.Fragment,
+                          null,
+                          React.createElement("div", { className: "dshFishing_shopCardDivider" }),
+                          React.createElement(
+                            "div",
+                            { className: "dshFishing_shopCardAttrs" },
+                            attrLines.map((line, index) =>
+                              React.createElement("span", { key: index, className: "dshFishing_muted" }, line)
+                            )
+                          )
                         )
-                  )
-                )
+                      : null
+                  );
+                })
           )
         );
       };
@@ -1433,31 +1464,45 @@ window.__ModuleLoader__.load({
                 selectedMap.locked ? ` · 需要 Lv.${selectedMap.requiredLevel}` : ` · 入场费 ${selectedMap.entryFee}G/天`
               ),
               React.createElement("div", { className: "dshFishing_mapIntro" }, selectedMap.description),
-              React.createElement("div", { className: "dshFishing_mapIntro" }, `🐟 ${selectedMap.fishIntro || "本地鱼类资源丰富。"}`),
-              React.createElement("div", { className: "dshFishing_sectionTitle" }, `本地鱼类（${selectedMap.fish.length}）`),
-              selectedMap.fish.map((fish) =>
-                React.createElement(
-                  "div",
-                  { key: fish.id, className: "dshFishing_fishDetail" },
-                  React.createElement(
-                    "div",
-                    { className: "dshFishing_fishDetailName" },
-                    React.createElement(FishSvg, { fish, size: 16 }),
-                    `${fish.name}`
-                  ),
-                  React.createElement("div", { className: "dshFishing_fishDetailDesc" }, fish.description),
-                  React.createElement(
-                    "div",
-                    { className: "dshFishing_fishDetailMeta" },
-                    `习性：${fish.habitat} ｜ 偏好饵：${fish.favoriteBait}`
-                  )
-                )
-              ),
               React.createElement(
                 "div",
                 { className: "dshFishing_purchaseBox" },
                 React.createElement("div", { className: "dshFishing_purchaseTitle" }, "🎫 门票"),
+                selectedMap.hasTicket
+                  ? React.createElement("div", { className: "dshFishing_ticketRemain" }, `有效门票剩余 ${formatRemaining(selectedMap.ticketRemainingMs)}`)
+                  : null,
                 renderPurchase(selectedMap)
+              ),
+              React.createElement(
+                "details",
+                { className: "dshFishing_fishDetails", open: true },
+                React.createElement(
+                  "summary",
+                  { className: "dshFishing_fishSummary" },
+                  React.createElement("span", null, `本地鱼类（${selectedMap.fish.length}）`)
+                ),
+                React.createElement(
+                  "div",
+                  { className: "dshFishing_fishList" },
+                  selectedMap.fish.map((fish) =>
+                    React.createElement(
+                      "div",
+                      { key: fish.id, className: "dshFishing_fishDetail" },
+                      React.createElement(
+                        "div",
+                        { className: "dshFishing_fishDetailName" },
+                        React.createElement(FishSvg, { fish, size: 16 }),
+                        `${fish.name}`
+                      ),
+                      React.createElement("div", { className: "dshFishing_fishDetailDesc" }, fish.description),
+                      React.createElement(
+                        "div",
+                        { className: "dshFishing_fishDetailMeta" },
+                        `习性：${fish.habitat} ｜ 偏好饵：${fish.favoriteBait}`
+                      )
+                    )
+                  )
+                )
               )
             )
           );
@@ -1477,7 +1522,7 @@ window.__ModuleLoader__.load({
               "div",
               {
                 key: map.id,
-                className: "dshFishing_mapCard",
+                className: `dshFishing_mapCard${map.current ? " dshFishing_mapCardCurrent" : ""}`,
                 onClick: () => setSelectedMapId(map.id)
               },
               React.createElement(
@@ -1672,7 +1717,26 @@ window.__ModuleLoader__.load({
               "div",
               {
                 className: "dshFishing_tooltip dshFishing_tooltipVisible",
-                style: { left: tooltip.x + 14, top: tooltip.y + 14 }
+                style: (() => {
+                  const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+                  const viewportHeight = typeof window !== "undefined" ? window.innerHeight : 0;
+                  const estimatedHeight = 200;
+                  const rightSpace = viewportWidth - tooltip.x - 14;
+                  const bottomSpace = viewportHeight - tooltip.y - 14;
+                  const showAbove = bottomSpace < estimatedHeight && tooltip.y - 14 >= estimatedHeight;
+                  const style = {};
+                  if (rightSpace < 260) {
+                    style.right = (viewportWidth - tooltip.x) + 14;
+                  } else {
+                    style.left = tooltip.x + 14;
+                  }
+                  if (showAbove) {
+                    style.bottom = (viewportHeight - tooltip.y) + 14;
+                  } else {
+                    style.top = tooltip.y + 14;
+                  }
+                  return style;
+                })()
               },
               tooltip.text
             )

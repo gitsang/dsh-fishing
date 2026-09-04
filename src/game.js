@@ -85,11 +85,11 @@ export const RODS = [
 ]
 
 export const BASKETS = [
-  { id: 'small', name: '小鱼篓', emoji: '🧺', capacity: 5, basePrice: 0 },
-  { id: 'medium', name: '中鱼篓', emoji: '🧺', capacity: 10, basePrice: 200 },
-  { id: 'large', name: '大鱼篓', emoji: '🧺', capacity: 15, basePrice: 500 },
-  { id: 'extra_large', name: '特大鱼篓', emoji: '🧺', capacity: 20, basePrice: 900 },
-  { id: 'deluxe', name: '豪华鱼篓', emoji: '🧺', capacity: 30, basePrice: 1600 }
+  { id: 'small', brand: '云川', model: 'YC-B05', name: '云川·小竹篓', emoji: '🧺', material: '竹编', spec: '5格 / 轻便便携', capacity: 5, basePrice: 0 },
+  { id: 'medium', brand: '云川', model: 'YC-B10', name: '云川·藤编鱼篓', emoji: '🧺', material: '藤编', spec: '10格 / 加厚提手', capacity: 10, basePrice: 200 },
+  { id: 'large', brand: '苍澜', model: 'CL-B15', name: '苍澜·碳素鱼篓', emoji: '🧺', material: '碳素', spec: '15格 / 可折叠', capacity: 15, basePrice: 500 },
+  { id: 'extra_large', brand: '苍澜', model: 'CL-B20', name: '苍澜·铝合金鱼篓', emoji: '🧺', material: '铝合金', spec: '20格 / 密封防漏', capacity: 20, basePrice: 900 },
+  { id: 'deluxe', brand: '极川', model: 'JC-B30', name: '极川·钛合金鱼篓', emoji: '🧺', material: '钛合金', spec: '30格 / 恒温保鲜', capacity: 30, basePrice: 1600 }
 ]
 
 export const ACCESSORY_SLOTS = [
@@ -946,8 +946,12 @@ export class FishingGame {
       const owned = state.ownedBaskets[basket.id] !== undefined
       return {
         id: basket.id,
+        brand: basket.brand,
+        model: basket.model,
         name: basket.name,
         emoji: basket.emoji,
+        material: basket.material,
+        spec: basket.spec,
         capacity: basket.capacity,
         basePrice: basket.basePrice,
         owned,
@@ -1018,8 +1022,13 @@ export class FishingGame {
         kind: 'basket',
         category: '鱼篓',
         id: basket.id,
+        brand: basket.brand,
+        model: basket.model,
         name: basket.name,
         emoji: basket.emoji,
+        material: basket.material,
+        spec: basket.spec,
+        capacity: basket.capacity,
         price: basket.basePrice,
         owned: state.ownedBaskets[basket.id] !== undefined
       })),
@@ -1136,8 +1145,12 @@ export class FishingGame {
       },
       equippedBasket: {
         id: equippedBasket.id,
+        brand: equippedBasket.brand,
+        model: equippedBasket.model,
         name: equippedBasket.name,
         emoji: equippedBasket.emoji,
+        material: equippedBasket.material,
+        spec: equippedBasket.spec,
         capacity: equippedBasket.capacity
       },
       inventoryCapacity: state.inventoryCapacity,
